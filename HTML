@@ -2977,125 +2977,422 @@
                 </div>
               </div>
 
-              <div id="contacts" class="tab-content hidden">
-                <div class="flex items-center justify-between mb-8">
-                  <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-pink-600 to-red-600 bg-clip-text text-transparent flex items-center"
-                  >
-                    <div
-                      class="w-12 h-12 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
-                    >
-                      📞
-                    </div>
-                    אנשי קשר
-                  </h2>
+             <div id="contacts" class="tab-content hidden">
+  <div class="max-w-7xl mx-auto p-6">
+    <div class="mb-8">
+      <h1 class="text-3xl font-normal text-gray-800 dark:text-gray-200 mb-2">אנשי קשר</h1>
+      <p class="text-gray-600 dark:text-gray-400">פרטי התקשרות חיוניים למשרד</p>
+    </div>
+
+    <!-- בתי משפט -->
+    <section class="mb-12">
+      <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-600">בתי משפט</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- בית המשפט העליון -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_supreme_name">בית המשפט העליון</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_supreme_phone">077-2703333</span>
                 </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div
-                    class="bg-gradient-to-br from-red-50 to-pink-100 dark:from-red-900/20 dark:to-pink-800/20 rounded-2xl p-8 hover-lift border border-red-200 dark:border-red-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-red-800 dark:text-red-300 mb-6"
-                    >
-                      בתי משפט
-                    </h3>
-                    <div class="space-y-4">
-                      <div
-                        class="copy-btn-container relative p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <div class="flex items-center">
-                          <div>
-                            <p
-                              class="font-semibold text-red-800 dark:text-red-300 editable"
-                              data-field="court_1_name"
-                            >
-                              בית המשפט העליון
-                            </p>
-                            <p
-                              class="text-red-600 dark:text-red-400 font-mono editable"
-                              data-field="court_1_phone"
-                            >
-                              077-2703333
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          class="copy-btn absolute left-3 top-3"
-                          onclick="copyToClipboard('077-2703333')"
-                        >
-                          <svg
-                            class="w-4 h-4 text-red-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div
-                    class="bg-gradient-to-br from-blue-50 to-cyan-100 dark:from-blue-900/20 dark:to-cyan-800/20 rounded-2xl p-8 hover-lift border border-blue-200 dark:border-blue-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-6"
-                    >
-                      עובדי המשרד
-                    </h3>
-                    <div class="space-y-4">
-                      <div
-                        class="copy-btn-container relative p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <div class="flex items-center">
-                          <div>
-                            <p
-                              class="font-semibold text-blue-800 dark:text-blue-300 editable"
-                              data-field="employee_1_name"
-                            >
-                              גיא הרשקוביץ
-                            </p>
-                            <p
-                              class="text-blue-600 dark:text-blue-400 editable"
-                              data-field="employee_1_email"
-                            >
-                              guy@ghlawoffice.co.il
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          class="copy-btn absolute left-3 top-3"
-                          onclick="copyToClipboard('guy@ghlawoffice.co.il')"
-                        >
-                          <svg
-                            class="w-4 h-4 text-blue-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_supreme_fax">02-6759648</span>
                 </div>
               </div>
             </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('077-2703333')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
           </div>
         </div>
-      </main>
-    </div>
+
+        <!-- המחוזי באר שבע -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_beersheva_name">המחוזי באר שבע</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_beersheva_phone">08-6470444</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('08-6470444')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- המחוזי תל אביב -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_telaviv_name">המחוזי תל אביב</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_telaviv_phone">03-6926211</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_telaviv_fax">03-6911447</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('03-6926211')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- המחוזי חיפה -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_haifa_name">המחוזי חיפה</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_haifa_phone">04-8698000</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_haifa_fax">04-8698673</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('04-8698000')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- המחוזי ירושלים -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_jerusalem_name">המחוזי ירושלים</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_jerusalem_phone">077-2703333</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_jerusalem_fax">02-6292521</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('077-2703333')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- המחוזי נצרת -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_nazareth_name">המחוזי נצרת</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_nazareth_phone">077-2703333</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_nazareth_fax">04-6087755</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('077-2703333')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- מחוזי מרכז -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="court_center_name">מחוזי מרכז</h3>
+              <div class="mt-2 space-y-1">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">טלפון:</span>
+                  <span class="font-mono editable" data-field="court_center_phone">03-9299508</span>
+                </div>
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="w-12 text-gray-500 dark:text-gray-400">פקס:</span>
+                  <span class="font-mono editable" data-field="court_center_fax">03-9299447</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('03-9299508')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- עובדי המשרד -->
+    <section class="mb-12">
+      <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-600">עובדי המשרד</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- גיא הרשקוביץ -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_guy_name">גיא הרשקוביץ</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_guy_role">בעל החברה</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_guy_email">guy@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('guy@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- רועי הרשקוביץ -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_roi_name">רועי הרשקוביץ</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_roi_role">עו"ד</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_roi_email">roi@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('roi@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- שחר -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_shahar_name">שחר</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_shahar_role">עו"ד</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_shahar_email">shahar@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('shahar@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- אורי -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_ori_name">אורי</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_ori_role">שיווק + טרום התמחות</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_ori_email">ori@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('ori@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- אלעד סיוון -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_elad_name">אלעד סיוון</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_elad_role">PA + מנהל שיווק</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_elad_email">elad@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('elad@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- מיכל -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="employee_michal_name">מיכל</h3>
+              <p class="text-xs text-blue-600 dark:text-blue-400 mb-2 editable" data-field="employee_michal_role">מנהלת חשבונות</p>
+              <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                <span class="font-mono editable" data-field="employee_michal_email">acc@ghlawoffice.co.il</span>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('acc@ghlawoffice.co.il')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- פרילנסרים -->
+    <section class="mb-8">
+      <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-600">פרילנסרים</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- לירז סיבוני -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="freelancer_liraz_name">לירז סיבוני</h3>
+              <div class="mt-2">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="font-mono editable" data-field="freelancer_liraz_email">liraz@siboni-law.com</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('liraz@siboni-law.com')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- טלאור קואן -->
+        <div class="contact-card bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-5 relative hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 hover:border-blue-300 dark:hover:border-blue-500">
+          <div class="flex items-start justify-between">
+            <div class="flex-1">
+              <h3 class="font-medium text-gray-900 dark:text-gray-100 text-sm editable" data-field="freelancer_talaor_name">טלאור קואן</h3>
+              <div class="mt-2">
+                <div class="flex items-center text-sm text-blue-700 dark:text-blue-300">
+                  <span class="font-mono editable" data-field="freelancer_talaor_email">kuanadvo@gmail.com</span>
+                </div>
+              </div>
+            </div>
+            <button class="copy-btn opacity-0 hover:opacity-100 p-2 hover:bg-blue-100 dark:hover:bg-blue-700 rounded-md transition-all duration-200" onclick="copyToClipboard('kuanadvo@gmail.com')">
+              <svg class="w-4 h-4 text-blue-600 dark:text-blue-400" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                <path d="M3 5a2 2 0 012-2 3 3 0 003 3h6a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- מילון מונחים משפטיים -->
+    <section class="mb-8">
+      <h2 class="text-xl font-medium text-gray-800 dark:text-gray-200 mb-6 pb-2 border-b border-gray-200 dark:border-gray-600">מילון מונחים משפטיים</h2>
+      <div class="bg-white dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-blue-600 p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-4">
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_1_title">נט המשפט</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_1_desc">מערכת ממוחשבת להגשת כתבי בי-דין ומסמכים לבתי המשפט</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_2_title">כתב טענות</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_2_desc">מסמך משפטי המוגש לבית המשפט (כתב תביעה, כתב הגנה וכד')</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_3_title">אישור מסירה</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_3_desc">טופס המוכיח שמסמך משפטי נמסר לנמען</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_4_title">אפוסטיל</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_4_desc">אישור בינלאומי המאמת את חתימת הנוטריון על מסמכים לשימוש בחו"ל</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_5_title">מהו"ת</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_5_desc">מפגש המחלוקות והתיאום, פגישה מקדמית בהליך משפטי</p>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_6_title">קדם משפט</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_6_desc">דיון מקדמי לפני הדיון העיקרי</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_7_title">דיון הוכחות</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_7_desc">דיון בו מוצגות ראיות ועדויות</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_8_title">פסק דין</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_8_desc">החלטה סופית של בית המשפט</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_9_title">תצהיר</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_9_desc">הצהרה בכתב שנחתמת בפני עו"ד או נוטריון</p>
+            </div>
+            <div class="border-r-4 border-blue-500 pr-4">
+              <p class="font-semibold text-blue-800 dark:text-blue-300 editable" data-field="legal_term_10_title">ייפוי כוח</p>
+              <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="legal_term_10_desc">מסמך המעניק סמכות לייצוג</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 mt-6">
+          <p class="text-blue-700 dark:text-blue-300 text-sm font-medium text-center editable" data-field="legal_dictionary_note">
+            הערה: זהו מילון בסיסי בלבד. עם הזמן תלמדי עוד מונחים רבים במסגרת העבודה.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<style>
+.contact-card:hover .copy-btn {
+  opacity: 1 !important;
+}
+</style>
 
     <!-- Google Sheets Configuration Modal -->
     <div
