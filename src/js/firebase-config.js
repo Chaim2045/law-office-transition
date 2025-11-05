@@ -16,14 +16,22 @@ const firebaseConfig = {
 let database = null;
 let firebaseInitialized = false;
 
-try {
-  firebase.initializeApp(firebaseConfig);
-  database = firebase.database();
-  firebaseInitialized = true;
-  console.log('✅ Firebase initialized successfully');
-} catch (error) {
-  console.warn('⚠️ Firebase initialization failed:', error);
-  console.warn('💡 האפליקציה תמשיך לעבוד עם סיסמה מקומית');
+// Check if Firebase config is real (not placeholder)
+const isRealConfig = firebaseConfig.apiKey !== 'YOUR_API_KEY';
+
+if (isRealConfig) {
+  try {
+    firebase.initializeApp(firebaseConfig);
+    database = firebase.database();
+    firebaseInitialized = true;
+    console.log('✅ Firebase initialized successfully');
+  } catch (error) {
+    console.warn('⚠️ Firebase initialization failed:', error);
+    console.warn('💡 האפליקציה תמשיך לעבוד עם סיסמה מקומית');
+  }
+} else {
+  console.warn('⚠️ Firebase config uses placeholder values');
+  console.warn('💡 האפליקציה תעבוד עם סיסמה מקומית בלבד');
 }
 
 // Password configuration path in Firebase
@@ -143,14 +151,14 @@ if (firebaseInitialized) {
   // Check if password exists in Firebase, if not - initialize it
   getPasswordFromFirebase().then((password) => {
     if (password === DEFAULT_PASSWORD) {
-      console.log('💡 הסיסמה מוכנה לשימוש: ' + DEFAULT_PASSWORD);
+      console.log(`💡 הסיסמה מוכנה לשימוש: ${DEFAULT_PASSWORD}`);
     }
   });
 } else {
   // Initialize local password if Firebase is not available
   if (!localStorage.getItem(LOCAL_PASSWORD_KEY)) {
     localStorage.setItem(LOCAL_PASSWORD_KEY, DEFAULT_PASSWORD);
-    console.log('💡 סיסמה מקומית אותחלה: ' + DEFAULT_PASSWORD);
+    console.log(`💡 סיסמה מקומית אותחלה: ${DEFAULT_PASSWORD}`);
   }
 }
 

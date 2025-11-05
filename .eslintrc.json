@@ -8,7 +8,14 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "globals": {
+    "firebase": "readonly",
+    "validatePassword": "readonly",
+    "updatePassword": "readonly",
+    "initializePassword": "readonly"
+  },
   "rules": {
+    "no-lonely-if": "warn",
     "no-console": "warn",
     "no-alert": "warn",
     "no-restricted-globals": "off",
