@@ -3,13 +3,14 @@
 // לפרטים נוספים, ראה את הקובץ FIREBASE_SETUP.md
 
 const firebaseConfig = {
-  apiKey: 'YOUR_API_KEY',
-  authDomain: 'YOUR_PROJECT_ID.firebaseapp.com',
-  databaseURL: 'https://YOUR_PROJECT_ID-default-rtdb.firebaseio.com',
-  projectId: 'YOUR_PROJECT_ID',
-  storageBucket: 'YOUR_PROJECT_ID.appspot.com',
-  messagingSenderId: 'YOUR_SENDER_ID',
-  appId: 'YOUR_APP_ID',
+  apiKey: 'AIzaSyC9R_eupXtdkzEMBwA1Dsc6SC_14_iUNLs',
+  authDomain: 'law-office-guide.firebaseapp.com',
+  databaseURL: 'https://law-office-guide-default-rtdb.europe-west1.firebasedatabase.app',
+  projectId: 'law-office-guide',
+  storageBucket: 'law-office-guide.firebasestorage.app',
+  messagingSenderId: '903121364456',
+  appId: '1:903121364456:web:91d02f021ab618d3a6705d',
+  measurementId: 'G-3NZXL9YB35',
 };
 
 // Initialize Firebase
