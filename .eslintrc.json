@@ -12,7 +12,11 @@
     "firebase": "readonly",
     "validatePassword": "readonly",
     "updatePassword": "readonly",
-    "initializePassword": "readonly"
+    "initializePassword": "readonly",
+    "saveToFirebase": "readonly",
+    "loadFromFirebase": "readonly",
+    "deleteFromFirebase": "readonly",
+    "loadAllDataFromFirebase": "readonly"
   },
   "rules": {
     "no-lonely-if": "warn",

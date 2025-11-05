@@ -178,7 +178,7 @@ function saveToFirebase(field, value) {
       return true;
     })
     .catch((error) => {
-      console.error(`❌ שגיאה בשמירת נתון ב-Firebase:`, error);
+      console.error('❌ שגיאה בשמירת נתון ב-Firebase:', error);
       return false;
     });
 }
@@ -199,7 +199,7 @@ function loadFromFirebase(field) {
       return null;
     })
     .catch((error) => {
-      console.error(`❌ שגיאה בטעינת נתון מ-Firebase:`, error);
+      console.error('❌ שגיאה בטעינת נתון מ-Firebase:', error);
       return null;
     });
 }
@@ -218,7 +218,7 @@ function deleteFromFirebase(field) {
       return true;
     })
     .catch((error) => {
-      console.error(`❌ שגיאה במחיקת נתון מ-Firebase:`, error);
+      console.error('❌ שגיאה במחיקת נתון מ-Firebase:', error);
       return false;
     });
 }
