@@ -17,7 +17,9 @@
       "Bash(git config:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\n✨ מדריך חפיפה מקצועי - גרסה מלאה עם עיצוב לינארי\n\n- עיצוב לינארי מינימליסטי (Linear.app inspired)\n- ארגון מקצועי: src/js, src/css, public/\n- ESLint + Prettier עם Airbnb style guide\n- מוכן לפריסה ל-Netlify (netlify.toml)\n- תמיכה ב-Firebase לשמירת נתונים\n- ממשק רספונסיבי ונקי\n- מצב כהה/בהיר\n- מערכת סיסמה למצב עריכה\n\n🤖 Generated with Claude Code\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git push:*)",
-      "Bash(git commit -m \"$(cat <<''EOF''\n🔧 Fix ESLint errors for Netlify deployment\n\n- Added global declarations for firebase and password functions\n- Auto-fixed formatting issues (trailing commas, linebreaks, indentation)\n- Changed no-lonely-if to warning level\n- All ESLint errors resolved (0 errors, 33 warnings remaining)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\n🔧 Fix ESLint errors for Netlify deployment\n\n- Added global declarations for firebase and password functions\n- Auto-fixed formatting issues (trailing commas, linebreaks, indentation)\n- Changed no-lonely-if to warning level\n- All ESLint errors resolved (0 errors, 33 warnings remaining)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(git push)"
     ],
     "deny": [],
     "ask": []
