@@ -163,7 +163,94 @@ if (firebaseInitialized) {
   }
 }
 
+// שמירת נתון ל-Firebase
+function saveToFirebase(field, value) {
+  if (!firebaseInitialized || !database) {
+    console.warn('⚠️ Firebase לא מאותחל. נתונים יישמרו רק מקומית.');
+    return Promise.resolve(false);
+  }
+
+  return database
+    .ref(`guideData/${field}`)
+    .set(value)
+    .then(() => {
+      console.log(`✅ נתון נשמר ב-Firebase: ${field}`);
+      return true;
+    })
+    .catch((error) => {
+      console.error(`❌ שגיאה בשמירת נתון ב-Firebase:`, error);
+      return false;
+    });
+}
+
+// טעינת נתון מ-Firebase
+function loadFromFirebase(field) {
+  if (!firebaseInitialized || !database) {
+    return Promise.resolve(null);
+  }
+
+  return database
+    .ref(`guideData/${field}`)
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      }
+      return null;
+    })
+    .catch((error) => {
+      console.error(`❌ שגיאה בטעינת נתון מ-Firebase:`, error);
+      return null;
+    });
+}
+
+// מחיקת נתון מ-Firebase
+function deleteFromFirebase(field) {
+  if (!firebaseInitialized || !database) {
+    return Promise.resolve(false);
+  }
+
+  return database
+    .ref(`guideData/${field}`)
+    .remove()
+    .then(() => {
+      console.log(`✅ נתון נמחק מ-Firebase: ${field}`);
+      return true;
+    })
+    .catch((error) => {
+      console.error(`❌ שגיאה במחיקת נתון מ-Firebase:`, error);
+      return false;
+    });
+}
+
+// טעינת כל הנתונים מ-Firebase
+function loadAllDataFromFirebase() {
+  if (!firebaseInitialized || !database) {
+    console.warn('⚠️ Firebase לא מאותחל. טוען נתונים מקומיים בלבד.');
+    return Promise.resolve(null);
+  }
+
+  return database
+    .ref('guideData')
+    .get()
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        console.log('✅ כל הנתונים נטענו מ-Firebase');
+        return snapshot.val();
+      }
+      return null;
+    })
+    .catch((error) => {
+      console.error('❌ שגיאה בטעינת נתונים מ-Firebase:', error);
+      return null;
+    });
+}
+
 // Export functions to window for global access
 window.validatePassword = validatePassword;
 window.updatePassword = updatePassword;
 window.initializePassword = initializePassword;
+window.saveToFirebase = saveToFirebase;
+window.loadFromFirebase = loadFromFirebase;
+window.deleteFromFirebase = deleteFromFirebase;
+window.loadAllDataFromFirebase = loadAllDataFromFirebase;

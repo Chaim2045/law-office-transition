@@ -354,8 +354,15 @@ function saveNewItem() {
     addButton.parentNode.insertBefore(newItem, addButton);
   }
 
-  // Save to localStorage and Google Sheets
+  // Save to localStorage, Firebase, and Google Sheets
   localStorage.setItem(`guide_${newFieldId}`, itemName);
+
+  // Save to Firebase
+  if (typeof saveToFirebase === 'function') {
+    saveToFirebase(newFieldId, itemName);
+  }
+
+  // Save to Google Sheets
   if (googleSheetsConfig.connected) {
     saveToGoogleSheets(newFieldId, itemName);
   }
@@ -419,6 +426,11 @@ function deleteItem(button, fieldId) {
     // Remove from localStorage
     localStorage.removeItem(`guide_${fieldId}`);
 
+    // Remove from Firebase
+    if (typeof deleteFromFirebase === 'function') {
+      deleteFromFirebase(fieldId);
+    }
+
     // Remove from Google Sheets (send empty value)
     if (googleSheetsConfig.connected) {
       saveToGoogleSheets(fieldId, '');
@@ -445,6 +457,11 @@ function handleEdit(e) {
   if (field) {
     // Save locally
     localStorage.setItem(`guide_${field}`, value);
+
+    // Save to Firebase
+    if (typeof saveToFirebase === 'function') {
+      saveToFirebase(field, value);
+    }
 
     // Save to Google Sheets
     if (googleSheetsConfig.connected) {
