@@ -1,0 +1,28 @@
+{
+  "name": "law-office-transition",
+  "version": "1.0.0",
+  "description": "מדריך חפיפה מקצועי - משרד עו\"ד גיא הרשקוביץ",
+  "main": "src/js/main.js",
+  "scripts": {
+    "lint": "eslint \"src/**/*.js\" --max-warnings=20",
+    "lint:fix": "eslint \"src/**/*.js\" --fix",
+    "format": "prettier --write \"**/*.{js,css,html,json,md}\"",
+    "format:check": "prettier --check \"**/*.{js,css,html,json,md}\"",
+    "dev": "serve public -p 3000",
+    "prepare": "npm run format && npm run lint:fix"
+  },
+  "keywords": [
+    "law-office",
+    "guide",
+    "transition"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "prettier": "^3.2.5",
+    "serve": "^14.2.1"
+  }
+}

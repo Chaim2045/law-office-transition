@@ -45,161 +45,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 
-    <style>
-      .gradient-bg {
-        background: linear-gradient(
-          -45deg,
-          #667eea,
-          #764ba2,
-          #f093fb,
-          #f5576c,
-          #4facfe,
-          #00f2fe
-        );
-        background-size: 400% 400%;
-        animation: gradient 15s ease infinite;
-      }
-
-      .glass-effect {
-        backdrop-filter: blur(16px);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .dark .glass-effect {
-        background: rgba(0, 0, 0, 0.2);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .hover-lift {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      }
-
-      .hover-lift:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1),
-          0 10px 10px -5px rgba(0, 0, 0, 0.04);
-      }
-
-      .dark .hover-lift:hover {
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3),
-          0 10px 10px -5px rgba(0, 0, 0, 0.2);
-      }
-
-      .custom-scrollbar::-webkit-scrollbar {
-        width: 8px;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-track {
-        background: #f1f5f9;
-        border-radius: 4px;
-      }
-
-      .dark .custom-scrollbar::-webkit-scrollbar-track {
-        background: #374151;
-      }
-
-      .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 4px;
-      }
-
-      .dark .custom-scrollbar::-webkit-scrollbar-thumb {
-        background: #6b7280;
-      }
-
-      .editable {
-        transition: all 0.2s ease;
-        border-radius: 6px;
-        position: relative;
-      }
-
-      .editable:hover {
-        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-      }
-
-      .editable:focus {
-        outline: 2px solid #3b82f6;
-        outline-offset: 2px;
-        background: white;
-        box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
-      }
-
-      .copy-btn {
-        opacity: 0;
-        transition: all 0.2s ease;
-        background: rgba(59, 130, 246, 0.1);
-        border-radius: 50%;
-        padding: 8px;
-      }
-
-      .copy-btn:hover {
-        background: rgba(59, 130, 246, 0.2);
-        transform: scale(1.1);
-      }
-
-      .copy-btn-container:hover .copy-btn {
-        opacity: 1;
-      }
-
-      .loading-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0, 0, 0, 0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 9999;
-      }
-
-      .loading-spinner {
-        width: 50px;
-        height: 50px;
-        border: 5px solid #f3f3f3;
-        border-top: 5px solid #3498db;
-        border-radius: 50%;
-        animation: spin 1s linear infinite;
-      }
-
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-
-      .search-highlight {
-        background: #fef08a;
-        padding: 2px 4px;
-        border-radius: 3px;
-        font-weight: 500;
-      }
-
-      .save-indicator {
-        position: fixed;
-        top: 80px;
-        left: 20px;
-        background: #10b981;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 6px;
-        font-size: 14px;
-        transform: translateY(-100px);
-        opacity: 0;
-        transition: all 0.3s ease;
-        z-index: 1000;
-      }
-
-      .save-indicator.show {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    </style>
+    <link rel="stylesheet" href="../src/css/styles.css" />
   </head>
   <body
     class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300 font-inter"
@@ -232,9 +78,9 @@
           <div class="flex items-center space-x-4 space-x-reverse">
             <div class="flex items-center space-x-3 space-x-reverse">
               <div
-                class="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold text-lg"
+                class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center text-white font-bold text-lg"
               >
-                📚
+                ג
               </div>
               <div>
                 <h1 class="text-xl font-bold text-gray-900 dark:text-white">
@@ -281,7 +127,7 @@
             <!-- Edit Mode Toggle -->
             <button
               id="edit-mode-toggle"
-              class="px-4 py-2 bg-gradient-to-r from-green-600 to-green-700 text-white rounded-full hover:from-green-700 hover:to-green-800 transition-all transform hover:scale-105 shadow-lg"
+              class="px-4 py-2 bg-blue-900 text-white rounded-full hover:bg-blue-800 transition-all transform hover:scale-105 shadow-lg"
             >
               <svg
                 class="w-4 h-4 inline ml-1"
@@ -302,9 +148,9 @@
             >
               <div
                 id="connection-indicator"
-                class="w-3 h-3 rounded-full bg-red-500 ml-2"
+                class="w-3 h-3 rounded-full bg-green-500 ml-2"
               ></div>
-              <span id="connection-text">לא מחובר לגוגל שיטס</span>
+              <span id="connection-text">מחובר לענן</span>
             </div>
 
             <!-- Dark Mode Toggle -->
@@ -778,708 +624,235 @@
               <div id="general-info" class="tab-content">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
-                      🏢
+                      ♦
                     </div>
                     מידע כללי על המשרד
                   </h2>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                  <div
-                    class="bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/20 dark:to-blue-800/20 rounded-2xl p-8 hover-lift border border-blue-200 dark:border-blue-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-blue-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      פרטי המשרד
-                    </h3>
-                    <div class="space-y-6">
-                      <div class="copy-btn-container relative group">
-                        <div
-                          class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                        >
-                          <svg
-                            class="w-5 h-5 text-blue-600 mt-1 ml-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                          <div>
-                            <p
-                              class="font-semibold text-blue-800 dark:text-blue-300"
-                            >
-                              משרד ראשי
-                            </p>
-                            <p
-                              class="text-gray-700 dark:text-gray-300 editable"
-                              data-field="main_office"
-                            >
-                              מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          class="copy-btn absolute left-2 top-2"
-                          onclick="copyToClipboard('מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144')"
-                        >
-                          <svg
-                            class="w-4 h-4 text-blue-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-
-                      <div class="copy-btn-container relative group">
-                        <div
-                          class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                        >
-                          <svg
-                            class="w-5 h-5 text-green-600 mt-1 ml-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                          <div>
-                            <p
-                              class="font-semibold text-green-800 dark:text-green-300"
-                            >
-                              סניף
-                            </p>
-                            <p
-                              class="text-gray-700 dark:text-gray-300 editable"
-                              data-field="branch_office"
-                            >
-                              בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          class="copy-btn absolute left-2 top-2"
-                          onclick="copyToClipboard('בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות')"
-                        >
-                          <svg
-                            class="w-4 h-4 text-green-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
+                <!-- Office Details - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3 class="linear-section-title">פרטי המשרד</h3>
                   </div>
 
-                  <div
-                    class="bg-gradient-to-br from-purple-50 to-purple-100 dark:from-purple-900/20 dark:to-purple-800/20 rounded-2xl p-8 hover-lift border border-purple-200 dark:border-purple-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-purple-800 dark:text-purple-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-purple-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                        ></path>
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path>
                       </svg>
-                      פרטי קשר
-                    </h3>
-                    <div class="space-y-4">
-                      <div
-                        class="copy-btn-container relative flex items-center p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-purple-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                          ></path>
-                        </svg>
-                        <div>
-                          <span
-                            class="font-medium text-purple-800 dark:text-purple-300"
-                            >טלפון:
-                          </span>
-                          <span
-                            class="editable text-gray-700 dark:text-gray-300"
-                            data-field="phone"
-                            >03-6855558</span
-                          >
-                        </div>
-                        <button
-                          class="copy-btn absolute left-2"
-                          onclick="copyToClipboard('03-6855558')"
-                        >
-                          <svg
-                            class="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">משרד ראשי</div>
+                      <div class="linear-item-value editable" data-field="main_office">מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
 
-                      <div
-                        class="copy-btn-container relative flex items-center p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-purple-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                          ></path>
-                          <path
-                            d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                          ></path>
-                        </svg>
-                        <div>
-                          <span
-                            class="font-medium text-purple-800 dark:text-purple-300"
-                            >דוא"ל:
-                          </span>
-                          <span
-                            class="editable text-gray-700 dark:text-gray-300"
-                            data-field="email"
-                            >office@ghlawoffice.co.il</span
-                          >
-                        </div>
-                        <button
-                          class="copy-btn absolute left-2"
-                          onclick="copyToClipboard('office@ghlawoffice.co.il')"
-                        >
-                          <svg
-                            class="w-4 h-4"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;">
+                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z" clip-rule="evenodd"></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">סניף</div>
+                      <div class="linear-item-value editable" data-field="branch_office">בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Contact Details - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    <h3 class="linear-section-title">פרטי קשר</h3>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;">
+                        <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <span class="linear-item-label">טלפון: </span>
+                      <span class="editable" data-field="phone">03-6855558</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('03-6855558')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;">
+                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <span class="linear-item-label">דוא"ל: </span>
+                      <span class="editable" data-field="email">office@ghlawoffice.co.il</span>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('office@ghlawoffice.co.il')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Specialties - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3 class="linear-section-title">תחומי התמחות</h3>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-content">
+                      <div class="linear-item-value editable" data-field="specialties">
+                        מסחרי-אזרחי, חברות ושותפויות, חוזים, מקרקעין, תכנון ובניה, גישור, בוררות, נוטריון, ייצוג בבתי משפט
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <!-- תחומי התמחות -->
-                <div
-                  class="bg-gradient-to-br from-indigo-50 to-indigo-100 dark:from-indigo-900/20 dark:to-indigo-800/20 rounded-2xl p-8 hover-lift border border-indigo-200 dark:border-indigo-700 mb-8"
-                >
-                  <h3
-                    class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-6 flex items-center"
-                  >
-                    <svg
-                      class="w-6 h-6 ml-3 text-indigo-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
-                        clip-rule="evenodd"
-                      ></path>
+                <!-- Staff Roles - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"></path>
                     </svg>
-                    תחומי התמחות
-                  </h3>
-                  <div
-                    class="bg-white/60 dark:bg-gray-800/60 p-6 rounded-xl backdrop-blur-sm"
-                  >
-                    <p
-                      class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed editable"
-                      data-field="specialties"
-                    >
-                      מסחרי-אזרחי, חברות ושותפויות, חוזים, מקרקעין, תכנון ובניה,
-                      גישור, בוררות, נוטריון, ייצוג בבתי משפט
-                    </p>
-                  </div>
-                </div>
-
-                <!-- בעלי תפקידים -->
-                <div
-                  class="bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20 rounded-2xl p-8 hover-lift border border-emerald-200 dark:border-emerald-700"
-                >
-                  <h3
-                    class="text-2xl font-bold text-emerald-800 dark:text-emerald-300 mb-6 flex items-center"
-                  >
-                    <svg
-                      class="w-6 h-6 ml-3 text-emerald-600"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z"
-                      ></path>
-                    </svg>
-                    בעלי תפקידים
-                  </h3>
-
-                  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- תל-אביב -->
-                    <div class="space-y-6">
-                      <div>
-                        <h4
-                          class="font-bold text-blue-700 dark:text-blue-300 mb-4 flex items-center text-lg"
-                        >
-                          <svg
-                            class="w-5 h-5 ml-2 text-blue-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                          תל-אביב
-                        </h4>
-                        <div class="space-y-3">
-                          <div
-                            class="flex items-center p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-blue-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_1"
-                              >גיא הרשקוביץ - עו"ד, בעל החברה</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-gray-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_2"
-                              >אלעד סיוון - PA + מנהל שיווק</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-gray-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_3"
-                              >אורי - שיווק + טרום התמחות</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-gray-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_4"
-                              >מנחם - עו"ד</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-gray-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_5"
-                              >מירי טל - עו"ד</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-gray-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="ta_staff_6"
-                              >עופרה - עו"ד</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    <!-- רחובות -->
-                    <div class="space-y-6">
-                      <div>
-                        <h4
-                          class="font-bold text-green-700 dark:text-green-300 mb-4 flex items-center text-lg"
-                        >
-                          <svg
-                            class="w-5 h-5 ml-2 text-green-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                          רחובות
-                        </h4>
-                        <div class="space-y-3">
-                          <div
-                            class="flex items-center p-3 bg-green-50 dark:bg-green-900/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-green-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="rehovot_staff_1"
-                              >רועי הרשקוביץ - עו"ד</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-green-50 dark:bg-green-900/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-green-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="rehovot_staff_2"
-                              >גלית שגב - עו"ד</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-
-                      <!-- פרילנסרים -->
-                      <div>
-                        <h4
-                          class="font-bold text-purple-700 dark:text-purple-300 mb-4 flex items-center text-lg"
-                        >
-                          <svg
-                            class="w-5 h-5 ml-2 text-purple-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z"
-                            ></path>
-                          </svg>
-                          פרילנסרים
-                        </h4>
-                        <div class="space-y-3">
-                          <div
-                            class="flex items-center p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-purple-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="freelancer_1"
-                              >אילי קיפרמן</span
-                            >
-                          </div>
-                          <div
-                            class="flex items-center p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg"
-                          >
-                            <svg
-                              class="w-5 h-5 text-purple-600 ml-3"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fill-rule="evenodd"
-                                d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                                clip-rule="evenodd"
-                              ></path>
-                            </svg>
-                            <span
-                              class="editable text-gray-700 dark:text-gray-300"
-                              data-field="freelancer_2"
-                              >לירז סיבוני</span
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                    <h3 class="linear-section-title">בעלי תפקידים</h3>
                   </div>
 
-                  <!-- שוכרי חדרים -->
-                  <div class="mt-8">
-                    <h4
-                      class="font-bold text-orange-700 dark:text-orange-300 mb-4 flex items-center text-lg"
-                    >
-                      <svg
-                        class="w-5 h-5 ml-2 text-orange-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      שוכרי חדרים במשרד ת"א
-                    </h4>
-                    <div
-                      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
-                    >
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_1"
-                          >לירן</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_2"
-                          >עמית</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_3"
-                          >מאיה</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_4"
-                          >עופרה</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_5"
-                          >אלעד זמיר</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-center p-3 bg-orange-50 dark:bg-orange-900/30 rounded-lg"
-                      >
-                        <svg
-                          class="w-5 h-5 text-orange-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="tenant_6"
-                          >אביטל חורף</span
-                        >
-                      </div>
-                    </div>
+                  <!-- Tel Aviv -->
+                  <div style="margin-top: 1.5rem; margin-bottom: 1rem;">
+                    <h4 class="linear-item-label" style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">תל-אביב</h4>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_1">גיא הרשקוביץ - עו"ד, בעל החברה</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_2">אלעד סיוון - PA + מנהל שיווק</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_3">אורי - שיווק + טרום התמחות</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_4">מנחם - עו"ד</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_5">מירי טל - עו"ד</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="ta_staff_6">עופרה - עו"ד</span></div>
+                  </div>
+
+                  <!-- Rehovot -->
+                  <div style="margin-top: 1.5rem; margin-bottom: 1rem;">
+                    <h4 class="linear-item-label" style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">רחובות</h4>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="rehovot_staff_1">רועי הרשקוביץ - עו"ד</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="rehovot_staff_2">גלית שגב - עו"ד</span></div>
+                  </div>
+
+                  <!-- Freelancers -->
+                  <div style="margin-top: 1.5rem; margin-bottom: 1rem;">
+                    <h4 class="linear-item-label" style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">פרילנסרים</h4>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="freelancer_1">אילי קיפרמן</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="freelancer_2">לירז סיבוני</span></div>
+                  </div>
+
+                  <!-- Office Tenants -->
+                  <div style="margin-top: 1.5rem; margin-bottom: 1rem;">
+                    <h4 class="linear-item-label" style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem;">שוכרי חדרים במשרד ת"א</h4>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_1">לירן</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_2">עמית</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_3">מאיה</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_4">עופרה</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_5">אלעד זמיר</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="tenant_6">אביטל חורף</span></div>
                   </div>
                 </div>
               </div>
@@ -1488,10 +861,10 @@
               <div id="daily-management" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-green-500 to-blue-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
                       ✅
                     </div>
@@ -1499,354 +872,110 @@
                   </h2>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-                  <!-- פתיחת יום -->
-                  <div
-                    class="bg-gradient-to-br from-yellow-50 to-orange-100 dark:from-yellow-900/20 dark:to-orange-800/20 rounded-2xl p-8 hover-lift border border-yellow-200 dark:border-yellow-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-orange-800 dark:text-orange-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-yellow-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                          clip-rule="evenodd"
-                        ></path>
-                      </svg>
-                      פתיחת יום עבודה
-                    </h3>
-                    <div class="space-y-4">
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-yellow-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="morning_1"
-                          >הגעה למשרד החל מהשעה 8:30 בבוקר</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-blue-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M11 3a1 1 0 10-2 0v1a1 1 0 10-2 0V3a3 3 0 106 0v1a1 1 0 10-2 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM6 10a1 1 0 01-1 1H4a1 1 0 110-2h1a1 1 0 011 1zM14.95 14.95a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM13.657 13.243a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707z"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="morning_2"
-                          >הדלקת אורות + מזגן בכל החדרים (כולל משרד גיא)</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-green-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                          ></path>
-                          <path
-                            d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="morning_3"
-                          >לקיחת דואר מתיבת הדואר בקומת הכניסה ליד המעליות (תיבה
-                          מס' 100)</span
-                        >
-                      </div>
-                    </div>
+                <!-- Morning Routine - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                    <h3 class="linear-section-title">פתיחת יום עבודה</h3>
                   </div>
 
-                  <!-- סגירת יום -->
-                  <div
-                    class="bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-indigo-900/20 dark:to-purple-800/20 rounded-2xl p-8 hover-lift border border-indigo-200 dark:border-indigo-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-purple-800 dark:text-purple-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-indigo-500"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                        ></path>
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="morning_1">הגעה למשרד החל מהשעה 8:30 בבוקר</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M11 3a1 1 0 10-2 0v1a1 1 0 10-2 0V3a3 3 0 106 0v1a1 1 0 10-2 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM6 10a1 1 0 01-1 1H4a1 1 0 110-2h1a1 1 0 011 1zM14.95 14.95a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM13.657 13.243a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414l.707.707z"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="morning_2">הדלקת אורות + מזגן בכל החדרים (כולל משרד גיא)</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="morning_3">לקיחת דואר מתיבת הדואר בקומת הכניסה ליד המעליות (תיבה מס' 100)</span></div>
+                  </div>
+                </div>
+
+                <!-- Evening Routine - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <h3 class="linear-section-title">סגירת יום עבודה</h3>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 16a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="evening_1">מיון דואר שהתקבל במהלך היום</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="evening_2">לעבור על כל החדרים לוודא שחדר הישיבות והמשרדים מסודרים</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="evening_6">כיבוי מזגנים ואורות</span></div>
+                  </div>
+                </div>
+
+                <!-- Phone Answering - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path>
+                    </svg>
+                    <h3 class="linear-section-title">מענה לטלפונים</h3>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">מספר טלפון משרד</div>
+                      <div class="linear-item-value editable" data-field="office_phone" style="font-size: 1.25rem; font-weight: 600;">03-6855558</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('03-6855558')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
                       </svg>
-                      סגירת יום עבודה
-                    </h3>
-                    <div class="space-y-4">
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-indigo-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 16a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="evening_1"
-                          >מיון דואר שהתקבל במהלך היום</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-purple-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"></path>
-                          <path
-                            fill-rule="evenodd"
-                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="evening_2"
-                          >לעבור על כל החדרים לוודא שחדר הישיבות והמשרדים
-                          מסודרים</span
-                        >
-                      </div>
-                      <div
-                        class="flex items-start p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                      >
-                        <svg
-                          class="w-5 h-5 text-red-600 mt-1 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <span
-                          class="editable text-gray-700 dark:text-gray-300"
-                          data-field="evening_6"
-                          >כיבוי מזגנים ואורות</span
-                        >
-                      </div>
+                    </button>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">מענה סטנדרטי</div>
+                      <div class="linear-item-value editable" data-field="phone_greeting" style="font-style: italic;">"משרד עו"ד שלום מדברת [שמך]"</div>
                     </div>
                   </div>
                 </div>
 
-                <!-- מענה לטלפונים ומיילים -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                  <div
-                    class="bg-gradient-to-br from-cyan-50 to-blue-100 dark:from-cyan-900/20 dark:to-blue-800/20 rounded-2xl p-8 hover-lift border border-cyan-200 dark:border-cyan-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-blue-800 dark:text-blue-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-blue-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                        ></path>
-                      </svg>
-                      מענה לטלפונים
-                    </h3>
-
-                    <div
-                      class="mb-6 p-4 bg-white/60 dark:bg-gray-800/60 rounded-xl backdrop-blur-sm"
-                    >
-                      <div class="copy-btn-container relative">
-                        <div class="flex items-center">
-                          <svg
-                            class="w-5 h-5 text-blue-600 ml-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                            ></path>
-                          </svg>
-                          <div>
-                            <p
-                              class="font-semibold text-blue-800 dark:text-blue-300"
-                            >
-                              מספר טלפון משרד
-                            </p>
-                            <p
-                              class="text-2xl font-bold text-blue-900 dark:text-blue-100 editable"
-                              data-field="office_phone"
-                            >
-                              03-6855558
-                            </p>
-                          </div>
-                        </div>
-                        <button
-                          class="copy-btn absolute left-2 top-2"
-                          onclick="copyToClipboard('03-6855558')"
-                        >
-                          <svg
-                            class="w-4 h-4 text-blue-600"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                            ></path>
-                            <path
-                              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                            ></path>
-                          </svg>
-                        </button>
-                      </div>
-                    </div>
-
-                    <div
-                      class="bg-white/60 dark:bg-gray-800/60 p-6 rounded-xl backdrop-blur-sm mb-6"
-                    >
-                      <div class="flex items-center mb-3">
-                        <svg
-                          class="w-5 h-5 text-gray-600 ml-3"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        <p
-                          class="font-semibold text-gray-800 dark:text-gray-200"
-                        >
-                          מענה סטנדרטי:
-                        </p>
-                      </div>
-                      <p
-                        class="text-gray-700 dark:text-gray-300 italic text-lg editable"
-                        data-field="phone_greeting"
-                      >
-                        "משרד עו"ד שלום מדברת [שמך]"
-                      </p>
-                    </div>
+                <!-- Email Handling - Linear Design -->
+                <div class="linear-section">
+                  <div class="linear-section-header">
+                    <svg class="linear-section-icon" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                      <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                    </svg>
+                    <h3 class="linear-section-title">טיפול במיילים</h3>
                   </div>
 
-                  <div
-                    class="bg-gradient-to-br from-rose-50 to-pink-100 dark:from-rose-900/20 dark:to-pink-800/20 rounded-2xl p-8 hover-lift border border-rose-200 dark:border-rose-700"
-                  >
-                    <h3
-                      class="text-2xl font-bold text-pink-800 dark:text-pink-300 mb-6 flex items-center"
-                    >
-                      <svg
-                        class="w-6 h-6 ml-3 text-pink-600"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                        ></path>
-                        <path
-                          d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                        ></path>
-                      </svg>
-                      טיפול במיילים
-                    </h3>
+                  <div style="margin-top: 1rem; margin-bottom: 1rem;">
+                    <h4 class="linear-item-label" style="font-size: 0.875rem; font-weight: 600;">התנהלות בסיסית</h4>
+                  </div>
 
-                    <div class="mb-8">
-                      <h4
-                        class="font-bold text-pink-700 dark:text-pink-300 mb-4 flex items-center"
-                      >
-                        <svg
-                          class="w-5 h-5 ml-2 text-pink-600"
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd"
-                          ></path>
-                        </svg>
-                        התנהלות בסיסית
-                      </h4>
-                      <div class="space-y-3">
-                        <div
-                          class="flex items-start p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg backdrop-blur-sm"
-                        >
-                          <svg
-                            class="w-5 h-5 text-pink-600 mt-1 ml-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                            ></path>
-                            <path
-                              d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                            ></path>
-                          </svg>
-                          <span
-                            class="editable text-gray-700 dark:text-gray-300"
-                            data-field="email_basic_1"
-                            >כל מייל נפתח ונרשם בטבלת המשימות</span
-                          >
-                        </div>
-                        <div
-                          class="flex items-start p-3 bg-white/60 dark:bg-gray-800/60 rounded-lg backdrop-blur-sm"
-                        >
-                          <svg
-                            class="w-5 h-5 text-green-600 mt-1 ml-3"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
-                            <path
-                              fill-rule="evenodd"
-                              d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                              clip-rule="evenodd"
-                            ></path>
-                          </svg>
-                          <span
-                            class="editable text-gray-700 dark:text-gray-300"
-                            data-field="email_basic_2"
-                            >יש להשיב "קיבלתי" למיילים מעובדי המשרד</span
-                          >
-                        </div>
-                      </div>
-                    </div>
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="email_basic_1">כל מייל נפתח ונרשם בטבלת המשימות</span></div>
+                  </div>
+
+                  <div class="linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M7.707 3.293a1 1 0 010 1.414L5.414 7H11a7 7 0 017 7v2a1 1 0 11-2 0v-2a5 5 0 00-5-5H5.414l2.293 2.293a1 1 0 11-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content"><span class="editable" data-field="email_basic_2">יש להשיב "קיבלתי" למיילים מעובדי המשרד</span></div>
                   </div>
                 </div>
               </div>
@@ -1855,10 +984,10 @@
               <div id="calendar-management" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
                       📅
                     </div>
@@ -1867,7 +996,7 @@
                 </div>
 
                 <div
-                  class="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-900/20 dark:to-pink-800/20 rounded-2xl p-8 hover-lift border border-purple-200 dark:border-purple-700"
+                  class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover-lift border border-gray-200 dark:border-gray-700"
                 >
                   <h3
                     class="text-2xl font-bold text-purple-800 dark:text-purple-300 mb-6"
@@ -1916,18 +1045,18 @@
               <div id="legal-processes" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-red-600 to-orange-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-red-500 to-orange-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
-                      ⚖️
+                      ♦
                     </div>
                     תהליכי עבודה משפטיים
                   </h2>
                 </div>
                 <div
-                  class="bg-gradient-to-br from-red-50 to-orange-100 dark:from-red-900/20 dark:to-orange-800/20 rounded-2xl p-8 hover-lift border border-red-200 dark:border-red-700"
+                  class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover-lift border border-gray-200 dark:border-gray-700"
                 >
                   <p
                     class="text-gray-700 dark:text-gray-300 editable"
@@ -2159,10 +1288,10 @@
               <div id="financial-management" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
                       💰
                     </div>
@@ -2170,7 +1299,7 @@
                   </h2>
                 </div>
                 <div
-                  class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-800/20 rounded-2xl p-8 hover-lift border border-green-200 dark:border-green-700"
+                  class="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-900/20 dark:to-emerald-800/20 rounded-2xl p-8 hover-lift border border-gray-200 dark:border-gray-700"
                 >
                   <p
                     class="text-gray-700 dark:text-gray-300 editable"
@@ -2472,10 +1601,10 @@
               <div id="suppliers-management" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-orange-500 to-yellow-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
                       🤝
                     </div>
@@ -2483,7 +1612,7 @@
                   </h2>
                 </div>
                 <div
-                  class="bg-gradient-to-br from-orange-50 to-yellow-100 dark:from-orange-900/20 dark:to-yellow-800/20 rounded-2xl p-8 hover-lift border border-orange-200 dark:border-orange-700"
+                  class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover-lift border border-gray-200 dark:border-gray-700"
                 >
                   <p
                     class="text-gray-700 dark:text-gray-300 editable"
@@ -2729,18 +1858,18 @@
               <div id="procedures" class="tab-content hidden">
                 <div class="flex items-center justify-between mb-8">
                   <h2
-                    class="text-4xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent flex items-center"
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center"
                   >
                     <div
-                      class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
                     >
-                      ⚙️
+                      ♦
                     </div>
                     נהלים שונים
                   </h2>
                 </div>
                 <div
-                  class="bg-gradient-to-br from-indigo-50 to-purple-100 dark:from-indigo-900/20 dark:to-purple-800/20 rounded-2xl p-8 hover-lift border border-indigo-200 dark:border-indigo-700"
+                  class="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 hover-lift border border-gray-200 dark:border-gray-700"
                 >
                   <p
                     class="text-gray-700 dark:text-gray-300 editable"
@@ -3456,904 +2585,66 @@
       </div>
     </div>
 
-    <script>
-      // Firebase Configuration
-      const firebaseConfig = {
-        apiKey: "AIzaSyC9R_eupXtdkzEMBwA1Dsc6SC_14_iUNLs",
-        authDomain: "law-office-guide.firebaseapp.com",
-        databaseURL: "https://law-office-guide-default-rtdb.europe-west1.firebasedatabase.app",
-        projectId: "law-office-guide",
-        storageBucket: "law-office-guide.firebasestorage.app",
-        messagingSenderId: "903121364456",
-        appId: "1:903121364456:web:91d02f021ab618d3a6705d",
-        measurementId: "G-3NZXL9YB35"
-      };
-
-      // Initialize Firebase
-      const firebaseApp = firebase.initializeApp(firebaseConfig);
-      const database = firebase.database();
-      const dataRef = database.ref('guideData');
-
-      // Global state
-      let editMode = false;
-      let searchCount = 0;
-      let firebaseConnected = false;
-      let googleSheetsConfig = {
-        webAppUrl: "",
-        spreadsheetId: "",
-        connected: false,
-      };
-
-      // DOM elements cache
-      const elements = {};
-
-      // Initialize
-      document.addEventListener("DOMContentLoaded", function () {
-        cacheElements();
-        initializeApp();
-        setupEventListeners();
-        updateStats();
-      });
-
-      function cacheElements() {
-        elements.loadingOverlay = document.getElementById("loadingOverlay");
-        elements.saveIndicator = document.getElementById("saveIndicator");
-        elements.editToggle = document.getElementById("edit-mode-toggle");
-        elements.darkToggle = document.getElementById("dark-mode-toggle");
-        elements.globalSearch = document.getElementById("global-search");
-        elements.actionsMenu = document.getElementById("actions-menu");
-        elements.sheetsModal = document.getElementById("sheets-config-modal");
-        elements.connectionIndicator = document.getElementById(
-          "connection-indicator"
-        );
-        elements.connectionText = document.getElementById("connection-text");
-      }
-
-      function initializeApp() {
-        // Remove loading overlay
-        setTimeout(() => {
-          if (elements.loadingOverlay) {
-            elements.loadingOverlay.style.display = "none";
-          }
-        }, 1000);
-
-        // Initialize Firebase connection monitor
-        setupFirebaseConnection();
-
-        // Initialize dark mode
-        if (
-          localStorage.getItem("theme") === "dark" ||
-          (!localStorage.getItem("theme") &&
-            window.matchMedia("(prefers-color-scheme: dark)").matches)
-        ) {
-          document.documentElement.classList.add("dark");
-        }
-
-        // Show first tab
-        showTab("general-info");
-
-        // Load saved data from Firebase (with localStorage fallback)
-        loadSavedData();
-
-        // Setup real-time listeners
-        setupFirebaseListeners();
-
-        // Load Google Sheets config
-        loadGoogleSheetsConfig();
-      }
-
-      // Setup Firebase connection monitoring
-      function setupFirebaseConnection() {
-        const connectedRef = database.ref('.info/connected');
-        connectedRef.on('value', (snapshot) => {
-          firebaseConnected = snapshot.val() === true;
-          updateFirebaseStatus();
-
-          if (firebaseConnected) {
-            console.log('✅ מחובר ל-Firebase');
-          } else {
-            console.log('❌ מנותק מ-Firebase');
-          }
-        });
-      }
-
-      // Update Firebase connection status in UI
-      function updateFirebaseStatus() {
-        if (elements.connectionIndicator && elements.connectionText) {
-          if (firebaseConnected) {
-            elements.connectionIndicator.className = "w-3 h-3 rounded-full bg-green-500 ml-2";
-            elements.connectionText.textContent = "מחובר לענן (Firebase)";
-          } else {
-            elements.connectionIndicator.className = "w-3 h-3 rounded-full bg-orange-500 ml-2";
-            elements.connectionText.textContent = "מנותק - עובד במצב מקומי";
-          }
-        }
-      }
-
-      // Setup real-time listeners for data changes
-      function setupFirebaseListeners() {
-        dataRef.on('value', (snapshot) => {
-          if (snapshot.exists()) {
-            const data = snapshot.val();
-            // Update UI with new data from other users
-            updateUIFromFirebase(data);
-          }
-        });
-      }
-
-      // Update UI when data changes in Firebase
-      function updateUIFromFirebase(data) {
-        if (!data) return;
-
-        Object.keys(data).forEach(field => {
-          const element = document.querySelector(`[data-field="${field}"]`);
-          if (element && element.textContent !== data[field]) {
-            element.textContent = data[field];
-            // Visual feedback for remote changes
-            element.style.backgroundColor = '#fef3c7';
-            setTimeout(() => {
-              element.style.backgroundColor = '';
-            }, 1000);
-          }
-        });
-      }
-
-      function setupEventListeners() {
-        // Dark mode toggle
-        elements.darkToggle?.addEventListener("click", toggleDarkMode);
-
-        // Edit mode toggle
-        elements.editToggle?.addEventListener("click", toggleEditMode);
-
-        // Actions menu
-        document
-          .getElementById("actions-menu-btn")
-          ?.addEventListener("click", toggleActionsMenu);
-        document
-          .getElementById("export-btn")
-          ?.addEventListener("click", exportData);
-        document
-          .getElementById("print-btn")
-          ?.addEventListener("click", () => window.print());
-        document
-          .getElementById("connect-sheets-btn")
-          ?.addEventListener("click", showSheetsConfig);
-
-        // Google Sheets modal
-        document
-          .getElementById("cancel-sheets-config")
-          ?.addEventListener("click", hideSheetsConfig);
-        document
-          .getElementById("save-sheets-config")
-          ?.addEventListener("click", saveGoogleSheetsConfig);
-
-        // Search
-        elements.globalSearch?.addEventListener(
-          "input",
-          debounce(performSearch, 300)
-        );
-
-        // Close menus when clicking outside
-        document.addEventListener("click", function (e) {
-          if (
-            !e.target.closest("#actions-menu-btn") &&
-            !e.target.closest("#actions-menu")
-          ) {
-            elements.actionsMenu?.classList.add("hidden");
-          }
-        });
-      }
-
-      function showTab(tabName) {
-        // Hide all tabs
-        document.querySelectorAll(".tab-content").forEach((tab) => {
-          tab.classList.add("hidden");
-        });
-
-        // Show selected tab
-        const targetTab = document.getElementById(tabName);
-        if (targetTab) {
-          targetTab.classList.remove("hidden");
-        }
-
-        // Update navigation
-        document.querySelectorAll(".nav-tab").forEach((tab) => {
-          tab.classList.remove(
-            "bg-blue-50",
-            "dark:bg-blue-900/20",
-            "text-blue-700",
-            "dark:text-blue-300",
-            "border-r-4",
-            "border-blue-500"
-          );
-          tab.classList.add("text-gray-600", "dark:text-gray-400");
-        });
-
-        const activeTab = document.querySelector(`[data-tab="${tabName}"]`);
-        if (activeTab) {
-          activeTab.classList.add(
-            "bg-blue-50",
-            "dark:bg-blue-900/20",
-            "text-blue-700",
-            "dark:text-blue-300",
-            "border-r-4",
-            "border-blue-500"
-          );
-          activeTab.classList.remove("text-gray-600", "dark:text-gray-400");
-        }
-      }
-
-      function toggleDarkMode() {
-        const isDark = document.documentElement.classList.contains("dark");
-        if (isDark) {
-          document.documentElement.classList.remove("dark");
-          localStorage.setItem("theme", "light");
-        } else {
-          document.documentElement.classList.add("dark");
-          localStorage.setItem("theme", "dark");
-        }
-      }
-
-      function toggleEditMode() {
-        editMode = !editMode;
-        const editables = document.querySelectorAll(".editable");
-        const deleteButtons = document.querySelectorAll(".delete-btn");
-        const addButtons = document.querySelectorAll(".add-btn");
-
-        if (editMode) {
-          elements.editToggle.innerHTML =
-            '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>שמור שינויים';
-          elements.editToggle.classList.remove(
-            "from-green-600",
-            "to-green-700",
-            "hover:from-green-700",
-            "hover:to-green-800"
-          );
-          elements.editToggle.classList.add(
-            "from-red-600",
-            "to-red-700",
-            "hover:from-red-700",
-            "hover:to-red-800"
-          );
-
-          editables.forEach((element) => {
-            element.contentEditable = true;
-            element.classList.add(
-              "border-2",
-              "border-dashed",
-              "border-blue-300",
-              "rounded-lg",
-              "px-3",
-              "py-2",
-              "bg-blue-50",
-              "dark:bg-blue-900/20"
-            );
-            element.addEventListener("input", handleEdit);
-          });
-
-          // Show delete and add buttons
-          deleteButtons.forEach((btn) => (btn.style.display = "block"));
-          addButtons.forEach((btn) => (btn.style.display = "flex"));
-
-          showToast("מצב עריכה הופעל", "info");
-        } else {
-          elements.editToggle.innerHTML =
-            '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>מצב עריכה';
-          elements.editToggle.classList.remove(
-            "from-red-600",
-            "to-red-700",
-            "hover:from-red-700",
-            "hover:to-red-800"
-          );
-          elements.editToggle.classList.add(
-            "from-green-600",
-            "to-green-700",
-            "hover:from-green-700",
-            "hover:to-green-800"
-          );
-
-          editables.forEach((element) => {
-            element.contentEditable = false;
-            element.classList.remove(
-              "border-2",
-              "border-dashed",
-              "border-blue-300",
-              "rounded-lg",
-              "px-3",
-              "py-2",
-              "bg-blue-50",
-              "dark:bg-blue-900/20"
-            );
-            element.removeEventListener("input", handleEdit);
-          });
-
-          // Hide delete and add buttons
-          deleteButtons.forEach((btn) => (btn.style.display = "none"));
-          addButtons.forEach((btn) => (btn.style.display = "none"));
-
-          showToast("שינויים נשמרו", "success");
-        }
-
-        updateStats();
-      }
-
-      function addNewItem(category, categoryName) {
-        if (!editMode) return;
-
-        currentAddCategory = category;
-        document.getElementById("item-category").value = categoryName;
-        document.getElementById("item-name").value = "";
-        document.getElementById("add-item-modal").classList.remove("hidden");
-        document.getElementById("item-name").focus();
-      }
-
-      function hideAddItemModal() {
-        document.getElementById("add-item-modal").classList.add("hidden");
-        currentAddCategory = "";
-      }
-
-      function saveNewItem() {
-        const itemName = document.getElementById("item-name").value.trim();
-
-        if (!itemName) {
-          showToast("נא להזין שם פריט", "error");
-          return;
-        }
-
-        // Generate new field ID
-        itemCounter[currentAddCategory]++;
-        const newFieldId = `${currentAddCategory}_${itemCounter[currentAddCategory]}`;
-
-        // Create new item element
-        const newItem = createNewItemElement(
-          newFieldId,
-          itemName,
-          currentAddCategory
-        );
-
-        // Find the add button and insert before it
-        const addButton = document.querySelector(
-          `[onclick="addNewItem('${currentAddCategory}', '${
-            document.getElementById("item-category").value
-          }')"]`
-        );
-        if (addButton) {
-          addButton.parentNode.insertBefore(newItem, addButton);
-        }
-
-        // Save to Firebase, localStorage and Google Sheets
-        saveToFirebase(newFieldId, itemName);
-        localStorage.setItem(`guide_${newFieldId}`, itemName);
-        if (googleSheetsConfig.connected) {
-          saveToGoogleSheets(newFieldId, itemName);
-        }
-
-        hideAddItemModal();
-        showToast(`נוסף בהצלחה: ${itemName}`, "success");
-      }
-
-      function createNewItemElement(fieldId, itemName, category) {
-        const div = document.createElement("div");
-        div.className =
-          "editable-item flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg";
-
-        const colorClass = getColorClass(category);
-
-        div.innerHTML = `
-                <svg class="w-5 h-5 ${colorClass} ml-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="editable text-gray-700 dark:text-gray-300" data-field="${fieldId}">${itemName}</span>
-                <button class="delete-btn" onclick="deleteItem(this, '${fieldId}')" title="מחק פריט" style="display: ${
-          editMode ? "block" : "none"
-        }">
-                    <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                </button>
-            `;
-
-        // Make editable if in edit mode
-        if (editMode) {
-          const span = div.querySelector(".editable");
-          span.contentEditable = true;
-          span.classList.add(
-            "border-2",
-            "border-dashed",
-            "border-blue-300",
-            "rounded-lg",
-            "px-3",
-            "py-2",
-            "bg-blue-50",
-            "dark:bg-blue-900/20"
-          );
-          span.addEventListener("input", handleEdit);
-        }
-
-        return div;
-      }
-
-      function deleteItem(button, fieldId) {
-        if (!editMode) return;
-
-        const itemElement = button.closest(".editable-item");
-        const itemName = itemElement.querySelector(".editable").textContent;
-
-        if (confirm(`האם למחוק את "${itemName}"?`)) {
-          // Remove from DOM
-          itemElement.remove();
-
-          // Remove from Firebase
-          if (firebaseConnected) {
-            dataRef.child(fieldId).remove()
-              .then(() => console.log(`✅ נמחק מ-Firebase: ${fieldId}`))
-              .catch((error) => console.error('❌ שגיאה במחיקה מ-Firebase:', error));
-          }
-
-          // Remove from localStorage
-          localStorage.removeItem(`guide_${fieldId}`);
-
-          // Remove from Google Sheets (send empty value)
-          if (googleSheetsConfig.connected) {
-            saveToGoogleSheets(fieldId, "");
-          }
-
-          showToast(`נמחק: ${itemName}`, "success");
-        }
-      }
-
-      function getColorClass(category) {
-        const colorMap = {
-          ta_staff: "text-gray-600",
-          rehovot_staff: "text-green-600",
-          freelancer: "text-purple-600",
-          tenant: "text-orange-600",
-        };
-        return colorMap[category] || "text-gray-600";
-      }
-
-      function handleEdit(e) {
-        const field = e.target.getAttribute("data-field");
-        const value = e.target.textContent;
-
-        if (field) {
-          // Save to Firebase (primary storage)
-          saveToFirebase(field, value);
-
-          // Save locally as fallback
-          localStorage.setItem(`guide_${field}`, value);
-
-          // Save to Google Sheets if connected
-          if (googleSheetsConfig.connected) {
-            saveToGoogleSheets(field, value);
-          }
-
-          // Visual feedback
-          e.target.style.borderColor = "#10b981";
-          showSaveIndicator();
-
-          setTimeout(() => {
-            e.target.style.borderColor = "#3b82f6";
-          }, 1000);
-        }
-      }
-
-      // Save data to Firebase
-      function saveToFirebase(field, value) {
-        if (!firebaseConnected) {
-          console.warn('לא מחובר ל-Firebase - נשמר רק מקומית');
-          return;
-        }
-
-        dataRef.child(field).set(value)
-          .then(() => {
-            console.log(`✅ נשמר ל-Firebase: ${field}`);
-          })
-          .catch((error) => {
-            console.error('❌ שגיאה בשמירה ל-Firebase:', error);
-            showToast('שגיאה בשמירה לענן - נשמר מקומית', 'warning');
-          });
-      }
-
-      function loadSavedData() {
-        // Load from Firebase first (will also update via real-time listener)
-        dataRef.once('value')
-          .then((snapshot) => {
-            if (snapshot.exists()) {
-              const firebaseData = snapshot.val();
-              console.log('✅ טעינת נתונים מ-Firebase');
-
-              // Update all editable fields from Firebase
-              const editables = document.querySelectorAll(".editable");
-              editables.forEach((element) => {
-                const field = element.getAttribute("data-field");
-                if (field && firebaseData[field]) {
-                  element.textContent = firebaseData[field];
-                  // Also save to localStorage for offline access
-                  localStorage.setItem(`guide_${field}`, firebaseData[field]);
-                }
-              });
-            } else {
-              // No Firebase data, load from localStorage
-              console.log('ℹ️ אין נתונים ב-Firebase, טעינה מאחסון מקומי');
-              loadFromLocalStorage();
-            }
-          })
-          .catch((error) => {
-            console.error('❌ שגיאה בטעינה מ-Firebase:', error);
-            // Fallback to localStorage
-            loadFromLocalStorage();
-          });
-      }
-
-      function loadFromLocalStorage() {
-        const editables = document.querySelectorAll(".editable");
-        editables.forEach((element) => {
-          const field = element.getAttribute("data-field");
-          if (field) {
-            const savedValue = localStorage.getItem(`guide_${field}`);
-            if (savedValue) {
-              element.textContent = savedValue;
-            }
-          }
-        });
-      }
-
-      function loadGoogleSheetsConfig() {
-        const config = localStorage.getItem("googleSheetsConfig");
-        if (config) {
-          try {
-            googleSheetsConfig = JSON.parse(config);
-            updateConnectionStatus();
-          } catch (e) {
-            console.error("Error loading Google Sheets config:", e);
-          }
-        }
-      }
-
-      function saveToGoogleSheets(field, value) {
-        if (!googleSheetsConfig.webAppUrl) {
-          console.warn("Google Sheets not configured");
-          return;
-        }
-
-        const payload = {
-          field: field,
-          value: value,
-          timestamp: new Date().toISOString(),
-          user: "משתמש",
-        };
-
-        fetch(googleSheetsConfig.webAppUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        })
-          .then((response) => response.json())
-          .then((data) => {
-            if (data.success) {
-              console.log("נשמר בהצלחה לגוגל שיטס");
-              updateConnectionStatus(true);
-            } else {
-              console.error("שגיאה בשמירה:", data.error);
-              updateConnectionStatus(false);
-            }
-          })
-          .catch((error) => {
-            console.error("שגיאה בחיבור לגוגל שיטס:", error);
-            updateConnectionStatus(false);
-          });
-      }
-
-      function showSheetsConfig() {
-        document.getElementById("webapp-url").value =
-          googleSheetsConfig.webAppUrl || "";
-        document.getElementById("spreadsheet-id").value =
-          googleSheetsConfig.spreadsheetId || "";
-        elements.sheetsModal.classList.remove("hidden");
-      }
-
-      function hideSheetsConfig() {
-        elements.sheetsModal.classList.add("hidden");
-      }
-
-      function saveGoogleSheetsConfig() {
-        const webAppUrl = document.getElementById("webapp-url").value.trim();
-        const spreadsheetId = document
-          .getElementById("spreadsheet-id")
-          .value.trim();
-
-        if (!webAppUrl) {
-          showToast("נא להזין Web App URL", "error");
-          return;
-        }
-
-        googleSheetsConfig = {
-          webAppUrl: webAppUrl,
-          spreadsheetId: spreadsheetId,
-          connected: true,
-        };
-
-        localStorage.setItem(
-          "googleSheetsConfig",
-          JSON.stringify(googleSheetsConfig)
-        );
-        updateConnectionStatus(true);
-        hideSheetsConfig();
-        showToast("חיבור לגוגל שיטס נשמר בהצלחה", "success");
-      }
-
-      function updateConnectionStatus(isConnected = null) {
-        if (isConnected !== null) {
-          googleSheetsConfig.connected = isConnected;
-        }
-
-        if (googleSheetsConfig.connected && googleSheetsConfig.webAppUrl) {
-          elements.connectionIndicator.className =
-            "w-3 h-3 rounded-full bg-green-500 ml-2";
-          elements.connectionText.textContent = "מחובר לגוגל שיטס";
-        } else {
-          elements.connectionIndicator.className =
-            "w-3 h-3 rounded-full bg-red-500 ml-2";
-          elements.connectionText.textContent = "לא מחובר לגוגל שיטס";
-        }
-      }
-
-      function showSaveIndicator() {
-        if (elements.saveIndicator) {
-          elements.saveIndicator.classList.add("show");
-          setTimeout(() => {
-            elements.saveIndicator.classList.remove("show");
-          }, 2000);
-        }
-      }
-
-      function toggleActionsMenu() {
-        elements.actionsMenu?.classList.toggle("hidden");
-      }
-
-      function exportData() {
-        const data = { fields: {}, timestamp: Date.now(), version: "1.0" };
-
-        const editables = document.querySelectorAll(".editable");
-        editables.forEach((element) => {
-          const field = element.getAttribute("data-field");
-          if (field) {
-            data.fields[field] = element.textContent;
-          }
-        });
-
-        const blob = new Blob([JSON.stringify(data, null, 2)], {
-          type: "application/json",
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `guide_data_${
-          new Date().toISOString().split("T")[0]
-        }.json`;
-        a.click();
-        URL.revokeObjectURL(url);
-
-        showToast("הנתונים יוצאו בהצלחה", "success");
-        elements.actionsMenu?.classList.add("hidden");
-      }
-
-      function performSearch() {
-        const searchTerm = elements.globalSearch?.value.toLowerCase();
-        if (!searchTerm) {
-          clearSearchHighlights();
-          searchCount = 0;
-          updateStats();
-          return;
-        }
-
-        const searchableElements = document.querySelectorAll(
-          ".editable, h2, h3, h4, p"
-        );
-
-        clearSearchHighlights();
-
-        if (searchTerm.length < 2) {
-          searchCount = 0;
-          updateStats();
-          return;
-        }
-
-        let matches = 0;
-        searchableElements.forEach((element) => {
-          const text = element.textContent.toLowerCase();
-          if (text.includes(searchTerm)) {
-            matches++;
-            highlightSearchTerm(element, searchTerm);
-          }
-        });
-
-        searchCount = matches;
-        updateStats();
-      }
-
-      function clearSearchHighlights() {
-        const highlightedElements =
-          document.querySelectorAll(".search-highlight");
-        highlightedElements.forEach((element) => {
-          const parent = element.parentNode;
-          parent.replaceChild(
-            document.createTextNode(element.textContent),
-            element
-          );
-          parent.normalize();
-        });
-      }
-
-      function highlightSearchTerm(element, searchTerm) {
-        const text = element.textContent;
-        const regex = new RegExp(`(${escapeRegex(searchTerm)})`, "gi");
-        const parts = text.split(regex);
-
-        element.innerHTML = "";
-        parts.forEach((part) => {
-          if (part.toLowerCase() === searchTerm.toLowerCase()) {
-            const span = document.createElement("span");
-            span.className = "search-highlight";
-            span.textContent = part;
-            element.appendChild(span);
-          } else {
-            element.appendChild(document.createTextNode(part));
-          }
-        });
-      }
-
-      function escapeRegex(string) {
-        return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      }
-
-      function updateStats() {
-        const now = new Date();
-        const timeString = now.toLocaleTimeString("he-IL", {
-          hour: "2-digit",
-          minute: "2-digit",
-        });
-
-        const editStatusElement = document.getElementById("edit-status");
-        if (editStatusElement) {
-          editStatusElement.textContent = editMode ? "פעיל" : "לא פעיל";
-          editStatusElement.className = editMode
-            ? "text-sm font-semibold text-green-600 dark:text-green-400"
-            : "text-sm font-semibold text-gray-900 dark:text-white";
-        }
-
-        const lastUpdateElement = document.getElementById("last-update");
-        if (lastUpdateElement) {
-          lastUpdateElement.textContent = timeString;
-        }
-
-        const searchResultsElement = document.getElementById("search-results");
-        if (searchResultsElement) {
-          searchResultsElement.textContent = searchCount;
-        }
-      }
-
-      function copyToClipboard(text) {
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard
-            .writeText(text)
-            .then(() => {
-              showToast("הועתק ללוח בהצלחה!", "success");
-            })
-            .catch(() => {
-              fallbackCopy(text);
-            });
-        } else {
-          fallbackCopy(text);
-        }
-      }
-
-      function fallbackCopy(text) {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed";
-        textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.select();
-
-        try {
-          document.execCommand("copy");
-          showToast("הועתק ללוח", "success");
-        } catch (err) {
-          showToast("שגיאה בהעתקה", "error");
-        }
-
-        document.body.removeChild(textArea);
-      }
-
-      function showToast(message, type = "info") {
-        const toastContainer =
-          document.getElementById("toastContainer") || createToastContainer();
-
-        const toast = document.createElement("div");
-        toast.className = `transform transition-all duration-300 ease-in-out translate-x-full opacity-0 mb-4 px-6 py-4 rounded-lg text-white font-medium shadow-lg max-w-sm ${getToastColor(
-          type
-        )}`;
-
-        toast.innerHTML = `
-                <div class="flex items-center">
-                    ${getToastIcon(type)}
-                    <span>${message}</span>
-                </div>
-            `;
-
-        toastContainer.appendChild(toast);
-
-        setTimeout(() => {
-          toast.classList.remove("translate-x-full", "opacity-0");
-          toast.classList.add("translate-x-0", "opacity-100");
-        }, 100);
-
-        setTimeout(() => {
-          toast.classList.add("translate-x-full", "opacity-0");
-          setTimeout(() => {
-            if (toast.parentNode) {
-              toast.parentNode.removeChild(toast);
-            }
-          }, 300);
-        }, 3000);
-      }
-
-      function getToastColor(type) {
-        switch (type) {
-          case "success":
-            return "bg-gradient-to-r from-green-500 to-green-600";
-          case "error":
-            return "bg-gradient-to-r from-red-500 to-red-600";
-          case "warning":
-            return "bg-gradient-to-r from-yellow-500 to-yellow-600";
-          default:
-            return "bg-gradient-to-r from-blue-500 to-blue-600";
-        }
-      }
-
-      function getToastIcon(type) {
-        const icons = {
-          success:
-            '<svg class="w-5 h-5 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>',
-          error:
-            '<svg class="w-5 h-5 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>',
-          warning:
-            '<svg class="w-5 h-5 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>',
-          default:
-            '<svg class="w-5 h-5 ml-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>',
-        };
-        return icons[type] || icons.default;
-      }
-
-      function createToastContainer() {
-        const container = document.createElement("div");
-        container.id = "toastContainer";
-        container.className =
-          "fixed bottom-4 right-4 z-50 flex flex-col-reverse";
-        document.body.appendChild(container);
-        return container;
-      }
-
-      function debounce(func, wait) {
-        let timeout;
-        return function executedFunction(...args) {
-          const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-          };
-          clearTimeout(timeout);
-          timeout = setTimeout(later, wait);
-        };
-      }
-
-      // Make functions available globally
-      window.showTab = showTab;
-      window.copyToClipboard = copyToClipboard;
-
-      // Update stats every 30 seconds
-      setInterval(updateStats, 30000);
-    </script>
+    <!-- Password Modal for Edit Mode -->
+    <div
+      id="password-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden flex items-center justify-center"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4 animate-slide-up"
+      >
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <svg class="w-8 h-8 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            מצב עריכה מוגן
+          </h3>
+          <p class="text-gray-600 dark:text-gray-400">
+            נא להזין סיסמה כדי להפעיל מצב עריכה
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label
+              for="edit-password"
+              class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >סיסמה</label
+            >
+            <input
+              type="password"
+              id="edit-password"
+              placeholder="הזן סיסמה"
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+              autofocus
+            />
+            <p id="password-error" class="text-red-500 text-sm mt-2 hidden">
+              סיסמה שגויה, נסה שנית
+            </p>
+          </div>
+        </div>
+
+        <div class="flex justify-end space-x-3 space-x-reverse mt-6">
+          <button
+            id="cancel-password"
+            class="px-6 py-3 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors font-medium"
+          >
+            ביטול
+          </button>
+          <button
+            id="submit-password"
+            class="px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white rounded-lg transition-all font-medium shadow-lg"
+          >
+            אישור
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="../src/js/firebase-config.js"></script>
+    <script src="../src/js/main.js"></script>
   </body>
 </html>
