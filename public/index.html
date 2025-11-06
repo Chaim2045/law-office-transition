@@ -3589,126 +3589,492 @@
                     </div>
 
                     <!-- נוהל נסיעות -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-                      <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">נוהל נסיעות</h3>
-                      <div class="space-y-6">
-                        
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">נוהל לעו"ד:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_travel_lawyers">
-                            <ol class="list-decimal list-inside space-y-2">
-                              <li>קבלת אישור מראש במייל מגיא</li>
-                              <li>פירוט במייל: שם הלקוח, תאריך, כתובת וסיבת הנסיעה</li>
-                              <li>הגבלות:
-                                <ul class="list-disc list-inside mr-4 mt-2 space-y-1">
-                                  <li>נסיעות במוניות רק בגבולות ת"א, גבעתיים, רמת גן, בני ברק, בת ים</li>
-                                  <li>לנסיעות מחוץ לגבולות - תחבורה ציבורית או החזר לפי ק"מ ברכב פרטי</li>
-                                </ul>
-                              </li>
-                              <li>רישום הנסיעה ביומן המשרד/יומן גיא</li>
-                              <li>העברת חשבוניות למייל ACC@ghlawoffice.co.il עם אישור גיא</li>
-                            </ol>
+                    <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-indigo-600">
+                      <h4 class="text-md font-semibold text-indigo-900 dark:text-indigo-400 mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                        נוהל נסיעות
+                      </h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- עו"ד - אישור -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">עו"ד - שלב 1</div>
+                            <div class="linear-item-value editable" data-field="travel_lawyer_1">קבלת אישור מראש במייל מגיא</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('קבלת אישור מראש במייל מגיא')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">תפקיד מנהלת המשרד:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_travel_manager">
-                            <ol class="list-decimal list-inside space-y-2">
-                              <li>וידוא עדכון יומן עם כתובת היעד</li>
-                              <li>בדיקה שבועית (יום חמישי) של היומן לשבועיים קדימה</li>
-                              <li>בדיקה שיש טבלת הוצאות מעודכנת ללקוחות בדיונים</li>
-                              <li>יצירת קשר עם הלקוח אם אין יתרה או הטבלה במינוס</li>
-                              <li>עדכון עו"ד המטפל וגיא במקרה של סירוב תשלום</li>
-                            </ol>
+                        <!-- עו"ד - פירוט -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">עו"ד - שלב 2</div>
+                            <div class="linear-item-value editable" data-field="travel_lawyer_2">פירוט במייל: שם הלקוח, תאריך, כתובת וסיבת הנסיעה</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('פירוט במייל: שם הלקוח, תאריך, כתובת וסיבת הנסיעה')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div class="bg-red-50 dark:bg-red-900/20 rounded-lg p-4">
-                          <p class="text-red-800 dark:text-red-300 font-bold text-center">
-                            נסיעה שלא אושרה ע"י גיא לא תשולם!
-                          </p>
+                        <!-- הגבלות - מוניות -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1M5 17a2 2 0 104 0m-4 0a2 2 0 114 0m6 0a2 2 0 104 0m-4 0a2 2 0 114 0"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">הגבלה - מוניות</div>
+                            <div class="linear-item-value editable" data-field="travel_taxi_limit">נסיעות במוניות רק בגבולות ת"א, גבעתיים, רמת גן, בני ברק, בת ים</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('נסיעות במוניות רק בגבולות ת\"\"א, גבעתיים, רמת גן, בני ברק, בת ים')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- הגבלות - מחוץ לגבולות -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">הגבלה - מחוץ לגבולות</div>
+                            <div class="linear-item-value editable" data-field="travel_outside_limit">לנסיעות מחוץ לגבולות - תחבורה ציבורית או החזר לפי ק"מ ברכב פרטי</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('לנסיעות מחוץ לגבולות - תחבורה ציבורית או החזר לפי ק\"\"מ ברכב פרטי')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- עו"ד - רישום -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">עו"ד - שלב 3</div>
+                            <div class="linear-item-value editable" data-field="travel_lawyer_3">רישום הנסיעה ביומן המשרד/יומן גיא</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('רישום הנסיעה ביומן המשרד/יומן גיא')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- עו"ד - חשבוניות -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">עו"ד - שלב 4</div>
+                            <div class="linear-item-value editable" data-field="travel_lawyer_4">העברת חשבוניות למייל ACC@ghlawoffice.co.il עם אישור גיא</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('העברת חשבוניות למייל ACC@ghlawoffice.co.il עם אישור גיא')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מנהלת - יומן -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">מנהלת - וידוא יומן</div>
+                            <div class="linear-item-value editable" data-field="travel_manager_1">וידוא עדכון יומן עם כתובת היעד</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('וידוא עדכון יומן עם כתובת היעד')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מנהלת - בדיקה שבועית -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">מנהלת - בדיקה שבועית</div>
+                            <div class="linear-item-value editable" data-field="travel_manager_2">בדיקה שבועית (יום חמישי) של היומן לשבועיים קדימה</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('בדיקה שבועית (יום חמישי) של היומן לשבועיים קדימה')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מנהלת - טבלת הוצאות -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">מנהלת - בדיקת הוצאות</div>
+                            <div class="linear-item-value editable" data-field="travel_manager_3">בדיקה שיש טבלת הוצאות מעודכנת ללקוחות בדיונים</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('בדיקה שיש טבלת הוצאות מעודכנת ללקוחות בדיונים')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מנהלת - יצירת קשר -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">מנהלת - יצירת קשר</div>
+                            <div class="linear-item-value editable" data-field="travel_manager_4">יצירת קשר עם הלקוח אם אין יתרה או הטבלה במינוס</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('יצירת קשר עם הלקוח אם אין יתרה או הטבלה במינוס')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מנהלת - עדכון -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">מנהלת - עדכון</div>
+                            <div class="linear-item-value editable" data-field="travel_manager_5">עדכון עו"ד המטפל וגיא במקרה של סירוב תשלום</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('עדכון עו\"\"ד המטפל וגיא במקרה של סירוב תשלום')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- אזהרה אדומה -->
+                        <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(239, 68, 68, 0.1); border-right: 3px solid #EF4444;">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%; color: #EF4444;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label" style="color: #EF4444; font-weight: 700;">אזהרה חמורה</div>
+                            <div class="linear-item-value editable" data-field="travel_warning" style="font-weight: 600; color: #EF4444;">נסיעה שלא אושרה ע"י גיא לא תשולם!</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('נסיעה שלא אושרה ע\"\"י גיא לא תשולם!')">
+                            <svg class="w-4 h-4" style="color: #EF4444;" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
                       </div>
                     </div>
 
                     <!-- נוהל גריסת תיקים -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-                      <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">נוהל גריסת תיקים</h3>
-                      <div class="space-y-6">
-                        
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">תיקים לגריסה:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_shredding_files">
-                            <ul class="list-disc list-inside space-y-2">
-                              <li>גיא יודיע אילו תיקים הסתיימו וניתן לגרוס</li>
-                              <li>יש לעבור על התיקים לפחות פעם בחודש</li>
-                            </ul>
+                    <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-indigo-600">
+                      <h4 class="text-md font-semibold text-indigo-900 dark:text-indigo-400 mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                        נוהל גריסת תיקים
+                      </h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- הודעה מגיא -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">הודעה מגיא</div>
+                            <div class="linear-item-value editable" data-field="shredding_1">גיא יודיע אילו תיקים הסתיימו וניתן לגרוס</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('גיא יודיע אילו תיקים הסתיימו וניתן לגרוס')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">תהליך הגריסה:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_shredding_process">
-                            <div class="space-y-4">
-                              <div class="border-r-4 border-blue-500 pr-4">
-                                <p class="font-semibold text-blue-800 dark:text-blue-300">קלסרים עם חוצצים (תיקים משפטיים):</p>
-                                <ul class="list-disc list-inside text-sm mt-1 space-y-1">
-                                  <li>החומר העיקרי (כתבי טענות, בקשות, החלטות) - לגריסה ישירה</li>
-                                  <li>בדיקה שהחומר נמצא בנט המשפט ובעודכנית</li>
-                                </ul>
-                              </div>
-                              <div class="border-r-4 border-orange-500 pr-4">
-                                <p class="font-semibold text-orange-800 dark:text-orange-300">מסמכים מקוריים חשובים:</p>
-                                <ul class="list-disc list-inside text-sm mt-1 space-y-1">
-                                  <li>חוזים והסכמים, שטרי חוב, ערבויות בנקאיות - לשמור בקלסר נפרד</li>
-                                  <li>קלסר "חומרים מהלקוח לא לגריסה" נמצא בארון מול הדלפק</li>
-                                  <li>לרשום את שם הלקוח על מסמכים שנשמרים</li>
-                                </ul>
-                              </div>
-                            </div>
+                        <!-- בדיקה חודשית -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">בדיקה חודשית</div>
+                            <div class="linear-item-value editable" data-field="shredding_2">יש לעבור על התיקים לפחות פעם בחודש</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('יש לעבור על התיקים לפחות פעם בחודש')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
-                          <p class="text-yellow-800 dark:text-yellow-300 font-semibold">
-                            לפני גריסה: לוודא שכל החומר סרוק בעודכנית. במקרה של ספק - לבדוק מול גיא אם לשמור או לגרוס
-                          </p>
+                        <!-- קלסרים משפטיים (כחול) -->
+                        <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(59, 130, 246, 0.1); border-right: 3px solid #3B82F6;">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%; color: #3B82F6;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label" style="color: #3B82F6; font-weight: 600;">קלסרים עם חוצצים (תיקים משפטיים)</div>
+                            <div class="linear-item-value editable" data-field="shredding_legal">החומר העיקרי (כתבי טענות, בקשות, החלטות) - לגריסה ישירה. בדיקה שהחומר נמצא בנט המשפט ובעודכנית</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('החומר העיקרי (כתבי טענות, בקשות, החלטות) - לגריסה ישירה. בדיקה שהחומר נמצא בנט המשפט ובעודכנית')">
+                            <svg class="w-4 h-4" style="color: #3B82F6;" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מסמכים מקוריים (כתום) -->
+                        <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(249, 115, 22, 0.1); border-right: 3px solid #F97316;">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%; color: #F97316;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label" style="color: #F97316; font-weight: 600;">מסמכים מקוריים חשובים</div>
+                            <div class="linear-item-value editable" data-field="shredding_important">חוזים והסכמים, שטרי חוב, ערבויות בנקאיות - לשמור בקלסר נפרד. קלסר "חומרים מהלקוח לא לגריסה" נמצא בארון מול הדלפק. לרשום את שם הלקוח על מסמכים שנשמרים</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('חוזים והסכמים, שטרי חוב, ערבויות בנקאיות - לשמור בקלסר נפרד. קלסר \"\"חומרים מהלקוח לא לגריסה\"\" נמצא בארון מול הדלפק. לרשום את שם הלקוח על מסמכים שנשמרים')">
+                            <svg class="w-4 h-4" style="color: #F97316;" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- אזהרה צהובה -->
+                        <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(251, 191, 36, 0.1); border-right: 3px solid #F59E0B;">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%; color: #F59E0B;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label" style="color: #F59E0B; font-weight: 600;">לפני גריסה</div>
+                            <div class="linear-item-value editable" data-field="shredding_warning">לוודא שכל החומר סרוק בעודכנית. במקרה של ספק - לבדוק מול גיא אם לשמור או לגרוס</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('לוודא שכל החומר סרוק בעודכנית. במקרה של ספק - לבדוק מול גיא אם לשמור או לגרוס')">
+                            <svg class="w-4 h-4" style="color: #F59E0B;" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
                       </div>
                     </div>
 
                     <!-- נוהל קבלת לקוחות -->
-                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">
-                      <h3 class="text-2xl font-bold text-indigo-800 dark:text-indigo-300 mb-4">נוהל קבלת לקוחות</h3>
-                      <div class="space-y-6">
-                        
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">לקוח שנכנס למשרד:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_client_reception">
-                            <ul class="list-disc list-inside space-y-2">
-                              <li>להתייחס ללקוח מיידית (לעזוב כל פעולה אחרת)</li>
-                              <li>לשאול לשלומו ולהציע משקה: "מה שלומך?", "מה תרצה לשתות?"</li>
-                              <li>אפשרויות משקה: קפה שחור, תה, קפה הפוך, מים</li>
-                            </ul>
+                    <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-indigo-600">
+                      <h4 class="text-md font-semibold text-indigo-900 dark:text-indigo-400 mb-4 flex items-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        נוהל קבלת לקוחות
+                      </h4>
+                      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- קבלה מיידית -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">קבלה מיידית</div>
+                            <div class="linear-item-value editable" data-field="reception_1">להתייחס ללקוח מיידית (לעזוב כל פעולה אחרת)</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('להתייחס ללקוח מיידית (לעזוב כל פעולה אחרת)')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">לקוח לפגישת ייעוץ ראשונה:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="procedures_new_client">
-                            <ul class="list-disc list-inside space-y-2">
-                              <li>למסור טופס הכרת לקוח וטופס פנימי של המשרד למילוי</li>
-                              <li>לוודא שהלקוח חותם במקום הנכון</li>
-                              <li>הטפסים נמצאים בארון ובעודכנית בתיקיית ניהול משרד</li>
-                            </ul>
+                        <!-- שאלות ראשוניות -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+                            </svg>
                           </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">שאלות ראשוניות</div>
+                            <div class="linear-item-value editable" data-field="reception_2">לשאול לשלומו ולהציע משקה: "מה שלומך?", "מה תרצה לשתות?"</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('לשאול לשלומו ולהציע משקה: \"\"מה שלומך?\"\", \"\"מה תרצה לשתות?\"\"')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
 
-                        <div class="bg-green-50 dark:bg-green-900/20 rounded-lg p-4">
-                          <p class="text-green-800 dark:text-green-300 font-semibold text-center">
-                            הרושם הראשון קובע - תמיד לקבל את הלקוחות בחיוך ובמקצועיות
-                          </p>
+                        <!-- אפשרויות משקה -->
+                        <div class="copy-btn-container linear-item md:col-span-2">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">אפשרויות משקה</div>
+                            <div class="linear-item-value editable" data-field="reception_3">קפה שחור, תה, קפה הפוך, מים</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('קפה שחור, תה, קפה הפוך, מים')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- טפסים -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">לקוח חדש - טפסים</div>
+                            <div class="linear-item-value editable" data-field="new_client_1">למסור טופס הכרת לקוח וטופס פנימי של המשרד למילוי</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('למסור טופס הכרת לקוח וטופס פנימי של המשרד למילוי')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- וידוא חתימה -->
+                        <div class="copy-btn-container linear-item">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">לקוח חדש - וידוא</div>
+                            <div class="linear-item-value editable" data-field="new_client_2">לוודא שהלקוח חותם במקום הנכון</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('לוודא שהלקוח חותם במקום הנכון')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- מיקום טפסים -->
+                        <div class="copy-btn-container linear-item md:col-span-2">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label">לקוח חדש - מיקום</div>
+                            <div class="linear-item-value editable" data-field="new_client_3">הטפסים נמצאים בארון ובעודכנית בתיקיית ניהול משרד</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('הטפסים נמצאים בארון ובעודכנית בתיקיית ניהול משרד')">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
+                        </div>
+
+                        <!-- הודעה ירוקה -->
+                        <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(16, 185, 129, 0.1); border-right: 3px solid #10B981;">
+                          <div class="linear-item-icon">
+                            <svg style="width: 100%; height: 100%; color: #10B981;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                          </div>
+                          <div class="linear-item-content">
+                            <div class="linear-item-label" style="color: #10B981; font-weight: 600;">הרושם הראשון</div>
+                            <div class="linear-item-value editable" data-field="reception_motto" style="font-weight: 600; color: #10B981;">הרושם הראשון קובע - תמיד לקבל את הלקוחות בחיוך ובמקצועיות</div>
+                          </div>
+                          <button class="copy-btn" onclick="copyToClipboard('הרושם הראשון קובע - תמיד לקבל את הלקוחות בחיוך ובמקצועיות')">
+                            <svg class="w-4 h-4" style="color: #10B981;" fill="currentColor" viewBox="0 0 20 20">
+                              <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z"></path>
+                              <path d="M3 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path>
+                            </svg>
+                          </button>
                         </div>
                       </div>
                     </div>
