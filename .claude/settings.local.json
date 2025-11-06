@@ -19,7 +19,14 @@
       "Bash(git push:*)",
       "Bash(git commit -m \"$(cat <<''EOF''\n🔧 Fix ESLint errors for Netlify deployment\n\n- Added global declarations for firebase and password functions\n- Auto-fixed formatting issues (trailing commas, linebreaks, indentation)\n- Changed no-lonely-if to warning level\n- All ESLint errors resolved (0 errors, 33 warnings remaining)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
       "Bash(git commit:*)",
-      "Bash(git push)"
+      "Bash(git push)",
+      "Bash(copy:*)",
+      "Bash(fc:*)",
+      "Bash(npx serve public -p 3000)",
+      "Bash(echo:*)",
+      "Bash(public/index.html.tmp)",
+      "Bash(cp:*)",
+      "Bash(node analyze-structure.js:*)"
     ],
     "deny": [],
     "ask": []

@@ -75,6 +75,25 @@ function setupEventListeners() {
   // Edit mode toggle
   elements.editToggle?.addEventListener('click', toggleEditMode);
 
+  // Undo/Redo buttons
+  document.getElementById('undo-btn')?.addEventListener('click', () => {
+    if (typeof KeyboardShortcuts !== 'undefined') {
+      KeyboardShortcuts.undo();
+    }
+  });
+  document.getElementById('redo-btn')?.addEventListener('click', () => {
+    if (typeof KeyboardShortcuts !== 'undefined') {
+      KeyboardShortcuts.redo();
+    }
+  });
+
+  // Keyboard shortcuts help
+  document.getElementById('shortcuts-help-btn')?.addEventListener('click', () => {
+    if (typeof KeyboardShortcuts !== 'undefined') {
+      KeyboardShortcuts.showHelp();
+    }
+  });
+
   // Actions menu
   document.getElementById('actions-menu-btn')?.addEventListener('click', toggleActionsMenu);
   document.getElementById('export-btn')?.addEventListener('click', exportData);
@@ -371,20 +390,43 @@ function saveNewItem() {
   showToast(`נוסף בהצלחה: ${itemName}`, 'success');
 }
 
+function getIconForCategory(category) {
+  const iconMap = {
+    ta_staff:
+      '<path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path>',
+    rehovot_staff:
+      '<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path>',
+    freelancer:
+      '<path fill-rule="evenodd" d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"></path><path d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"></path>',
+    tenant:
+      '<path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z"></path>',
+  };
+  return (
+    iconMap[category]
+    || '<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>'
+  );
+}
+
 function createNewItemElement(fieldId, itemName, category) {
   const div = document.createElement('div');
-  div.className = 'editable-item flex items-center p-3 bg-gray-50 dark:bg-gray-800/30 rounded-lg';
+  div.className = 'linear-item';
+  div.setAttribute('data-category', category);
 
   const colorClass = getColorClass(category);
+  const iconPath = getIconForCategory(category);
 
   div.innerHTML = `
-                <svg class="w-5 h-5 ${colorClass} ml-3" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                </svg>
-                <span class="editable text-gray-700 dark:text-gray-300" data-field="${fieldId}">${itemName}</span>
+                <div class="linear-item-icon">
+                  <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;">
+                    ${iconPath}
+                  </svg>
+                </div>
+                <div class="linear-item-content">
+                  <span class="editable" data-field="${fieldId}">${itemName}</span>
+                </div>
                 <button class="delete-btn" onclick="deleteItem(this, '${fieldId}')" title="מחק פריט" style="display: ${
   editMode ? 'block' : 'none'
-}">
+}; position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%);">
                     <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
@@ -411,7 +453,7 @@ function createNewItemElement(fieldId, itemName, category) {
   return div;
 }
 
-function deleteItem(button, fieldId) {
+async function deleteItem(button, fieldId) {
   if (!editMode) {
     return;
   }
@@ -419,7 +461,23 @@ function deleteItem(button, fieldId) {
   const itemElement = button.closest('.editable-item');
   const itemName = itemElement.querySelector('.editable').textContent;
 
-  if (confirm(`האם למחוק את "${itemName}"?`)) {
+  // Use modern confirmation dialog
+  const confirmed = typeof ConfirmDialog !== 'undefined'
+    ? await ConfirmDialog.show({
+      title: 'מחיקת פריט',
+      message: `האם אתה בטוח שברצונך למחוק את "${itemName}"? פעולה זו לא ניתנת לביטול.`,
+      confirmText: 'מחק',
+      cancelText: 'ביטול',
+      type: 'danger',
+    })
+    : confirm(`האם למחוק את "${itemName}"?`);
+
+  if (confirmed) {
+    // Show loading state
+    if (typeof LoadingStateManager !== 'undefined') {
+      LoadingStateManager.buttonLoading(button, 'מוחק...');
+    }
+
     // Remove from DOM
     itemElement.remove();
 
@@ -453,8 +511,21 @@ function getColorClass(category) {
 function handleEdit(e) {
   const field = e.target.getAttribute('data-field');
   const value = e.target.textContent;
+  const oldValue = e.target.dataset.previousValue || localStorage.getItem(`guide_${field}`) || '';
 
   if (field) {
+    // Save to history (only if value actually changed)
+    if (value !== oldValue && typeof HistoryManager !== 'undefined') {
+      HistoryManager.push({
+        field,
+        oldValue,
+        newValue: value,
+      });
+    }
+
+    // Update previous value
+    e.target.dataset.previousValue = value;
+
     // Save locally
     localStorage.setItem(`guide_${field}`, value);
 
@@ -478,8 +549,64 @@ function handleEdit(e) {
   }
 }
 
-function loadSavedData() {
+// Function to restore a field value (used by undo/redo)
+function restoreFieldValue(field, value) {
+  const element = document.querySelector(`[data-field="${field}"]`);
+  if (element) {
+    element.textContent = value;
+    element.dataset.previousValue = value;
+
+    // Save to storage
+    localStorage.setItem(`guide_${field}`, value);
+
+    // Save to Firebase
+    if (typeof saveToFirebase === 'function') {
+      saveToFirebase(field, value);
+    }
+
+    // Save to Google Sheets
+    if (googleSheetsConfig.connected) {
+      saveToGoogleSheets(field, value);
+    }
+
+    // Visual feedback
+    element.style.borderColor = '#10b981';
+    setTimeout(() => {
+      element.style.borderColor = '#3b82f6';
+    }, 500);
+  }
+}
+
+// Make restoreFieldValue available globally
+window.restoreFieldValue = restoreFieldValue;
+
+async function loadSavedData() {
   const editables = document.querySelectorAll('.editable');
+
+  // Try loading from Firebase first
+  if (typeof loadAllDataFromFirebase === 'function') {
+    try {
+      const firebaseData = await loadAllDataFromFirebase();
+      if (firebaseData) {
+        console.log('✅ טוען נתונים מ-Firebase');
+        // Load from Firebase
+        editables.forEach((element) => {
+          const field = element.getAttribute('data-field');
+          if (field && firebaseData[field]) {
+            element.textContent = firebaseData[field];
+            // Also save to localStorage as backup
+            localStorage.setItem(`guide_${field}`, firebaseData[field]);
+          }
+        });
+        return;
+      }
+    } catch (error) {
+      console.warn('⚠️ לא הצלחנו לטעון מ-Firebase, טוען מאחסון מקומי:', error);
+    }
+  }
+
+  // Fallback to localStorage
+  console.log('💾 טוען נתונים מאחסון מקומי');
   editables.forEach((element) => {
     const field = element.getAttribute('data-field');
     if (field) {
@@ -622,6 +749,14 @@ function exportData() {
 
 function performSearch() {
   const searchTerm = elements.globalSearch?.value.toLowerCase();
+  const searchResultsIndicator = document.getElementById('search-results-container');
+
+  // Remove existing empty state
+  const existingEmptyState = document.querySelector('.search-empty-state');
+  if (existingEmptyState) {
+    existingEmptyState.remove();
+  }
+
   if (!searchTerm) {
     clearSearchHighlights();
     searchCount = 0;
@@ -650,6 +785,57 @@ function performSearch() {
 
   searchCount = matches;
   updateStats();
+
+  // Show empty state if no results
+  if (matches === 0 && searchTerm.length >= 2) {
+    showSearchEmptyState(searchTerm);
+  }
+}
+
+function showSearchEmptyState(searchTerm) {
+  // Find the main content area
+  const mainContent = document.querySelector('main .flex-1');
+  if (!mainContent) return;
+
+  // Create empty state notification (floating, non-intrusive)
+  const emptyStateHTML = `
+    <div class="search-empty-state fixed bottom-20 left-1/2 transform -translate-x-1/2 z-40 animate-slide-up">
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 max-w-md border border-gray-200 dark:border-gray-700">
+        <div class="flex items-start gap-4">
+          <div class="flex-shrink-0">
+            <svg class="w-12 h-12 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+            </svg>
+          </div>
+          <div class="flex-1">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-2">לא נמצאו תוצאות</h3>
+            <p class="text-sm text-gray-600 dark:text-gray-300 mb-3">
+              לא נמצאו תוצאות עבור "<span class="font-semibold">${searchTerm}</span>"
+            </p>
+            <button onclick="document.getElementById('global-search').focus(); document.getElementById('global-search').select();" class="text-sm text-blue-600 dark:text-blue-400 hover:underline">
+              נסה מילות חיפוש אחרות
+            </button>
+          </div>
+          <button onclick="this.closest('.search-empty-state').remove()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.body.insertAdjacentHTML('beforeend', emptyStateHTML);
+
+  // Auto-remove after 5 seconds
+  setTimeout(() => {
+    const emptyState = document.querySelector('.search-empty-state');
+    if (emptyState) {
+      emptyState.classList.add('opacity-0');
+      setTimeout(() => emptyState.remove(), 300);
+    }
+  }, 5000);
 }
 
 function clearSearchHighlights() {
