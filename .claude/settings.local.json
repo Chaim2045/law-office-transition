@@ -36,7 +36,11 @@
       "Bash(git stash:*)",
       "Bash(git diff:*)",
       "Bash(npx htmlhint:*)",
-      "Bash(npm run prepare:*)"
+      "Bash(npm run prepare:*)",
+      "Bash(while read file)",
+      "Bash(do [ ! -f \"src/js/$file\" ])",
+      "Bash(done)",
+      "Bash(do [ ! -f \"src/css/$file\" ])"
     ],
     "deny": [],
     "ask": []
