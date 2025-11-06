@@ -16,7 +16,15 @@
     "saveToFirebase": "readonly",
     "loadFromFirebase": "readonly",
     "deleteFromFirebase": "readonly",
-    "loadAllDataFromFirebase": "readonly"
+    "loadAllDataFromFirebase": "readonly",
+    "KeyboardShortcuts": "readonly",
+    "ConfirmDialog": "readonly",
+    "LoadingStateManager": "readonly",
+    "HistoryManager": "readonly",
+    "showTab": "readonly",
+    "announceToScreenReader": "readonly",
+    "editMode": "readonly",
+    "showToast": "readonly"
   },
   "rules": {
     "no-lonely-if": "warn",
@@ -28,6 +36,9 @@
     "no-plusplus": "off",
     "no-undef": "error",
     "no-return-assign": "off",
+    "max-classes-per-file": "off",
+    "class-methods-use-this": "off",
+    "no-new": "off",
     "prefer-const": "error",
     "no-var": "error",
     "eqeqeq": ["error", "always"],

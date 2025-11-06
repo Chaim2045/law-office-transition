@@ -251,10 +251,10 @@ class AccessibilityManager {
 
     // Add IDs to target elements
     const main = document.querySelector('main');
-    if (main) main.id = 'main-content';
+    if (main) { main.id = 'main-content'; }
 
     const sidebarNav = document.querySelector('aside nav');
-    if (sidebarNav) sidebarNav.id = 'sidebar-nav';
+    if (sidebarNav) { sidebarNav.id = 'sidebar-nav'; }
   }
 
   /**
@@ -373,7 +373,7 @@ function announceSearchResults(count, query) {
 function announceEditModeChange(enabled) {
   announceToScreenReader(
     enabled ? 'מצב עריכה הופעל' : 'מצב עריכה כובה, שינויים נשמרו',
-    'assertive'
+    'assertive',
   );
 }
 
@@ -442,7 +442,7 @@ class ColorContrastValidator {
       const sRGB = val / 255;
       return sRGB <= 0.03928
         ? sRGB / 12.92
-        : Math.pow((sRGB + 0.055) / 1.055, 2.4);
+        : ((sRGB + 0.055) / 1.055) ** 2.4;
     });
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
@@ -456,10 +456,10 @@ class ColorContrastValidator {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
       ? [
-          parseInt(result[1], 16),
-          parseInt(result[2], 16),
-          parseInt(result[3], 16),
-        ]
+        parseInt(result[1], 16),
+        parseInt(result[2], 16),
+        parseInt(result[3], 16),
+      ]
       : [0, 0, 0];
   }
 }

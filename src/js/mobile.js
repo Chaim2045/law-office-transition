@@ -34,7 +34,7 @@ class MobileMenuManager {
    */
   createHamburgerButton() {
     const nav = document.querySelector('nav .flex.justify-between');
-    if (!nav) return;
+    if (!nav) { return; }
 
     const hamburgerHTML = `
       <button
@@ -81,7 +81,7 @@ class MobileMenuManager {
    */
   setupMobileLayout() {
     this.sidebar = document.querySelector('aside');
-    if (!this.sidebar) return;
+    if (!this.sidebar) { return; }
 
     // Add mobile classes
     this.sidebar.classList.add('mobile-sidebar');
@@ -99,7 +99,7 @@ class MobileMenuManager {
    * Setup touch gestures for swipe
    */
   setupTouchGestures() {
-    if (!this.sidebar) return;
+    if (!this.sidebar) { return; }
 
     let touchStartX = 0;
     let touchEndX = 0;
@@ -159,7 +159,7 @@ class MobileMenuManager {
     });
 
     // Close on nav item click (mobile)
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.nav-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         if (window.innerWidth < 768) {
           setTimeout(() => this.closeMenu(), 300);
@@ -319,7 +319,7 @@ class MobileOptimizer {
     document.documentElement.style.scrollBehavior = 'smooth';
 
     // Momentum scrolling on iOS
-    document.querySelectorAll('.overflow-y-auto').forEach(el => {
+    document.querySelectorAll('.overflow-y-auto').forEach((el) => {
       el.style.webkitOverflowScrolling = 'touch';
     });
   }
@@ -374,8 +374,8 @@ class ResponsiveUtilities {
    * @returns {string} - 'mobile', 'tablet', or 'desktop'
    */
   static getBreakpoint() {
-    if (this.isMobile()) return 'mobile';
-    if (this.isTablet()) return 'tablet';
+    if (this.isMobile()) { return 'mobile'; }
+    if (this.isTablet()) { return 'tablet'; }
     return 'desktop';
   }
 }
@@ -496,5 +496,5 @@ function initializeMobile() {
 // ============================================
 
 window.MobileMenuManager = MobileMenuManager;
-window.Mobile optimizer = MobileOptimizer;
+window.MobileOptimizer = MobileOptimizer;
 window.ResponsiveUtilities = ResponsiveUtilities;

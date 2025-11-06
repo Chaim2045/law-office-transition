@@ -795,7 +795,7 @@ function performSearch() {
 function showSearchEmptyState(searchTerm) {
   // Find the main content area
   const mainContent = document.querySelector('main .flex-1');
-  if (!mainContent) return;
+  if (!mainContent) { return; }
 
   // Create empty state notification (floating, non-intrusive)
   const emptyStateHTML = `
