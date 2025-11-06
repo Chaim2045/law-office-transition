@@ -28,7 +28,15 @@
       "Bash(cp:*)",
       "Bash(node analyze-structure.js:*)",
       "Bash(start \"c:\\Users\\haim\\law-office-transition\\public\\index.html\")",
-      "Bash(git commit -m \"$(cat <<''EOF''\n🔧 תיקון שגיאות ESLint ושיפור הגדרות\n\n- תיקון שגיאת parsing ב-mobile.js (רווח בשם משתנה)\n- הוספת globals ל-ESLint: KeyboardShortcuts, ConfirmDialog, HistoryManager, showTab, showToast ועוד\n- השבתת כללים מגבילים: max-classes-per-file, class-methods-use-this, no-new\n- העלאת max-warnings מ-50 ל-100\n- auto-fix של curly braces ו-arrow-parens\n- ✅ 0 errors, 65 warnings (מתחת לסף)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
+      "Bash(git commit -m \"$(cat <<''EOF''\n🔧 תיקון שגיאות ESLint ושיפור הגדרות\n\n- תיקון שגיאת parsing ב-mobile.js (רווח בשם משתנה)\n- הוספת globals ל-ESLint: KeyboardShortcuts, ConfirmDialog, HistoryManager, showTab, showToast ועוד\n- השבתת כללים מגבילים: max-classes-per-file, class-methods-use-this, no-new\n- העלאת max-warnings מ-50 ל-100\n- auto-fix של curly braces ו-arrow-parens\n- ✅ 0 errors, 65 warnings (מתחת לסף)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(python:*)",
+      "Bash(awk:*)",
+      "Bash(node:*)",
+      "Bash(cat:*)",
+      "Bash(git stash:*)",
+      "Bash(git diff:*)",
+      "Bash(npx htmlhint:*)",
+      "Bash(npm run prepare:*)"
     ],
     "deny": [],
     "ask": []
