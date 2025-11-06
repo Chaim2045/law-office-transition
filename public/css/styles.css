@@ -11,6 +11,30 @@
   --bg: #ffffff;
   --bg-secondary: #fafafa;
   --bg-hover: #f4f4f5;
+
+  /* Category Colors - Tel Aviv (Blue) */
+  --ta-color: #3B82F6;
+  --ta-color-light: #DBEAFE;
+  --ta-color-hover: #2563EB;
+  --ta-bg: rgba(59, 130, 246, 0.05);
+
+  /* Category Colors - Rehovot (Green) */
+  --rehovot-color: #10B981;
+  --rehovot-color-light: #D1FAE5;
+  --rehovot-color-hover: #059669;
+  --rehovot-bg: rgba(16, 185, 129, 0.05);
+
+  /* Category Colors - Freelancer (Purple) */
+  --freelancer-color: #8B5CF6;
+  --freelancer-color-light: #EDE9FE;
+  --freelancer-color-hover: #7C3AED;
+  --freelancer-bg: rgba(139, 92, 246, 0.05);
+
+  /* Category Colors - Tenant (Orange) */
+  --tenant-color: #F59E0B;
+  --tenant-color-light: #FEF3C7;
+  --tenant-color-hover: #D97706;
+  --tenant-bg: rgba(245, 158, 11, 0.05);
 }
 
 .dark {
@@ -23,6 +47,27 @@
   --bg: #09090b;
   --bg-secondary: #18181b;
   --bg-hover: #27272a;
+
+  /* Dark mode category colors */
+  --ta-color: #60A5FA;
+  --ta-color-light: #1E3A8A;
+  --ta-color-hover: #93C5FD;
+  --ta-bg: rgba(96, 165, 250, 0.1);
+
+  --rehovot-color: #34D399;
+  --rehovot-color-light: #064E3B;
+  --rehovot-color-hover: #6EE7B7;
+  --rehovot-bg: rgba(52, 211, 153, 0.1);
+
+  --freelancer-color: #A78BFA;
+  --freelancer-color-light: #4C1D95;
+  --freelancer-color-hover: #C4B5FD;
+  --freelancer-bg: rgba(167, 139, 250, 0.1);
+
+  --tenant-color: #FBBF24;
+  --tenant-color-light: #78350F;
+  --tenant-color-hover: #FCD34D;
+  --tenant-bg: rgba(251, 191, 36, 0.1);
 }
 
 /* === Reset bloated styles === */
@@ -123,6 +168,15 @@ p {
   color: var(--text-tertiary);
   margin-top: 0.25rem;
   flex-shrink: 0;
+}
+
+/* Blue icons only for section headers (h4) */
+h4 svg {
+  color: #1e3a8a !important;
+}
+
+.dark h4 svg {
+  color: #60a5fa !important;
 }
 
 .linear-item-content {
@@ -300,6 +354,7 @@ textarea:focus {
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   margin: -0.25rem -0.5rem;
+  position: relative;
 }
 
 .editable:hover {
@@ -311,6 +366,22 @@ textarea:focus {
   background: var(--bg);
   border: 1px solid var(--primary);
   box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+}
+
+/* Editable in edit mode - clear visual indication */
+.editable[contenteditable="true"] {
+  cursor: text;
+  position: relative;
+}
+
+.editable[contenteditable="true"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 2px dashed var(--primary);
+  border-radius: 4px;
+  opacity: 0.3;
+  pointer-events: none;
 }
 
 /* === Loading === */
@@ -365,9 +436,11 @@ textarea:focus {
 
 /* === Search Highlight === */
 .search-highlight {
-  background: rgba(30, 64, 175, 0.15);
+  background: rgba(255, 235, 59, 0.6);
   padding: 0.125rem 0.25rem;
   border-radius: 2px;
+  font-weight: 600;
+  color: #000;
 }
 
 /* === Scrollbar === */
