@@ -13,7 +13,7 @@ if (typeof showTab !== 'undefined') {
     document.querySelectorAll('.nav-tab').forEach((tab) => {
       tab.setAttribute(
         'aria-selected',
-        tab.getAttribute('data-tab') === tabName ? 'true' : 'false',
+        tab.getAttribute('data-tab') === tabName ? 'true' : 'false'
       );
     });
 

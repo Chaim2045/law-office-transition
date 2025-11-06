@@ -161,9 +161,10 @@ class KeyboardShortcuts {
 
     // Don't trigger shortcuts when typing in input fields (except specific keys)
     const activeElement = document.activeElement;
-    const isInputField = activeElement.tagName === 'INPUT'
-      || activeElement.tagName === 'TEXTAREA'
-      || activeElement.isContentEditable;
+    const isInputField =
+      activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
+      activeElement.isContentEditable;
 
     // Build key combination string
     let key = e.key.toLowerCase();
@@ -273,7 +274,7 @@ class KeyboardShortcuts {
         ]) => `<div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
           <span class="text-gray-700 dark:text-gray-300">${description}</span>
           <kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">${key}</kbd>
-        </div>`,
+        </div>`
       )
       .join('');
 
@@ -430,9 +431,10 @@ class EmptyStateManager {
         '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>',
     };
 
-    const actionHTML = actionText && actionCallback
-      ? `<button onclick="${actionCallback}" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">${actionText}</button>`
-      : '';
+    const actionHTML =
+      actionText && actionCallback
+        ? `<button onclick="${actionCallback}" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">${actionText}</button>`
+        : '';
 
     const emptyHTML = `
       <div class="empty-state flex flex-col items-center justify-center py-16 text-center">
@@ -572,7 +574,7 @@ class FocusManager {
    */
   static trapFocus(element) {
     const focusableElements = element.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];

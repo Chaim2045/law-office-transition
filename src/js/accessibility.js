@@ -108,7 +108,7 @@ class AccessibilityManager {
       darkToggle.setAttribute('aria-label', 'החלפת מצב תצוגה (בהיר/כהה)');
       darkToggle.setAttribute(
         'aria-pressed',
-        document.documentElement.classList.contains('dark') ? 'true' : 'false',
+        document.documentElement.classList.contains('dark') ? 'true' : 'false'
       );
     }
 
@@ -380,7 +380,7 @@ function announceSearchResults(count, query) {
 function announceEditModeChange(enabled) {
   announceToScreenReader(
     enabled ? 'מצב עריכה הופעל' : 'מצב עריכה כובה, שינויים נשמרו',
-    'assertive',
+    'assertive'
   );
 }
 
