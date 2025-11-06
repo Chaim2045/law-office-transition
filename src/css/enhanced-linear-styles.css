@@ -55,43 +55,43 @@
 }
 
 /* === Category-Specific Hover Effects with Left Border === */
-.linear-item[data-category="ta_staff"]:hover {
+.linear-item[data-category='ta_staff']:hover {
   border-left: 4px solid var(--ta-color);
   background: linear-gradient(90deg, var(--ta-bg) 0%, transparent 100%);
   padding-left: calc(1rem - 4px);
 }
 
-.linear-item[data-category="ta_staff"] .linear-item-icon {
+.linear-item[data-category='ta_staff'] .linear-item-icon {
   color: var(--ta-color);
 }
 
-.linear-item[data-category="rehovot_staff"]:hover {
+.linear-item[data-category='rehovot_staff']:hover {
   border-left: 4px solid var(--rehovot-color);
   background: linear-gradient(90deg, var(--rehovot-bg) 0%, transparent 100%);
   padding-left: calc(1rem - 4px);
 }
 
-.linear-item[data-category="rehovot_staff"] .linear-item-icon {
+.linear-item[data-category='rehovot_staff'] .linear-item-icon {
   color: var(--rehovot-color);
 }
 
-.linear-item[data-category="freelancer"]:hover {
+.linear-item[data-category='freelancer']:hover {
   border-left: 4px solid var(--freelancer-color);
   background: linear-gradient(90deg, var(--freelancer-bg) 0%, transparent 100%);
   padding-left: calc(1rem - 4px);
 }
 
-.linear-item[data-category="freelancer"] .linear-item-icon {
+.linear-item[data-category='freelancer'] .linear-item-icon {
   color: var(--freelancer-color);
 }
 
-.linear-item[data-category="tenant"]:hover {
+.linear-item[data-category='tenant']:hover {
   border-left: 4px solid var(--tenant-color);
   background: linear-gradient(90deg, var(--tenant-bg) 0%, transparent 100%);
   padding-left: calc(1rem - 4px);
 }
 
-.linear-item[data-category="tenant"] .linear-item-icon {
+.linear-item[data-category='tenant'] .linear-item-icon {
   color: var(--tenant-color);
 }
 
@@ -122,56 +122,56 @@
 }
 
 /* Category-specific label styles */
-.linear-item-label[data-category="ta_staff"] {
+.linear-item-label[data-category='ta_staff'] {
   background: var(--ta-bg);
   color: var(--ta-color);
   border: 1px solid var(--ta-color);
   border-opacity: 0.2;
 }
 
-.linear-item-label[data-category="ta_staff"]:hover {
+.linear-item-label[data-category='ta_staff']:hover {
   background: var(--ta-color);
   color: white;
   transform: translateX(-2px);
   box-shadow: 0 4px 12px var(--ta-bg);
 }
 
-.linear-item-label[data-category="rehovot_staff"] {
+.linear-item-label[data-category='rehovot_staff'] {
   background: var(--rehovot-bg);
   color: var(--rehovot-color);
   border: 1px solid var(--rehovot-color);
   border-opacity: 0.2;
 }
 
-.linear-item-label[data-category="rehovot_staff"]:hover {
+.linear-item-label[data-category='rehovot_staff']:hover {
   background: var(--rehovot-color);
   color: white;
   transform: translateX(-2px);
   box-shadow: 0 4px 12px var(--rehovot-bg);
 }
 
-.linear-item-label[data-category="freelancer"] {
+.linear-item-label[data-category='freelancer'] {
   background: var(--freelancer-bg);
   color: var(--freelancer-color);
   border: 1px solid var(--freelancer-color);
   border-opacity: 0.2;
 }
 
-.linear-item-label[data-category="freelancer"]:hover {
+.linear-item-label[data-category='freelancer']:hover {
   background: var(--freelancer-color);
   color: white;
   transform: translateX(-2px);
   box-shadow: 0 4px 12px var(--freelancer-bg);
 }
 
-.linear-item-label[data-category="tenant"] {
+.linear-item-label[data-category='tenant'] {
   background: var(--tenant-bg);
   color: var(--tenant-color);
   border: 1px solid var(--tenant-color);
   border-opacity: 0.2;
 }
 
-.linear-item-label[data-category="tenant"]:hover {
+.linear-item-label[data-category='tenant']:hover {
   background: var(--tenant-color);
   color: white;
   transform: translateX(-2px);
@@ -211,69 +211,69 @@
 }
 
 /* Tel Aviv Header */
-.category-header[data-category="ta_staff"] {
+.category-header[data-category='ta_staff'] {
   background: var(--ta-bg);
   color: var(--ta-color);
   border: 1px solid var(--ta-color);
   border-opacity: 0.2;
 }
 
-.category-header[data-category="ta_staff"]::before {
+.category-header[data-category='ta_staff']::before {
   background: var(--ta-color);
 }
 
-.category-header[data-category="ta_staff"]:hover {
+.category-header[data-category='ta_staff']:hover {
   background: var(--ta-color-light);
   transform: translateX(2px);
 }
 
 /* Rehovot Header */
-.category-header[data-category="rehovot_staff"] {
+.category-header[data-category='rehovot_staff'] {
   background: var(--rehovot-bg);
   color: var(--rehovot-color);
   border: 1px solid var(--rehovot-color);
   border-opacity: 0.2;
 }
 
-.category-header[data-category="rehovot_staff"]::before {
+.category-header[data-category='rehovot_staff']::before {
   background: var(--rehovot-color);
 }
 
-.category-header[data-category="rehovot_staff"]:hover {
+.category-header[data-category='rehovot_staff']:hover {
   background: var(--rehovot-color-light);
   transform: translateX(2px);
 }
 
 /* Freelancer Header */
-.category-header[data-category="freelancer"] {
+.category-header[data-category='freelancer'] {
   background: var(--freelancer-bg);
   color: var(--freelancer-color);
   border: 1px solid var(--freelancer-color);
   border-opacity: 0.2;
 }
 
-.category-header[data-category="freelancer"]::before {
+.category-header[data-category='freelancer']::before {
   background: var(--freelancer-color);
 }
 
-.category-header[data-category="freelancer"]:hover {
+.category-header[data-category='freelancer']:hover {
   background: var(--freelancer-color-light);
   transform: translateX(2px);
 }
 
 /* Tenant Header */
-.category-header[data-category="tenant"] {
+.category-header[data-category='tenant'] {
   background: var(--tenant-bg);
   color: var(--tenant-color);
   border: 1px solid var(--tenant-color);
   border-opacity: 0.2;
 }
 
-.category-header[data-category="tenant"]::before {
+.category-header[data-category='tenant']::before {
   background: var(--tenant-color);
 }
 
-.category-header[data-category="tenant"]:hover {
+.category-header[data-category='tenant']:hover {
   background: var(--tenant-color-light);
   transform: translateX(2px);
 }
@@ -315,22 +315,22 @@
   transition: all 0.2s ease;
 }
 
-.category-badge[data-category="ta_staff"] {
+.category-badge[data-category='ta_staff'] {
   background: var(--ta-color);
   color: white;
 }
 
-.category-badge[data-category="rehovot_staff"] {
+.category-badge[data-category='rehovot_staff'] {
   background: var(--rehovot-color);
   color: white;
 }
 
-.category-badge[data-category="freelancer"] {
+.category-badge[data-category='freelancer'] {
   background: var(--freelancer-color);
   color: white;
 }
 
-.category-badge[data-category="tenant"] {
+.category-badge[data-category='tenant'] {
   background: var(--tenant-color);
   color: white;
 }

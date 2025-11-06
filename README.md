@@ -86,6 +86,7 @@ npm run dev
 ### שיטת הפריסה המומלצת - דרך GitHub
 
 1. **העלה את הפרויקט ל-GitHub**:
+
    ```bash
    git add .
    git commit -m "Ready for Netlify deployment"

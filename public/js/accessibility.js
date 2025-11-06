@@ -106,7 +106,10 @@ class AccessibilityManager {
     const darkToggle = document.getElementById('dark-mode-toggle');
     if (darkToggle) {
       darkToggle.setAttribute('aria-label', 'החלפת מצב תצוגה (בהיר/כהה)');
-      darkToggle.setAttribute('aria-pressed', document.documentElement.classList.contains('dark') ? 'true' : 'false');
+      darkToggle.setAttribute(
+        'aria-pressed',
+        document.documentElement.classList.contains('dark') ? 'true' : 'false'
+      );
     }
 
     // Undo/Redo buttons
@@ -440,9 +443,7 @@ class ColorContrastValidator {
     const rgb = this.hexToRgb(hex);
     const [r, g, b] = rgb.map((val) => {
       const sRGB = val / 255;
-      return sRGB <= 0.03928
-        ? sRGB / 12.92
-        : Math.pow((sRGB + 0.055) / 1.055, 2.4);
+      return sRGB <= 0.03928 ? sRGB / 12.92 : Math.pow((sRGB + 0.055) / 1.055, 2.4);
     });
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
@@ -455,11 +456,7 @@ class ColorContrastValidator {
   static hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
-      ? [
-          parseInt(result[1], 16),
-          parseInt(result[2], 16),
-          parseInt(result[3], 16),
-        ]
+      ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
       : [0, 0, 0];
   }
 }

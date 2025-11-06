@@ -104,31 +104,47 @@ class MobileMenuManager {
     let touchStartX = 0;
     let touchEndX = 0;
 
-    this.sidebar.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    this.sidebar.addEventListener(
+      'touchstart',
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
 
-    this.sidebar.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      this.handleSwipe(touchStartX, touchEndX);
-    }, { passive: true });
+    this.sidebar.addEventListener(
+      'touchend',
+      (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        this.handleSwipe(touchStartX, touchEndX);
+      },
+      { passive: true }
+    );
 
     // Swipe from edge to open
-    document.addEventListener('touchstart', (e) => {
-      if (e.touches[0].clientX < 20 && !this.isOpen) {
-        touchStartX = e.touches[0].screenX;
-      }
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-      if (touchStartX > 0 && touchStartX < 20) {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX - touchStartX > 50) {
-          this.openMenu();
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        if (e.touches[0].clientX < 20 && !this.isOpen) {
+          touchStartX = e.touches[0].screenX;
         }
-        touchStartX = 0;
-      }
-    }, { passive: true });
+      },
+      { passive: true }
+    );
+
+    document.addEventListener(
+      'touchend',
+      (e) => {
+        if (touchStartX > 0 && touchStartX < 20) {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchEndX - touchStartX > 50) {
+            this.openMenu();
+          }
+          touchStartX = 0;
+        }
+      },
+      { passive: true }
+    );
   }
 
   /**
@@ -159,7 +175,7 @@ class MobileMenuManager {
     });
 
     // Close on nav item click (mobile)
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.nav-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         if (window.innerWidth < 768) {
           setTimeout(() => this.closeMenu(), 300);
@@ -319,7 +335,7 @@ class MobileOptimizer {
     document.documentElement.style.scrollBehavior = 'smooth';
 
     // Momentum scrolling on iOS
-    document.querySelectorAll('.overflow-y-auto').forEach(el => {
+    document.querySelectorAll('.overflow-y-auto').forEach((el) => {
       el.style.webkitOverflowScrolling = 'touch';
     });
   }
@@ -496,5 +512,5 @@ function initializeMobile() {
 // ============================================
 
 window.MobileMenuManager = MobileMenuManager;
-window.Mobile optimizer = MobileOptimizer;
+window.MobileOptimizer = MobileOptimizer;
 window.ResponsiveUtilities = ResponsiveUtilities;

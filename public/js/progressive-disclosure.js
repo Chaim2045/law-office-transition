@@ -13,7 +13,7 @@ class CollapsibleCategories {
       'מידע בסיסי': ['general-info', 'contacts'],
       'ניהול שוטף': ['daily-management', 'calendar-management', 'legal-processes'],
       'פיננסים וספקים': ['financial-management', 'suppliers-management'],
-      'נהלים': ['procedures']
+      נהלים: ['procedures'],
     };
     this.expandedCategories = new Set(['מידע בסיסי']); // Default expanded
     this.init();
@@ -78,8 +78,8 @@ class CollapsibleCategories {
 
       // Insert relevant tabs
       const categoryContent = parentContainer.querySelector(`#category-${index}`);
-      tabIds.forEach(tabId => {
-        const tab = allTabs.find(t => t.getAttribute('data-tab') === tabId);
+      tabIds.forEach((tabId) => {
+        const tab = allTabs.find((t) => t.getAttribute('data-tab') === tabId);
         if (tab) {
           const clonedTab = tab.cloneNode(true);
           clonedTab.classList.add('mr-4'); // Indent
@@ -93,7 +93,7 @@ class CollapsibleCategories {
    * Setup event listeners
    */
   setupEventListeners() {
-    document.querySelectorAll('.category-toggle').forEach(toggle => {
+    document.querySelectorAll('.category-toggle').forEach((toggle) => {
       toggle.addEventListener('click', (e) => {
         const categoryGroup = e.currentTarget.closest('.category-group');
         const categoryName = categoryGroup.getAttribute('data-category');
@@ -102,7 +102,7 @@ class CollapsibleCategories {
     });
 
     // Re-bind tab click handlers
-    document.querySelectorAll('.nav-tab').forEach(tab => {
+    document.querySelectorAll('.nav-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         const tabName = tab.getAttribute('data-tab');
         if (typeof showTab === 'function') {
@@ -191,10 +191,10 @@ class SearchEnhancements {
     const searchableElements = document.querySelectorAll('.editable, h2, h3, h4, p');
     const keywords = new Set();
 
-    searchableElements.forEach(el => {
+    searchableElements.forEach((el) => {
       const text = el.textContent.toLowerCase();
-      const words = text.split(/\s+/).filter(w => w.length > 2);
-      words.forEach(word => keywords.add(word));
+      const words = text.split(/\s+/).filter((w) => w.length > 2);
+      words.forEach((word) => keywords.add(word));
     });
 
     this.suggestions = Array.from(keywords).slice(0, 50); // Top 50 keywords
@@ -239,14 +239,17 @@ class SearchEnhancements {
     });
 
     // Show suggestions as user types
-    searchInput.addEventListener('input', debounce((e) => {
-      const query = e.target.value.trim();
-      if (query.length >= 2) {
-        this.showSuggestions(query);
-      } else {
-        this.showRecentSearches();
-      }
-    }, 150));
+    searchInput.addEventListener(
+      'input',
+      debounce((e) => {
+        const query = e.target.value.trim();
+        if (query.length >= 2) {
+          this.showSuggestions(query);
+        } else {
+          this.showRecentSearches();
+        }
+      }, 150)
+    );
 
     // Handle Enter key
     searchInput.addEventListener('keydown', (e) => {
@@ -271,7 +274,9 @@ class SearchEnhancements {
 
     const recentHTML = `
       <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">חיפושים אחרונים</div>
-      ${this.recentSearches.map(search => `
+      ${this.recentSearches
+        .map(
+          (search) => `
         <button
           class="w-full text-right px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2 text-sm"
           onclick="document.getElementById('global-search').value='${search}'; document.getElementById('global-search').dispatchEvent(new Event('input'));"
@@ -281,7 +286,9 @@ class SearchEnhancements {
           </svg>
           <span class="flex-1 text-gray-700 dark:text-gray-300">${search}</span>
         </button>
-      `).join('')}
+      `
+        )
+        .join('')}
     `;
 
     recentContainer.innerHTML = recentHTML;
@@ -293,7 +300,7 @@ class SearchEnhancements {
    */
   showSuggestions(query) {
     const matches = this.suggestions
-      .filter(word => word.includes(query.toLowerCase()))
+      .filter((word) => word.includes(query.toLowerCase()))
       .slice(0, 5);
 
     if (matches.length === 0) {
@@ -306,7 +313,9 @@ class SearchEnhancements {
 
     const suggestionsHTML = `
       <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">הצעות</div>
-      ${matches.map(word => `
+      ${matches
+        .map(
+          (word) => `
         <button
           class="w-full text-right px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2 text-sm"
           onclick="document.getElementById('global-search').value='${word}'; document.getElementById('global-search').dispatchEvent(new Event('input'));"
@@ -316,7 +325,9 @@ class SearchEnhancements {
           </svg>
           <span class="flex-1 text-gray-700 dark:text-gray-300">${word}</span>
         </button>
-      `).join('')}
+      `
+        )
+        .join('')}
     `;
 
     suggestionsContainer.innerHTML = suggestionsHTML;
@@ -387,7 +398,7 @@ function initializeProgressiveDisclosure() {
 // Helper: debounce function
 function debounce(func, wait) {
   let timeout;
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeout);
     timeout = setTimeout(() => func.apply(this, args), wait);
   };

@@ -106,7 +106,10 @@ class AccessibilityManager {
     const darkToggle = document.getElementById('dark-mode-toggle');
     if (darkToggle) {
       darkToggle.setAttribute('aria-label', 'החלפת מצב תצוגה (בהיר/כהה)');
-      darkToggle.setAttribute('aria-pressed', document.documentElement.classList.contains('dark') ? 'true' : 'false');
+      darkToggle.setAttribute(
+        'aria-pressed',
+        document.documentElement.classList.contains('dark') ? 'true' : 'false'
+      );
     }
 
     // Undo/Redo buttons
@@ -251,10 +254,14 @@ class AccessibilityManager {
 
     // Add IDs to target elements
     const main = document.querySelector('main');
-    if (main) { main.id = 'main-content'; }
+    if (main) {
+      main.id = 'main-content';
+    }
 
     const sidebarNav = document.querySelector('aside nav');
-    if (sidebarNav) { sidebarNav.id = 'sidebar-nav'; }
+    if (sidebarNav) {
+      sidebarNav.id = 'sidebar-nav';
+    }
   }
 
   /**
@@ -373,7 +380,7 @@ function announceSearchResults(count, query) {
 function announceEditModeChange(enabled) {
   announceToScreenReader(
     enabled ? 'מצב עריכה הופעל' : 'מצב עריכה כובה, שינויים נשמרו',
-    'assertive',
+    'assertive'
   );
 }
 
@@ -440,9 +447,7 @@ class ColorContrastValidator {
     const rgb = this.hexToRgb(hex);
     const [r, g, b] = rgb.map((val) => {
       const sRGB = val / 255;
-      return sRGB <= 0.03928
-        ? sRGB / 12.92
-        : ((sRGB + 0.055) / 1.055) ** 2.4;
+      return sRGB <= 0.03928 ? sRGB / 12.92 : ((sRGB + 0.055) / 1.055) ** 2.4;
     });
     return 0.2126 * r + 0.7152 * g + 0.0722 * b;
   }
@@ -455,11 +460,7 @@ class ColorContrastValidator {
   static hexToRgb(hex) {
     const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
     return result
-      ? [
-        parseInt(result[1], 16),
-        parseInt(result[2], 16),
-        parseInt(result[3], 16),
-      ]
+      ? [parseInt(result[1], 16), parseInt(result[2], 16), parseInt(result[3], 16)]
       : [0, 0, 0];
   }
 }

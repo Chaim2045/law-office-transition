@@ -52,8 +52,8 @@ function initializeApp() {
 
   // Initialize dark mode
   if (
-    localStorage.getItem('theme') === 'dark'
-    || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
+    localStorage.getItem('theme') === 'dark' ||
+    (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)
   ) {
     document.documentElement.classList.add('dark');
   }
@@ -146,7 +146,7 @@ function showTab(tabName) {
       'text-blue-700',
       'dark:text-blue-300',
       'border-r-4',
-      'border-blue-500',
+      'border-blue-500'
     );
     tab.classList.add('text-gray-600', 'dark:text-gray-400');
   });
@@ -159,7 +159,7 @@ function showTab(tabName) {
       'text-blue-700',
       'dark:text-blue-300',
       'border-r-4',
-      'border-blue-500',
+      'border-blue-500'
     );
     activeTab.classList.remove('text-gray-600', 'dark:text-gray-400');
   }
@@ -189,18 +189,19 @@ function toggleEditMode() {
   const addButtons = document.querySelectorAll('.add-btn');
 
   if (editMode) {
-    elements.editToggle.innerHTML = '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>שמור שינויים';
+    elements.editToggle.innerHTML =
+      '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>שמור שינויים';
     elements.editToggle.classList.remove(
       'from-green-600',
       'to-green-700',
       'hover:from-green-700',
-      'hover:to-green-800',
+      'hover:to-green-800'
     );
     elements.editToggle.classList.add(
       'from-red-600',
       'to-red-700',
       'hover:from-red-700',
-      'hover:to-red-800',
+      'hover:to-red-800'
     );
 
     editables.forEach((element) => {
@@ -213,7 +214,7 @@ function toggleEditMode() {
         'px-3',
         'py-2',
         'bg-blue-50',
-        'dark:bg-blue-900/20',
+        'dark:bg-blue-900/20'
       );
       element.addEventListener('input', handleEdit);
     });
@@ -224,18 +225,19 @@ function toggleEditMode() {
 
     showToast('מצב עריכה הופעל', 'info');
   } else {
-    elements.editToggle.innerHTML = '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>מצב עריכה';
+    elements.editToggle.innerHTML =
+      '<svg class="w-4 h-4 inline ml-1" fill="currentColor" viewBox="0 0 20 20"><path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"></path></svg>מצב עריכה';
     elements.editToggle.classList.remove(
       'from-red-600',
       'to-red-700',
       'hover:from-red-700',
-      'hover:to-red-800',
+      'hover:to-red-800'
     );
     elements.editToggle.classList.add(
       'from-green-600',
       'to-green-700',
       'hover:from-green-700',
-      'hover:to-green-800',
+      'hover:to-green-800'
     );
 
     editables.forEach((element) => {
@@ -248,7 +250,7 @@ function toggleEditMode() {
         'px-3',
         'py-2',
         'bg-blue-50',
-        'dark:bg-blue-900/20',
+        'dark:bg-blue-900/20'
       );
       element.removeEventListener('input', handleEdit);
     });
@@ -367,7 +369,7 @@ function saveNewItem() {
   const addButton = document.querySelector(
     `[onclick="addNewItem('${currentAddCategory}', '${
       document.getElementById('item-category').value
-    }')"]`,
+    }')"]`
   );
   if (addButton) {
     addButton.parentNode.insertBefore(newItem, addButton);
@@ -402,8 +404,8 @@ function getIconForCategory(category) {
       '<path d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z"></path>',
   };
   return (
-    iconMap[category]
-    || '<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>'
+    iconMap[category] ||
+    '<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>'
   );
 }
 
@@ -425,8 +427,8 @@ function createNewItemElement(fieldId, itemName, category) {
                   <span class="editable" data-field="${fieldId}">${itemName}</span>
                 </div>
                 <button class="delete-btn" onclick="deleteItem(this, '${fieldId}')" title="מחק פריט" style="display: ${
-  editMode ? 'block' : 'none'
-}; position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%);">
+                  editMode ? 'block' : 'none'
+                }; position: absolute; left: 0.5rem; top: 50%; transform: translateY(-50%);">
                     <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
@@ -445,7 +447,7 @@ function createNewItemElement(fieldId, itemName, category) {
       'px-3',
       'py-2',
       'bg-blue-50',
-      'dark:bg-blue-900/20',
+      'dark:bg-blue-900/20'
     );
     span.addEventListener('input', handleEdit);
   }
@@ -462,15 +464,16 @@ async function deleteItem(button, fieldId) {
   const itemName = itemElement.querySelector('.editable').textContent;
 
   // Use modern confirmation dialog
-  const confirmed = typeof ConfirmDialog !== 'undefined'
-    ? await ConfirmDialog.show({
-      title: 'מחיקת פריט',
-      message: `האם אתה בטוח שברצונך למחוק את "${itemName}"? פעולה זו לא ניתנת לביטול.`,
-      confirmText: 'מחק',
-      cancelText: 'ביטול',
-      type: 'danger',
-    })
-    : confirm(`האם למחוק את "${itemName}"?`);
+  const confirmed =
+    typeof ConfirmDialog !== 'undefined'
+      ? await ConfirmDialog.show({
+          title: 'מחיקת פריט',
+          message: `האם אתה בטוח שברצונך למחוק את "${itemName}"? פעולה זו לא ניתנת לביטול.`,
+          confirmText: 'מחק',
+          cancelText: 'ביטול',
+          type: 'danger',
+        })
+      : confirm(`האם למחוק את "${itemName}"?`);
 
   if (confirmed) {
     // Show loading state
@@ -795,7 +798,9 @@ function performSearch() {
 function showSearchEmptyState(searchTerm) {
   // Find the main content area
   const mainContent = document.querySelector('main .flex-1');
-  if (!mainContent) { return; }
+  if (!mainContent) {
+    return;
+  }
 
   // Create empty state notification (floating, non-intrusive)
   const emptyStateHTML = `
@@ -933,7 +938,7 @@ function showToast(message, type = 'info') {
 
   const toast = document.createElement('div');
   toast.className = `transform transition-all duration-300 ease-in-out translate-x-full opacity-0 mb-4 px-6 py-4 rounded-lg text-white font-medium shadow-lg max-w-sm ${getToastColor(
-    type,
+    type
   )}`;
 
   toast.innerHTML = `

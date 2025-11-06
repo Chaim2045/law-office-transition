@@ -74,7 +74,9 @@ console.log('\n📊 **סיכום כללי:**\n');
 // סיכום כולל
 const allSections = (html.match(/<div class="linear-section">/g) || []).length;
 const allNewStyle = (html.match(/<div class="copy-btn-container linear-item">/g) || []).length;
-const allOldStyle = (html.match(/<div class="linear-item">(?!.*<div class="copy-btn-container)/g) || []).length;
+const allOldStyle = (
+  html.match(/<div class="linear-item">(?!.*<div class="copy-btn-container)/g) || []
+).length;
 
 console.log(`📦 סה"כ Sections: ${allSections}`);
 console.log(`✅ סה"כ Items בסטייל חדש: ${allNewStyle}`);

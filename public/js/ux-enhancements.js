@@ -159,9 +159,10 @@ class KeyboardShortcuts {
 
     // Don't trigger shortcuts when typing in input fields (except specific keys)
     const activeElement = document.activeElement;
-    const isInputField = activeElement.tagName === 'INPUT'
-      || activeElement.tagName === 'TEXTAREA'
-      || activeElement.isContentEditable;
+    const isInputField =
+      activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'TEXTAREA' ||
+      activeElement.isContentEditable;
 
     // Build key combination string
     let key = e.key.toLowerCase();
@@ -171,7 +172,7 @@ class KeyboardShortcuts {
     if (e.ctrlKey && e.shiftKey) key = `ctrl+shift+${e.key.toLowerCase()}`;
 
     // Allow '/' and '?' even in input fields (to show help)
-    if (isInputField && !['/','?', 'escape'].includes(e.key.toLowerCase()) && !e.ctrlKey) {
+    if (isInputField && !['/', '?', 'escape'].includes(e.key.toLowerCase()) && !e.ctrlKey) {
       return;
     }
 
@@ -260,10 +261,15 @@ class KeyboardShortcuts {
 
   showHelp() {
     const shortcuts = Array.from(this.shortcuts.entries())
-      .map(([key, { description }]) => `<div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
+      .map(
+        ([
+          key,
+          { description },
+        ]) => `<div class="flex justify-between py-2 border-b border-gray-200 dark:border-gray-700">
           <span class="text-gray-700 dark:text-gray-300">${description}</span>
           <kbd class="px-2 py-1 bg-gray-100 dark:bg-gray-800 rounded text-sm font-mono">${key}</kbd>
-        </div>`)
+        </div>`
+      )
       .join('');
 
     const modalHTML = `
@@ -401,14 +407,18 @@ class EmptyStateManager {
     if (!el) return;
 
     const icons = {
-      search: '<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>',
-      empty: '<path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>',
-      error: '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>',
+      search:
+        '<path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>',
+      empty:
+        '<path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4z" clip-rule="evenodd"></path>',
+      error:
+        '<path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>',
     };
 
-    const actionHTML = actionText && actionCallback
-      ? `<button onclick="${actionCallback}" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">${actionText}</button>`
-      : '';
+    const actionHTML =
+      actionText && actionCallback
+        ? `<button onclick="${actionCallback}" class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">${actionText}</button>`
+        : '';
 
     const emptyHTML = `
       <div class="empty-state flex flex-col items-center justify-center py-16 text-center">
@@ -546,7 +556,7 @@ class FocusManager {
    */
   static trapFocus(element) {
     const focusableElements = element.querySelectorAll(
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
     );
     const firstFocusable = focusableElements[0];
     const lastFocusable = focusableElements[focusableElements.length - 1];

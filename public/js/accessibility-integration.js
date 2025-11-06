@@ -6,12 +6,15 @@
 // Wrap existing showTab function
 if (typeof showTab !== 'undefined') {
   const originalShowTab = window.showTab;
-  window.showTab = function(tabName) {
+  window.showTab = function (tabName) {
     originalShowTab(tabName);
 
     // Update ARIA
-    document.querySelectorAll('.nav-tab').forEach(tab => {
-      tab.setAttribute('aria-selected', tab.getAttribute('data-tab') === tabName ? 'true' : 'false');
+    document.querySelectorAll('.nav-tab').forEach((tab) => {
+      tab.setAttribute(
+        'aria-selected',
+        tab.getAttribute('data-tab') === tabName ? 'true' : 'false'
+      );
     });
 
     // Announce to screen readers
@@ -62,14 +65,14 @@ if (typeof KeyboardShortcuts !== 'undefined') {
   const originalUndo = KeyboardShortcuts.undo;
   const originalRedo = KeyboardShortcuts.redo;
 
-  KeyboardShortcuts.undo = function() {
+  KeyboardShortcuts.undo = function () {
     originalUndo.call(this);
     if (typeof announceUndoRedo !== 'undefined') {
       announceUndoRedo('undo');
     }
   };
 
-  KeyboardShortcuts.redo = function() {
+  KeyboardShortcuts.redo = function () {
     originalRedo.call(this);
     if (typeof announceUndoRedo !== 'undefined') {
       announceUndoRedo('redo');

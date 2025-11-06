@@ -13,27 +13,27 @@
   --bg-hover: #f4f4f5;
 
   /* Category Colors - Tel Aviv (Blue) */
-  --ta-color: #3B82F6;
-  --ta-color-light: #DBEAFE;
-  --ta-color-hover: #2563EB;
+  --ta-color: #3b82f6;
+  --ta-color-light: #dbeafe;
+  --ta-color-hover: #2563eb;
   --ta-bg: rgba(59, 130, 246, 0.05);
 
   /* Category Colors - Rehovot (Green) */
-  --rehovot-color: #10B981;
-  --rehovot-color-light: #D1FAE5;
+  --rehovot-color: #10b981;
+  --rehovot-color-light: #d1fae5;
   --rehovot-color-hover: #059669;
   --rehovot-bg: rgba(16, 185, 129, 0.05);
 
   /* Category Colors - Freelancer (Purple) */
-  --freelancer-color: #8B5CF6;
-  --freelancer-color-light: #EDE9FE;
-  --freelancer-color-hover: #7C3AED;
+  --freelancer-color: #8b5cf6;
+  --freelancer-color-light: #ede9fe;
+  --freelancer-color-hover: #7c3aed;
   --freelancer-bg: rgba(139, 92, 246, 0.05);
 
   /* Category Colors - Tenant (Orange) */
-  --tenant-color: #F59E0B;
-  --tenant-color-light: #FEF3C7;
-  --tenant-color-hover: #D97706;
+  --tenant-color: #f59e0b;
+  --tenant-color-light: #fef3c7;
+  --tenant-color-hover: #d97706;
   --tenant-bg: rgba(245, 158, 11, 0.05);
 }
 
@@ -49,24 +49,24 @@
   --bg-hover: #27272a;
 
   /* Dark mode category colors */
-  --ta-color: #60A5FA;
-  --ta-color-light: #1E3A8A;
-  --ta-color-hover: #93C5FD;
+  --ta-color: #60a5fa;
+  --ta-color-light: #1e3a8a;
+  --ta-color-hover: #93c5fd;
   --ta-bg: rgba(96, 165, 250, 0.1);
 
-  --rehovot-color: #34D399;
-  --rehovot-color-light: #064E3B;
-  --rehovot-color-hover: #6EE7B7;
+  --rehovot-color: #34d399;
+  --rehovot-color-light: #064e3b;
+  --rehovot-color-hover: #6ee7b7;
   --rehovot-bg: rgba(52, 211, 153, 0.1);
 
-  --freelancer-color: #A78BFA;
-  --freelancer-color-light: #4C1D95;
-  --freelancer-color-hover: #C4B5FD;
+  --freelancer-color: #a78bfa;
+  --freelancer-color-light: #4c1d95;
+  --freelancer-color-hover: #c4b5fd;
   --freelancer-bg: rgba(167, 139, 250, 0.1);
 
-  --tenant-color: #FBBF24;
-  --tenant-color-light: #78350F;
-  --tenant-color-hover: #FCD34D;
+  --tenant-color: #fbbf24;
+  --tenant-color-light: #78350f;
+  --tenant-color-hover: #fcd34d;
   --tenant-bg: rgba(251, 191, 36, 0.1);
 }
 
@@ -362,7 +362,7 @@ textarea:focus {
 }
 
 /* Visual hint - edit icon on hover (only when NOT in edit mode) */
-.editable:not([contenteditable="true"]):hover::after {
+.editable:not([contenteditable='true']):hover::after {
   content: '✏️';
   position: absolute;
   left: -20px;
@@ -382,12 +382,12 @@ textarea:focus {
 }
 
 /* Editable in edit mode - clear visual indication */
-.editable[contenteditable="true"] {
+.editable[contenteditable='true'] {
   cursor: text;
   position: relative;
 }
 
-.editable[contenteditable="true"]::before {
+.editable[contenteditable='true']::before {
   content: '';
   position: absolute;
   inset: 0;

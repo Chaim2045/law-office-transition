@@ -34,7 +34,9 @@ class MobileMenuManager {
    */
   createHamburgerButton() {
     const nav = document.querySelector('nav .flex.justify-between');
-    if (!nav) { return; }
+    if (!nav) {
+      return;
+    }
 
     const hamburgerHTML = `
       <button
@@ -81,7 +83,9 @@ class MobileMenuManager {
    */
   setupMobileLayout() {
     this.sidebar = document.querySelector('aside');
-    if (!this.sidebar) { return; }
+    if (!this.sidebar) {
+      return;
+    }
 
     // Add mobile classes
     this.sidebar.classList.add('mobile-sidebar');
@@ -99,36 +103,54 @@ class MobileMenuManager {
    * Setup touch gestures for swipe
    */
   setupTouchGestures() {
-    if (!this.sidebar) { return; }
+    if (!this.sidebar) {
+      return;
+    }
 
     let touchStartX = 0;
     let touchEndX = 0;
 
-    this.sidebar.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, { passive: true });
+    this.sidebar.addEventListener(
+      'touchstart',
+      (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      },
+      { passive: true }
+    );
 
-    this.sidebar.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      this.handleSwipe(touchStartX, touchEndX);
-    }, { passive: true });
+    this.sidebar.addEventListener(
+      'touchend',
+      (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        this.handleSwipe(touchStartX, touchEndX);
+      },
+      { passive: true }
+    );
 
     // Swipe from edge to open
-    document.addEventListener('touchstart', (e) => {
-      if (e.touches[0].clientX < 20 && !this.isOpen) {
-        touchStartX = e.touches[0].screenX;
-      }
-    }, { passive: true });
-
-    document.addEventListener('touchend', (e) => {
-      if (touchStartX > 0 && touchStartX < 20) {
-        touchEndX = e.changedTouches[0].screenX;
-        if (touchEndX - touchStartX > 50) {
-          this.openMenu();
+    document.addEventListener(
+      'touchstart',
+      (e) => {
+        if (e.touches[0].clientX < 20 && !this.isOpen) {
+          touchStartX = e.touches[0].screenX;
         }
-        touchStartX = 0;
-      }
-    }, { passive: true });
+      },
+      { passive: true }
+    );
+
+    document.addEventListener(
+      'touchend',
+      (e) => {
+        if (touchStartX > 0 && touchStartX < 20) {
+          touchEndX = e.changedTouches[0].screenX;
+          if (touchEndX - touchStartX > 50) {
+            this.openMenu();
+          }
+          touchStartX = 0;
+        }
+      },
+      { passive: true }
+    );
   }
 
   /**
@@ -374,8 +396,12 @@ class ResponsiveUtilities {
    * @returns {string} - 'mobile', 'tablet', or 'desktop'
    */
   static getBreakpoint() {
-    if (this.isMobile()) { return 'mobile'; }
-    if (this.isTablet()) { return 'tablet'; }
+    if (this.isMobile()) {
+      return 'mobile';
+    }
+    if (this.isTablet()) {
+      return 'tablet';
+    }
     return 'desktop';
   }
 }
