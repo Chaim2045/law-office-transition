@@ -40,7 +40,8 @@
       "Bash(while read file)",
       "Bash(do [ ! -f \"src/js/$file\" ])",
       "Bash(done)",
-      "Bash(do [ ! -f \"src/css/$file\" ])"
+      "Bash(do [ ! -f \"src/css/$file\" ])",
+      "Bash(.gitignore)"
     ],
     "deny": [],
     "ask": []
