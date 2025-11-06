@@ -41,7 +41,9 @@
       "Bash(do [ ! -f \"src/js/$file\" ])",
       "Bash(done)",
       "Bash(do [ ! -f \"src/css/$file\" ])",
-      "Bash(.gitignore)"
+      "Bash(.gitignore)",
+      "Bash(del update-headings.js headings-report.js update_headings.py 2)",
+      "Bash(nul)"
     ],
     "deny": [],
     "ask": []

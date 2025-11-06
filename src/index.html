@@ -935,6 +935,27 @@
                         </svg>
                       </button>
                     </div>
+
+                    <!-- Add Button for TA Staff -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('ta_staff', 'צוות משרד תל-אביב')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -1018,6 +1039,27 @@
                         </svg>
                       </button>
                     </div>
+
+                    <!-- Add Button for Rehovot Staff -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('rehovot_staff', 'צוות רחובות')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -1107,6 +1149,27 @@
                         </svg>
                       </button>
                     </div>
+
+                    <!-- Add Button for Freelancers -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('freelancer', 'פרילנסרים')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
 
@@ -1285,6 +1348,27 @@
                         </svg>
                       </button>
                     </div>
+
+                    <!-- Add Button for Tenants -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('tenant', 'שוכרי חדרים')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -2379,6 +2463,27 @@
                       </svg>
                     </button>
                   </div>
+
+                  <!-- Add Button for Couriers -->
+                  <button
+                    class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                    onclick="addNewItem('courier', 'שליחים')"
+                    style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                  >
+                    <div
+                      class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                    >
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M12 4v16m8-8H4"
+                        ></path>
+                      </svg>
+                      <span class="font-medium">הוסף פריט חדש</span>
+                    </div>
+                  </button>
 
                   <!-- אזהרה -->
                   <div class="copy-btn-container linear-item">
@@ -8207,6 +8312,75 @@
           </div>
         </div>
       </main>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div
+      id="add-item-modal"
+      class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"
+      style="backdrop-filter: blur(4px)"
+    >
+      <div
+        class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-md w-full mx-4 transform transition-all"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 dark:text-white">הוסף פריט חדש</h3>
+          <button
+            onclick="hideAddItemModal()"
+            class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
+          >
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <div class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >קטגוריה</label
+            >
+            <input
+              type="text"
+              id="item-category"
+              readonly
+              class="w-full px-4 py-3 bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >שם הפריט</label
+            >
+            <input
+              type="text"
+              id="item-name"
+              placeholder="הזן שם..."
+              class="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg text-gray-900 dark:text-white bg-white dark:bg-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            />
+          </div>
+        </div>
+
+        <div class="flex gap-3 mt-6">
+          <button
+            onclick="saveNewItem()"
+            class="flex-1 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-all shadow-md hover:shadow-lg"
+          >
+            שמור
+          </button>
+          <button
+            onclick="hideAddItemModal()"
+            class="px-6 py-3 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-700 transition-all"
+          >
+            ביטול
+          </button>
+        </div>
+      </div>
     </div>
 
     <!-- Password Modal for Edit Mode -->

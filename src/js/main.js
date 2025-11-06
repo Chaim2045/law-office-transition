@@ -11,6 +11,7 @@ const itemCounter = {
   rehovot_staff: 0,
   freelancer: 0,
   tenant: 0,
+  courier: 0,
 };
 
 // DOM elements cache
@@ -61,11 +62,30 @@ function initializeApp() {
   // Show first tab
   showTab('general-info');
 
+  // Initialize item counters
+  initializeItemCounters();
+
   // Load saved data
   loadSavedData();
 
   // Load Google Sheets config
   loadGoogleSheetsConfig();
+}
+
+function initializeItemCounters() {
+  // Count existing items for each category
+  Object.keys(itemCounter).forEach((category) => {
+    const pattern = new RegExp(`${category}_(\\d+)`);
+    const fields = document.querySelectorAll(`[data-field^="${category}_"]`);
+    let maxNum = 0;
+    fields.forEach((field) => {
+      const match = field.getAttribute('data-field').match(pattern);
+      if (match) {
+        maxNum = Math.max(maxNum, parseInt(match[1]));
+      }
+    });
+    itemCounter[category] = maxNum;
+  });
 }
 
 function setupEventListeners() {
