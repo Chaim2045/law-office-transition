@@ -3,7 +3,7 @@
 
 [build]
   # Directory with the static files
-  publish = "public"
+  publish = "src"
 
   # No build command needed - static site
   command = ""
