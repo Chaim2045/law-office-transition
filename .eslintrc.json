@@ -23,10 +23,16 @@
     "HistoryManager": "readonly",
     "showTab": "readonly",
     "announceToScreenReader": "readonly",
+    "announceNavigationChange": "readonly",
+    "announceSearchResults": "readonly",
+    "announceEditModeChange": "readonly",
+    "announceUndoRedo": "readonly",
+    "searchCount": "readonly",
     "editMode": "readonly",
     "showToast": "readonly"
   },
   "rules": {
+    "func-names": "warn",
     "no-lonely-if": "warn",
     "no-console": "warn",
     "no-alert": "warn",
