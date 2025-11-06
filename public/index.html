@@ -1998,27 +1998,104 @@
                   </div>
                 </div>
 
-                        <!-- הערה חשובה על צ'קי מע"מ -->
-                        <div class="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-4">
-                          <p class="text-yellow-800 dark:text-yellow-300 font-bold editable" data-field="financial_vat_note">
-                            הערה חשובה: צ'ק של המע"מ תמיד מתקבל לחודש קדימה - אם צ'קים של שכ"ט מתקבלים בחודש יוני, צ'ק המע"מ יהיה לחודש יולי בתאריך 15
-                          </p>
-                        </div>
 
-                        <div>
-                          <h4 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-3">תהליך הפקדה:</h4>
-                          <div class="text-gray-700 dark:text-gray-300 editable" data-field="financial_deposit_process">
-                            <ol class="list-decimal list-inside space-y-2">
-                              <li>בדיקת הצ'קים (שם מוטב, סכום, תאריך, חתימה)</li>
-                              <li>חותמות מאחורי הצ'קים לפי סוג החשבון</li>
-                              <li>מילוי טפסי הפקדה נפרדים לכל חשבון</li>
-                              <li>צילום הצ'קים והטפסים ושליחה למיכל</li>
-                              <li>יציאה לבנק במתחם מידטאון ומסירת תיק ביזנס</li>
-                            </ol>
-                          </div>
-                        </div>
-                      </div>
+                <!-- תהליך הפקדה בבנק -->
+                <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+                  <h4 class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                    </svg>
+                    תהליך הפקדה
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                  <!-- הערה על מע"מ -->
+                  <div class="copy-btn-container linear-item md:col-span-2" style="background: rgba(251, 191, 36, 0.1); border-right: 3px solid #F59E0B;">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%; color: #F59E0B;"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">הערה חשובה - צ'קי מע"מ</div>
+                      <div class="linear-item-value editable" data-field="financial_vat_note">צ'ק של המע"מ תמיד מתקבל לחודש קדימה - אם צ'קים של שכ"ט מתקבלים בחודש יוני, צ'ק המע"מ יהיה לחודש יולי בתאריך 15</div>
                     </div>
+                    <button class="copy-btn" onclick="copyToClipboard('צ\'ק של המע\"מ תמיד מתקבל לחודש קדימה')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- שלבי הפקדה -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">שלב 1</div>
+                      <div class="linear-item-value editable" data-field="deposit_step_1">בדיקת הצ'קים (שם מוטב, סכום, תאריך, חתימה)</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('בדיקת הצ\'קים (שם מוטב, סכום, תאריך, חתימה)')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">שלב 2</div>
+                      <div class="linear-item-value editable" data-field="deposit_step_2">חותמות מאחורי הצ'קים לפי סוג החשבון</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('חותמות מאחורי הצ\'קים לפי סוג החשבון')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">שלב 3</div>
+                      <div class="linear-item-value editable" data-field="deposit_step_3">מילוי טפסי הפקדה נפרדים לכל חשבון</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('מילוי טפסי הפקדה נפרדים לכל חשבון')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">שלב 4</div>
+                      <div class="linear-item-value editable" data-field="deposit_step_4">צילום הצ'קים והטפסים ושליחה למיכל</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('צילום הצ\'קים והטפסים ושליחה למיכל')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon"><svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg></div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">שלב 5</div>
+                      <div class="linear-item-value editable" data-field="deposit_step_5">יציאה לבנק במתחם מידטאון ומסירת תיק ביזנס</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('יציאה לבנק במתחם מידטאון ומסירת תיק ביזנס')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  </div>
+                </div>
 
                     <!-- גביית תשלומים -->
                     <div class="bg-white dark:bg-gray-800 rounded-xl p-6 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300">

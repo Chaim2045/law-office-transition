@@ -26,7 +26,8 @@
       "Bash(echo:*)",
       "Bash(public/index.html.tmp)",
       "Bash(cp:*)",
-      "Bash(node analyze-structure.js:*)"
+      "Bash(node analyze-structure.js:*)",
+      "Bash(start \"c:\\Users\\haim\\law-office-transition\\public\\index.html\")"
     ],
     "deny": [],
     "ask": []
