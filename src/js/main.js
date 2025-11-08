@@ -1029,11 +1029,35 @@ function debounce(func, wait) {
   };
 }
 
+// WhatsApp function
+function openWhatsApp(phoneNumber) {
+  // Remove all non-digit characters
+  const cleanPhone = phoneNumber.replace(/\D/g, '');
+
+  // Convert Israeli number to international format
+  // Israeli numbers start with 05X-XXXXXXX (10 digits)
+  // Convert to +972-5X-XXXXXXX (remove leading 0, add +972)
+  let internationalPhone = cleanPhone;
+  if (cleanPhone.startsWith('05') && cleanPhone.length === 10) {
+    internationalPhone = '972' + cleanPhone.substring(1);
+  }
+
+  // Open WhatsApp (use web.whatsapp.com for desktop, wa.me for mobile)
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+  const whatsappUrl = isMobile
+    ? `https://wa.me/${internationalPhone}`
+    : `https://web.whatsapp.com/send?phone=${internationalPhone}`;
+
+  window.open(whatsappUrl, '_blank');
+  showToast('פותח וואטסאפ...', 'success');
+}
+
 // Make functions available globally
 window.showTab = showTab;
 window.copyToClipboard = copyToClipboard;
 window.showPasswordModal = showPasswordModal;
 window.hidePasswordModal = hidePasswordModal;
 window.submitPassword = submitPassword;
+window.openWhatsApp = openWhatsApp;
 
 // Update stats every 30 seconds
