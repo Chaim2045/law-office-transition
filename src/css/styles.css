@@ -555,6 +555,32 @@ textarea:focus {
   border-color: var(--border);
 }
 
+/* === Email Links Styling === */
+.linear-item-value a,
+.editable a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.linear-item-value a:hover,
+.editable a:hover {
+  color: var(--primary-hover);
+  border-bottom-color: var(--primary-hover);
+}
+
+.dark .linear-item-value a,
+.dark .editable a {
+  color: var(--primary);
+}
+
+.dark .linear-item-value a:hover,
+.dark .editable a:hover {
+  color: var(--primary-hover);
+  border-bottom-color: var(--primary-hover);
+}
+
 /* === Remove old bloated styles === */
 .gradient-bg,
 .glass-effect,
