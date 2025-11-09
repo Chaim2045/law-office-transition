@@ -289,30 +289,34 @@ h4 svg {
 
 /* === WhatsApp Button === */
 .whatsapp-btn {
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   width: 24px;
   height: 24px;
   padding: 4px;
-  background: #25D366;
+  background: #25D366 !important;
   border: 1px solid #20BA5A;
   border-radius: 4px;
-  color: white;
-  cursor: pointer;
+  color: white !important;
+  cursor: pointer !important;
   transition: all 0.15s ease;
   margin-right: 6px;
   vertical-align: middle;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
 
 .whatsapp-btn:hover {
-  background: #20BA5A;
+  background: #20BA5A !important;
   transform: scale(1.1);
 }
 
 .whatsapp-btn svg {
   width: 14px;
   height: 14px;
+  pointer-events: none;
 }
 
 /* Dark mode adjustments for WhatsApp button */
@@ -399,17 +403,11 @@ textarea:focus {
   background: var(--bg-hover);
 }
 
-/* Visual hint - edit icon on hover (only when NOT in edit mode) */
-.editable:not([contenteditable='true']):hover::after {
-  content: '✏️';
-  position: absolute;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 0.75rem;
-  opacity: 0.6;
-  pointer-events: none;
-  animation: fadeIn 0.2s ease-in-out;
+/* Allow buttons inside editable to be clickable */
+.editable button {
+  pointer-events: auto;
+  position: relative;
+  z-index: 10;
 }
 
 .editable:focus {
