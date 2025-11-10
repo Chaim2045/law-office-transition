@@ -32,8 +32,7 @@ class EnhancedSearch {
   createResultsContainer() {
     const container = document.createElement('div');
     container.id = 'enhanced-search-results';
-    container.className =
-      'absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-50';
+    container.className = 'absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-50';
 
     if (this.searchInput && this.searchInput.parentElement) {
       // Make parent relative for absolute positioning
@@ -47,7 +46,7 @@ class EnhancedSearch {
    * Bind event listeners
    */
   bindEvents() {
-    if (!this.searchInput) return;
+    if (!this.searchInput) { return; }
 
     // Real-time search with debounce
     this.searchInput.addEventListener(
@@ -60,8 +59,8 @@ class EnhancedSearch {
     // Close results when clicking outside
     document.addEventListener('click', (e) => {
       if (
-        !e.target.closest('#global-search') &&
-        !e.target.closest('#enhanced-search-results')
+        !e.target.closest('#global-search')
+        && !e.target.closest('#enhanced-search-results')
       ) {
         this.hideResults();
       }
@@ -194,18 +193,16 @@ class EnhancedSearch {
           matchType: 'exact',
           matchText: this.highlightMatch(item.text, query),
         });
-      }
-      // Context match - medium priority
-      else if (contextLower.includes(queryLower)) {
+      } else if (contextLower.includes(queryLower)) {
+        // Context match - medium priority
         matches.push({
           ...item,
           score: 70,
           matchType: 'context',
           matchText: item.text,
         });
-      }
-      // Fuzzy match - lower priority
-      else {
+      } else {
+        // Fuzzy match - lower priority
         const similarity = this.calculateSimilarity(queryLower, textLower);
         if (similarity > 0.6) {
           matches.push({
@@ -232,7 +229,7 @@ class EnhancedSearch {
     const len1 = str1.length;
     const len2 = str2.length;
 
-    if (len1 === 0 || len2 === 0) return 0;
+    if (len1 === 0 || len2 === 0) { return 0; }
 
     // Check substring match
     if (str2.includes(str1)) {
@@ -244,7 +241,7 @@ class EnhancedSearch {
     const minLen = Math.min(len1, len2);
 
     for (let i = 0; i < minLen; i += 1) {
-      if (str1[i] === str2[i]) matches += 1;
+      if (str1[i] === str2[i]) { matches += 1; }
     }
 
     return matches / Math.max(len1, len2);
@@ -279,7 +276,7 @@ class EnhancedSearch {
    * @param {string} query - Original query
    */
   showResults(matches, query) {
-    if (!this.searchResults) return;
+    if (!this.searchResults) { return; }
 
     this.currentResults = matches;
 
@@ -310,19 +307,19 @@ class EnhancedSearch {
    * @returns {string} HTML for result item
    */
   renderResultItem(match, index) {
-    const scoreColor =
-      match.score >= 90
-        ? 'text-green-600'
-        : match.score >= 70
-          ? 'text-blue-600'
-          : 'text-yellow-600';
+    let scoreColor = 'text-yellow-600';
+    if (match.score >= 90) {
+      scoreColor = 'text-green-600';
+    } else if (match.score >= 70) {
+      scoreColor = 'text-blue-600';
+    }
 
-    const matchTypeLabel =
-      match.matchType === 'exact'
-        ? '🎯 התאמה מלאה'
-        : match.matchType === 'context'
-          ? '📍 התאמה בהקשר'
-          : '🔍 התאמה חלקית';
+    let matchTypeLabel = '🔍 התאמה חלקית';
+    if (match.matchType === 'exact') {
+      matchTypeLabel = '🎯 התאמה מלאה';
+    } else if (match.matchType === 'context') {
+      matchTypeLabel = '📍 התאמה בהקשר';
+    }
 
     return `
       <div class="group p-3 bg-gray-50 dark:bg-gray-700/50 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all cursor-pointer border border-transparent hover:border-blue-300 dark:hover:border-blue-600"
@@ -353,7 +350,7 @@ class EnhancedSearch {
    * @param {Array} allItems - All searchable items
    */
   showDidYouMean(query, allItems) {
-    if (!this.searchResults) return;
+    if (!this.searchResults) { return; }
 
     const suggestions = this.findSimilarTerms(query, allItems);
 
@@ -378,8 +375,8 @@ class EnhancedSearch {
             <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">💡 האם התכוונת ל:</p>
             <div class="space-y-2">
               ${suggestions
-                .map(
-                  (suggestion) => `
+    .map(
+      (suggestion) => `
                 <button onclick="enhancedSearch.searchForSuggestion('${this.escapeHtml(suggestion)}')"
                         class="w-full text-right px-4 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 transition-all group">
                   <div class="flex items-center justify-between">
@@ -388,8 +385,8 @@ class EnhancedSearch {
                   </div>
                 </button>
               `,
-                )
-                .join('')}
+    )
+    .join('')}
             </div>
           </div>
         </div>
@@ -426,9 +423,9 @@ class EnhancedSearch {
       const similarity = this.calculateSimilarity(queryLower, termLower);
 
       if (
-        similarity > 0.5 ||
-        termLower.includes(queryLower) ||
-        queryLower.includes(termLower)
+        similarity > 0.5
+        || termLower.includes(queryLower)
+        || queryLower.includes(termLower)
       ) {
         similar.push({ term, similarity });
       }
@@ -456,7 +453,7 @@ class EnhancedSearch {
    */
   jumpToResult(index) {
     const result = this.currentResults[index];
-    if (!result) return;
+    if (!result) { return; }
 
     // Switch to correct tab
     if (window.showTab) {
@@ -546,7 +543,6 @@ class EnhancedSearch {
 }
 
 // Initialize enhanced search on page load
-let enhancedSearch;
 document.addEventListener('DOMContentLoaded', () => {
-  enhancedSearch = new EnhancedSearch();
+  window.enhancedSearch = new EnhancedSearch();
 });
