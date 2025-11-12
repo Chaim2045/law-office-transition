@@ -32,7 +32,8 @@ class EnhancedSearch {
   createResultsContainer() {
     const container = document.createElement('div');
     container.id = 'enhanced-search-results';
-    container.className = 'absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-50';
+    container.className =
+      'absolute top-full left-0 right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-2xl border border-gray-200 dark:border-gray-700 max-h-96 overflow-y-auto hidden z-50';
 
     if (this.searchInput && this.searchInput.parentElement) {
       // Make parent relative for absolute positioning
@@ -46,22 +47,21 @@ class EnhancedSearch {
    * Bind event listeners
    */
   bindEvents() {
-    if (!this.searchInput) { return; }
+    if (!this.searchInput) {
+      return;
+    }
 
     // Real-time search with debounce
     this.searchInput.addEventListener(
       'input',
       this.debounce(() => {
         this.performEnhancedSearch();
-      }, 300),
+      }, 300)
     );
 
     // Close results when clicking outside
     document.addEventListener('click', (e) => {
-      if (
-        !e.target.closest('#global-search')
-        && !e.target.closest('#enhanced-search-results')
-      ) {
+      if (!e.target.closest('#global-search') && !e.target.closest('#enhanced-search-results')) {
         this.hideResults();
       }
     });
@@ -229,7 +229,9 @@ class EnhancedSearch {
     const len1 = str1.length;
     const len2 = str2.length;
 
-    if (len1 === 0 || len2 === 0) { return 0; }
+    if (len1 === 0 || len2 === 0) {
+      return 0;
+    }
 
     // Check substring match
     if (str2.includes(str1)) {
@@ -241,7 +243,9 @@ class EnhancedSearch {
     const minLen = Math.min(len1, len2);
 
     for (let i = 0; i < minLen; i += 1) {
-      if (str1[i] === str2[i]) { matches += 1; }
+      if (str1[i] === str2[i]) {
+        matches += 1;
+      }
     }
 
     return matches / Math.max(len1, len2);
@@ -255,10 +259,7 @@ class EnhancedSearch {
    */
   highlightMatch(text, query) {
     const regex = new RegExp(`(${this.escapeRegex(query)})`, 'gi');
-    return text.replace(
-      regex,
-      '<mark class="bg-yellow-200 dark:bg-yellow-600">$1</mark>',
-    );
+    return text.replace(regex, '<mark class="bg-yellow-200 dark:bg-yellow-600">$1</mark>');
   }
 
   /**
@@ -276,7 +277,9 @@ class EnhancedSearch {
    * @param {string} query - Original query
    */
   showResults(matches, query) {
-    if (!this.searchResults) { return; }
+    if (!this.searchResults) {
+      return;
+    }
 
     this.currentResults = matches;
 
@@ -350,7 +353,9 @@ class EnhancedSearch {
    * @param {Array} allItems - All searchable items
    */
   showDidYouMean(query, allItems) {
-    if (!this.searchResults) { return; }
+    if (!this.searchResults) {
+      return;
+    }
 
     const suggestions = this.findSimilarTerms(query, allItems);
 
@@ -375,8 +380,8 @@ class EnhancedSearch {
             <p class="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">💡 האם התכוונת ל:</p>
             <div class="space-y-2">
               ${suggestions
-    .map(
-      (suggestion) => `
+                .map(
+                  (suggestion) => `
                 <button onclick="enhancedSearch.searchForSuggestion('${this.escapeHtml(suggestion)}')"
                         class="w-full text-right px-4 py-2 bg-gray-50 dark:bg-gray-700 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 border border-gray-200 dark:border-gray-600 hover:border-blue-300 dark:hover:border-blue-500 transition-all group">
                   <div class="flex items-center justify-between">
@@ -384,9 +389,9 @@ class EnhancedSearch {
                     <span class="text-blue-500 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                   </div>
                 </button>
-              `,
-    )
-    .join('')}
+              `
+                )
+                .join('')}
             </div>
           </div>
         </div>
@@ -422,11 +427,7 @@ class EnhancedSearch {
       const termLower = term.toLowerCase();
       const similarity = this.calculateSimilarity(queryLower, termLower);
 
-      if (
-        similarity > 0.5
-        || termLower.includes(queryLower)
-        || queryLower.includes(termLower)
-      ) {
+      if (similarity > 0.5 || termLower.includes(queryLower) || queryLower.includes(termLower)) {
         similar.push({ term, similarity });
       }
     });
@@ -453,7 +454,9 @@ class EnhancedSearch {
    */
   jumpToResult(index) {
     const result = this.currentResults[index];
-    if (!result) { return; }
+    if (!result) {
+      return;
+    }
 
     // Switch to correct tab
     if (window.showTab) {

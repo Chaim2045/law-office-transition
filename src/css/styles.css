@@ -295,8 +295,8 @@ h4 svg {
   width: 24px;
   height: 24px;
   padding: 4px;
-  background: #25D366 !important;
-  border: 1px solid #20BA5A;
+  background: #25d366 !important;
+  border: 1px solid #20ba5a;
   border-radius: 4px;
   color: white !important;
   cursor: pointer !important;
@@ -309,7 +309,7 @@ h4 svg {
 }
 
 .whatsapp-btn:hover {
-  background: #20BA5A !important;
+  background: #20ba5a !important;
   transform: scale(1.1);
 }
 
@@ -321,12 +321,12 @@ h4 svg {
 
 /* Dark mode adjustments for WhatsApp button */
 .dark .whatsapp-btn {
-  background: #25D366;
-  border-color: #25D366;
+  background: #25d366;
+  border-color: #25d366;
 }
 
 .dark .whatsapp-btn:hover {
-  background: #20BA5A;
+  background: #20ba5a;
 }
 
 /* === Cards (minimal) === */

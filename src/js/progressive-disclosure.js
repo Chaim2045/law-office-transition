@@ -254,7 +254,7 @@ class SearchEnhancements {
         } else {
           this.showRecentSearches();
         }
-      }, 150),
+      }, 150)
     );
 
     // Handle Enter key
@@ -283,8 +283,8 @@ class SearchEnhancements {
     const recentHTML = `
       <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">חיפושים אחרונים</div>
       ${this.recentSearches
-    .map(
-      (search) => `
+        .map(
+          (search) => `
         <button
           class="w-full text-right px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2 text-sm"
           onclick="document.getElementById('global-search').value='${search}'; document.getElementById('global-search').dispatchEvent(new Event('input'));"
@@ -294,9 +294,9 @@ class SearchEnhancements {
           </svg>
           <span class="flex-1 text-gray-700 dark:text-gray-300">${search}</span>
         </button>
-      `,
-    )
-    .join('')}
+      `
+        )
+        .join('')}
     `;
 
     recentContainer.innerHTML = recentHTML;
@@ -324,8 +324,8 @@ class SearchEnhancements {
     const suggestionsHTML = `
       <div class="text-xs font-semibold text-gray-500 dark:text-gray-400 mb-2 px-2">הצעות</div>
       ${matches
-    .map(
-      (word) => `
+        .map(
+          (word) => `
         <button
           class="w-full text-right px-3 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded flex items-center gap-2 text-sm"
           onclick="document.getElementById('global-search').value='${word}'; document.getElementById('global-search').dispatchEvent(new Event('input'));"
@@ -335,9 +335,9 @@ class SearchEnhancements {
           </svg>
           <span class="flex-1 text-gray-700 dark:text-gray-300">${word}</span>
         </button>
-      `,
-    )
-    .join('')}
+      `
+        )
+        .join('')}
     `;
 
     suggestionsContainer.innerHTML = suggestionsHTML;

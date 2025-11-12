@@ -115,7 +115,7 @@ class MobileMenuManager {
       (e) => {
         touchStartX = e.changedTouches[0].screenX;
       },
-      { passive: true },
+      { passive: true }
     );
 
     this.sidebar.addEventListener(
@@ -124,7 +124,7 @@ class MobileMenuManager {
         touchEndX = e.changedTouches[0].screenX;
         this.handleSwipe(touchStartX, touchEndX);
       },
-      { passive: true },
+      { passive: true }
     );
 
     // Swipe from edge to open
@@ -135,7 +135,7 @@ class MobileMenuManager {
           touchStartX = e.touches[0].screenX;
         }
       },
-      { passive: true },
+      { passive: true }
     );
 
     document.addEventListener(
@@ -149,7 +149,7 @@ class MobileMenuManager {
           touchStartX = 0;
         }
       },
-      { passive: true },
+      { passive: true }
     );
   }
 
