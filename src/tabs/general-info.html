@@ -1,0 +1,879 @@
+                <div class="flex items-center justify-between mb-8">
+                  <h2
+                    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
+                    data-field="heading_general_info"
+                  >
+                    <div
+                      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+                    >
+                      ♦
+                    </div>
+                    מידע כללי על המשרד
+                  </h2>
+                </div>
+
+                <!-- Office & Contact Details - Clean Grid Layout -->
+                <div class="mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
+                  <h3
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-300 editable"
+                    data-field="heading_office_contact"
+                  >
+                    פרטי המשרד ויצירת קשר
+                  </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <!-- משרד ראשי -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        style="width: 100%; height: 100%"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">משרד ראשי</div>
+                      <div class="linear-item-value editable" data-field="main_office">
+                        מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144
+                      </div>
+                    </div>
+                    <button
+                      class="copy-btn"
+                      onclick="copyToClipboard('מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144')"
+                    >
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path
+                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- סניף -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        style="width: 100%; height: 100%"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-6a1 1 0 00-1-1H9a1 1 0 00-1 1v6a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 01-1 1H8a1 1 0 01-1-1v-2z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">סניף</div>
+                      <div class="linear-item-value editable" data-field="branch_office">
+                        בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות
+                      </div>
+                    </div>
+                    <button
+                      class="copy-btn"
+                      onclick="copyToClipboard('בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות')"
+                    >
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path
+                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- טלפון -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        style="width: 100%; height: 100%"
+                      >
+                        <path
+                          d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">טלפון</div>
+                      <div class="linear-item-value editable" data-field="phone">03-6855558</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('03-6855558')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path
+                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- פקס -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        style="width: 100%; height: 100%"
+                      >
+                        <path
+                          fill-rule="evenodd"
+                          d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V4a2 2 0 00-2-2H6zm1 2a1 1 0 000 2h6a1 1 0 100-2H7zm6 7a1 1 0 011 1v3a1 1 0 11-2 0v-3a1 1 0 011-1zm-3 3a1 1 0 100 2h.01a1 1 0 100-2H10zm-4 1a1 1 0 011-1h.01a1 1 0 110 2H7a1 1 0 01-1-1zm1-4a1 1 0 100 2h.01a1 1 0 100-2H7zm2 1a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm4-4a1 1 0 100 2h.01a1 1 0 100-2H13zM9 9a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zM7 8a1 1 0 000 2h.01a1 1 0 000-2H7z"
+                          clip-rule="evenodd"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">פקס</div>
+                      <div class="linear-item-value editable" data-field="fax">03-6207771</div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('03-6207771')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path
+                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <!-- דוא"ל -->
+                  <div class="copy-btn-container linear-item">
+                    <div class="linear-item-icon">
+                      <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        style="width: 100%; height: 100%"
+                      >
+                        <path
+                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                        ></path>
+                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                      </svg>
+                    </div>
+                    <div class="linear-item-content">
+                      <div class="linear-item-label">דוא"ל</div>
+                      <div class="linear-item-value editable" data-field="email">
+                        <a href="mailto:office@ghlawoffice.co.il">office@ghlawoffice.co.il</a>
+                      </div>
+                    </div>
+                    <button class="copy-btn" onclick="copyToClipboard('office@ghlawoffice.co.il')">
+                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                        <path
+                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                        ></path>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Specialties - Blue Bordered Design -->
+                <div
+                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
+                >
+                  <h4
+                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+                    data-field="heading_specialties"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    תחומי התמחות
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">תחומי התמחות</div>
+                        <div class="linear-item-value editable" data-field="specialties">
+                          מסחרי-אזרחי, חברות ושותפויות, חוזים, מקרקעין, תכנון ובניה, גישור, בוררות,
+                          נוטריון, ייצוג בבתי משפט
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('מסחרי-אזרחי, חברות ושותפויות, חוזים, מקרקעין, תכנון ובניה, גישור, בוררות, נוטריון, ייצוג בבתי משפט')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Staff Roles - Clean Grid Layout -->
+                <div class="mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
+                  <h3
+                    class="text-lg font-semibold text-gray-700 dark:text-gray-300 editable"
+                    data-field="heading_staff_roles"
+                  >
+                    בעלי תפקידים במשרד
+                  </h3>
+                </div>
+
+                <!-- Tel Aviv Staff -->
+                <div
+                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
+                >
+                  <h4
+                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+                    data-field="heading_tel_aviv"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    משרד תל-אביב
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד, בעל החברה</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_1">
+                          <button
+                            class="whatsapp-btn"
+                            onclick="openWhatsApp('054-2400403')"
+                            title="פתח וואטסאפ"
+                          >
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                              />
+                            </svg>
+                          </button>
+                          גיא הרשקוביץ - 054-2400403
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('גיא הרשקוביץ - 054-2400403')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">PA + מנהל שיווק</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_2">
+                          <button
+                            class="whatsapp-btn"
+                            onclick="openWhatsApp('054-9539238')"
+                            title="פתח וואטסאפ"
+                          >
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                              />
+                            </svg>
+                          </button>
+                          חיים פרץ - 054-9539238
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('חיים פרץ - 054-9539238')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">מקצה לקצה + התמחות</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_3">
+                          חיים פרץ
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('חיים פרץ')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_4">
+                          <button
+                            class="whatsapp-btn"
+                            onclick="openWhatsApp('050-9247629')"
+                            title="פתח וואטסאפ"
+                          >
+                            <svg fill="currentColor" viewBox="0 0 24 24">
+                              <path
+                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                              />
+                            </svg>
+                          </button>
+                          ראיד חטיב - 050-9247629
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('ראיד חטיב - 050-9247629')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_5">
+                          מירי טל - 050-6470007
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('מירי טל - 050-6470007')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_6">
+                          שחר מרום - 052-3777295
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('שחר מרום - 052-3777295')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_7">
+                          אורי שטיינברג - 052-5014146
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('אורי שטיינברג - 052-5014146')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="ta_staff_8">
+                          ישי סוויס - 054-2345685
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('ישי סוויס - 054-2345685')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <!-- Add Button for TA Staff -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('ta_staff', 'צוות משרד תל-אביב')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Rehovot Staff -->
+                <div
+                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
+                >
+                  <h4
+                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+                    data-field="heading_rehovot"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                        clip-rule="evenodd"
+                      ></path>
+                    </svg>
+                    סניף רחובות
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="rehovot_staff_1">
+                          מרווה רגב - 052-3922173
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('מרווה רגב - 052-3922173')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="rehovot_staff_2">
+                          רועי הרשקוביץ - 050-8807935
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('רועי הרשקוביץ - 050-8807935')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clip-rule="evenodd"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="rehovot_staff_3">
+                          עוזי ארדיטי - 052-3433379
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('עוזי ארדיטי - 052-3433379')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <!-- Add Button for Rehovot Staff -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('rehovot_staff', 'צוות רחובות')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Freelancers -->
+                <div
+                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
+                >
+                  <h4
+                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+                    data-field="heading_freelancers_section"
+                  >
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                      <path
+                        fill-rule="evenodd"
+                        d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                        clip-rule="evenodd"
+                      ></path>
+                      <path
+                        d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+                      ></path>
+                    </svg>
+                    פרילנסרים
+                  </h4>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                          ></path>
+                          <path
+                            d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">מחלקת כספים</div>
+                        <div class="linear-item-value editable" data-field="freelancer_1">
+                          עוז משעל - 054-5747896
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('עוז משעל - 054-5747896')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                          ></path>
+                          <path
+                            d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עו"ד</div>
+                        <div class="linear-item-value editable" data-field="freelancer_2">
+                          לירז סיבוני - 052-3901223
+                        </div>
+                      </div>
+                      <button
+                        class="copy-btn"
+                        onclick="copyToClipboard('לירז סיבוני - 052-3901223')"
+                      >
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                          ></path>
+                          <path
+                            d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">הנה"ח (חיצוני)</div>
+                        <div class="linear-item-value editable" data-field="freelancer_3">
+                          נטליה - 050-5224232
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('נטליה - 050-5224232')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <div class="copy-btn-container linear-item">
+                      <div class="linear-item-icon">
+                        <svg
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                          style="width: 100%; height: 100%"
+                        >
+                          <path
+                            fill-rule="evenodd"
+                            d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
+                            clip-rule="evenodd"
+                          ></path>
+                          <path
+                            d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div class="linear-item-content">
+                        <div class="linear-item-label">עובדת של נטליה</div>
+                        <div class="linear-item-value editable" data-field="freelancer_4">
+                          מריה - 050-9338712
+                        </div>
+                      </div>
+                      <button class="copy-btn" onclick="copyToClipboard('מריה - 050-9338712')">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+                          <path
+                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+                          ></path>
+                        </svg>
+                      </button>
+                    </div>
+
+                    <!-- Add Button for Freelancers -->
+                    <button
+                      class="add-btn linear-item hover:bg-blue-50 dark:hover:bg-gray-700 transition-all cursor-pointer"
+                      onclick="addNewItem('freelancer', 'פרילנסרים')"
+                      style="display: none; border: 2px dashed #93c5fd; padding: 1rem"
+                    >
+                      <div
+                        class="flex items-center justify-center gap-2 text-blue-600 dark:text-blue-400"
+                      >
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M12 4v16m8-8H4"
+                          ></path>
+                        </svg>
+                        <span class="font-medium">הוסף פריט חדש</span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
