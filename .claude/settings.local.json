@@ -43,7 +43,17 @@
       "Bash(do [ ! -f \"src/css/$file\" ])",
       "Bash(.gitignore)",
       "Bash(del update-headings.js headings-report.js update_headings.py 2)",
-      "Bash(nul)"
+      "Bash(nul)",
+      "Bash(git log:*)",
+      "Bash(netlify status:*)",
+      "Bash(npm install:*)",
+      "Bash(netlify deploy:*)",
+      "Bash(gh repo view:*)",
+      "Bash(git ls-tree:*)",
+      "Bash(start \"c:\\Users\\haim\\law-office-transition\\src\\index.html\")",
+      "Bash(start \"\" \"c:\\Users\\haim\\law-office-transition\\public\\index.html\")",
+      "Bash(start \"\" \"c:\\Users\\haim\\law-office-transition\\src\\index.html\")",
+      "Bash(rm nul 2)"
     ],
     "deny": [],
     "ask": []
