@@ -127,7 +127,7 @@ class TabLoader {
    */
   async ensureTabLoaded(tabId) {
     if (!this.loadedTabs.has(tabId)) {
-      return await this.loadTab(tabId);
+      return this.loadTab(tabId);
     }
     return true;
   }
