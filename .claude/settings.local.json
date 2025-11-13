@@ -55,7 +55,14 @@
       "Bash(start \"\" \"c:\\Users\\haim\\law-office-transition\\src\\index.html\")",
       "Bash(rm nul 2)",
       "Bash(git checkout:*)",
-      "Bash(git merge:*)"
+      "Bash(git merge:*)",
+      "Bash(npx eslint src/js/tab-loader.js)",
+      "Bash(npx eslint:*)",
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\financial-management.html\")",
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\checks-deposits.html\")",
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\suppliers-management.html\")",
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\procedures.html\")",
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\contacts.html\")"
     ],
     "deny": [],
     "ask": []
