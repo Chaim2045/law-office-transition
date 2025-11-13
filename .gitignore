@@ -8,3 +8,6 @@ build/
 *.lock
 package-lock.json
 public/
+
+# Local Netlify folder
+.netlify

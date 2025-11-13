@@ -62,7 +62,14 @@
       "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\checks-deposits.html\")",
       "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\suppliers-management.html\")",
       "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\procedures.html\")",
-      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\contacts.html\")"
+      "Bash(\"c:\\Users\\haim\\law-office-transition\\src\\tabs\\contacts.html\")",
+      "Bash(git branch:*)",
+      "Bash(netlify login:*)",
+      "Bash(netlify init:*)",
+      "Bash(netlify sites:list:*)",
+      "Bash(netlify link:*)",
+      "Bash(start https://law-office-transition.netlify.app)",
+      "Bash(tee:*)"
     ],
     "deny": [],
     "ask": []
