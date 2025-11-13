@@ -1,897 +1,760 @@
-              <div class="flex items-center justify-between mb-8">
-                <h2
-                  class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
-                  data-field="heading_suppliers_management"
-                >
-                  <div
-                    class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
-                  >
-                    🤝
-                  </div>
-                  ניהול ספקים ושוכרים
-                </h2>
-              </div>
-              <!-- ספקי שירות קבועים -->
-              <div
-                class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
-              >
-                <h4
-                  class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-                  data-field="heading_line_4498"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
-                    />
-                  </svg>
-                  ספקי שירות קבועים
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <!-- טכנאי מחשבים -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">טכנאי מחשבים</div>
-                      <div class="linear-item-value editable" data-field="supplier_it_tech">
-                        יובל/ערן (מספר רשום בדלפק) - תמיכה מרחוק
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('יובל/ערן (מספר רשום בדלפק)')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+<div class="flex items-center justify-between mb-8">
+  <h2
+    class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
+    data-field="heading_suppliers_management"
+  >
+    <div
+      class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
+    >
+      🤝
+    </div>
+    ניהול ספקים ושוכרים
+  </h2>
+</div>
+<!-- ספקי שירות קבועים -->
+<div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+  <h4
+    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+    data-field="heading_line_4498"
+  >
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path
+        d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"
+      />
+    </svg>
+    ספקי שירות קבועים
+  </h4>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- טכנאי מחשבים -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">טכנאי מחשבים</div>
+        <div class="linear-item-value editable" data-field="supplier_it_tech">
+          יובל/ערן (מספר רשום בדלפק) - תמיכה מרחוק
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('יובל/ערן (מספר רשום בדלפק)')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- חברת ניקיון -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">חברת ניקיון - ברק (קלין טק)</div>
-                      <div class="linear-item-value editable" data-field="supplier_cleaning">
-                        052-3746982 - מנקים בימי שני וחמישי
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('052-3746982')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- חברת ניקיון -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">חברת ניקיון - ברק (קלין טק)</div>
+        <div class="linear-item-value editable" data-field="supplier_cleaning">
+          052-3746982 - מנקים בימי שני וחמישי
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('052-3746982')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- מכונת קפה -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                          clip-rule="evenodd"
-                        />
-                        <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">מכונת קפה - אבי אשר</div>
-                      <div class="linear-item-value editable" data-field="supplier_coffee">
-                        050-2533972 - משלמים רק עבור פולי קפה
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('050-2533972')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- מכונת קפה -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+            clip-rule="evenodd"
+          />
+          <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">מכונת קפה - אבי אשר</div>
+        <div class="linear-item-value editable" data-field="supplier_coffee">
+          050-2533972 - משלמים רק עבור פולי קפה
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('050-2533972')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- מכונת צילום -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
-                        <path
-                          d="M3 5a2 2 0 012-2 3 3 0 003 3h4a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">מכונת צילום - גסטטנרטק</div>
-                      <div class="linear-item-value editable" data-field="supplier_copier">
-                        03-5657777 - מספר סידורי 113/2024
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('03-5657777')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- מכונת צילום -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+          <path
+            d="M3 5a2 2 0 012-2 3 3 0 003 3h4a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">מכונת צילום - גסטטנרטק</div>
+        <div class="linear-item-value editable" data-field="supplier_copier">
+          03-5657777 - מספר סידורי 113/2024
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('03-5657777')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- בזק -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">בזק</div>
-                      <div class="linear-item-value editable" data-field="supplier_bezeq">
-                        199 - ת.ז. גיא: 032309668
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('199')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- בזק -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">בזק</div>
+        <div class="linear-item-value editable" data-field="supplier_bezeq">
+          199 - ת.ז. גיא: 032309668
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('199')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- ת.ז. של גיא בנפרד -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">ת.ז. גיא הרשקוביץ</div>
-                      <div class="linear-item-value editable" data-field="supplier_guy_id">
-                        032309668 - לשימוש עם ספקים ובזק
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('032309668')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </div>
+    <!-- ת.ז. של גיא בנפרד -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">ת.ז. גיא הרשקוביץ</div>
+        <div class="linear-item-value editable" data-field="supplier_guy_id">
+          032309668 - לשימוש עם ספקים ובזק
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('032309668')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
 
-              <!-- הזמנת ציוד משרדי -->
-              <div
-                class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
-              >
-                <h4
-                  class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-                  data-field="heading_line_4675"
-                >
-                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                    <path
-                      d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
-                    />
-                  </svg>
-                  הזמנת ציוד משרדי - תהליך ההזמנה
-                </h4>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <!-- שלב 1 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
-                        <path
-                          fill-rule="evenodd"
-                          d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 1 - בדיקה וריכוז</div>
-                      <div class="linear-item-value editable" data-field="order_step_1">
-                        בדיקת הציוד הקיים וריכוז רשימת צרכים
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('בדיקת הציוד הקיים וריכוז רשימת צרכים')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+<!-- הזמנת ציוד משרדי -->
+<div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+  <h4
+    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+    data-field="heading_line_4675"
+  >
+    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+      <path
+        d="M3 1a1 1 0 000 2h1.22l.305 1.222a.997.997 0 00.01.042l1.358 5.43-.893.892C3.74 11.846 4.632 14 6.414 14H15a1 1 0 000-2H6.414l1-1H14a1 1 0 00.894-.553l3-6A1 1 0 0017 3H6.28l-.31-1.243A1 1 0 005 1H3zM16 16.5a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0zM6.5 18a1.5 1.5 0 100-3 1.5 1.5 0 000 3z"
+      />
+    </svg>
+    הזמנת ציוד משרדי - תהליך ההזמנה
+  </h4>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <!-- שלב 1 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+          <path
+            fill-rule="evenodd"
+            d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 1 - בדיקה וריכוז</div>
+        <div class="linear-item-value editable" data-field="order_step_1">
+          בדיקת הציוד הקיים וריכוז רשימת צרכים
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('בדיקת הציוד הקיים וריכוז רשימת צרכים')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 2 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 2 - שאלת עורכי הדין</div>
-                      <div class="linear-item-value editable" data-field="order_step_2">
-                        שאלת עו"ד במשרד אם צריכים ציוד, כיבוד או חד פעמי
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('שאלת עו&quot;ד במשרד אם צריכים ציוד, כיבוד או חד פעמי')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- שלב 2 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zM9 9h2v2H9V9z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 2 - שאלת עורכי הדין</div>
+        <div class="linear-item-value editable" data-field="order_step_2">
+          שאלת עו"ד במשרד אם צריכים ציוד, כיבוד או חד פעמי
+        </div>
+      </div>
+      <button
+        class="copy-btn"
+        onclick="copyToClipboard('שאלת עו&quot;ד במשרד אם צריכים ציוד, כיבוד או חד פעמי')"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 3 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                        />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 3 - בקשת הצעת מחיר</div>
-                      <div class="linear-item-value editable" data-field="order_step_3">
-                        שליחת מייל לספק (כרגע עובדים עם למון טק) לבקשת הצעת מחיר
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('שליחת מייל לספק (כרגע עובדים עם למון טק) לבקשת הצעת מחיר')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- שלב 3 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 3 - בקשת הצעת מחיר</div>
+        <div class="linear-item-value editable" data-field="order_step_3">
+          שליחת מייל לספק (כרגע עובדים עם למון טק) לבקשת הצעת מחיר
+        </div>
+      </div>
+      <button
+        class="copy-btn"
+        onclick="copyToClipboard('שליחת מייל לספק (כרגע עובדים עם למון טק) לבקשת הצעת מחיר')"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 4 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 4 - קבלת אישור</div>
-                      <div class="linear-item-value editable" data-field="order_step_4">
-                        העברת הצעת המחיר למיכל וגיא לאישור
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('העברת הצעת המחיר למיכל וגיא לאישור')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- שלב 4 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 4 - קבלת אישור</div>
+        <div class="linear-item-value editable" data-field="order_step_4">
+          העברת הצעת המחיר למיכל וגיא לאישור
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('העברת הצעת המחיר למיכל וגיא לאישור')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 5 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                        />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 5 - אישור ההזמנה</div>
-                      <div class="linear-item-value editable" data-field="order_step_5">
-                        לאחר אישור - שליחת מייל לספק לאישור ההזמנה
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('לאחר אישור - שליחת מייל לספק לאישור ההזמנה')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- שלב 5 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+          <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 5 - אישור ההזמנה</div>
+        <div class="linear-item-value editable" data-field="order_step_5">
+          לאחר אישור - שליחת מייל לספק לאישור ההזמנה
+        </div>
+      </div>
+      <button
+        class="copy-btn"
+        onclick="copyToClipboard('לאחר אישור - שליחת מייל לספק לאישור ההזמנה')"
+      >
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 6 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 6 - בדיקת המשלוח</div>
-                      <div class="linear-item-value editable" data-field="order_step_6">
-                        בדיקת החשבונית והציוד עם קבלתם
-                      </div>
-                    </div>
-                    <button
-                      class="copy-btn"
-                      onclick="copyToClipboard('בדיקת החשבונית והציוד עם קבלתם')"
-                    >
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
+    <!-- שלב 6 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 6 - בדיקת המשלוח</div>
+        <div class="linear-item-value editable" data-field="order_step_6">
+          בדיקת החשבונית והציוד עם קבלתם
+        </div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('בדיקת החשבונית והציוד עם קבלתם')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
 
-                  <!-- שלב 7 -->
-                  <div class="copy-btn-container linear-item">
-                    <div class="linear-item-icon">
-                      <svg
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                        style="width: 100%; height: 100%"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
-                          clip-rule="evenodd"
-                        />
-                      </svg>
-                    </div>
-                    <div class="linear-item-content">
-                      <div class="linear-item-label">שלב 7 - סריקה והעברה</div>
-                      <div class="linear-item-value editable" data-field="order_step_7">
-                        סריקת החשבונית למיכל
-                      </div>
-                    </div>
-                    <button class="copy-btn" onclick="copyToClipboard('סריקת החשבונית למיכל')">
-                      <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                        <path
-                          d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                        ></path>
-                      </svg>
-                    </button>
-                  </div>
-                </div>
+    <!-- שלב 7 -->
+    <div class="copy-btn-container linear-item">
+      <div class="linear-item-icon">
+        <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+          <path
+            fill-rule="evenodd"
+            d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </div>
+      <div class="linear-item-content">
+        <div class="linear-item-label">שלב 7 - סריקה והעברה</div>
+        <div class="linear-item-value editable" data-field="order_step_7">סריקת החשבונית למיכל</div>
+      </div>
+      <button class="copy-btn" onclick="copyToClipboard('סריקת החשבונית למיכל')">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+          <path
+            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </div>
 
-                <!-- טיפול בתקלות -->
-                <div
-                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
-                >
-                  <h4
-                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-                    data-field="heading_line_4897"
-                  >
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fill-rule="evenodd"
-                        d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    טיפול בתקלות - תהליך טיפול
-                  </h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- תקלות מחשב -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">תקלות מחשב</div>
-                        <div class="linear-item-value editable" data-field="trouble_computer">
-                          פנייה לטכנאי מחשבים (יובל/ערן)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('פנייה לטכנאי מחשבים (יובל/ערן)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+  <!-- טיפול בתקלות -->
+  <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+    <h4
+      class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+      data-field="heading_line_4897"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      טיפול בתקלות - תהליך טיפול
+    </h4>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- תקלות מחשב -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              fill-rule="evenodd"
+              d="M3 5a2 2 0 012-2h10a2 2 0 012 2v8a2 2 0 01-2 2h-2.22l.123.489.804.804A1 1 0 0113 18H7a1 1 0 01-.707-1.707l.804-.804L7.22 15H5a2 2 0 01-2-2V5zm5.771 7H5V5h10v7H8.771z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">תקלות מחשב</div>
+          <div class="linear-item-value editable" data-field="trouble_computer">
+            פנייה לטכנאי מחשבים (יובל/ערן)
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('פנייה לטכנאי מחשבים (יובל/ערן)')">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- תקלות אינטרנט/טלפון -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">תקלות אינטרנט/טלפון</div>
-                        <div class="linear-item-value editable" data-field="trouble_internet_phone">
-                          פנייה לבזק (199) - ת.ז. גיא: 032309668
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('פנייה לבזק (199) - ת.ז. גיא: 032309668')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+      <!-- תקלות אינטרנט/טלפון -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">תקלות אינטרנט/טלפון</div>
+          <div class="linear-item-value editable" data-field="trouble_internet_phone">
+            פנייה לבזק (199) - ת.ז. גיא: 032309668
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('פנייה לבזק (199) - ת.ז. גיא: 032309668')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- מכונת קפה -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
-                            clip-rule="evenodd"
-                          />
-                          <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">מכונת קפה</div>
-                        <div class="linear-item-value editable" data-field="trouble_coffee">
-                          פנייה לבעלים אבי אשר (050-2533972)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('פנייה לבעלים אבי אשר (050-2533972)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+      <!-- מכונת קפה -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              fill-rule="evenodd"
+              d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+              clip-rule="evenodd"
+            />
+            <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">מכונת קפה</div>
+          <div class="linear-item-value editable" data-field="trouble_coffee">
+            פנייה לבעלים אבי אשר (050-2533972)
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('פנייה לבעלים אבי אשר (050-2533972)')">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- מכונת צילום -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
-                          <path
-                            d="M3 5a2 2 0 012-2 3 3 0 003 3h4a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">מכונת צילום</div>
-                        <div class="linear-item-value editable" data-field="trouble_copier">
-                          פנייה לגסטטנרטק (03-5657777)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('פנייה לגסטטנרטק (03-5657777)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+      <!-- מכונת צילום -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path d="M8 2a1 1 0 000 2h2a1 1 0 100-2H8z" />
+            <path
+              d="M3 5a2 2 0 012-2 3 3 0 003 3h4a3 3 0 003-3 2 2 0 012 2v6h-4.586l1.293-1.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L10.414 13H15v3a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">מכונת צילום</div>
+          <div class="linear-item-value editable" data-field="trouble_copier">
+            פנייה לגסטטנרטק (03-5657777)
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('פנייה לגסטטנרטק (03-5657777)')">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- ניקיון -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">ניקיון</div>
-                        <div class="linear-item-value editable" data-field="trouble_cleaning">
-                          פנייה לברק מקלין טק (052-3746982)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('פנייה לברק מקלין טק (052-3746982)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+      <!-- ניקיון -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              fill-rule="evenodd"
+              d="M2 5a2 2 0 012-2h12a2 2 0 012 2v10a2 2 0 01-2 2H4a2 2 0 01-2-2V5zm3.293 1.293a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 01-1.414-1.414L7.586 10 5.293 7.707a1 1 0 010-1.414zM11 12a1 1 0 100 2h3a1 1 0 100-2h-3z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">ניקיון</div>
+          <div class="linear-item-value editable" data-field="trouble_cleaning">
+            פנייה לברק מקלין טק (052-3746982)
+          </div>
+        </div>
+        <button class="copy-btn" onclick="copyToClipboard('פנייה לברק מקלין טק (052-3746982)')">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
-                <!-- ניהול שוכרי משרדים - שוכרים נוכחיים -->
-                <div
-                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
-                >
-                  <h4
-                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-                    data-field="heading_line_5084"
-                  >
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
-                      />
-                    </svg>
-                    שוכרי משרד נוכחיים
-                  </h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- שוכר 1 -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">משרד עו"ד אבי שמואלי</div>
-                        <div class="linear-item-value editable" data-field="tenant_1">
-                          שוכרים את המשרד הגדול בימים ראשון, שני ורביעי
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('משרד עו&quot;ד אבי שמואלי - שוכרים את המשרד הגדול בימים ראשון, שני ורביעי')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+  <!-- ניהול שוכרי משרדים - שוכרים נוכחיים -->
+  <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+    <h4
+      class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+      data-field="heading_line_5084"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"
+        />
+      </svg>
+      שוכרי משרד נוכחיים
+    </h4>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- שוכר 1 -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">משרד עו"ד אבי שמואלי</div>
+          <div class="linear-item-value editable" data-field="tenant_1">
+            שוכרים את המשרד הגדול בימים ראשון, שני ורביעי
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('משרד עו&quot;ד אבי שמואלי - שוכרים את המשרד הגדול בימים ראשון, שני ורביעי')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- שוכר 2 -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">עו"ד אלעד זמיר ושי שפירא</div>
-                        <div class="linear-item-value editable" data-field="tenant_2">
-                          שוכרים את החדר הקטן (החוזה מסתיים בסוף יוני)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('עו&quot;ד אלעד זמיר ושי שפירא - שוכרים את החדר הקטן (החוזה מסתיים בסוף יוני)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
+      <!-- שוכר 2 -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">עו"ד אלעד זמיר ושי שפירא</div>
+          <div class="linear-item-value editable" data-field="tenant_2">
+            שוכרים את החדר הקטן (החוזה מסתיים בסוף יוני)
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('עו&quot;ד אלעד זמיר ושי שפירא - שוכרים את החדר הקטן (החוזה מסתיים בסוף יוני)')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
-                <!-- ניהול שוכרי משרדים - תהליך התנהלות -->
-                <div
-                  class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900"
-                >
-                  <h4
-                    class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-                    data-field="heading_line_5165"
-                  >
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                      <path
-                        fill-rule="evenodd"
-                        d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                    התנהלות עם שוכרים - תהליך
-                  </h4>
-                  <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <!-- חודש לפני סיום -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">חודש לפני סיום השכירות</div>
-                        <div class="linear-item-value editable" data-field="tenant_mgmt_1">
-                          יש תזכורת ביומן ליידע את גיא לצורך הארכת חוזה
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('חודש לפני סיום השכירות - יש תזכורת ביומן ליידע את גיא לצורך הארכת חוזה')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+  <!-- ניהול שוכרי משרדים - תהליך התנהלות -->
+  <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
+    <h4
+      class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
+      data-field="heading_line_5165"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      התנהלות עם שוכרים - תהליך
+    </h4>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <!-- חודש לפני סיום -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">חודש לפני סיום השכירות</div>
+          <div class="linear-item-value editable" data-field="tenant_mgmt_1">
+            יש תזכורת ביומן ליידע את גיא לצורך הארכת חוזה
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('חודש לפני סיום השכירות - יש תזכורת ביומן ליידע את גיא לצורך הארכת חוזה')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- לאחר חתימה -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">לאחר חתימת הארכה - מסמכים</div>
-                        <div class="linear-item-value editable" data-field="tenant_mgmt_2">
-                          השוכרים מעבירים למשרד: 12 צ'קים לדמי שכירות, צ'ק למע"מ, צ'ק נוסף עבור
-                          שימוש במכונת הצילום (1200 ₪ + מע"מ)
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('השוכרים מעבירים למשרד: 12 צ\'קים לדמי שכירות, צ\'ק למע&quot;מ, צ\'ק נוסף עבור שימוש במכונת הצילום (1200 ₪ + מע&quot;מ)')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+      <!-- לאחר חתימה -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              fill-rule="evenodd"
+              d="M6 2a2 2 0 00-2 2v12a2 2 0 002 2h8a2 2 0 002-2V7.414A2 2 0 0015.414 6L12 2.586A2 2 0 0010.586 2H6zm5 6a1 1 0 10-2 0v3.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">לאחר חתימת הארכה - מסמכים</div>
+          <div class="linear-item-value editable" data-field="tenant_mgmt_2">
+            השוכרים מעבירים למשרד: 12 צ'קים לדמי שכירות, צ'ק למע"מ, צ'ק נוסף עבור שימוש במכונת
+            הצילום (1200 ₪ + מע"מ)
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('השוכרים מעבירים למשרד: 12 צ\'קים לדמי שכירות, צ\'ק למע&quot;מ, צ\'ק נוסף עבור שימוש במכונת הצילום (1200 ₪ + מע&quot;מ)')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- הפקדת צ'קים -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                          <path
-                            fill-rule="evenodd"
-                            d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                            clip-rule="evenodd"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">הפקדת הצ'קים</div>
-                        <div class="linear-item-value editable" data-field="tenant_mgmt_3">
-                          צ'קי שכירות - חשבון בנק הפועלים, צ'ק מע"מ - חשבון 333118, צ'ק מכונת צילום
-                          - חשבון 333177, צילום הצ'קים ושליחה למיכל
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('צ\'קי שכירות - חשבון בנק הפועלים, צ\'ק מע&quot;מ - חשבון 333118, צ\'ק מכונת צילום - חשבון 333177, צילום הצ\'קים ושליחה למיכל')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
+      <!-- הפקדת צ'קים -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+            <path
+              fill-rule="evenodd"
+              d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">הפקדת הצ'קים</div>
+          <div class="linear-item-value editable" data-field="tenant_mgmt_3">
+            צ'קי שכירות - חשבון בנק הפועלים, צ'ק מע"מ - חשבון 333118, צ'ק מכונת צילום - חשבון
+            333177, צילום הצ'קים ושליחה למיכל
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('צ\'קי שכירות - חשבון בנק הפועלים, צ\'ק מע&quot;מ - חשבון 333118, צ\'ק מכונת צילום - חשבון 333177, צילום הצ\'קים ושליחה למיכל')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
 
-                    <!-- תזכורת -->
-                    <div class="copy-btn-container linear-item">
-                      <div class="linear-item-icon">
-                        <svg
-                          fill="currentColor"
-                          viewBox="0 0 20 20"
-                          style="width: 100%; height: 100%"
-                        >
-                          <path
-                            d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
-                          />
-                        </svg>
-                      </div>
-                      <div class="linear-item-content">
-                        <div class="linear-item-label">תזכורת חשובה</div>
-                        <div class="linear-item-value editable" data-field="tenant_reminder">
-                          בדיקה חודשית של מועדי סיום חוזים וסידור הארכות בזמן
-                        </div>
-                      </div>
-                      <button
-                        class="copy-btn"
-                        onclick="copyToClipboard('תזכורת: בדיקה חודשית של מועדי סיום חוזים וסידור הארכות בזמן')"
-                      >
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                          <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
-                          <path
-                            d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
-                          ></path>
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+      <!-- תזכורת -->
+      <div class="copy-btn-container linear-item">
+        <div class="linear-item-icon">
+          <svg fill="currentColor" viewBox="0 0 20 20" style="width: 100%; height: 100%">
+            <path
+              d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z"
+            />
+          </svg>
+        </div>
+        <div class="linear-item-content">
+          <div class="linear-item-label">תזכורת חשובה</div>
+          <div class="linear-item-value editable" data-field="tenant_reminder">
+            בדיקה חודשית של מועדי סיום חוזים וסידור הארכות בזמן
+          </div>
+        </div>
+        <button
+          class="copy-btn"
+          onclick="copyToClipboard('תזכורת: בדיקה חודשית של מועדי סיום חוזים וסידור הארכות בזמן')"
+        >
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M8 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"></path>
+            <path
+              d="M6 3a2 2 0 00-2 2v11a2 2 0 002 2h8a2 2 0 002-2V5a2 2 0 00-2-2 3 3 0 01-3 3H9a3 3 0 01-3-3z"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
