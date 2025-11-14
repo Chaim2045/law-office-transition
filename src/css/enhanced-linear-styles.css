@@ -341,3 +341,225 @@
 * {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* ===== MOBILE RESPONSIVE ENHANCEMENTS ===== */
+/* Optimizations for category colors and animations on mobile */
+
+/* Mobile & Small Tablets - 768px and below */
+@media (max-width: 768px) {
+  /* Reduce animation intensity on mobile for better performance */
+  .linear-item {
+    animation-duration: 0.3s;
+  }
+
+  /* Simpler hover effects on mobile */
+  .linear-item:hover {
+    transform: translateX(-2px);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Optimize category hover effects for mobile */
+  .linear-item[data-category='ta_staff']:hover,
+  .linear-item[data-category='rehovot_staff']:hover,
+  .linear-item[data-category='freelancer']:hover,
+  .linear-item[data-category='tenant']:hover {
+    border-left: 3px solid;
+    padding-left: calc(0.75rem - 3px);
+  }
+
+  /* Adjust category labels for mobile */
+  .linear-item-label {
+    padding: 0.3125rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 6px;
+  }
+
+  /* Simplify category header for mobile */
+  .category-header {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    margin-bottom: 0.875rem;
+    border-radius: 6px;
+  }
+
+  .category-header::before {
+    width: 3px;
+  }
+
+  .category-header:hover::before {
+    width: 100%;
+  }
+
+  .category-header:hover {
+    transform: translateX(1px);
+  }
+
+  /* Adjust category badges for mobile */
+  .category-badge {
+    min-width: 1.375rem;
+    height: 1.375rem;
+    padding: 0 0.3125rem;
+    font-size: 0.625rem;
+    margin-right: 0.375rem;
+  }
+
+  /* Disable icon pulse animation on mobile to save battery */
+  .linear-item-icon {
+    animation: none;
+  }
+
+  /* Simplify icon hover on mobile */
+  .linear-item:hover .linear-item-icon {
+    transform: scale(1.03);
+  }
+
+  /* Adjust label hover effects */
+  .linear-item-label[data-category='ta_staff']:hover,
+  .linear-item-label[data-category='rehovot_staff']:hover,
+  .linear-item-label[data-category='freelancer']:hover,
+  .linear-item-label[data-category='tenant']:hover {
+    transform: translateX(-1px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Small Mobile Devices - 480px and below */
+@media (max-width: 480px) {
+  /* Further simplify animations */
+  .linear-item {
+    animation: none; /* Remove animation on very small screens */
+  }
+
+  /* Remove transform effects on small mobile */
+  .linear-item:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Simpler category borders */
+  .linear-item[data-category='ta_staff']:hover,
+  .linear-item[data-category='rehovot_staff']:hover,
+  .linear-item[data-category='freelancer']:hover,
+  .linear-item[data-category='tenant']:hover {
+    border-left: 2px solid;
+    padding-left: calc(0.625rem - 2px);
+    background: linear-gradient(90deg, var(--bg-hover) 0%, transparent 100%);
+  }
+
+  /* Compact category labels */
+  .linear-item-label {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Compact category headers */
+  .category-header {
+    padding: 0.4375rem 0.875rem;
+    font-size: 0.6875rem;
+  }
+
+  /* Smaller badges */
+  .category-badge {
+    min-width: 1.25rem;
+    height: 1.25rem;
+    font-size: 0.5625rem;
+  }
+
+  /* No hover effects on labels */
+  .linear-item-label:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Tablet - 768px to 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  /* Moderate adjustments for tablets */
+  .linear-item-label {
+    padding: 0.3438rem 0.8125rem;
+    font-size: 0.9063rem;
+  }
+
+  .category-header {
+    padding: 0.5625rem 1.125rem;
+    font-size: 0.7813rem;
+  }
+
+  .category-badge {
+    min-width: 1.4375rem;
+    height: 1.4375rem;
+    font-size: 0.6563rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Disable hover effects on touch devices */
+  .linear-item:hover {
+    background: transparent;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Use active state instead of hover */
+  .linear-item:active {
+    background: var(--bg-hover);
+    transform: translateX(-2px);
+  }
+
+  /* Disable label hover on touch */
+  .linear-item-label:hover {
+    background: inherit;
+    color: inherit;
+    transform: none;
+    box-shadow: none;
+  }
+
+  /* Active state for labels on touch */
+  .linear-item-label:active {
+    opacity: 0.8;
+  }
+
+  /* Disable category header hover on touch */
+  .category-header:hover {
+    background: inherit;
+    transform: none;
+  }
+
+  .category-header:active {
+    opacity: 0.9;
+  }
+
+  /* Disable icon animations on touch devices */
+  .linear-item-icon {
+    animation: none;
+  }
+
+  .linear-item:hover .linear-item-icon {
+    transform: none;
+  }
+}
+
+/* Landscape mobile devices */
+@media (max-width: 896px) and (orientation: landscape) {
+  /* Compact spacing in landscape */
+  .category-header {
+    padding: 0.375rem 0.875rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .linear-item-label {
+    padding: 0.25rem 0.625rem;
+    font-size: 0.8125rem;
+  }
+
+  /* Reduce animation delays in landscape */
+  .linear-item:nth-child(1),
+  .linear-item:nth-child(2),
+  .linear-item:nth-child(3),
+  .linear-item:nth-child(4),
+  .linear-item:nth-child(5),
+  .linear-item:nth-child(6) {
+    animation-delay: 0s;
+  }
+}
