@@ -1055,6 +1055,15 @@ function openWhatsApp(phoneNumber) {
   showToast('פותח וואטסאפ...', 'success');
 }
 
+// Accordion toggle function for checks-deposits tab
+function toggleStep(element) {
+  const content = element.nextElementSibling;
+  const chevron = element.querySelector('.chevron');
+
+  content.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
 // Make functions available globally
 window.showTab = showTab;
 window.copyToClipboard = copyToClipboard;
@@ -1062,5 +1071,6 @@ window.showPasswordModal = showPasswordModal;
 window.hidePasswordModal = hidePasswordModal;
 window.submitPassword = submitPassword;
 window.openWhatsApp = openWhatsApp;
+window.toggleStep = toggleStep;
 
 // Update stats every 30 seconds
