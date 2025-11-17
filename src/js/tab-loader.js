@@ -17,6 +17,7 @@ class TabLoader {
       'calendar-management',
       'legal-processes',
       'financial-management',
+      'notary-calculator',
       'checks-deposits',
       'suppliers-management',
       'procedures',

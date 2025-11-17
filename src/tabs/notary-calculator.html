@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחשבון נוטריון</title>
+    <link rel="stylesheet" href="../css/notary-calculator.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <!-- Header Section -->
+        <div class="calculator-header">
+            <h1>מחשבון נוטריון</h1>
+            <p class="subtitle">חישוב עלויות לפי תקנות הנוטריונים, תשל"ט-1978</p>
+        </div>
+
+        <!-- Client Details Section -->
+        <div class="section client-details">
+            <h2>פרטי לקוח (אופציונלי)</h2>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="clientName">שם הלקוח</label>
+                    <input type="text" id="clientName" placeholder="שם מלא">
+                </div>
+                <div class="form-group">
+                    <label for="serviceDate">תאריך</label>
+                    <input type="date" id="serviceDate">
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Section -->
+        <div class="section services-section">
+            <h2>שירותים</h2>
+
+            <!-- אימות חתימה -->
+            <div class="service-category">
+                <h3>1. אימות חתימה</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_1a" class="service-checkbox" data-base-price="193">
+                        <label for="service_1a">חותם ראשון</label>
+                        <span class="price">193 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_1b" class="service-checkbox" data-base-price="75">
+                        <label for="service_1b">חותם נוסף</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_1b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_1c" class="service-checkbox" data-base-price="75">
+                        <label for="service_1c">אישור שהחותם מוסמך (לכל חתימה)</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_1c" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_1d" class="service-checkbox" data-base-price="75">
+                        <label for="service_1d">העתק של מסמך באותו מעמד (לכל העתק)</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_1d" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- אישור העתק צילומי -->
+            <div class="service-category">
+                <h3>2. אישור העתק צילומי</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_2a" class="service-checkbox" data-base-price="75">
+                        <label for="service_2a">עמוד ראשון</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_2b" class="service-checkbox" data-base-price="13">
+                        <label for="service_2b">עמוד נוסף</label>
+                        <span class="price">13 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות עמודים:</label>
+                        <input type="number" id="qty_2b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_2c" class="service-checkbox" data-base-price="26">
+                        <label for="service_2c">העתק נוסף באותו מעמד - עמוד ראשון</label>
+                        <span class="price">26 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות העתקים:</label>
+                        <input type="number" id="qty_2c" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- אישור תרגום -->
+            <div class="service-category">
+                <h3>3. אישור נכונות תרגום</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_3a" class="service-checkbox" data-base-price="245">
+                        <label for="service_3a">עד 100 מילים ראשונות</label>
+                        <span class="price">245 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_3b" class="service-checkbox" data-base-price="193">
+                        <label for="service_3b">כל 100 מילים נוספות (עד 1000 מילים)</label>
+                        <span class="price">193 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות (x100 מילים):</label>
+                        <input type="number" id="qty_3b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_3c" class="service-checkbox" data-base-price="96">
+                        <label for="service_3c">כל 100 מילים נוספות (מעל 1000 מילים)</label>
+                        <span class="price">96 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות (x100 מילים):</label>
+                        <input type="number" id="qty_3c" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_3d" class="service-checkbox" data-base-price="75">
+                        <label for="service_3d">אישור נוסף באותו מעמד</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- אישור צוואה -->
+            <div class="service-category">
+                <h3>4. אישור צוואה (סעיף 22)</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_4a" class="service-checkbox" data-base-price="286">
+                        <label for="service_4a">חותם ראשון</label>
+                        <span class="price">286 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_4b" class="service-checkbox" data-base-price="143">
+                        <label for="service_4b">חותם נוסף</label>
+                        <span class="price">143 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_4b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_4c" class="service-checkbox" data-base-price="86">
+                        <label for="service_4c">אישור נוסף באותו מעמד</label>
+                        <span class="price">86 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_4c" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- שירותים נוספים -->
+            <div class="service-category">
+                <h3>5. שירותים נוספים</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_5" class="service-checkbox" data-base-price="193">
+                        <label for="service_5">אישור שפלוני בחיים</label>
+                        <span class="price">193 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- תצהיר -->
+            <div class="service-category">
+                <h3>6. תצהיר</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_6a" class="service-checkbox" data-base-price="195">
+                        <label for="service_6a">מצהיר ראשון</label>
+                        <span class="price">195 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_6b" class="service-checkbox" data-base-price="78">
+                        <label for="service_6b">מצהיר נוסף</label>
+                        <span class="price">78 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_6b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_6c" class="service-checkbox" data-base-price="75">
+                        <label for="service_6c">אישור נוסף באותו מעמד</label>
+                        <span class="price">75 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- העדה של מסמך סחיר -->
+            <div class="service-category">
+                <h3>7. העדה של מסמך סחיר</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_7a" class="service-checkbox" data-base-price="1244">
+                        <label for="service_7a">סכום עד 80,700 ₪</label>
+                        <span class="price">1,244 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_7b" class="service-checkbox" data-base-price="2667">
+                        <label for="service_7b">סכום מעל 80,700 ₪</label>
+                        <span class="price">2,667 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ביטול ייפוי כוח -->
+            <div class="service-category">
+                <h3>7א. ביטול ייפוי כוח</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_7a1" class="service-checkbox" data-base-price="204">
+                        <label for="service_7a1">קבלת הודעת ביטול ורישום הערה</label>
+                        <span class="price">204 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_7a2" class="service-checkbox" data-base-price="72">
+                        <label for="service_7a2">העתק מאושר עם הערת ביטול</label>
+                        <span class="price">72 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_7a2" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+
+            <!-- פעולה אחרת -->
+            <div class="service-category">
+                <h3>8. פעולה אחרת</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_8" class="service-checkbox" data-base-price="315">
+                        <label for="service_8">פעולה שלא נקבע לה שכר</label>
+                        <span class="price">315 ₪</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- הסכם ממון -->
+            <div class="service-category">
+                <h3>11. הסכם ממון</h3>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_11a" class="service-checkbox" data-base-price="435">
+                        <label for="service_11a">אימות הסכם ממון</label>
+                        <span class="price">435 ₪</span>
+                    </div>
+                </div>
+                <div class="service-item">
+                    <div class="service-header">
+                        <input type="checkbox" id="service_11b" class="service-checkbox" data-base-price="72">
+                        <label for="service_11b">עותק נוסף באותו מעמד</label>
+                        <span class="price">72 ₪</span>
+                    </div>
+                    <div class="quantity-control">
+                        <label>כמות:</label>
+                        <input type="number" id="qty_11b" min="1" value="1" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Charges Section -->
+        <div class="section additional-charges">
+            <h2>תוספות</h2>
+
+            <div class="service-item">
+                <div class="service-header">
+                    <input type="checkbox" id="addon_night" class="addon-checkbox" data-addon-type="percentage" data-addon-value="50">
+                    <label for="addon_night">שירות בשעות לילה/שבת (19:00-08:00 או שבת)</label>
+                    <span class="price">+50%</span>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-header">
+                    <input type="checkbox" id="addon_foreign" class="addon-checkbox" data-addon-type="fixed" data-addon-value="102">
+                    <label for="addon_foreign">אישור בשפה לועזית (לא אנגלית/ערבית)</label>
+                    <span class="price">+102 ₪</span>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-header">
+                    <input type="checkbox" id="addon_travel" class="addon-checkbox" data-addon-type="custom">
+                    <label for="addon_travel">נסיעה מחוץ למשרד</label>
+                </div>
+                <div class="travel-details">
+                    <div class="form-group">
+                        <label>שעות (שעה ראשונה 630 ₪, כל חצי שעה נוספת 193 ₪):</label>
+                        <input type="number" id="travel_hours" min="0" step="0.5" value="1" class="quantity-input">
+                    </div>
+                    <div class="form-group">
+                        <label>הוצאות נסיעה (₪):</label>
+                        <input type="number" id="travel_cost" min="0" value="0" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+
+            <div class="service-item">
+                <div class="service-header">
+                    <input type="checkbox" id="addon_translation" class="addon-checkbox" data-addon-type="custom">
+                    <label for="addon_translation">תרגום על ידי הנוטריון (מחצית משכר תרגום)</label>
+                </div>
+                <div class="translation-details">
+                    <div class="form-group">
+                        <label>מספר מילים:</label>
+                        <input type="number" id="translation_words" min="0" value="0" class="quantity-input">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="section summary-section">
+            <h2>סיכום</h2>
+            <div class="summary-row">
+                <span class="summary-label">סכום לפני מע"מ:</span>
+                <span class="summary-value" id="subtotal">0.00 ₪</span>
+            </div>
+            <div class="summary-row">
+                <span class="summary-label">מע"מ (17%):</span>
+                <span class="summary-value" id="vat">0.00 ₪</span>
+            </div>
+            <div class="summary-row total">
+                <span class="summary-label">סה"כ לתשלום:</span>
+                <span class="summary-value" id="total">0.00 ₪</span>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+            <button class="btn btn-primary" id="printBtn">הדפס / שמור PDF</button>
+            <button class="btn btn-secondary" id="resetBtn">איפוס</button>
+            <button class="btn btn-secondary" id="copyBtn">העתק סיכום</button>
+        </div>
+
+        <!-- Notes Section -->
+        <div class="section notes-section">
+            <h3>הערות</h3>
+            <ul class="notes-list">
+                <li>מחירים מעודכנים לפי תקנות הנוטריונים (שכר שירותים), תשל"ט-1978</li>
+                <li>המחירים כפופים להצמדה למדד ב-1 בינואר של כל שנה</li>
+                <li>ישנם פטורים לעולים חדשים, תושבים חוזרים וחסרי אמצעים</li>
+                <li>לפרטים נוספים יש לעיין בתקנות המלאות</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../js/notary-calculator.js"></script>
+</body>
+</html>

@@ -69,7 +69,10 @@
       "Bash(netlify sites:list:*)",
       "Bash(netlify link:*)",
       "Bash(start https://law-office-transition.netlify.app)",
-      "Bash(tee:*)"
+      "Bash(tee:*)",
+      "Bash(npx serve src -p 3000)",
+      "Bash(start http://localhost:57842)",
+      "Bash(src/css/mobile-advanced.css)"
     ],
     "deny": [],
     "ask": []

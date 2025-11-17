@@ -1,0 +1,423 @@
+/* Notary Calculator Styles - Linear Design */
+
+:root {
+    --primary-color: #5e6ad2;
+    --primary-hover: #4c59c4;
+    --text-primary: #1a1a1a;
+    --text-secondary: #6b7280;
+    --border-color: #e5e7eb;
+    --bg-light: #f9fafb;
+    --bg-white: #ffffff;
+    --success-color: #10b981;
+    --warning-color: #f59e0b;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--bg-light);
+    color: var(--text-primary);
+    line-height: 1.6;
+    padding: 20px;
+}
+
+.calculator-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--bg-white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+/* Header */
+.calculator-header {
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-hover) 100%);
+    color: white;
+    padding: 32px;
+    text-align: center;
+}
+
+.calculator-header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Sections */
+.section {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.section:last-child {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    color: var(--text-primary);
+}
+
+.section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+}
+
+/* Client Details */
+.client-details {
+    background: var(--bg-light);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 14px;
+    transition: all 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(94, 106, 210, 0.1);
+}
+
+/* Service Categories */
+.service-category {
+    margin-bottom: 24px;
+    padding: 16px;
+    background: var(--bg-light);
+    border-radius: var(--radius);
+}
+
+.service-category:last-child {
+    margin-bottom: 0;
+}
+
+/* Service Items */
+.service-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.service-item:last-child {
+    border-bottom: none;
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.service-checkbox,
+.addon-checkbox {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--primary-color);
+}
+
+.service-header label {
+    flex: 1;
+    font-size: 14px;
+    cursor: pointer;
+    color: var(--text-primary);
+}
+
+.service-header .price {
+    font-weight: 600;
+    color: var(--primary-color);
+    font-size: 14px;
+}
+
+/* Quantity Control */
+.quantity-control {
+    margin-top: 8px;
+    margin-right: 32px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.quantity-control label {
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.quantity-input {
+    width: 80px;
+    padding: 6px 10px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 14px;
+    text-align: center;
+}
+
+.quantity-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* Travel & Translation Details */
+.travel-details,
+.translation-details {
+    margin-top: 12px;
+    margin-right: 32px;
+    padding: 12px;
+    background: white;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+    display: none;
+}
+
+.travel-details.active,
+.translation-details.active {
+    display: block;
+}
+
+/* Summary Section */
+.summary-section {
+    background: var(--bg-light);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    font-size: 16px;
+}
+
+.summary-row.total {
+    border-top: 2px solid var(--primary-color);
+    margin-top: 8px;
+    padding-top: 16px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.summary-label {
+    color: var(--text-secondary);
+}
+
+.summary-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.summary-row.total .summary-value {
+    color: var(--primary-color);
+}
+
+/* Actions */
+.actions {
+    padding: 24px 32px;
+    display: flex;
+    gap: 12px;
+    background: var(--bg-light);
+}
+
+.btn {
+    flex: 1;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-secondary {
+    background: white;
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-light);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+/* Notes Section */
+.notes-section {
+    background: #fffbeb;
+    border-right: 4px solid var(--warning-color);
+}
+
+.notes-list {
+    margin-right: 20px;
+    color: var(--text-secondary);
+}
+
+.notes-list li {
+    font-size: 13px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+    }
+
+    .calculator-container {
+        border-radius: 0;
+    }
+
+    .calculator-header {
+        padding: 24px 20px;
+    }
+
+    .calculator-header h1 {
+        font-size: 24px;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .service-category {
+        padding: 12px;
+    }
+
+    .service-header {
+        flex-wrap: wrap;
+    }
+
+    .service-header label {
+        flex-basis: calc(100% - 32px);
+    }
+
+    .actions {
+        flex-direction: column;
+    }
+
+    .summary-row {
+        font-size: 14px;
+    }
+
+    .summary-row.total {
+        font-size: 18px;
+    }
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .calculator-container {
+        box-shadow: none;
+    }
+
+    .calculator-header {
+        background: white;
+        color: var(--text-primary);
+        border-bottom: 2px solid var(--primary-color);
+    }
+
+    .actions {
+        display: none;
+    }
+
+    .service-checkbox,
+    .addon-checkbox {
+        display: none;
+    }
+
+    .service-item {
+        page-break-inside: avoid;
+    }
+
+    .quantity-input {
+        border: none;
+        font-weight: 600;
+    }
+}
+
+/* Animations */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.service-category {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Checkbox Custom Styling */
+input[type="checkbox"]:checked + label {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Disabled State */
+.quantity-control.disabled,
+.travel-details.disabled,
+.translation-details.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
