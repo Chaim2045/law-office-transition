@@ -1,288 +1,398 @@
-// Notary Calculator Logic
-/* global showToast */
+// Notary Calculator - Smart & Intuitive
+
+// Service definitions from regulations
+const SERVICES = {
+  signature: {
+    category: 'אימות חתימה',
+    items: [
+      { id: 'sig_first', name: 'חותם ראשון', price: 193 },
+      { id: 'sig_additional', name: 'חותם נוסף', price: 75 },
+      { id: 'sig_authorized', name: 'אישור סמכות חתימה', price: 75 },
+      { id: 'sig_copy', name: 'העתק באותו מעמד', price: 75 },
+    ],
+  },
+  photocopy: {
+    category: 'אישור העתק צילומי',
+    items: [
+      { id: 'copy_first', name: 'עמוד ראשון', price: 75 },
+      { id: 'copy_additional', name: 'עמוד נוסף', price: 13 },
+      { id: 'copy_same_time', name: 'העתק נוסף באותו מעמד - עמוד ראשון', price: 26 },
+    ],
+  },
+  translation: {
+    category: 'אישור תרגום',
+    items: [
+      { id: 'trans_100', name: 'עד 100 מילים ראשונות', price: 245 },
+      { id: 'trans_100_1000', name: 'כל 100 מילים (עד 1000)', price: 193 },
+      { id: 'trans_above_1000', name: 'כל 100 מילים (מעל 1000)', price: 96 },
+      { id: 'trans_additional', name: 'אישור נוסף באותו מעמד', price: 75 },
+    ],
+  },
+  will: {
+    category: 'אישור צוואה',
+    items: [
+      { id: 'will_first', name: 'חותם ראשון', price: 286 },
+      { id: 'will_additional', name: 'חותם נוסף', price: 143 },
+      { id: 'will_copy', name: 'אישור נוסף באותו מעמד', price: 86 },
+    ],
+  },
+  affidavit: {
+    category: 'תצהיר',
+    items: [
+      { id: 'aff_first', name: 'מצהיר ראשון', price: 195 },
+      { id: 'aff_additional', name: 'מצהיר נוסף', price: 78 },
+      { id: 'aff_copy', name: 'אישור נוסף באותו מעמד', price: 75 },
+    ],
+  },
+  other: {
+    category: 'שירותים נוספים',
+    items: [
+      { id: 'alive', name: 'אישור שפלוני בחיים', price: 193 },
+      { id: 'protest_low', name: 'העדה של מסמך סחיר - עד 80,700 ₪', price: 1244 },
+      { id: 'protest_high', name: 'העדה של מסמך סחיר - מעל 80,700 ₪', price: 2667 },
+      { id: 'power_cancel', name: 'קבלת הודעת ביטול ייפוי כוח', price: 204 },
+      { id: 'power_copy', name: 'העתק מאושר עם הערת ביטול', price: 72 },
+      { id: 'prenup', name: 'אימות הסכם ממון', price: 435 },
+      { id: 'prenup_copy', name: 'עותק הסכם ממון באותו מעמד', price: 72 },
+      { id: 'other_service', name: 'פעולה אחרת', price: 315 },
+    ],
+  },
+};
 
 class NotaryCalculator {
   constructor() {
-    this.VAT_RATE = 0.17; // 17% מע"מ לפי התקנות
-    this.initEventListeners();
-    this.setDefaultDate();
-    this.calculate();
+    this.selectedServices = [];
+    this.VAT_RATE = 0.17;
+
+    this.elements = {
+      btnAddService: document.getElementById('btnAddService'),
+      modal: document.getElementById('serviceModal'),
+      modalClose: document.getElementById('modalClose'),
+      serviceSearch: document.getElementById('serviceSearch'),
+      serviceList: document.getElementById('serviceList'),
+      selectedServices: document.getElementById('selectedServices'),
+      emptyState: document.getElementById('emptyState'),
+      addonsSection: document.getElementById('addonsSection'),
+      subtotal: document.getElementById('subtotal'),
+      vat: document.getElementById('vat'),
+      total: document.getElementById('total'),
+      btnCopy: document.getElementById('btnCopy'),
+      btnPrint: document.getElementById('btnPrint'),
+      btnReset: document.getElementById('btnReset'),
+      clientName: document.getElementById('clientName'),
+      serviceDate: document.getElementById('serviceDate'),
+      addonNight: document.getElementById('addonNight'),
+      addonForeign: document.getElementById('addonForeign'),
+      addonTravel: document.getElementById('addonTravel'),
+      travelDetails: document.getElementById('travelDetails'),
+      travelHours: document.getElementById('travelHours'),
+      travelCost: document.getElementById('travelCost'),
+    };
+
+    this.init();
   }
 
-  initEventListeners() {
-    // Service checkboxes
-    const serviceCheckboxes = document.querySelectorAll('.service-checkbox');
-    serviceCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', () => this.calculate());
-    });
-
-    // Quantity inputs
-    const quantityInputs = document.querySelectorAll('.quantity-input');
-    quantityInputs.forEach((input) => {
-      input.addEventListener('input', () => this.calculate());
-    });
-
-    // Addon checkboxes
-    const addonCheckboxes = document.querySelectorAll('.addon-checkbox');
-    addonCheckboxes.forEach((checkbox) => {
-      checkbox.addEventListener('change', (e) => {
-        this.handleAddonChange(e.target);
-        this.calculate();
-      });
-    });
-
-    // Buttons
-    document.getElementById('printBtn').addEventListener('click', () => this.print());
-    document.getElementById('resetBtn').addEventListener('click', () => this.reset());
-    document.getElementById('copyBtn').addEventListener('click', () => this.copySummary());
+  init() {
+    this.setDefaultDate();
+    this.renderServiceList();
+    this.bindEvents();
   }
 
   setDefaultDate() {
     const today = new Date().toISOString().split('T')[0];
-    document.getElementById('serviceDate').value = today;
+    this.elements.serviceDate.value = today;
   }
 
-  handleAddonChange(checkbox) {
-    const addonId = checkbox.id;
+  bindEvents() {
+    // Modal
+    this.elements.btnAddService.addEventListener('click', () => this.openModal());
+    this.elements.modalClose.addEventListener('click', () => this.closeModal());
+    this.elements.modal.querySelector('.modal-overlay').addEventListener('click', () => this.closeModal());
 
-    if (addonId === 'addon_travel') {
-      const travelDetails = document.querySelector('.travel-details');
-      if (checkbox.checked) {
-        travelDetails.classList.add('active');
-      } else {
-        travelDetails.classList.remove('active');
+    // Search
+    this.elements.serviceSearch.addEventListener('input', (e) => this.searchServices(e.target.value));
+
+    // Addons
+    this.elements.addonNight.addEventListener('change', () => this.calculate());
+    this.elements.addonForeign.addEventListener('change', () => this.calculate());
+    this.elements.addonTravel.addEventListener('change', (e) => {
+      this.elements.travelDetails.style.display = e.target.checked ? 'flex' : 'none';
+      this.calculate();
+    });
+    this.elements.travelHours.addEventListener('input', () => this.calculate());
+    this.elements.travelCost.addEventListener('input', () => this.calculate());
+
+    // Actions
+    this.elements.btnCopy.addEventListener('click', () => this.copyToClipboard());
+    this.elements.btnPrint.addEventListener('click', () => window.print());
+    this.elements.btnReset.addEventListener('click', () => this.reset());
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.elements.modal.classList.contains('active')) {
+        this.closeModal();
       }
+    });
+  }
+
+  openModal() {
+    this.elements.modal.classList.add('active');
+    this.elements.serviceSearch.value = '';
+    this.elements.serviceSearch.focus();
+    this.renderServiceList();
+  }
+
+  closeModal() {
+    this.elements.modal.classList.remove('active');
+  }
+
+  renderServiceList(searchTerm = '') {
+    const html = [];
+
+    Object.values(SERVICES).forEach((category) => {
+      const filteredItems = category.items.filter((item) => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+      if (filteredItems.length > 0) {
+        html.push(`<div class="service-category">${category.category}</div>`);
+        filteredItems.forEach((item) => {
+          html.push(`
+            <div class="service-item" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
+              <span class="service-item-title">${item.name}</span>
+              <span class="service-item-price">${item.price} ₪</span>
+            </div>
+          `);
+        });
+      }
+    });
+
+    this.elements.serviceList.innerHTML = html.join('');
+
+    // Bind click events
+    this.elements.serviceList.querySelectorAll('.service-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        this.addService({
+          id: item.dataset.id,
+          name: item.dataset.name,
+          price: parseFloat(item.dataset.price),
+        });
+      });
+    });
+  }
+
+  searchServices(term) {
+    this.renderServiceList(term);
+  }
+
+  addService(service) {
+    // Check if already exists
+    const existing = this.selectedServices.find((s) => s.id === service.id);
+    if (existing) {
+      this.notify('השירות כבר נבחר');
+      return;
     }
 
-    if (addonId === 'addon_translation') {
-      const translationDetails = document.querySelector('.translation-details');
-      if (checkbox.checked) {
-        translationDetails.classList.add('active');
-      } else {
-        translationDetails.classList.remove('active');
-      }
+    this.selectedServices.push({
+      ...service,
+      quantity: 1,
+    });
+
+    this.closeModal();
+    this.renderSelectedServices();
+    this.calculate();
+  }
+
+  removeService(id) {
+    this.selectedServices = this.selectedServices.filter((s) => s.id !== id);
+    this.renderSelectedServices();
+    this.calculate();
+  }
+
+  updateQuantity(id, quantity) {
+    const service = this.selectedServices.find((s) => s.id === id);
+    if (service) {
+      service.quantity = Math.max(1, parseInt(quantity, 10) || 1);
+      this.renderSelectedServices();
+      this.calculate();
     }
+  }
+
+  renderSelectedServices() {
+    if (this.selectedServices.length === 0) {
+      this.elements.emptyState.style.display = 'block';
+      this.elements.addonsSection.style.display = 'none';
+      return;
+    }
+
+    this.elements.emptyState.style.display = 'none';
+    this.elements.addonsSection.style.display = 'block';
+
+    const html = this.selectedServices.map((service) => {
+      const total = service.price * service.quantity;
+      return `
+        <div class="service-card">
+          <div class="service-card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <div class="service-card-content">
+            <div class="service-card-title">${service.name}</div>
+            <div class="service-card-price">${service.price} ₪ × יחידה</div>
+          </div>
+          <div class="service-card-controls">
+            <input
+              type="number"
+              class="service-card-qty"
+              value="${service.quantity}"
+              min="1"
+              data-id="${service.id}"
+            >
+            <div class="service-card-total">${total.toFixed(0)} ₪</div>
+            <button class="service-card-remove" data-id="${service.id}">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    // Remove empty state and insert cards
+    const container = this.elements.selectedServices;
+    container.innerHTML = html;
+
+    // Bind events
+    container.querySelectorAll('.service-card-qty').forEach((input) => {
+      input.addEventListener('input', (e) => {
+        this.updateQuantity(e.target.dataset.id, e.target.value);
+      });
+    });
+
+    container.querySelectorAll('.service-card-remove').forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        this.removeService(e.currentTarget.dataset.id);
+      });
+    });
   }
 
   calculate() {
     let subtotal = 0;
 
-    // Calculate services
-    const serviceCheckboxes = document.querySelectorAll('.service-checkbox:checked');
-    serviceCheckboxes.forEach((checkbox) => {
-      const basePrice = parseFloat(checkbox.dataset.basePrice);
-      const serviceId = checkbox.id;
-
-      // Check if there's a quantity input for this service
-      const qtyInputId = serviceId.replace('service_', 'qty_');
-      const qtyInput = document.getElementById(qtyInputId);
-
-      if (qtyInput) {
-        const quantity = parseInt(qtyInput.value, 10) || 1;
-        subtotal += basePrice * quantity;
-      } else {
-        subtotal += basePrice;
-      }
+    // Services
+    this.selectedServices.forEach((service) => {
+      subtotal += service.price * service.quantity;
     });
 
-    // Calculate addons
-    subtotal = this.calculateAddons(subtotal);
-
-    // Calculate VAT
-    const vat = subtotal * this.VAT_RATE;
-    const total = subtotal + vat;
-
-    // Update display
-    this.updateDisplay(subtotal, vat, total);
-  }
-
-  calculateAddons(currentSubtotal) {
-    let subtotal = currentSubtotal;
-
-    // Night/Weekend service (+50%)
-    const nightAddon = document.getElementById('addon_night');
-    let nightSurcharge = 0;
-    if (nightAddon.checked) {
-      nightSurcharge = subtotal * 0.5;
-      subtotal += nightSurcharge;
+    // Night addon (+50%)
+    if (this.elements.addonNight.checked) {
+      subtotal *= 1.5;
     }
 
-    // Foreign language (+102 NIS)
-    const foreignAddon = document.getElementById('addon_foreign');
-    if (foreignAddon.checked) {
+    // Foreign language (+102)
+    if (this.elements.addonForeign.checked) {
       subtotal += 102;
     }
 
     // Travel
-    const travelAddon = document.getElementById('addon_travel');
-    if (travelAddon.checked) {
-      const hours = parseFloat(document.getElementById('travel_hours').value) || 1;
-      const travelCost = parseFloat(document.getElementById('travel_cost').value) || 0;
+    if (this.elements.addonTravel.checked) {
+      const hours = parseFloat(this.elements.travelHours.value) || 1;
+      const cost = parseFloat(this.elements.travelCost.value) || 0;
 
       let travelCharge = 630; // First hour
       if (hours > 1) {
-        const additionalHalfHours = (hours - 1) * 2; // Convert to half-hours
-        travelCharge += additionalHalfHours * 193;
+        const halfHours = (hours - 1) * 2;
+        travelCharge += halfHours * 193;
       }
 
-      subtotal += travelCharge + travelCost;
+      subtotal += travelCharge + cost;
     }
 
-    // Translation by notary (half of translation fee)
-    const translationAddon = document.getElementById('addon_translation');
-    if (translationAddon.checked) {
-      const words = parseInt(document.getElementById('translation_words').value, 10) || 0;
-      const translationFee = this.calculateTranslationFee(words);
-      subtotal += translationFee * 0.5; // Half price for notary translation
+    // VAT
+    const vat = subtotal * this.VAT_RATE;
+    const total = subtotal + vat;
+
+    this.updateSummary(subtotal, vat, total);
+  }
+
+  updateSummary(subtotal, vat, total) {
+    this.elements.subtotal.textContent = `${subtotal.toFixed(0)} ₪`;
+    this.elements.vat.textContent = `${vat.toFixed(0)} ₪`;
+    this.elements.total.textContent = `${total.toFixed(0)} ₪`;
+  }
+
+  copyToClipboard() {
+    const clientName = this.elements.clientName.value || 'לקוח';
+    const date = this.elements.serviceDate.value;
+
+    let text = '═══ מחשבון נוטריון ═══\n\n';
+    text += `לקוח: ${clientName}\n`;
+    text += `תאריך: ${date}\n\n`;
+
+    if (this.selectedServices.length > 0) {
+      text += '── שירותים ──\n';
+      this.selectedServices.forEach((s) => {
+        text += `• ${s.name} (×${s.quantity}) - ${(s.price * s.quantity).toFixed(0)} ₪\n`;
+      });
+      text += '\n';
     }
 
-    return subtotal;
-  }
-
-  calculateTranslationFee(words) {
-    let fee = 0;
-
-    if (words <= 100) {
-      fee = 245;
-    } else if (words <= 1000) {
-      fee = 245; // First 100
-      const additionalHundreds = Math.ceil((words - 100) / 100);
-      fee += additionalHundreds * 193;
-    } else {
-      fee = 245; // First 100
-      fee += 9 * 193; // Next 900 (100-1000)
-      const additionalHundreds = Math.ceil((words - 1000) / 100);
-      fee += additionalHundreds * 96;
-    }
-
-    return fee;
-  }
-
-  updateDisplay(subtotal, vat, total) {
-    document.getElementById('subtotal').textContent = `${subtotal.toFixed(2)} ₪`;
-    document.getElementById('vat').textContent = `${vat.toFixed(2)} ₪`;
-    document.getElementById('total').textContent = `${total.toFixed(2)} ₪`;
-  }
-
-  print() {
-    window.print();
-  }
-
-  reset() {
-    // Confirm reset
-    if (!confirm('האם אתה בטוח שברצונך לאפס את כל הנתונים?')) {
-      return;
-    }
-
-    // Reset all checkboxes
-    document.querySelectorAll('.service-checkbox, .addon-checkbox').forEach((cb) => {
-      cb.checked = false;
-    });
-
-    // Reset all quantity inputs to 1
-    document.querySelectorAll('.quantity-input').forEach((input) => {
-      input.value = 1;
-    });
-
-    // Reset client details
-    document.getElementById('clientName').value = '';
-    this.setDefaultDate();
-
-    // Hide addon details
-    document.querySelector('.travel-details').classList.remove('active');
-    document.querySelector('.translation-details').classList.remove('active');
-
-    // Recalculate
-    this.calculate();
-
-    // Show notification
-    if (typeof showToast === 'function') {
-      showToast('המחשבון אופס בהצלחה');
-    }
-  }
-
-  copySummary() {
-    const clientName = document.getElementById('clientName').value || 'לקוח';
-    const serviceDate = document.getElementById('serviceDate').value;
-    const subtotal = document.getElementById('subtotal').textContent;
-    const vat = document.getElementById('vat').textContent;
-    const total = document.getElementById('total').textContent;
-
-    // Get selected services
-    const services = [];
-    const serviceCheckboxes = document.querySelectorAll('.service-checkbox:checked');
-    serviceCheckboxes.forEach((checkbox) => {
-      const label = checkbox.nextElementSibling.textContent;
-      const price = checkbox.dataset.basePrice;
-      const serviceId = checkbox.id;
-      const qtyInputId = serviceId.replace('service_', 'qty_');
-      const qtyInput = document.getElementById(qtyInputId);
-
-      if (qtyInput) {
-        const quantity = qtyInput.value;
-        services.push(`- ${label} (x${quantity}): ${price} ₪`);
-      } else {
-        services.push(`- ${label}: ${price} ₪`);
-      }
-    });
-
-    // Get addons
     const addons = [];
-    if (document.getElementById('addon_night').checked) {
-      addons.push('- תוספת שעות לילה/שבת (+50%)');
-    }
-    if (document.getElementById('addon_foreign').checked) {
-      addons.push('- תוספת שפה לועזית (+102 ₪)');
-    }
-    if (document.getElementById('addon_travel').checked) {
-      const hours = document.getElementById('travel_hours').value;
-      const travelCost = document.getElementById('travel_cost').value;
-      addons.push(`- נסיעה מחוץ למשרד: ${hours} שעות, הוצאות: ${travelCost} ₪`);
-    }
-    if (document.getElementById('addon_translation').checked) {
-      const words = document.getElementById('translation_words').value;
-      addons.push(`- תרגום ע"י נוטריון: ${words} מילים`);
-    }
-
-    // Build summary text
-    let summaryText = '=== חישוב עלות שירותי נוטריון ===\n\n';
-    summaryText += `לקוח: ${clientName}\n`;
-    summaryText += `תאריך: ${serviceDate}\n\n`;
-
-    if (services.length > 0) {
-      summaryText += 'שירותים:\n';
-      summaryText += `${services.join('\n')}\n\n`;
+    if (this.elements.addonNight.checked) { addons.push('שעות לילה/שבת (+50%)'); }
+    if (this.elements.addonForeign.checked) { addons.push('שפה לועזית (+102 ₪)'); }
+    if (this.elements.addonTravel.checked) {
+      const hours = this.elements.travelHours.value;
+      const cost = this.elements.travelCost.value;
+      addons.push(`נסיעה (${hours} שעות, ${cost} ₪ הוצאות)`);
     }
 
     if (addons.length > 0) {
-      summaryText += 'תוספות:\n';
-      summaryText += `${addons.join('\n')}\n\n`;
+      text += '── תוספות ──\n';
+      addons.forEach((a) => { text += `• ${a}\n`; });
+      text += '\n';
     }
 
-    summaryText += '--- סיכום ---\n';
-    summaryText += `סכום לפני מע"מ: ${subtotal}\n`;
-    summaryText += `מע"מ (17%): ${vat}\n`;
-    summaryText += `סה"כ לתשלום: ${total}\n\n`;
-    summaryText += 'מחירים לפי תקנות הנוטריונים (שכר שירותים), תשל"ט-1978';
+    text += '══ סיכום ══\n';
+    text += `לפני מע"מ: ${this.elements.subtotal.textContent}\n`;
+    text += `מע"מ (17%): ${this.elements.vat.textContent}\n`;
+    text += `סה"כ לתשלום: ${this.elements.total.textContent}\n\n`;
+    text += 'לפי תקנות הנוטריונים (שכר שירותים), תשל"ט-1978';
 
-    // Copy to clipboard
-    navigator.clipboard
-      .writeText(summaryText)
-      .then(() => {
-        if (typeof showToast === 'function') {
-          showToast('הסיכום הועתק ללוח');
-        } else {
-          alert('הסיכום הועתק ללוח');
-        }
-      })
-      .catch((err) => {
-        console.error('Failed to copy:', err);
-        alert('שגיאה בהעתקה ללוח');
-      });
+    navigator.clipboard.writeText(text).then(() => {
+      this.notify('הסיכום הועתק ללוח!');
+    }).catch(() => {
+      this.notify('שגיאה בהעתקה');
+    });
+  }
+
+  reset() {
+    if (!confirm('האם לאפס את כל הנתונים?')) { return; }
+
+    this.selectedServices = [];
+    this.elements.clientName.value = '';
+    this.setDefaultDate();
+    this.elements.addonNight.checked = false;
+    this.elements.addonForeign.checked = false;
+    this.elements.addonTravel.checked = false;
+    this.elements.travelDetails.style.display = 'none';
+    this.elements.travelHours.value = 1;
+    this.elements.travelCost.value = 0;
+
+    this.renderSelectedServices();
+    this.calculate();
+    this.notify('המחשבון אופס');
+  }
+
+  notify(message) {
+    if (typeof showToast === 'function') {
+      showToast(message);
+    } else {
+      console.log(message);
+    }
   }
 }
 
-// Initialize calculator when DOM is ready
+// Initialize
 document.addEventListener('DOMContentLoaded', () => {
   // eslint-disable-next-line no-new
   new NotaryCalculator();
