@@ -725,11 +725,15 @@ html {
 .step-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .step-content.open {
   max-height: 1000px;
+  padding-top: 0.75rem !important;
+  padding-bottom: 0.75rem !important;
 }
 
 .chevron {
