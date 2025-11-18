@@ -1,399 +1,979 @@
-<!DOCTYPE html>
-<html lang="he" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מחשבון נוטריון</title>
-    <link rel="stylesheet" href="../css/notary-calculator.css">
-</head>
-<body>
-    <div class="calculator-container">
-        <!-- Header Section -->
-        <div class="calculator-header">
+<!-- Notary Calculator - Clean Linear Design -->
+<style>
+/* Color Palette: White + Navy Blue + Gray */
+.notary-calc {
+    --navy: #1e3a5f;
+    --navy-light: #2d5282;
+    --navy-dark: #152940;
+    --gray-50: #fafafa;
+    --gray-100: #f5f5f5;
+    --gray-200: #e5e5e5;
+    --gray-300: #d4d4d4;
+    --gray-400: #a3a3a3;
+    --gray-500: #737373;
+    --gray-600: #525252;
+    --gray-700: #404040;
+    --gray-800: #262626;
+    --white: #ffffff;
+    --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --radius: 12px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 24px;
+    background: var(--white);
+}
+
+/* Header */
+.notary-calc .calc-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 2px solid var(--gray-200);
+}
+.notary-calc .header-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--navy);
+    border-radius: var(--radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.notary-calc .header-icon svg {
+    width: 28px;
+    height: 28px;
+    stroke: var(--white);
+}
+.notary-calc .header-text h1 {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 0 0 4px 0;
+}
+.notary-calc .header-text p {
+    font-size: 14px;
+    color: var(--gray-600);
+    margin: 0;
+}
+
+/* Client Info */
+.notary-calc .client-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+.notary-calc .input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.notary-calc .input-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+.notary-calc .input-group input {
+    padding: 12px 14px;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+    font-size: 14px;
+    background: var(--white);
+    transition: all 0.2s;
+}
+.notary-calc .input-group input:focus {
+    outline: none;
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.1);
+}
+
+/* Add Service Button */
+.notary-calc .btn-add {
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius);
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    transition: all 0.2s;
+}
+.notary-calc .btn-add:hover {
+    background: var(--navy-light);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+.notary-calc .btn-add svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Services Area */
+.notary-calc .services-area {
+    min-height: 200px;
+    margin-bottom: 24px;
+}
+.notary-calc .empty-state {
+    background: var(--gray-50);
+    border: 2px dashed var(--gray-300);
+    border-radius: var(--radius);
+    padding: 48px 24px;
+    text-align: center;
+}
+.notary-calc .empty-state svg {
+    width: 48px;
+    height: 48px;
+    stroke: var(--gray-400);
+    margin-bottom: 16px;
+}
+.notary-calc .empty-state p {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-700);
+    margin: 0 0 6px 0;
+}
+.notary-calc .empty-state span {
+    font-size: 14px;
+    color: var(--gray-500);
+}
+
+/* Service Card */
+.notary-calc .service-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: var(--shadow);
+}
+.notary-calc .service-card:hover {
+    border-color: var(--navy);
+}
+.notary-calc .service-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--navy);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.notary-calc .service-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--white);
+}
+.notary-calc .service-content {
+    flex: 1;
+}
+.notary-calc .service-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 4px;
+}
+.notary-calc .service-price {
+    font-size: 13px;
+    color: var(--gray-600);
+}
+.notary-calc .service-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.notary-calc .qty-input {
+    width: 70px;
+    padding: 8px 10px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+.notary-calc .service-total {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    min-width: 80px;
+    text-align: left;
+}
+.notary-calc .btn-remove {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--gray-400);
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notary-calc .btn-remove:hover {
+    background: var(--gray-100);
+    color: #dc2626;
+}
+
+/* Addons */
+.notary-calc .addons {
+    margin-bottom: 24px;
+    display: none;
+}
+.notary-calc .addons.show {
+    display: block;
+}
+.notary-calc .addons h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin: 0 0 12px 0;
+}
+.notary-calc .addon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+}
+.notary-calc .addon-card {
+    background: var(--white);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px;
+}
+.notary-calc .addon-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+.notary-calc .addon-header input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+.notary-calc .addon-header label {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-800);
+    cursor: pointer;
+}
+.notary-calc .addon-price {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    padding-right: 28px;
+}
+.notary-calc .addon-details {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--gray-200);
+    display: none;
+    gap: 8px;
+}
+.notary-calc .addon-details.show {
+    display: flex;
+}
+.notary-calc .addon-details input {
+    flex: 1;
+    padding: 8px 12px;
+    border: 1px solid var(--gray-300);
+    border-radius: 6px;
+    font-size: 13px;
+}
+
+/* Summary */
+.notary-calc .summary {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: var(--shadow-md);
+}
+.notary-calc .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 15px;
+}
+.notary-calc .summary-row span:last-child {
+    font-weight: 600;
+}
+.notary-calc .summary-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 16px;
+    margin-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-size: 20px;
+    font-weight: 700;
+}
+
+/* Actions */
+.notary-calc .actions {
+    display: flex;
+    gap: 12px;
+}
+.notary-calc .btn {
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+}
+.notary-calc .btn svg {
+    width: 18px;
+    height: 18px;
+}
+.notary-calc .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+    border: none;
+}
+.notary-calc .btn-primary:hover {
+    background: var(--navy-light);
+    transform: translateY(-1px);
+}
+.notary-calc .btn-secondary {
+    background: var(--white);
+    color: var(--gray-700);
+    border: 1px solid var(--gray-300);
+}
+.notary-calc .btn-secondary:hover {
+    background: var(--gray-50);
+    border-color: var(--navy);
+}
+
+/* Modal */
+.notary-calc .modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+.notary-calc .modal.show {
+    display: flex;
+}
+.notary-calc .modal-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+}
+.notary-calc .modal-content {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+}
+.notary-calc .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px;
+    border-bottom: 1px solid var(--gray-200);
+}
+.notary-calc .modal-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--navy-dark);
+    margin: 0;
+}
+.notary-calc .modal-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: transparent;
+    color: var(--gray-500);
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.notary-calc .modal-close:hover {
+    background: var(--gray-100);
+}
+.notary-calc .modal-search {
+    padding: 16px 24px;
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.notary-calc .modal-search svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--gray-400);
+}
+.notary-calc .modal-search input {
+    flex: 1;
+    border: none;
+    font-size: 15px;
+    outline: none;
+    color: var(--gray-800);
+}
+.notary-calc .service-list {
+    padding: 12px;
+    overflow-y: auto;
+    flex: 1;
+}
+.notary-calc .service-category {
+    padding: 12px 16px 6px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+.notary-calc .service-item {
+    padding: 14px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+.notary-calc .service-item:hover {
+    background: var(--gray-50);
+}
+.notary-calc .service-item-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--gray-800);
+}
+.notary-calc .service-item-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+}
+
+@media (max-width: 768px) {
+    .notary-calc .client-info {
+        grid-template-columns: 1fr;
+    }
+    .notary-calc .actions {
+        flex-direction: column;
+    }
+    .notary-calc .service-card {
+        flex-wrap: wrap;
+    }
+    .notary-calc .service-controls {
+        width: 100%;
+        justify-content: space-between;
+        margin-top: 12px;
+        padding-top: 12px;
+        border-top: 1px solid var(--gray-200);
+    }
+}
+</style>
+
+<div class="notary-calc">
+    <!-- Header -->
+    <div class="calc-header">
+        <div class="header-icon">
+            <svg viewBox="0 0 24 24" fill="none">
+                <rect x="5" y="2" width="14" height="20" rx="2"/>
+                <line x1="9" y1="6" x2="15" y2="6"/>
+                <line x1="9" y1="10" x2="15" y2="10"/>
+                <line x1="9" y1="14" x2="13" y2="14"/>
+            </svg>
+        </div>
+        <div class="header-text">
             <h1>מחשבון נוטריון</h1>
-            <p class="subtitle">חישוב עלויות לפי תקנות הנוטריונים, תשל"ט-1978</p>
-        </div>
-
-        <!-- Client Details Section -->
-        <div class="section client-details">
-            <h2>פרטי לקוח (אופציונלי)</h2>
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="clientName">שם הלקוח</label>
-                    <input type="text" id="clientName" placeholder="שם מלא">
-                </div>
-                <div class="form-group">
-                    <label for="serviceDate">תאריך</label>
-                    <input type="date" id="serviceDate">
-                </div>
-            </div>
-        </div>
-
-        <!-- Services Section -->
-        <div class="section services-section">
-            <h2>שירותים</h2>
-
-            <!-- אימות חתימה -->
-            <div class="service-category">
-                <h3>1. אימות חתימה</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_1a" class="service-checkbox" data-base-price="193">
-                        <label for="service_1a">חותם ראשון</label>
-                        <span class="price">193 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_1b" class="service-checkbox" data-base-price="75">
-                        <label for="service_1b">חותם נוסף</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_1b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_1c" class="service-checkbox" data-base-price="75">
-                        <label for="service_1c">אישור שהחותם מוסמך (לכל חתימה)</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_1c" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_1d" class="service-checkbox" data-base-price="75">
-                        <label for="service_1d">העתק של מסמך באותו מעמד (לכל העתק)</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_1d" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-
-            <!-- אישור העתק צילומי -->
-            <div class="service-category">
-                <h3>2. אישור העתק צילומי</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_2a" class="service-checkbox" data-base-price="75">
-                        <label for="service_2a">עמוד ראשון</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_2b" class="service-checkbox" data-base-price="13">
-                        <label for="service_2b">עמוד נוסף</label>
-                        <span class="price">13 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות עמודים:</label>
-                        <input type="number" id="qty_2b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_2c" class="service-checkbox" data-base-price="26">
-                        <label for="service_2c">העתק נוסף באותו מעמד - עמוד ראשון</label>
-                        <span class="price">26 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות העתקים:</label>
-                        <input type="number" id="qty_2c" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-
-            <!-- אישור תרגום -->
-            <div class="service-category">
-                <h3>3. אישור נכונות תרגום</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_3a" class="service-checkbox" data-base-price="245">
-                        <label for="service_3a">עד 100 מילים ראשונות</label>
-                        <span class="price">245 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_3b" class="service-checkbox" data-base-price="193">
-                        <label for="service_3b">כל 100 מילים נוספות (עד 1000 מילים)</label>
-                        <span class="price">193 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות (x100 מילים):</label>
-                        <input type="number" id="qty_3b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_3c" class="service-checkbox" data-base-price="96">
-                        <label for="service_3c">כל 100 מילים נוספות (מעל 1000 מילים)</label>
-                        <span class="price">96 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות (x100 מילים):</label>
-                        <input type="number" id="qty_3c" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_3d" class="service-checkbox" data-base-price="75">
-                        <label for="service_3d">אישור נוסף באותו מעמד</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- אישור צוואה -->
-            <div class="service-category">
-                <h3>4. אישור צוואה (סעיף 22)</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_4a" class="service-checkbox" data-base-price="286">
-                        <label for="service_4a">חותם ראשון</label>
-                        <span class="price">286 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_4b" class="service-checkbox" data-base-price="143">
-                        <label for="service_4b">חותם נוסף</label>
-                        <span class="price">143 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_4b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_4c" class="service-checkbox" data-base-price="86">
-                        <label for="service_4c">אישור נוסף באותו מעמד</label>
-                        <span class="price">86 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_4c" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-
-            <!-- שירותים נוספים -->
-            <div class="service-category">
-                <h3>5. שירותים נוספים</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_5" class="service-checkbox" data-base-price="193">
-                        <label for="service_5">אישור שפלוני בחיים</label>
-                        <span class="price">193 ₪</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- תצהיר -->
-            <div class="service-category">
-                <h3>6. תצהיר</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_6a" class="service-checkbox" data-base-price="195">
-                        <label for="service_6a">מצהיר ראשון</label>
-                        <span class="price">195 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_6b" class="service-checkbox" data-base-price="78">
-                        <label for="service_6b">מצהיר נוסף</label>
-                        <span class="price">78 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_6b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_6c" class="service-checkbox" data-base-price="75">
-                        <label for="service_6c">אישור נוסף באותו מעמד</label>
-                        <span class="price">75 ₪</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- העדה של מסמך סחיר -->
-            <div class="service-category">
-                <h3>7. העדה של מסמך סחיר</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_7a" class="service-checkbox" data-base-price="1244">
-                        <label for="service_7a">סכום עד 80,700 ₪</label>
-                        <span class="price">1,244 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_7b" class="service-checkbox" data-base-price="2667">
-                        <label for="service_7b">סכום מעל 80,700 ₪</label>
-                        <span class="price">2,667 ₪</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- ביטול ייפוי כוח -->
-            <div class="service-category">
-                <h3>7א. ביטול ייפוי כוח</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_7a1" class="service-checkbox" data-base-price="204">
-                        <label for="service_7a1">קבלת הודעת ביטול ורישום הערה</label>
-                        <span class="price">204 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_7a2" class="service-checkbox" data-base-price="72">
-                        <label for="service_7a2">העתק מאושר עם הערת ביטול</label>
-                        <span class="price">72 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_7a2" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-
-            <!-- פעולה אחרת -->
-            <div class="service-category">
-                <h3>8. פעולה אחרת</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_8" class="service-checkbox" data-base-price="315">
-                        <label for="service_8">פעולה שלא נקבע לה שכר</label>
-                        <span class="price">315 ₪</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- הסכם ממון -->
-            <div class="service-category">
-                <h3>11. הסכם ממון</h3>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_11a" class="service-checkbox" data-base-price="435">
-                        <label for="service_11a">אימות הסכם ממון</label>
-                        <span class="price">435 ₪</span>
-                    </div>
-                </div>
-                <div class="service-item">
-                    <div class="service-header">
-                        <input type="checkbox" id="service_11b" class="service-checkbox" data-base-price="72">
-                        <label for="service_11b">עותק נוסף באותו מעמד</label>
-                        <span class="price">72 ₪</span>
-                    </div>
-                    <div class="quantity-control">
-                        <label>כמות:</label>
-                        <input type="number" id="qty_11b" min="1" value="1" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Additional Charges Section -->
-        <div class="section additional-charges">
-            <h2>תוספות</h2>
-
-            <div class="service-item">
-                <div class="service-header">
-                    <input type="checkbox" id="addon_night" class="addon-checkbox" data-addon-type="percentage" data-addon-value="50">
-                    <label for="addon_night">שירות בשעות לילה/שבת (19:00-08:00 או שבת)</label>
-                    <span class="price">+50%</span>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-header">
-                    <input type="checkbox" id="addon_foreign" class="addon-checkbox" data-addon-type="fixed" data-addon-value="102">
-                    <label for="addon_foreign">אישור בשפה לועזית (לא אנגלית/ערבית)</label>
-                    <span class="price">+102 ₪</span>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-header">
-                    <input type="checkbox" id="addon_travel" class="addon-checkbox" data-addon-type="custom">
-                    <label for="addon_travel">נסיעה מחוץ למשרד</label>
-                </div>
-                <div class="travel-details">
-                    <div class="form-group">
-                        <label>שעות (שעה ראשונה 630 ₪, כל חצי שעה נוספת 193 ₪):</label>
-                        <input type="number" id="travel_hours" min="0" step="0.5" value="1" class="quantity-input">
-                    </div>
-                    <div class="form-group">
-                        <label>הוצאות נסיעה (₪):</label>
-                        <input type="number" id="travel_cost" min="0" value="0" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-item">
-                <div class="service-header">
-                    <input type="checkbox" id="addon_translation" class="addon-checkbox" data-addon-type="custom">
-                    <label for="addon_translation">תרגום על ידי הנוטריון (מחצית משכר תרגום)</label>
-                </div>
-                <div class="translation-details">
-                    <div class="form-group">
-                        <label>מספר מילים:</label>
-                        <input type="number" id="translation_words" min="0" value="0" class="quantity-input">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Summary Section -->
-        <div class="section summary-section">
-            <h2>סיכום</h2>
-            <div class="summary-row">
-                <span class="summary-label">סכום לפני מע"מ:</span>
-                <span class="summary-value" id="subtotal">0.00 ₪</span>
-            </div>
-            <div class="summary-row">
-                <span class="summary-label">מע"מ (17%):</span>
-                <span class="summary-value" id="vat">0.00 ₪</span>
-            </div>
-            <div class="summary-row total">
-                <span class="summary-label">סה"כ לתשלום:</span>
-                <span class="summary-value" id="total">0.00 ₪</span>
-            </div>
-        </div>
-
-        <!-- Actions -->
-        <div class="actions">
-            <button class="btn btn-primary" id="printBtn">הדפס / שמור PDF</button>
-            <button class="btn btn-secondary" id="resetBtn">איפוס</button>
-            <button class="btn btn-secondary" id="copyBtn">העתק סיכום</button>
-        </div>
-
-        <!-- Notes Section -->
-        <div class="section notes-section">
-            <h3>הערות</h3>
-            <ul class="notes-list">
-                <li>מחירים מעודכנים לפי תקנות הנוטריונים (שכר שירותים), תשל"ט-1978</li>
-                <li>המחירים כפופים להצמדה למדד ב-1 בינואר של כל שנה</li>
-                <li>ישנם פטורים לעולים חדשים, תושבים חוזרים וחסרי אמצעים</li>
-                <li>לפרטים נוספים יש לעיין בתקנות המלאות</li>
-            </ul>
+            <p>חישוב מהיר ומדויק לפי התקנות</p>
         </div>
     </div>
 
-    <script src="../js/notary-calculator.js"></script>
-</body>
-</html>
+    <!-- Client Info -->
+    <div class="client-info">
+        <div class="input-group">
+            <label>שם לקוח</label>
+            <input type="text" id="nc-clientName" placeholder="הקלד שם (אופציונלי)">
+        </div>
+        <div class="input-group">
+            <label>תאריך</label>
+            <input type="date" id="nc-serviceDate">
+        </div>
+    </div>
+
+    <!-- Add Service Button -->
+    <button class="btn-add" id="nc-btnAdd">
+        <svg viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="12" y1="8" x2="12" y2="16"/>
+            <line x1="8" y1="12" x2="16" y2="12"/>
+        </svg>
+        הוסף שירות
+    </button>
+
+    <!-- Services Area -->
+    <div class="services-area" id="nc-services">
+        <div class="empty-state">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M9 11l3 3L22 4"/>
+                <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+            </svg>
+            <p>לא נבחרו שירותים</p>
+            <span>לחץ על "הוסף שירות" כדי להתחיל</span>
+        </div>
+    </div>
+
+    <!-- Addons -->
+    <div class="addons" id="nc-addons">
+        <h3>תוספות</h3>
+        <div class="addon-grid">
+            <div class="addon-card">
+                <div class="addon-header">
+                    <input type="checkbox" id="nc-addonNight">
+                    <label for="nc-addonNight">🌙 שעות לילה/שבת</label>
+                </div>
+                <div class="addon-price">+50%</div>
+            </div>
+            <div class="addon-card">
+                <div class="addon-header">
+                    <input type="checkbox" id="nc-addonForeign">
+                    <label for="nc-addonForeign">🌍 שפה לועזית</label>
+                </div>
+                <div class="addon-price">+102 ₪</div>
+            </div>
+            <div class="addon-card">
+                <div class="addon-header">
+                    <input type="checkbox" id="nc-addonTravel">
+                    <label for="nc-addonTravel">🚗 נסיעה</label>
+                </div>
+                <div class="addon-details" id="nc-travelDetails">
+                    <input type="number" id="nc-travelHours" min="0.5" step="0.5" value="1" placeholder="שעות">
+                    <input type="number" id="nc-travelCost" min="0" value="0" placeholder="הוצאות">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Summary -->
+    <div class="summary">
+        <div class="summary-row">
+            <span>לפני מע"מ</span>
+            <span id="nc-subtotal">0 ₪</span>
+        </div>
+        <div class="summary-row">
+            <span>מע"מ (18%)</span>
+            <span id="nc-vat">0 ₪</span>
+        </div>
+        <div class="summary-total">
+            <span>סה"כ לתשלום</span>
+            <span id="nc-total">0 ₪</span>
+        </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+        <button class="btn btn-primary" id="nc-btnCopy">
+            <svg viewBox="0 0 24 24" fill="none">
+                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+            </svg>
+            העתק
+        </button>
+        <button class="btn btn-secondary" id="nc-btnPrint">
+            <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 9V2h12v7"/>
+                <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                <rect x="6" y="14" width="12" height="8"/>
+            </svg>
+            הדפס
+        </button>
+        <button class="btn btn-secondary" id="nc-btnReset">איפוס</button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="nc-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>בחר שירות</h2>
+                <button class="modal-close" id="nc-modalClose">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18"/>
+                        <line x1="6" y1="6" x2="18" y2="18"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="modal-search">
+                <svg viewBox="0 0 24 24" fill="none">
+                    <circle cx="11" cy="11" r="8"/>
+                    <path d="M21 21l-4.35-4.35"/>
+                </svg>
+                <input type="text" id="nc-search" placeholder="חפש שירות...">
+            </div>
+            <div class="service-list" id="nc-list"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Notary Calculator - runs after tab is loaded
+const SERVICES_NC = {
+        signature: {
+            category: 'אימות חתימה',
+            items: [
+                { id: 'sig_first', name: 'חותם ראשון', price: 193 },
+                { id: 'sig_additional', name: 'חותם נוסף', price: 75 },
+                { id: 'sig_authorized', name: 'אישור סמכות חתימה', price: 75 },
+                { id: 'sig_copy', name: 'העתק באותו מעמד', price: 75 }
+            ]
+        },
+        photocopy: {
+            category: 'אישור העתק צילומי',
+            items: [
+                { id: 'copy_first', name: 'עמוד ראשון', price: 75 },
+                { id: 'copy_additional', name: 'עמוד נוסף', price: 13 },
+                { id: 'copy_same_time', name: 'העתק נוסף - עמוד ראשון', price: 26 }
+            ]
+        },
+        translation: {
+            category: 'אישור תרגום',
+            items: [
+                { id: 'translation', name: 'תרגום (לפי מספר מילים)', price: 0, isTranslation: true }
+            ]
+        },
+        will: {
+            category: 'אישור צוואה',
+            items: [
+                { id: 'will_first', name: 'חותם ראשון', price: 286 },
+                { id: 'will_additional', name: 'חותם נוסף', price: 143 }
+            ]
+        },
+        affidavit: {
+            category: 'תצהיר',
+            items: [
+                { id: 'aff_first', name: 'מצהיר ראשון', price: 195 },
+                { id: 'aff_additional', name: 'מצהיר נוסף', price: 78 }
+            ]
+        },
+        other: {
+            category: 'שירותים נוספים',
+            items: [
+                { id: 'alive', name: 'אישור שפלוני בחיים', price: 193 },
+                { id: 'protest_low', name: 'העדה - עד 80,700 ₪', price: 1244 },
+                { id: 'protest_high', name: 'העדה - מעל 80,700 ₪', price: 2667 },
+                { id: 'prenup', name: 'אימות הסכם ממון', price: 435 },
+                { id: 'other_service', name: 'פעולה אחרת', price: 315 }
+            ]
+        }
+    };
+
+    class NotaryCalc {
+        constructor() {
+            this.services = [];
+            this.VAT = 0.18;
+            this.init();
+        }
+
+        init() {
+            document.getElementById('nc-serviceDate').value = new Date().toISOString().split('T')[0];
+            this.bind();
+            this.renderServiceList();
+        }
+
+        bind() {
+            document.getElementById('nc-btnAdd').onclick = () => this.openModal();
+            document.getElementById('nc-modalClose').onclick = () => this.closeModal();
+            document.querySelector('.modal-overlay').onclick = () => this.closeModal();
+            document.getElementById('nc-search').oninput = (e) => this.renderServiceList(e.target.value);
+            document.getElementById('nc-addonNight').onchange = () => this.calc();
+            document.getElementById('nc-addonForeign').onchange = () => this.calc();
+            document.getElementById('nc-addonTravel').onchange = (e) => {
+                document.getElementById('nc-travelDetails').classList.toggle('show', e.target.checked);
+                this.calc();
+            };
+            document.getElementById('nc-travelHours').oninput = () => this.calc();
+            document.getElementById('nc-travelCost').oninput = () => this.calc();
+            document.getElementById('nc-btnCopy').onclick = () => this.copy();
+            document.getElementById('nc-btnPrint').onclick = () => window.print();
+            document.getElementById('nc-btnReset').onclick = () => this.reset();
+        }
+
+        openModal() {
+            document.getElementById('nc-modal').classList.add('show');
+            document.getElementById('nc-search').focus();
+        }
+
+        closeModal() {
+            document.getElementById('nc-modal').classList.remove('show');
+        }
+
+        renderServiceList(term = '') {
+            const html = [];
+            Object.values(SERVICES_NC).forEach(cat => {
+                const items = cat.items.filter(i => i.name.toLowerCase().includes(term.toLowerCase()));
+                if (items.length) {
+                    html.push(`<div class="service-category">${cat.category}</div>`);
+                    items.forEach(item => {
+                        html.push(`
+                            <div class="service-item" data-id="${item.id}" data-name="${item.name}" data-price="${item.price}" data-is-translation="${item.isTranslation || false}">
+                                <span class="service-item-title">${item.name}</span>
+                                <span class="service-item-price">${item.price} ₪</span>
+                            </div>
+                        `);
+                    });
+                }
+            });
+            const list = document.getElementById('nc-list');
+            list.innerHTML = html.join('');
+            list.querySelectorAll('.service-item').forEach(el => {
+                el.onclick = () => this.addService({
+                    id: el.dataset.id,
+                    name: el.dataset.name,
+                    price: +el.dataset.price,
+                    isTranslation: el.dataset.isTranslation === 'true'
+                });
+            });
+        }
+
+        addService(s) {
+            // Special handling for translation
+            if (s.isTranslation) {
+                const translationService = {
+                    id: 'translation_' + Date.now(),
+                    name: 'תרגום',
+                    price: 245, // Default price for 100 words
+                    words: 100, // Default word count
+                    qty: 1,
+                    isTranslation: true
+                };
+                this.services.push(translationService);
+                this.closeModal();
+                this.render();
+                return;
+            }
+
+            if (this.services.find(x => x.id === s.id)) return;
+            this.services.push({ ...s, qty: 1 });
+            this.closeModal();
+            this.render();
+        }
+
+        calculateTranslationPrice(words) {
+            if (words <= 0) return 0;
+
+            let price = 0;
+
+            // First 100 words: 245 NIS
+            price += 245;
+            let remaining = words - 100;
+
+            if (remaining <= 0) return price;
+
+            // Next 900 words (up to 1000 total): 193 NIS per 100 words
+            const upTo1000 = Math.min(remaining, 900);
+            const chunks1000 = Math.ceil(upTo1000 / 100);
+            price += chunks1000 * 193;
+            remaining -= upTo1000;
+
+            if (remaining <= 0) return price;
+
+            // Above 1000: 96 NIS per 100 words
+            const chunksAbove = Math.ceil(remaining / 100);
+            price += chunksAbove * 96;
+
+            return price;
+        }
+
+        render() {
+            const area = document.getElementById('nc-services');
+            if (!this.services.length) {
+                area.innerHTML = `
+                    <div class="empty-state">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 11l3 3L22 4"/>
+                            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+                        </svg>
+                        <p>לא נבחרו שירותים</p>
+                        <span>לחץ על "הוסף שירות" כדי להתחיל</span>
+                    </div>
+                `;
+                document.getElementById('nc-addons').classList.remove('show');
+                this.calc();
+                return;
+            }
+
+            document.getElementById('nc-addons').classList.add('show');
+            area.innerHTML = this.services.map(s => {
+                if (s.isTranslation) {
+                    return `
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-title">${s.name}</div>
+                                <div class="service-price" style="display: flex; align-items: center; gap: 8px; margin-top: 8px;">
+                                    <input type="number" class="qty-input" value="${s.words}" min="1" data-id="${s.id}" data-is-words="true" placeholder="מספר מילים" style="width: 100px;">
+                                    <span style="font-size: 13px; color: var(--gray-600);">מילים</span>
+                                </div>
+                            </div>
+                            <div class="service-controls">
+                                <div class="service-total">${s.price.toFixed(0)} ₪</div>
+                                <button class="btn-remove" data-id="${s.id}">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <div class="service-card">
+                            <div class="service-icon">
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <div class="service-content">
+                                <div class="service-title">${s.name}</div>
+                                <div class="service-price">${s.price} ₪ × יחידה</div>
+                            </div>
+                            <div class="service-controls">
+                                <input type="number" class="qty-input" value="${s.qty}" min="1" data-id="${s.id}">
+                                <div class="service-total">${(s.price * s.qty).toFixed(0)} ₪</div>
+                                <button class="btn-remove" data-id="${s.id}">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }).join('');
+
+            area.querySelectorAll('.qty-input').forEach(el => {
+                el.oninput = (e) => {
+                    const s = this.services.find(x => x.id === e.target.dataset.id);
+                    if (s) {
+                        if (e.target.dataset.isWords === 'true') {
+                            // Translation service - update words and recalculate price
+                            const words = Math.max(1, +e.target.value || 1);
+                            s.words = words;
+                            s.price = this.calculateTranslationPrice(words);
+                        } else {
+                            // Regular service - update quantity
+                            s.qty = Math.max(1, +e.target.value || 1);
+                        }
+                        this.render();
+                    }
+                };
+            });
+
+            area.querySelectorAll('.btn-remove').forEach(el => {
+                el.onclick = () => {
+                    this.services = this.services.filter(x => x.id !== el.dataset.id);
+                    this.render();
+                };
+            });
+
+            this.calc();
+        }
+
+        calc() {
+            let sub = this.services.reduce((sum, s) => {
+                // Translation services don't multiply by qty (price already includes all words)
+                return sum + (s.isTranslation ? s.price : s.price * s.qty);
+            }, 0);
+            if (document.getElementById('nc-addonNight').checked) sub *= 1.5;
+            if (document.getElementById('nc-addonForeign').checked) sub += 102;
+            if (document.getElementById('nc-addonTravel').checked) {
+                const hrs = +document.getElementById('nc-travelHours').value || 1;
+                const cost = +document.getElementById('nc-travelCost').value || 0;
+                sub += 630 + (hrs > 1 ? (hrs - 1) * 2 * 193 : 0) + cost;
+            }
+            const vat = sub * this.VAT;
+            const total = sub + vat;
+            document.getElementById('nc-subtotal').textContent = sub.toFixed(0) + ' ₪';
+            document.getElementById('nc-vat').textContent = vat.toFixed(0) + ' ₪';
+            document.getElementById('nc-total').textContent = total.toFixed(0) + ' ₪';
+        }
+
+        copy() {
+            let txt = '═══ מחשבון נוטריון ═══\n\n';
+            txt += 'לקוח: ' + (document.getElementById('nc-clientName').value || 'לקוח') + '\n';
+            txt += 'תאריך: ' + document.getElementById('nc-serviceDate').value + '\n\n';
+            if (this.services.length) {
+                txt += '── שירותים ──\n';
+                this.services.forEach(s => {
+                    if (s.isTranslation) {
+                        txt += `• ${s.name} (${s.words} מילים) - ${s.price.toFixed(0)} ₪\n`;
+                    } else {
+                        txt += `• ${s.name} (×${s.qty}) - ${(s.price * s.qty).toFixed(0)} ₪\n`;
+                    }
+                });
+                txt += '\n';
+            }
+            txt += '══ סיכום ══\n';
+            txt += 'לפני מע"מ: ' + document.getElementById('nc-subtotal').textContent + '\n';
+            txt += 'מע"מ (18%): ' + document.getElementById('nc-vat').textContent + '\n';
+            txt += 'סה"כ: ' + document.getElementById('nc-total').textContent;
+            navigator.clipboard.writeText(txt).then(() => alert('הועתק!')).catch(() => alert('שגיאה'));
+        }
+
+        reset() {
+            if (!confirm('לאפס?')) return;
+            this.services = [];
+            document.getElementById('nc-clientName').value = '';
+            document.getElementById('nc-serviceDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('nc-addonNight').checked = false;
+            document.getElementById('nc-addonForeign').checked = false;
+            document.getElementById('nc-addonTravel').checked = false;
+            document.getElementById('nc-travelDetails').classList.remove('show');
+            this.render();
+        }
+    }
+
+// Initialize when tab is loaded
+document.addEventListener('tabLoaded', (e) => {
+    if (e.detail.tabId === 'notary-calculator') {
+        setTimeout(() => {
+            if (document.getElementById('nc-btnAdd')) {
+                new NotaryCalc();
+                console.log('✅ NotaryCalc initialized!');
+            } else {
+                console.error('❌ nc-btnAdd not found!');
+            }
+        }, 100);
+    }
+});
+</script>

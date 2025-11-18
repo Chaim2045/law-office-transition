@@ -54,8 +54,8 @@ class TabLoader {
         </div>
       `;
 
-      // טעינת התוכן מהקובץ החיצוני
-      const response = await fetch(`tabs/${tabId}.html`);
+      // טעינת התוכן מהקובץ החיצוני (עם cache busting)
+      const response = await fetch(`tabs/${tabId}.html?v=${Date.now()}`);
 
       if (!response.ok) {
         throw new Error(`Failed to load tab: ${response.status} ${response.statusText}`);
@@ -68,6 +68,18 @@ class TabLoader {
 
       // הכנסת התוכן לדף
       tabContainer.innerHTML = html;
+
+      // Execute scripts manually (innerHTML doesn't auto-run scripts)
+      const scripts = tabContainer.querySelectorAll('script');
+      scripts.forEach((oldScript) => {
+        const newScript = document.createElement('script');
+        if (oldScript.src) {
+          newScript.src = oldScript.src;
+        } else {
+          newScript.textContent = oldScript.textContent;
+        }
+        oldScript.parentNode.replaceChild(newScript, oldScript);
+      });
 
       // סימון שהטאב נטען
       this.loadedTabs.add(tabId);
@@ -178,6 +190,9 @@ const tabLoader = new TabLoader();
 // אתחול כשהדף נטען
 document.addEventListener('DOMContentLoaded', () => {
   console.log('TabLoader initialized');
+
+  // ניקוי קאש של טאבים ספציפיים אם צריך (notary-calculator תמיד טרי)
+  tabLoader.clearTabCache('notary-calculator');
 
   // טעינת הטאב הראשון (general-info) אוטומטית
   tabLoader.loadTab('general-info');
