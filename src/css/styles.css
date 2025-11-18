@@ -409,6 +409,12 @@ textarea:focus {
   background: var(--bg-hover);
 }
 
+/* Don't apply hover background to gradient text */
+.editable.text-transparent:hover,
+.editable.bg-gradient-to-r:hover {
+  background: transparent !important;
+}
+
 /* Allow buttons inside editable to be clickable */
 .editable button {
   pointer-events: auto;
