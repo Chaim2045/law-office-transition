@@ -1,6 +1,7 @@
 {
   "name": "law-office-transition",
   "version": "1.0.0",
+  "type": "module",
   "description": "מדריך חפיפה מקצועי - משרד עו\"ד גיא הרשקוביץ",
   "main": "src/js/main.js",
   "scripts": {
