@@ -3,9 +3,9 @@
  * Professional modular architecture
  */
 
-import { NOTARY_CONFIG } from './notary-calculator/config.js';
-import { CalculatorEngine } from './notary-calculator/calculator.js';
-import { UIManager } from './notary-calculator/ui.js';
+import { NOTARY_CONFIG } from './notary-calculator/config';
+import CalculatorEngine from './notary-calculator/calculator';
+import { UIManager } from './notary-calculator/ui';
 
 /**
  * NotaryCalculator - Main application class

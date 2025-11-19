@@ -3,8 +3,8 @@
  * Handles all UI rendering and interactions
  */
 
-import { NOTARY_CONFIG, searchServices } from './config.js';
-import { formatCurrency } from './validators.js';
+import { NOTARY_CONFIG, searchServices } from './config';
+import { formatCurrency } from './validators';
 
 /**
  * Toast Notification System
@@ -230,7 +230,7 @@ export class UIManager {
     try {
       const services = this.calculator.services;
 
-      if (!this.elements.SERVICES_AREA) return;
+      if (!this.elements.SERVICES_AREA) { return; }
 
       if (services.length === 0) {
         this.elements.SERVICES_AREA.innerHTML = `
@@ -482,7 +482,7 @@ export class UIManager {
     try {
       const confirmed = await ConfirmDialog.show('האם לאפס את כל הנתונים?', 'איפוס מחשבון');
 
-      if (!confirmed) return;
+      if (!confirmed) { return; }
 
       this.calculator.reset();
 

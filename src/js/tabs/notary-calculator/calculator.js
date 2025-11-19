@@ -3,19 +3,19 @@
  * Handles all calculation logic for notary services
  */
 
-import { NOTARY_CONFIG } from './config.js';
+import { NOTARY_CONFIG } from './config';
 import {
   validateQuantity,
   validateWordCount,
   validateTravelHours,
   validateTravelCost,
   sanitizeNumber,
-} from './validators.js';
+} from './validators';
 
 /**
  * CalculatorEngine - Manages all calculation logic
  */
-export class CalculatorEngine {
+export default class CalculatorEngine {
   constructor() {
     this.services = [];
     this.addons = {
@@ -147,7 +147,7 @@ export class CalculatorEngine {
    */
   calculateTranslationPrice(words) {
     try {
-      if (words <= 0) return 0;
+      if (words <= 0) { return 0; }
 
       let price = 0;
       let remainingWords = words;
@@ -271,10 +271,10 @@ export class CalculatorEngine {
 
   /**
    * Calculate addons total
-   * @param {number} servicesTotal - Services subtotal (for percentage calculations)
+   * @param {number} _servicesTotal - Services subtotal (for percentage calculations)
    * @returns {number} Addons total
    */
-  calculateAddonsTotal(servicesTotal) {
+  calculateAddonsTotal(_servicesTotal) {
     try {
       let addonsTotal = 0;
 

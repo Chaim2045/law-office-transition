@@ -72,7 +72,10 @@
       "Bash(tee:*)",
       "Bash(npx serve src -p 3000)",
       "Bash(start http://localhost:57842)",
-      "Bash(src/css/mobile-advanced.css)"
+      "Bash(src/css/mobile-advanced.css)",
+      "Bash(curl -s https://law-office-transition.netlify.app/tabs/notary-calculator.html)",
+      "Bash(curl -s https://law-office-transition.netlify.app/)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []

@@ -239,7 +239,7 @@ export function validateTravelCost(cost) {
  * @returns {number} Sanitized number
  */
 export function sanitizeNumber(value, min, max, defaultValue = 0) {
-  let num = Number(value);
+  const num = Number(value);
 
   if (Number.isNaN(num)) {
     return defaultValue;

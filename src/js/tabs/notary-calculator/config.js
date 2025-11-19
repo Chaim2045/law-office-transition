@@ -257,10 +257,8 @@ export function getServiceById(id) {
  * @returns {Array} Matching services
  */
 export function searchServices(term) {
-  if (!term) return getAllServices();
+  if (!term) { return getAllServices(); }
   const lowerTerm = term.toLowerCase();
-  return getAllServices().filter((service) =>
-    service.name.toLowerCase().includes(lowerTerm) ||
-    service.category.toLowerCase().includes(lowerTerm)
-  );
+  return getAllServices().filter((service) => service.name.toLowerCase().includes(lowerTerm)
+    || service.category.toLowerCase().includes(lowerTerm));
 }
