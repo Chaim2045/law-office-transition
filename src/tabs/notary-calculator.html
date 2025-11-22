@@ -1,9 +1,10 @@
-<!-- Notary Calculator - Clean HTML Only -->
-<script type="module" src="js/tabs/notary-calculator.js"></script>
-<div class="notary-calc">
+<!-- Notary Calculator - Clean HTML -->
+<script src="js/notary-calculator.js"></script>
+
+<div class="nc-calc">
     <!-- Header -->
-    <div class="calc-header">
-        <div class="header-icon">
+    <div class="nc-calc-header">
+        <div class="nc-header-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="5" y="2" width="14" height="20" rx="2"/>
                 <line x1="9" y1="6" x2="15" y2="6"/>
@@ -11,26 +12,26 @@
                 <line x1="9" y1="14" x2="13" y2="14"/>
             </svg>
         </div>
-        <div class="header-text">
+        <div class="nc-header-text">
             <h1>מחשבון נוטריון</h1>
             <p>חישוב מהיר ומדויק לפי התקנות</p>
         </div>
     </div>
 
     <!-- Client Info -->
-    <div class="client-info">
-        <div class="input-group">
+    <div class="nc-client-info">
+        <div class="nc-input-group">
             <label>שם לקוח</label>
             <input type="text" id="nc-clientName" placeholder="הקלד שם (אופציונלי)">
         </div>
-        <div class="input-group">
+        <div class="nc-input-group">
             <label>תאריך</label>
             <input type="date" id="nc-serviceDate">
         </div>
     </div>
 
     <!-- Add Service Button -->
-    <button class="btn-add" id="nc-btnAdd">
+    <button class="nc-btn-add" id="nc-btnAdd">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"/>
             <line x1="12" y1="8" x2="12" y2="16"/>
@@ -40,8 +41,8 @@
     </button>
 
     <!-- Services Area -->
-    <div class="services-area" id="nc-services">
-        <div class="empty-state">
+    <div class="nc-services-area" id="nc-services">
+        <div class="nc-empty-state">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M9 11l3 3L22 4"/>
                 <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
@@ -51,63 +52,74 @@
         </div>
     </div>
 
-    <!-- Addons -->
-    <div class="addons" id="nc-addons">
+    <!-- Addons Section -->
+    <div class="nc-addons-section" id="nc-addons">
         <h3>תוספות</h3>
-        <div class="addon-grid">
-            <div class="addon-card">
-                <div class="addon-header">
-                    <input type="checkbox" id="nc-addonNight">
-                    <label for="nc-addonNight">🌙 שעות לילה/שבת</label>
-                </div>
-                <div class="addon-price">+50%</div>
+        <div class="nc-addons-grid">
+            <label class="nc-addon-item">
+                <input type="checkbox" id="nc-addonNight">
+                <span class="nc-addon-label">שעות לילה/שבת</span>
+                <span class="nc-addon-value">+50%</span>
+            </label>
+
+            <label class="nc-addon-item">
+                <input type="checkbox" id="nc-addonForeign">
+                <span class="nc-addon-label">שפה לועזית</span>
+                <span class="nc-addon-value">+102 ₪</span>
+            </label>
+
+            <label class="nc-addon-item">
+                <input type="checkbox" id="nc-addonTravel">
+                <span class="nc-addon-label">נסיעה</span>
+                <span class="nc-addon-value">משתנה</span>
+            </label>
+        </div>
+
+        <div class="nc-travel-details" id="nc-travelDetails">
+            <div class="nc-input-group">
+                <label>שעות נסיעה</label>
+                <input type="number" id="nc-travelHours" min="0.5" step="0.5" value="1">
             </div>
-            <div class="addon-card">
-                <div class="addon-header">
-                    <input type="checkbox" id="nc-addonForeign">
-                    <label for="nc-addonForeign">🌍 שפה לועזית</label>
-                </div>
-                <div class="addon-price">+102 ₪</div>
-            </div>
-            <div class="addon-card">
-                <div class="addon-header">
-                    <input type="checkbox" id="nc-addonTravel">
-                    <label for="nc-addonTravel">🚗 נסיעה</label>
-                </div>
-                <div class="addon-details" id="nc-travelDetails">
-                    <input type="number" id="nc-travelHours" min="0.5" step="0.5" value="1" placeholder="שעות">
-                    <input type="number" id="nc-travelCost" min="0" value="0" placeholder="הוצאות">
-                </div>
+            <div class="nc-input-group">
+                <label>הוצאות נסיעה (₪)</label>
+                <input type="number" id="nc-travelCost" min="0" value="0">
             </div>
         </div>
     </div>
 
     <!-- Summary -->
-    <div class="summary">
-        <div class="summary-row">
+    <div class="nc-summary">
+        <div class="nc-summary-row">
             <span>לפני מע"מ</span>
-            <span id="nc-subtotal">0 ₪</span>
+            <strong id="nc-subtotal">0 ₪</strong>
         </div>
-        <div class="summary-row">
+        <div class="nc-summary-row">
             <span>מע"מ (18%)</span>
-            <span id="nc-vat">0 ₪</span>
+            <strong id="nc-vat">0 ₪</strong>
         </div>
-        <div class="summary-total">
+        <div class="nc-summary-row nc-summary-total">
             <span>סה"כ לתשלום</span>
-            <span id="nc-total">0 ₪</span>
+            <strong id="nc-total">0 ₪</strong>
         </div>
     </div>
 
     <!-- Actions -->
-    <div class="actions">
-        <button class="btn btn-primary" id="nc-btnCopy">
+    <div class="nc-actions">
+        <button class="nc-btn nc-btn-secondary" id="nc-btnReset">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M3 12a9 9 0 019-9 9.75 9.75 0 016.74 2.74L21 8"/>
+                <path d="M21 3v5h-5"/>
+            </svg>
+            איפוס
+        </button>
+        <button class="nc-btn nc-btn-secondary" id="nc-btnCopy">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <rect x="9" y="9" width="13" height="13" rx="2"/>
                 <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
             </svg>
             העתק
         </button>
-        <button class="btn btn-secondary" id="nc-btnPrint">
+        <button class="nc-btn nc-btn-primary" id="nc-btnPrint">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M6 9V2h12v7"/>
                 <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
@@ -115,30 +127,29 @@
             </svg>
             הדפס
         </button>
-        <button class="btn btn-secondary" id="nc-btnReset">איפוס</button>
     </div>
+</div>
 
-    <!-- Modal -->
-    <div class="modal" id="nc-modal">
-        <div class="modal-overlay"></div>
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>בחר שירות</h2>
-                <button class="modal-close" id="nc-modalClose">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <line x1="18" y1="6" x2="6" y2="18"/>
-                        <line x1="6" y1="6" x2="18" y2="18"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="modal-search">
+<!-- Service Selection Modal -->
+<div class="nc-modal" id="nc-modal">
+    <div class="nc-modal-overlay"></div>
+    <div class="nc-modal-content">
+        <div class="nc-modal-header">
+            <h2>בחירת שירות</h2>
+            <button class="nc-modal-close" id="nc-modalClose">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="M21 21l-4.35-4.35"/>
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
                 </svg>
-                <input type="text" id="nc-search" placeholder="חפש שירות...">
-            </div>
-            <div class="service-list" id="nc-list"></div>
+            </button>
         </div>
+        <div class="nc-modal-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8"/>
+                <path d="M21 21l-4.35-4.35"/>
+            </svg>
+            <input type="text" id="nc-search" placeholder="חפש שירות...">
+        </div>
+        <div class="nc-modal-list" id="nc-list"></div>
     </div>
 </div>
