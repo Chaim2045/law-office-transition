@@ -577,6 +577,18 @@
         this.closeModal();
         this.render();
         this.toast.success('השירות נוסף בהצלחה');
+
+        // אם זה תרגום, תן פוקוס לשדה המילים
+        if (service.isTranslation) {
+          setTimeout(() => {
+            const wordInputs = document.querySelectorAll('.nc-word-count-input');
+            const lastWordInput = wordInputs[wordInputs.length - 1];
+            if (lastWordInput) {
+              lastWordInput.focus();
+              lastWordInput.select();
+            }
+          }, 100);
+        }
       } else {
         this.toast.info('השירות כבר קיים ברשימה');
       }
@@ -687,6 +699,15 @@
             this.render();
           }
         });
+
+        // בחירה אוטומטית של הטקסט כשלוחצים על השדה
+        input.addEventListener('focus', (e) => {
+          e.target.select();
+        });
+
+        input.addEventListener('click', (e) => {
+          e.target.select();
+        });
       });
 
       document.querySelectorAll('.nc-word-count-input').forEach((input) => {
@@ -696,6 +717,16 @@
           if (this.calculator.updateWordCount(serviceId, words)) {
             this.render();
           }
+        });
+
+        // בחירה אוטומטית של הטקסט כשלוחצים על השדה
+        input.addEventListener('focus', (e) => {
+          e.target.select();
+        });
+
+        // בחירה גם בלחיצה עכבר (למקרה שכבר יש פוקוס)
+        input.addEventListener('click', (e) => {
+          e.target.select();
         });
       });
 
