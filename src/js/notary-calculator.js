@@ -808,58 +808,35 @@
   // ============================================================================
 
   let calculatorInstance = null;
-  let initAttempted = false;
 
   function initializeCalculator() {
-    // Prevent multiple simultaneous initialization attempts
-    if (initAttempted) {
-      console.log('⏭️ NotaryCalculator: Initialization already attempted');
-      return false;
-    }
-
     // Check if the required elements exist
     if (!document.getElementById('nc-btnAdd')) {
-      console.log('⏳ NotaryCalculator: Button not found, skipping...');
+      console.log('⏳ NotaryCalculator: Elements not ready yet');
       return false;
     }
-
-    initAttempted = true;
 
     // Destroy existing instance if any
     if (calculatorInstance) {
-      console.log('♻️ NotaryCalculator: Destroying previous instance');
+      console.log('♻️ NotaryCalculator: Resetting previous instance');
       calculatorInstance.destroy();
     }
 
     calculatorInstance = new NotaryCalculator();
     calculatorInstance.init();
-    console.log('🎉 NotaryCalculator initialized and ready!');
+    console.log('🎉 NotaryCalculator ready!');
     return true;
   }
 
-  // Primary method: Listen for tabLoaded event (most reliable for dynamic tabs)
+  // Listen for tabLoaded event - this is triggered when the tab HTML is loaded
   document.addEventListener('tabLoaded', (e) => {
     if (e.detail && e.detail.tabId === 'notary-calculator') {
-      console.log('📡 TabLoaded event received for notary-calculator');
-      // Reset the flag when tab is loaded
-      initAttempted = false;
-      // Small delay to ensure DOM is fully ready
-      setTimeout(initializeCalculator, 100);
+      console.log('📡 Notary Calculator tab loaded');
+      setTimeout(initializeCalculator, 50);
     }
   });
 
-  // Fallback: Try immediate initialization (in case script loads after DOM)
-  setTimeout(() => {
-    if (!initAttempted) {
-      console.log('🔄 Attempting immediate initialization...');
-      initializeCalculator();
-    }
-  }, 50);
-
-  // Export to window for debugging and manual initialization
+  // Export to window for debugging
   window.NotaryCalculator = NotaryCalculator;
-  window.initNotaryCalculator = function manualInit() {
-    initAttempted = false;
-    return initializeCalculator();
-  };
+  window.initNotaryCalculator = initializeCalculator;
 }(window));
