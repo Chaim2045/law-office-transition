@@ -183,6 +183,53 @@
   }
 
   // ============================================================================
+  // CONFIRM DIALOG SYSTEM
+  // ============================================================================
+
+  class ConfirmDialog {
+    static show(title, message) {
+      return new Promise((resolve) => {
+        const overlay = document.createElement('div');
+        overlay.className = 'nc-confirm-overlay nc-show';
+
+        overlay.innerHTML = `
+          <div class="nc-confirm-dialog">
+            <div class="nc-confirm-header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+              </svg>
+              <h3>${title}</h3>
+            </div>
+            <div class="nc-confirm-message">${message}</div>
+            <div class="nc-confirm-actions">
+              <button class="nc-confirm-btn nc-confirm-cancel">ביטול</button>
+              <button class="nc-confirm-btn nc-confirm-ok">אישור</button>
+            </div>
+          </div>
+        `;
+
+        document.body.appendChild(overlay);
+
+        const handleClose = (result) => {
+          overlay.classList.remove('nc-show');
+          setTimeout(() => overlay.remove(), 300);
+          resolve(result);
+        };
+
+        overlay.querySelector('.nc-confirm-cancel').addEventListener('click', () => handleClose(false));
+        overlay.querySelector('.nc-confirm-ok').addEventListener('click', () => handleClose(true));
+        overlay.querySelector('.nc-confirm-overlay').addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            handleClose(false);
+          }
+        });
+      });
+    }
+  }
+
+  // ============================================================================
   // CALCULATOR ENGINE
   // ============================================================================
 
@@ -809,8 +856,13 @@
       }
     }
 
-    reset() {
-      if (!confirm('האם לאפס את כל הנתונים?')) { return; }
+    async reset() {
+      const confirmed = await ConfirmDialog.show(
+        'איפוס מחשבון',
+        'האם אתה בטוח שברצונך לאפס את כל הנתונים?',
+      );
+
+      if (!confirmed) { return; }
 
       this.calculator.reset();
 
