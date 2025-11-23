@@ -809,18 +809,64 @@
 
   let calculatorInstance = null;
 
+  function initializeCalculator() {
+    // Check if the required elements exist
+    if (!document.getElementById('nc-btnAdd')) {
+      console.log('⏳ NotaryCalculator: Waiting for DOM elements...');
+      return false;
+    }
+
+    if (calculatorInstance) {
+      calculatorInstance.destroy();
+    }
+
+    calculatorInstance = new NotaryCalculator();
+    calculatorInstance.init();
+    return true;
+  }
+
+  // Method 1: Listen for tabLoaded event
   document.addEventListener('tabLoaded', (e) => {
     if (e.detail.tabId === 'notary-calculator') {
       setTimeout(() => {
-        if (calculatorInstance) {
-          calculatorInstance.destroy();
-        }
-        calculatorInstance = new NotaryCalculator();
-        calculatorInstance.init();
-      }, 100);
+        initializeCalculator();
+      }, 150);
     }
   });
 
+  // Method 2: Try to initialize immediately if DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        initializeCalculator();
+      }, 200);
+    });
+  } else {
+    // DOM is already loaded
+    setTimeout(() => {
+      initializeCalculator();
+    }, 200);
+  }
+
+  // Method 3: Watch for the button to appear (fallback)
+  const observer = new MutationObserver((mutations) => {
+    if (document.getElementById('nc-btnAdd') && !calculatorInstance) {
+      console.log('🔍 NotaryCalculator: Element detected, initializing...');
+      if (initializeCalculator()) {
+        observer.disconnect();
+      }
+    }
+  });
+
+  // Start observing
+  if (document.body) {
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+  }
+
   // Export to window for debugging
   window.NotaryCalculator = NotaryCalculator;
+  window._initNotaryCalculator = initializeCalculator; // Manual init function
 })(window);
