@@ -692,11 +692,20 @@
 
     bindServiceHandlers() {
       document.querySelectorAll('.nc-qty-input:not(.nc-word-count-input)').forEach((input) => {
+        // עדכון מיידי בלי render מלא
         input.addEventListener('input', (e) => {
           const serviceId = e.target.dataset.serviceId;
-          const qty = parseInt(e.target.value, 10);
+          const qty = parseInt(e.target.value, 10) || 1;
           if (this.calculator.updateQuantity(serviceId, qty)) {
-            this.render();
+            // עדכן את הסכום המוצג
+            const card = input.closest('.nc-service-card');
+            const totalElement = card.querySelector('.nc-service-total');
+            const service = this.calculator.services.find((s) => s.id === serviceId);
+            if (totalElement && service) {
+              totalElement.textContent = Utils.formatCurrency(service.price * service.qty);
+            }
+            // עדכן את הסיכום
+            this.updateSummary();
           }
         });
 
@@ -711,11 +720,22 @@
       });
 
       document.querySelectorAll('.nc-word-count-input').forEach((input) => {
+        // עדכון מיידי של המחיר בלי render מלא (כדי לאפשר הקלדה חופשית)
         input.addEventListener('input', (e) => {
           const serviceId = e.target.dataset.serviceId;
-          const words = parseInt(e.target.value, 10);
+          const words = parseInt(e.target.value, 10) || 0;
+
+          // עדכן את המחיר בלי לעשות render מלא
           if (this.calculator.updateWordCount(serviceId, words)) {
-            this.render();
+            // עדכן את המחיר המוצג ליד השדה
+            const card = input.closest('.nc-service-card');
+            const totalElement = card.querySelector('.nc-service-total');
+            const service = this.calculator.services.find((s) => s.id === serviceId);
+            if (totalElement && service) {
+              totalElement.textContent = Utils.formatCurrency(service.price);
+            }
+            // עדכן את הסיכום
+            this.updateSummary();
           }
         });
 
