@@ -5,8 +5,6 @@
  */
 
 (function (window) {
-  'use strict';
-
   // ============================================================================
   // CONFIGURATION & CONSTANTS
   // ============================================================================
@@ -91,9 +89,9 @@
 
     sanitizeNumber(value, min, max, defaultValue = 0) {
       const num = Number(value);
-      if (Number.isNaN(num)) return defaultValue;
-      if (num < min) return min;
-      if (num > max) return max;
+      if (Number.isNaN(num)) { return defaultValue; }
+      if (num < min) { return min; }
+      if (num > max) { return max; }
       return num;
     },
 
@@ -174,9 +172,11 @@
     success(msg) {
       this.show(msg, 'success');
     }
+
     error(msg) {
       this.show(msg, 'error');
     }
+
     info(msg) {
       this.show(msg, 'info');
     }
@@ -221,17 +221,17 @@
 
     removeService(serviceId) {
       const index = this.services.findIndex((s) => s.id === serviceId);
-      if (index === -1) return false;
+      if (index === -1) { return false; }
       this.services.splice(index, 1);
       return true;
     }
 
     updateQuantity(serviceId, quantity) {
       const validation = Utils.validateQuantity(quantity);
-      if (!validation.isValid) return false;
+      if (!validation.isValid) { return false; }
 
       const service = this.services.find((s) => s.id === serviceId);
-      if (!service) return false;
+      if (!service) { return false; }
 
       service.qty = Utils.sanitizeNumber(quantity, 1, 1000, 1);
       return true;
@@ -239,10 +239,10 @@
 
     updateWordCount(serviceId, words) {
       const validation = Utils.validateWordCount(words);
-      if (!validation.isValid) return false;
+      if (!validation.isValid) { return false; }
 
       const service = this.services.find((s) => s.id === serviceId);
-      if (!service || !service.isTranslation) return false;
+      if (!service || !service.isTranslation) { return false; }
 
       const sanitizedWords = Utils.sanitizeNumber(words, 1, 100000, 100);
       service.words = sanitizedWords;
@@ -251,7 +251,7 @@
     }
 
     calculateTranslationPrice(words) {
-      if (words <= 0) return 0;
+      if (words <= 0) { return 0; }
 
       let price = 0;
       let remainingWords = words;
@@ -447,7 +447,7 @@
       if (this.elements['nc-search']) {
         this.elements['nc-search'].addEventListener(
           'input',
-          Utils.debounce((e) => this.renderServicesList(e.target.value), 200)
+          Utils.debounce((e) => this.renderServicesList(e.target.value), 200),
         );
       }
 
@@ -529,10 +529,10 @@
     }
 
     searchServices(term) {
-      if (!term) return this.getAllServices();
+      if (!term) { return this.getAllServices(); }
       const lowerTerm = term.toLowerCase();
       return this.getAllServices().filter(
-        (s) => s.name.toLowerCase().includes(lowerTerm) || s.category.toLowerCase().includes(lowerTerm)
+        (s) => s.name.toLowerCase().includes(lowerTerm) || s.category.toLowerCase().includes(lowerTerm),
       );
     }
 
@@ -585,7 +585,7 @@
     render() {
       const services = this.calculator.services;
 
-      if (!this.elements['nc-services']) return;
+      if (!this.elements['nc-services']) { return; }
 
       if (services.length === 0) {
         this.elements['nc-services'].innerHTML = `
@@ -759,16 +759,16 @@
     }
 
     reset() {
-      if (!confirm('האם לאפס את כל הנתונים?')) return;
+      if (!confirm('האם לאפס את כל הנתונים?')) { return; }
 
       this.calculator.reset();
 
-      if (this.elements['nc-clientName']) this.elements['nc-clientName'].value = '';
-      if (this.elements['nc-serviceDate']) this.setDefaultDate();
-      if (this.elements['nc-addonNight']) this.elements['nc-addonNight'].checked = false;
-      if (this.elements['nc-addonForeign']) this.elements['nc-addonForeign'].checked = false;
-      if (this.elements['nc-addonTravel']) this.elements['nc-addonTravel'].checked = false;
-      if (this.elements['nc-travelDetails']) this.elements['nc-travelDetails'].classList.remove('nc-show');
+      if (this.elements['nc-clientName']) { this.elements['nc-clientName'].value = ''; }
+      if (this.elements['nc-serviceDate']) { this.setDefaultDate(); }
+      if (this.elements['nc-addonNight']) { this.elements['nc-addonNight'].checked = false; }
+      if (this.elements['nc-addonForeign']) { this.elements['nc-addonForeign'].checked = false; }
+      if (this.elements['nc-addonTravel']) { this.elements['nc-addonTravel'].checked = false; }
+      if (this.elements['nc-travelDetails']) { this.elements['nc-travelDetails'].classList.remove('nc-show'); }
 
       this.render();
       this.toast.info('המחשבון אופס');
@@ -787,7 +787,7 @@
     }
 
     init() {
-      if (this.initialized) return;
+      if (this.initialized) { return; }
 
       try {
         this.ui.init();
@@ -808,65 +808,58 @@
   // ============================================================================
 
   let calculatorInstance = null;
+  let initAttempted = false;
 
   function initializeCalculator() {
-    // Check if the required elements exist
-    if (!document.getElementById('nc-btnAdd')) {
-      console.log('⏳ NotaryCalculator: Waiting for DOM elements...');
+    // Prevent multiple simultaneous initialization attempts
+    if (initAttempted) {
+      console.log('⏭️ NotaryCalculator: Initialization already attempted');
       return false;
     }
 
+    // Check if the required elements exist
+    if (!document.getElementById('nc-btnAdd')) {
+      console.log('⏳ NotaryCalculator: Button not found, skipping...');
+      return false;
+    }
+
+    initAttempted = true;
+
+    // Destroy existing instance if any
     if (calculatorInstance) {
+      console.log('♻️ NotaryCalculator: Destroying previous instance');
       calculatorInstance.destroy();
     }
 
     calculatorInstance = new NotaryCalculator();
     calculatorInstance.init();
+    console.log('🎉 NotaryCalculator initialized and ready!');
     return true;
   }
 
-  // Method 1: Listen for tabLoaded event
+  // Primary method: Listen for tabLoaded event (most reliable for dynamic tabs)
   document.addEventListener('tabLoaded', (e) => {
-    if (e.detail.tabId === 'notary-calculator') {
-      setTimeout(() => {
-        initializeCalculator();
-      }, 150);
+    if (e.detail && e.detail.tabId === 'notary-calculator') {
+      console.log('📡 TabLoaded event received for notary-calculator');
+      // Reset the flag when tab is loaded
+      initAttempted = false;
+      // Small delay to ensure DOM is fully ready
+      setTimeout(initializeCalculator, 100);
     }
   });
 
-  // Method 2: Try to initialize immediately if DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(() => {
-        initializeCalculator();
-      }, 200);
-    });
-  } else {
-    // DOM is already loaded
-    setTimeout(() => {
+  // Fallback: Try immediate initialization (in case script loads after DOM)
+  setTimeout(() => {
+    if (!initAttempted) {
+      console.log('🔄 Attempting immediate initialization...');
       initializeCalculator();
-    }, 200);
-  }
-
-  // Method 3: Watch for the button to appear (fallback)
-  const observer = new MutationObserver((mutations) => {
-    if (document.getElementById('nc-btnAdd') && !calculatorInstance) {
-      console.log('🔍 NotaryCalculator: Element detected, initializing...');
-      if (initializeCalculator()) {
-        observer.disconnect();
-      }
     }
-  });
+  }, 50);
 
-  // Start observing
-  if (document.body) {
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
-  }
-
-  // Export to window for debugging
+  // Export to window for debugging and manual initialization
   window.NotaryCalculator = NotaryCalculator;
-  window._initNotaryCalculator = initializeCalculator; // Manual init function
-})(window);
+  window.initNotaryCalculator = function manualInit() {
+    initAttempted = false;
+    return initializeCalculator();
+  };
+}(window));

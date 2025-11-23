@@ -71,6 +71,8 @@ class TabLoader {
 
       // Execute scripts manually (innerHTML doesn't auto-run scripts)
       const scripts = tabContainer.querySelectorAll('script');
+      const scriptPromises = [];
+
       scripts.forEach((oldScript) => {
         const newScript = document.createElement('script');
 
@@ -80,7 +82,13 @@ class TabLoader {
         });
 
         if (oldScript.src) {
-          newScript.src = oldScript.src;
+          // Create a promise for external scripts
+          const promise = new Promise((resolve, reject) => {
+            newScript.onload = resolve;
+            newScript.onerror = reject;
+            newScript.src = oldScript.src;
+          });
+          scriptPromises.push(promise);
         } else {
           newScript.textContent = oldScript.textContent;
         }
@@ -88,8 +96,18 @@ class TabLoader {
         oldScript.parentNode.replaceChild(newScript, oldScript);
       });
 
+      // Wait for all scripts to load
+      await Promise.all(scriptPromises).catch((error) => {
+        console.warn('Some scripts failed to load:', error);
+      });
+
       // סימון שהטאב נטען
       this.loadedTabs.add(tabId);
+
+      // Small delay to ensure scripts are executed
+      await new Promise((resolve) => {
+        setTimeout(resolve, 50);
+      });
 
       // קריאה לפונקציות אתחול אם קיימות
       this.initializeTabContent(tabId);
