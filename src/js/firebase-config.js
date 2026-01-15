@@ -773,22 +773,21 @@ async function cleanupExpiredLocks() {
     if (snapshot.exists()) {
       const locks = snapshot.val();
       const now = Date.now();
-      let cleanedCount = 0;
 
-      // Check each lock
-      for (const blockId in locks) {
-        const lock = locks[blockId];
+      // Collect expired locks
+      const expiredLockIds = Object.entries(locks)
+        .filter(([, lock]) => lock.expiresAt < now)
+        .map(([blockId]) => blockId);
 
-        // Remove if expired
-        if (lock.expiresAt < now) {
-          await database.ref(`${LOCK_PATH}/${blockId}`).remove();
-          cleanedCount++;
-          console.log(`🧹 [Lock] Cleaned expired lock: ${blockId}`);
-        }
-      }
-
-      if (cleanedCount > 0) {
-        console.log(`✅ [Lock] Cleaned ${cleanedCount} expired locks`);
+      // Remove all expired locks in parallel
+      if (expiredLockIds.length > 0) {
+        await Promise.all(
+          expiredLockIds.map((blockId) => {
+            console.log(`🧹 [Lock] Cleaned expired lock: ${blockId}`);
+            return database.ref(`${LOCK_PATH}/${blockId}`).remove();
+          })
+        );
+        console.log(`✅ [Lock] Cleaned ${expiredLockIds.length} expired locks`);
       }
     }
   } catch (error) {
