@@ -375,14 +375,12 @@ class ContentBlockManager {
     // רענן כפתורי הוספה
     this.addInsertButtons();
 
-    // שמור תוכן + מבנה ל-Firebase
-    this.saveBlock(blockId);
+    // שמור תוכן + מבנה ל-Firebase (via schedule to prevent concurrent saves)
+    this.scheduleSave(blockId);
     this.saveBlockStructure(blockId, type, tabId);
 
-    // Toast
-    if (typeof showToast === 'function') {
-      showToast('בלוק חדש נוסף בהצלחה', 'success');
-    }
+    // ✅ Toast removed - will be added in COMMIT 3 after ACK
+    // (No premature "success" messages)
 
     return blockWrapper;
   }
@@ -710,21 +708,25 @@ class ContentBlockManager {
 
   /**
    * שמירת בלוק
+   * NOTE: This function is now called via scheduleSave() which prevents
+   * concurrent saves of the same block. The pendingSaves Map ensures
+   * only ONE save operation per blockId can run at a time.
    */
   saveBlock(blockId) {
     const block = this.blocks.get(blockId);
-    if (!block) return;
+    if (!block) return Promise.resolve();
 
     const content = block.content.innerHTML;
 
-    // שמור מקומית
+    // שמור מקומית (synchronous)
     localStorage.setItem(`guide_${blockId}`, content);
 
-    // שמור ב-Firebase
+    // שמור ב-Firebase (asynchronous)
     if (typeof saveToFirebase === 'function') {
-      saveToFirebase(blockId, content);
-      console.log(`💾 שמור: ${blockId.substring(0, 30)}...`);
+      return saveToFirebase(blockId, content);
     }
+
+    return Promise.resolve();
   }
 
   /**
@@ -843,36 +845,81 @@ class ContentBlockManager {
    * הגדרת event listeners
    */
   setupEventListeners() {
-    // שמירה אוטומטית - תופס מספר סוגים של אירועי עריכה
-    const saveHandler = (e) => {
+    // ✅ ONE SAVE PIPELINE: Unified autosave with debounce + blur
+    // Track pending saves to prevent concurrent saves of same block
+    this.pendingSaves = new Map(); // blockId -> Promise
+    this.saveTimeouts = new Map(); // blockId -> timeoutId
+
+    // Input handler with debounce (600ms)
+    const inputHandler = (e) => {
       const target = e.target;
       if (target && target.classList && target.classList.contains('editable')) {
         const blockElement = target.closest('.content-block');
         if (blockElement) {
           const blockId = blockElement.getAttribute('data-block-id');
-          this.saveBlock(blockId);
+
+          // Clear existing timeout for this block
+          if (this.saveTimeouts.has(blockId)) {
+            clearTimeout(this.saveTimeouts.get(blockId));
+          }
+
+          // Set new debounced save
+          const timeoutId = setTimeout(() => {
+            this.scheduleSave(blockId);
+            this.saveTimeouts.delete(blockId);
+          }, 600); // 600ms debounce
+
+          this.saveTimeouts.set(blockId, timeoutId);
         }
       }
     };
 
-    // תפוס כמה סוגי events שונים כדי לוודא שמירה
-    document.addEventListener('input', saveHandler);
-    document.addEventListener('blur', saveHandler, true); // capture phase
-
-    // תפוס גם שינויים מ-execCommand
-    document.addEventListener('DOMSubtreeModified', (e) => {
+    // Blur handler - immediate save
+    const blurHandler = (e) => {
       const target = e.target;
       if (target && target.classList && target.classList.contains('editable')) {
-        clearTimeout(this.saveTimeout);
-        this.saveTimeout = setTimeout(() => {
-          const blockElement = target.closest('.content-block');
-          if (blockElement) {
-            const blockId = blockElement.getAttribute('data-block-id');
-            this.saveBlock(blockId);
+        const blockElement = target.closest('.content-block');
+        if (blockElement) {
+          const blockId = blockElement.getAttribute('data-block-id');
+
+          // Clear debounce timeout
+          if (this.saveTimeouts.has(blockId)) {
+            clearTimeout(this.saveTimeouts.get(blockId));
+            this.saveTimeouts.delete(blockId);
           }
-        }, 300); // debounce של 300ms
+
+          // Immediate save on blur
+          this.scheduleSave(blockId);
+        }
       }
+    };
+
+    document.addEventListener('input', inputHandler);
+    document.addEventListener('blur', blurHandler, true); // capture phase
+
+    // ❌ REMOVED: DOMSubtreeModified (deprecated & causes performance issues)
+    // The above handlers (input + blur) are sufficient for reliable autosave
+  }
+
+  /**
+   * Schedule a save, preventing concurrent saves of the same block
+   */
+  scheduleSave(blockId) {
+    // ✅ Prevent concurrent save: If already saving this block, skip
+    if (this.pendingSaves.has(blockId)) {
+      if (window.APP_CONFIG.enableSaveLogging) {
+        console.log(`⏭️ [SavePipeline] Skipping save for ${blockId} - already in progress`);
+      }
+      return;
+    }
+
+    // Mark as pending and save
+    const savePromise = this.saveBlock(blockId).finally(() => {
+      // Remove from pending when done
+      this.pendingSaves.delete(blockId);
     });
+
+    this.pendingSaves.set(blockId, savePromise);
   }
 }
 
@@ -898,20 +945,11 @@ class RichTextEditor {
     // הצג toolbar
     this.showToolbar(element, blockWrapper);
 
-    // 🔥 FIX: הוסף event listeners לשמירה אוטומטית
-    const autoSaveHandler = () => {
-      clearTimeout(this.autoSaveTimeout);
-      this.autoSaveTimeout = setTimeout(() => {
-        this.saveCurrentBlock();
-      }, 500); // שמור אחרי חצי שנייה של חוסר פעילות
-    };
+    // ❌ REMOVED: Duplicate event listeners
+    // ContentBlockManager.setupEventListeners() already handles input/blur
+    // No need for duplicate listeners here - they caused double saves
 
-    // שמור על כל שינוי טקסט
-    element.addEventListener('input', autoSaveHandler);
-    element.addEventListener('keyup', autoSaveHandler);
-    element.addEventListener('paste', autoSaveHandler);
-
-    // Selection change
+    // Selection change (for toolbar UI only, not for save)
     document.addEventListener('selectionchange', () => {
       if (this.activeElement === element) {
         this.updateToolbarState();
@@ -1008,7 +1046,8 @@ class RichTextEditor {
     if (blockElement) {
       const blockId = blockElement.getAttribute('data-block-id');
       if (blockId && window.ContentBlockManager) {
-        window.ContentBlockManager.saveBlock(blockId);
+        // ✅ Use scheduleSave to prevent concurrent saves
+        window.ContentBlockManager.scheduleSave(blockId);
       }
     }
   }
