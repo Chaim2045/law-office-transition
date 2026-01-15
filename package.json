@@ -9,7 +9,7 @@
     "lint:fix": "eslint \"src/**/*.js\" --fix",
     "format": "prettier --write \"**/*.{js,css,html,json,md}\"",
     "format:check": "prettier --check \"**/*.{js,css,html,json,md}\"",
-    "dev": "serve public -p 3000",
+    "dev": "serve src -p 3000",
     "prepare": "npm run format && npm run lint:fix"
   },
   "keywords": [

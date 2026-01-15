@@ -1,0 +1,580 @@
+/**
+ * Content Editor Styles
+ * עיצוב מערכת עריכת התוכן המתקדמת
+ */
+
+/* ============================================
+   1. Content Blocks - בלוקי תוכן
+   ============================================ */
+
+.content-block {
+  position: relative;
+  margin: 1rem 0;
+  transition: all 0.2s ease;
+}
+
+.content-block-editable {
+  border: 2px solid transparent;
+  border-radius: 8px;
+  padding: 1rem;
+  transition: all 0.2s ease;
+}
+
+.content-block-editable:hover {
+  border-color: #dbeafe;
+  background-color: #f0f9ff;
+}
+
+.content-block-editing {
+  border-color: #3b82f6;
+  background-color: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Dark mode */
+.dark .content-block-editable:hover {
+  border-color: #1e3a8a;
+  background-color: rgba(30, 58, 138, 0.1);
+}
+
+.dark .content-block-editing {
+  border-color: #60a5fa;
+  background-color: rgba(96, 165, 250, 0.05);
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.1);
+}
+
+/* ============================================
+   2. Insert Content Button - כפתור הוספה
+   ============================================ */
+
+.insert-content-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.insert-content-btn:hover {
+  opacity: 1;
+}
+
+.tab-content:hover .insert-content-btn {
+  opacity: 0.6;
+}
+
+.insert-content-btn:hover {
+  opacity: 1 !important;
+}
+
+.insert-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.insert-btn:hover {
+  transform: scale(1.1) rotate(90deg);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.insert-btn:active {
+  transform: scale(0.95) rotate(90deg);
+}
+
+.insert-label {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-weight: 500;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.insert-content-btn:hover .insert-label {
+  opacity: 1;
+}
+
+.dark .insert-label {
+  color: #9ca3af;
+}
+
+/* ============================================
+   3. Content Type Menu - תפריט סוג תוכן
+   ============================================ */
+
+.content-type-menu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  min-width: 320px;
+  animation: menuSlideIn 0.2s ease;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.dark .content-type-menu {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.content-type-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid #e5e7eb;
+  font-weight: 600;
+  color: #111827;
+}
+
+.dark .content-type-menu-header {
+  border-bottom-color: #374151;
+  color: #f3f4f6;
+}
+
+.close-menu-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.close-menu-btn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.dark .close-menu-btn:hover {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.content-type-options {
+  padding: 0.5rem;
+}
+
+.content-type-option {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: right;
+}
+
+.content-type-option:hover {
+  background: #f3f4f6;
+  transform: translateX(-2px);
+}
+
+.dark .content-type-option:hover {
+  background: #374151;
+}
+
+.content-type-option svg {
+  color: #3b82f6;
+  flex-shrink: 0;
+}
+
+.dark .content-type-option svg {
+  color: #60a5fa;
+}
+
+.option-title {
+  font-weight: 600;
+  color: #111827;
+  font-size: 0.9375rem;
+  margin-bottom: 0.125rem;
+}
+
+.dark .option-title {
+  color: #f3f4f6;
+}
+
+.option-desc {
+  font-size: 0.8125rem;
+  color: #6b7280;
+}
+
+.dark .option-desc {
+  color: #9ca3af;
+}
+
+/* ============================================
+   4. Block Actions - פעולות בלוק
+   ============================================ */
+
+.block-actions {
+  position: absolute;
+  top: -12px;
+  right: 12px;
+  display: flex;
+  gap: 0.25rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 0.25rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.content-block:hover .block-actions {
+  opacity: 1;
+}
+
+.dark .block-actions {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.block-action-btn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  color: #6b7280;
+}
+
+.block-action-btn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.dark .block-action-btn {
+  color: #9ca3af;
+}
+
+.dark .block-action-btn:hover {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.block-delete:hover {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.dark .block-delete:hover {
+  background: rgba(220, 38, 38, 0.2);
+  color: #f87171;
+}
+
+/* ============================================
+   5. Rich Text Toolbar - סרגל כלים
+   ============================================ */
+
+.rich-text-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.dark .rich-text-toolbar {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+.toolbar-btn {
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+  color: #6b7280;
+}
+
+.toolbar-btn:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.dark .toolbar-btn {
+  color: #9ca3af;
+}
+
+.dark .toolbar-btn:hover {
+  background: #374151;
+  color: #f3f4f6;
+}
+
+.toolbar-btn-active {
+  background: #dbeafe;
+  color: #3b82f6;
+}
+
+.dark .toolbar-btn-active {
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+}
+
+.toolbar-separator {
+  width: 1px;
+  height: 24px;
+  background: #e5e7eb;
+  margin: 0 0.25rem;
+}
+
+.dark .toolbar-separator {
+  background: #374151;
+}
+
+.toolbar-done {
+  margin-right: auto;
+  padding: 0 1rem;
+  width: auto;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.toolbar-done:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%);
+  color: white;
+  transform: scale(1.02);
+}
+
+/* ============================================
+   6. Rich Text Content - תוכן עשיר
+   ============================================ */
+
+.rich-text-content {
+  line-height: 1.6;
+  color: #111827;
+}
+
+.dark .rich-text-content {
+  color: #f3f4f6;
+}
+
+.rich-text-content:focus {
+  outline: none;
+}
+
+.rich-text-content[contenteditable='true'] {
+  padding: 0.75rem;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  min-height: 60px;
+  background: #f8fafc;
+  transition: all 0.2s ease;
+}
+
+.rich-text-content[contenteditable='true']:focus {
+  border-color: #3b82f6;
+  background: white;
+}
+
+.dark .rich-text-content[contenteditable='true'] {
+  border-color: #475569;
+  background: rgba(30, 41, 59, 0.5);
+}
+
+.dark .rich-text-content[contenteditable='true']:focus {
+  border-color: #60a5fa;
+  background: #1e293b;
+}
+
+/* Placeholder */
+.rich-text-content[contenteditable='true']:empty:before {
+  content: attr(data-placeholder);
+  color: #9ca3af;
+  pointer-events: none;
+}
+
+/* ============================================
+   7. Responsive - מובייל
+   ============================================ */
+
+@media (max-width: 768px) {
+  .content-type-menu {
+    min-width: 280px;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .content-type-option {
+    padding: 0.75rem;
+  }
+
+  .option-title {
+    font-size: 0.875rem;
+  }
+
+  .option-desc {
+    font-size: 0.75rem;
+  }
+
+  .rich-text-toolbar {
+    flex-wrap: wrap;
+  }
+
+  .toolbar-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .block-actions {
+    right: 8px;
+    top: -10px;
+  }
+
+  .block-action-btn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .insert-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .insert-label {
+    display: none;
+  }
+}
+
+/* ============================================
+   8. Animations
+   ============================================ */
+
+@keyframes blockFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.content-block-editing {
+  animation: blockFadeIn 0.3s ease;
+}
+
+/* ============================================
+   9. Print Styles - הדפסה
+   ============================================ */
+
+@media print {
+  .insert-content-btn,
+  .block-actions,
+  .rich-text-toolbar {
+    display: none !important;
+  }
+
+  .content-block-editable,
+  .content-block-editing {
+    border: none !important;
+    background: none !important;
+    padding: 0 !important;
+  }
+}
+
+/* ============================================
+   10. Accessibility - נגישות
+   ============================================ */
+
+.toolbar-btn:focus,
+.block-action-btn:focus,
+.insert-btn:focus,
+.content-type-option:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.dark .toolbar-btn:focus,
+.dark .block-action-btn:focus,
+.dark .insert-btn:focus,
+.dark .content-type-option:focus {
+  outline-color: #60a5fa;
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+  .content-block-editable {
+    border-width: 3px;
+  }
+
+  .toolbar-btn,
+  .block-action-btn {
+    border: 1px solid currentColor;
+  }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .content-block,
+  .insert-btn,
+  .toolbar-btn,
+  .block-action-btn,
+  .content-type-option {
+    transition: none;
+  }
+
+  .content-type-menu {
+    animation: none;
+  }
+}
