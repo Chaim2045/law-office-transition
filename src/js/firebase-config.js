@@ -315,19 +315,30 @@ async function saveToFirebase(field, value) {
     return Promise.resolve(false);
   }
 
-  // ✅ COMMIT 9: Enforce lock ownership for block writes
+  // ✅ COMMIT 13: Tightened lock enforcement - REQUIRE lock ownership
   if (field.startsWith('block_')) {
     const blockId = field;
 
-    // Check if we own the lock
-    if (!activeLocks.has(blockId)) {
-      // No active lock in memory - check Firebase
+    // ✅ REQUIRE lock ownership (fail-closed policy)
+    const hasActiveLock = activeLocks.has(blockId);
+
+    if (!hasActiveLock) {
+      // No active lock in memory - check Firebase for ownership proof
       try {
         const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
         const snapshot = await lockRef.get();
 
         if (snapshot.exists()) {
           const lock = snapshot.val();
+          const now = Date.now();
+
+          // Check if lock expired
+          if (lock.expiresAt < now) {
+            const errorMsg = `⛔ Write blocked - lock expired (must re-acquire)`;
+            console.error(errorMsg);
+            SaveLogger.logError(field, new Error(errorMsg), startTime);
+            return false;
+          }
 
           // Check if lock is owned by another session
           if (lock.lockedBy !== SESSION_ID) {
@@ -337,12 +348,21 @@ async function saveToFirebase(field, value) {
             return false;
           }
 
-          // Lock is ours but not in activeLocks - this is OK (edge case after refresh)
+          // Lock is ours but not in activeLocks - allow (edge case after refresh)
+          console.warn(`⚠️ Lock verified in Firebase but not in memory: ${blockId}`);
+        } else {
+          // ✅ COMMIT 13: No lock exists → REJECT (fail-closed)
+          const errorMsg = `⛔ Write blocked - no lock acquired for ${blockId}`;
+          console.error(errorMsg);
+          SaveLogger.logError(field, new Error(errorMsg), startTime);
+          return false;
         }
-        // else: No lock exists in Firebase - allow write (legacy behavior)
       } catch (error) {
-        console.error('❌ Error checking lock:', error);
-        // On error, allow write (fail open for availability)
+        // ✅ COMMIT 13: On error → REJECT (fail-closed)
+        const errorMsg = `⛔ Write blocked - lock check failed: ${error.message}`;
+        console.error(errorMsg);
+        SaveLogger.logError(field, new Error(errorMsg), startTime);
+        return false;
       }
     }
     // else: We have active lock in memory - verified ownership, allow write
