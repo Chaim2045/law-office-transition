@@ -437,34 +437,58 @@ function setupRealtimeSync(onDataUpdate) {
     return realtimeUnsubscribe;
   }
 
-  console.log('🔄 מפעיל Realtime Sync...');
+  console.log('🔄 מפעיל Realtime Sync עם child_* listeners...');
 
   const dataRef = database.ref('guideData');
 
-  // Listen to value changes
-  dataRef.on('value', (snapshot) => {
-    if (snapshot.exists()) {
-      const rawData = snapshot.val();
-      console.log('🔄 [Realtime] קיבלנו עדכון מ-Firebase');
+  // ✅ COMMIT 10: Use efficient child_* listeners instead of .on('value')
 
-      // ✅ COMMIT 8: Normalize and return FULL object {content, updatedAt}
-      const normalizedData = {};
-      Object.keys(rawData).forEach((blockId) => {
-        normalizedData[blockId] = normalizeBlockData(rawData[blockId]);
-        // Returns {content: string, updatedAt: number}
-      });
+  // Helper function to handle individual block updates
+  const handleBlockUpdate = (snapshot, eventType) => {
+    if (!snapshot.exists()) return;
 
-      if (onDataUpdate && typeof onDataUpdate === 'function') {
-        onDataUpdate(normalizedData);
-      }
+    const blockId = snapshot.key;
+    const rawValue = snapshot.val();
+
+    console.log(`🔄 [Realtime] ${eventType} - ${blockId}`);
+
+    // Normalize block data
+    const normalized = normalizeBlockData(rawValue);
+
+    // Pass single-block update to callback
+    if (onDataUpdate && typeof onDataUpdate === 'function') {
+      const updateData = {};
+      updateData[blockId] = normalized;
+      onDataUpdate(updateData);
     }
-  });
+  };
+
+  // Listen to individual child events (efficient - only sends changed data)
+  const childAddedListener = (snapshot) => handleBlockUpdate(snapshot, 'child_added');
+  const childChangedListener = (snapshot) => handleBlockUpdate(snapshot, 'child_changed');
+  const childRemovedListener = (snapshot) => {
+    const blockId = snapshot.key;
+    console.log(`🔄 [Realtime] child_removed - ${blockId}`);
+
+    // Notify callback about removal
+    if (onDataUpdate && typeof onDataUpdate === 'function') {
+      const updateData = {};
+      updateData[blockId] = null; // Signal removal
+      onDataUpdate(updateData);
+    }
+  };
+
+  dataRef.on('child_added', childAddedListener);
+  dataRef.on('child_changed', childChangedListener);
+  dataRef.on('child_removed', childRemovedListener);
 
   realtimeListenerActive = true;
 
   // Return unsubscribe function
   realtimeUnsubscribe = () => {
-    dataRef.off('value');
+    dataRef.off('child_added', childAddedListener);
+    dataRef.off('child_changed', childChangedListener);
+    dataRef.off('child_removed', childRemovedListener);
     realtimeListenerActive = false;
     console.log('🛑 Realtime listener הופסק');
   };
