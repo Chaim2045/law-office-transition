@@ -159,6 +159,11 @@ class KeyboardShortcuts {
       return;
     }
 
+    // Ignore if key is undefined (can happen with certain special keys)
+    if (!e.key) {
+      return;
+    }
+
     // Don't trigger shortcuts when typing in input fields (except specific keys)
     const activeElement = document.activeElement;
     const isInputField =

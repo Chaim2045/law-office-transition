@@ -548,8 +548,8 @@ function handleEdit(e) {
 
   if (field) {
     // Save to history (only if value actually changed)
-    if (value !== oldValue && typeof HistoryManager !== 'undefined') {
-      HistoryManager.push({
+    if (value !== oldValue && typeof window.HistoryManager !== 'undefined') {
+      window.HistoryManager.push({
         field,
         oldValue,
         newValue: value,
