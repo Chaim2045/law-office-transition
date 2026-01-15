@@ -673,6 +673,31 @@
   background: #3b82f6;
 }
 
+/* Remote update indicator */
+.content-block.block-updated-remotely {
+  animation: flash-update 0.5s ease-in-out;
+  border: 2px solid #818cf8 !important;
+}
+
+.content-block.block-updated-remotely::after {
+  content: '🔄 עודכן';
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #c7d2fe;
+  color: #3730a3;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.dark .content-block.block-updated-remotely::after {
+  background: #3730a3;
+  color: #c7d2fe;
+}
+
 /* Pulse animation for saving state */
 @keyframes pulse {
   0%,
@@ -681,6 +706,27 @@
   }
   50% {
     opacity: 0.6;
+  }
+}
+
+/* Flash animation for remote updates */
+@keyframes flash-update {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: #eef2ff;
+  }
+}
+
+.dark @keyframes flash-update {
+  0%,
+  100% {
+    background-color: transparent;
+  }
+  50% {
+    background-color: rgba(99, 102, 241, 0.1);
   }
 }
 
@@ -699,6 +745,10 @@
   }
 
   .content-block.block-saving::before {
+    animation: none;
+  }
+
+  .content-block.block-updated-remotely {
     animation: none;
   }
 }

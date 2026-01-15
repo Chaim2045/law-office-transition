@@ -29,7 +29,89 @@ class ContentBlockManager {
     await this.loadExistingBlocks();
     await this.loadBlocksFromFirebase();
     this.setupEventListeners();
+    this.setupRealtimeSync(); // ✅ NEW: Start realtime listener
     console.log('✅ ContentBlockManager initialized');
+  }
+
+  /**
+   * Setup realtime sync with Firebase
+   */
+  setupRealtimeSync() {
+    if (typeof window.setupRealtimeSync !== 'function') {
+      console.warn('⚠️ setupRealtimeSync לא זמין');
+      return;
+    }
+
+    // Setup listener with update handler
+    window.setupRealtimeSync((data) => {
+      this.handleRealtimeUpdate(data);
+    });
+  }
+
+  /**
+   * Handle realtime updates from Firebase
+   * Anti-flicker: Don't update blocks currently being edited
+   */
+  handleRealtimeUpdate(firebaseData) {
+    if (!firebaseData) return;
+
+    // Track which blocks were updated
+    const updatedBlocks = [];
+
+    // Update each block if changed
+    Object.keys(firebaseData).forEach((key) => {
+      // Skip metadata
+      if (key.startsWith('meta_')) return;
+
+      // Only update content blocks
+      if (key.startsWith('block_')) {
+        const blockId = key;
+        const newContent = firebaseData[blockId];
+        const block = this.blocks.get(blockId);
+
+        if (block && block.content) {
+          const currentContent = block.content.innerHTML;
+
+          // ✅ ANTI-FLICKER: Don't update if:
+          // 1. Block is being saved right now (pendingSaves has it)
+          // 2. Block is actively being edited (has focus)
+          // 3. Content hasn't actually changed
+          if (this.pendingSaves && this.pendingSaves.has(blockId)) {
+            if (window.APP_CONFIG.enableSaveLogging) {
+              console.log(`⏭️ [Realtime] Skipping ${blockId} - currently saving`);
+            }
+            return;
+          }
+
+          if (document.activeElement && document.activeElement.closest(`[data-block-id="${blockId}"]`)) {
+            if (window.APP_CONFIG.enableSaveLogging) {
+              console.log(`⏭️ [Realtime] Skipping ${blockId} - user is editing`);
+            }
+            return;
+          }
+
+          if (currentContent === newContent) {
+            // No change, skip
+            return;
+          }
+
+          // ✅ SAFE TO UPDATE
+          block.content.innerHTML = newContent;
+          localStorage.setItem(`guide_${blockId}`, newContent);
+          updatedBlocks.push(blockId);
+
+          // Brief highlight to show it updated
+          block.element.classList.add('block-updated-remotely');
+          setTimeout(() => {
+            block.element.classList.remove('block-updated-remotely');
+          }, 1500);
+        }
+      }
+    });
+
+    if (updatedBlocks.length > 0 && window.APP_CONFIG.enableSaveLogging) {
+      console.log(`🔄 [Realtime] עודכנו ${updatedBlocks.length} בלוקים`);
+    }
   }
 
   /**

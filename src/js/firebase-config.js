@@ -311,7 +311,7 @@ function deleteFromFirebase(field) {
     });
 }
 
-// טעינת כל הנתונים מ-Firebase
+// טעינת כל הנתונים מ-Firebase (one-time read for initial load)
 function loadAllDataFromFirebase() {
   if (!firebaseInitialized || !database) {
     console.warn('⚠️ Firebase לא מאותחל. טוען נתונים מקומיים בלבד.');
@@ -333,6 +333,52 @@ function loadAllDataFromFirebase() {
       return null;
     });
 }
+
+// ✅ NEW: Setup realtime listener for live updates
+let realtimeListenerActive = false;
+let realtimeUnsubscribe = null;
+
+function setupRealtimeSync(onDataUpdate) {
+  if (!firebaseInitialized || !database) {
+    console.warn('⚠️ Firebase לא מאותחל. Realtime sync לא זמין.');
+    return null;
+  }
+
+  if (realtimeListenerActive) {
+    console.warn('⚠️ Realtime listener כבר פעיל');
+    return realtimeUnsubscribe;
+  }
+
+  console.log('🔄 מפעיל Realtime Sync...');
+
+  const dataRef = database.ref('guideData');
+
+  // Listen to value changes
+  dataRef.on('value', (snapshot) => {
+    if (snapshot.exists()) {
+      const data = snapshot.val();
+      console.log('🔄 [Realtime] קיבלנו עדכון מ-Firebase');
+
+      if (onDataUpdate && typeof onDataUpdate === 'function') {
+        onDataUpdate(data);
+      }
+    }
+  });
+
+  realtimeListenerActive = true;
+
+  // Return unsubscribe function
+  realtimeUnsubscribe = () => {
+    dataRef.off('value');
+    realtimeListenerActive = false;
+    console.log('🛑 Realtime listener הופסק');
+  };
+
+  return realtimeUnsubscribe;
+}
+
+// Export for global access
+window.setupRealtimeSync = setupRealtimeSync;
 
 // Export functions to window for global access
 window.validatePassword = validatePassword;
