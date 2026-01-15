@@ -711,22 +711,92 @@ class ContentBlockManager {
    * NOTE: This function is now called via scheduleSave() which prevents
    * concurrent saves of the same block. The pendingSaves Map ensures
    * only ONE save operation per blockId can run at a time.
+   *
+   * @returns {Promise<boolean>} true if saved successfully, false otherwise
    */
-  saveBlock(blockId) {
+  async saveBlock(blockId) {
     const block = this.blocks.get(blockId);
-    if (!block) return Promise.resolve();
+    if (!block) return false;
 
     const content = block.content.innerHTML;
+
+    // Update UI: Saving state
+    this.updateBlockSaveStatus(blockId, 'saving');
 
     // שמור מקומית (synchronous)
     localStorage.setItem(`guide_${blockId}`, content);
 
     // שמור ב-Firebase (asynchronous)
     if (typeof saveToFirebase === 'function') {
-      return saveToFirebase(blockId, content);
+      const success = await saveToFirebase(blockId, content);
+
+      if (success) {
+        // ✅ SUCCESS: Update UI
+        this.updateBlockSaveStatus(blockId, 'saved');
+        return true;
+      } else {
+        // ❌ ERROR: Update UI
+        this.updateBlockSaveStatus(blockId, 'error');
+        return false;
+      }
     }
 
-    return Promise.resolve();
+    // No Firebase - consider it saved locally
+    this.updateBlockSaveStatus(blockId, 'saved');
+    return true;
+  }
+
+  /**
+   * Update block save status UI
+   */
+  updateBlockSaveStatus(blockId, status) {
+    const block = this.blocks.get(blockId);
+    if (!block || !block.element) return;
+
+    // Remove old status classes
+    block.element.classList.remove('block-saving', 'block-saved', 'block-error');
+
+    // Add new status class
+    switch (status) {
+      case 'saving':
+        block.element.classList.add('block-saving');
+        break;
+      case 'saved':
+        block.element.classList.add('block-saved');
+        // Remove 'saved' class after 2 seconds
+        setTimeout(() => {
+          block.element.classList.remove('block-saved');
+        }, 2000);
+        break;
+      case 'error':
+        block.element.classList.add('block-error');
+        // Show retry button or message
+        this.showRetryOption(blockId);
+        break;
+    }
+  }
+
+  /**
+   * Show retry option for failed saves
+   */
+  showRetryOption(blockId) {
+    const block = this.blocks.get(blockId);
+    if (!block || !block.element) return;
+
+    // Check if retry button already exists
+    if (block.element.querySelector('.save-retry-btn')) return;
+
+    const retryBtn = document.createElement('button');
+    retryBtn.className = 'save-retry-btn';
+    retryBtn.innerHTML = '🔄 נסה שוב';
+    retryBtn.title = 'שגיאה בשמירה - לחץ לנסות שוב';
+
+    retryBtn.addEventListener('click', () => {
+      retryBtn.remove();
+      this.scheduleSave(blockId);
+    });
+
+    block.element.appendChild(retryBtn);
   }
 
   /**

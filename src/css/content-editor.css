@@ -564,6 +564,126 @@
   }
 }
 
+/* ============================================
+   10. Save Status Indicators
+   ============================================ */
+
+/* Saving state */
+.content-block.block-saving {
+  position: relative;
+}
+
+.content-block.block-saving::before {
+  content: '💾 שומר...';
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #fef3c7;
+  color: #92400e;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.dark .content-block.block-saving::before {
+  background: #78350f;
+  color: #fef3c7;
+}
+
+/* Saved state */
+.content-block.block-saved::before {
+  content: '✅ נשמר';
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #d1fae5;
+  color: #065f46;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.dark .content-block.block-saved::before {
+  background: #064e3b;
+  color: #d1fae5;
+}
+
+/* Error state */
+.content-block.block-error {
+  border: 2px solid #fca5a5 !important;
+  background: #fef2f2 !important;
+}
+
+.content-block.block-error::before {
+  content: '❌ שגיאה';
+  position: absolute;
+  top: -8px;
+  right: 8px;
+  background: #fca5a5;
+  color: #7f1d1d;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.dark .content-block.block-error {
+  border-color: #f87171 !important;
+  background: rgba(127, 29, 29, 0.1) !important;
+}
+
+.dark .content-block.block-error::before {
+  background: #7f1d1d;
+  color: #fca5a5;
+}
+
+/* Retry button */
+.save-retry-btn {
+  position: absolute;
+  top: 20px;
+  right: 8px;
+  background: #3b82f6;
+  color: white;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.2s;
+}
+
+.save-retry-btn:hover {
+  background: #2563eb;
+}
+
+.dark .save-retry-btn {
+  background: #60a5fa;
+  color: #1e3a8a;
+}
+
+.dark .save-retry-btn:hover {
+  background: #3b82f6;
+}
+
+/* Pulse animation for saving state */
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .content-block,
@@ -575,6 +695,10 @@
   }
 
   .content-type-menu {
+    animation: none;
+  }
+
+  .content-block.block-saving::before {
     animation: none;
   }
 }
