@@ -69,6 +69,17 @@ class ContentBlockManager {
         const firebaseBlock = firebaseData[blockId];
         const block = this.blocks.get(blockId);
 
+        // ✅ COMMIT 10: Handle block removal
+        if (firebaseBlock === null) {
+          // Block was removed from Firebase
+          if (block && block.element) {
+            console.log(`🗑️ [Realtime] Block removed: ${blockId}`);
+            // Optionally: remove from DOM, or just clear content
+            // For now, just log it (removal handling can be added later)
+          }
+          return;
+        }
+
         if (block && block.content) {
           // ✅ COMMIT 8: Parse Firebase data (supports both string and {content, updatedAt})
           let newContent, firebaseTimestamp;
