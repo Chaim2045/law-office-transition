@@ -258,6 +258,21 @@ if (firebaseInitialized) {
 }
 
 /* ============================================
+   BLOCK LOCKING SYSTEM - Constants
+   ============================================ */
+
+// Lock config
+const LOCK_TTL = 60000; // 60 seconds
+const HEARTBEAT_INTERVAL = 20000; // 20 seconds
+const LOCK_PATH = 'locks';
+
+// Generate unique session ID
+const SESSION_ID = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+// Active locks and heartbeats
+const activeLocks = new Map(); // blockId -> { token, heartbeatInterval }
+
+/* ============================================
    BLOCK DATA NORMALIZATION
    ============================================ */
 
@@ -550,19 +565,8 @@ function setupRealtimeSync(onDataUpdate) {
 window.setupRealtimeSync = setupRealtimeSync;
 
 /* ============================================
-   BLOCK LOCKING SYSTEM
+   BLOCK LOCKING SYSTEM - Functions
    ============================================ */
-
-// Lock config
-const LOCK_TTL = 60000; // 60 seconds
-const HEARTBEAT_INTERVAL = 20000; // 20 seconds
-const LOCK_PATH = 'locks';
-
-// Generate unique session ID
-const SESSION_ID = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-
-// Active locks and heartbeats
-const activeLocks = new Map(); // blockId -> { token, heartbeatInterval }
 
 /**
  * Try to acquire lock for a block

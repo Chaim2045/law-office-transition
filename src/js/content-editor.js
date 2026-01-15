@@ -973,6 +973,9 @@ class ContentBlockManager {
         // Show retry button or message
         this.showRetryOption(blockId);
         break;
+      default:
+        // Unknown status - do nothing
+        break;
     }
   }
 
