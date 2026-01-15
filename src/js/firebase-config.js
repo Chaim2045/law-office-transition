@@ -5,9 +5,27 @@
 /* ============================================
    SAFETY FLAGS - Global Configuration
    ============================================ */
+
+// ✅ COMMIT 12: Auto-detect safe mode based on environment
+function detectSafeMode() {
+  // Check hostname (localhost/127.0.0.1)
+  const isLocalhost = ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
+
+  // Check query parameter (?safe=1)
+  const urlParams = new URLSearchParams(window.location.search);
+  const hasSafeParam = urlParams.get('safe') === '1';
+
+  // Check localStorage flag
+  const hasLocalFlag = localStorage.getItem('SAFE_MODE') === '1';
+
+  return isLocalhost || hasSafeParam || hasLocalFlag;
+}
+
 window.APP_CONFIG = {
-  // Set to false to disable all Firebase writes (safe testing mode)
-  enableFirebaseWrites: false,  // ⚠️ Default: false for safety
+  // ✅ COMMIT 12: Production-safe default with auto-detection
+  // Default: true (production mode)
+  // Auto-disabled if: localhost OR ?safe=1 OR localStorage.SAFE_MODE=1
+  enableFirebaseWrites: !detectSafeMode(),
 
   // Set to true to make entire app read-only
   readOnly: false,
@@ -15,6 +33,18 @@ window.APP_CONFIG = {
   // Enable detailed logging for debugging
   enableSaveLogging: true,
 };
+
+// Log detected mode
+if (detectSafeMode()) {
+  console.warn('⚠️ SAFE MODE DETECTED - Firebase writes disabled');
+  console.log('💡 Detected safe mode trigger:', {
+    isLocalhost: ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname),
+    hasSafeParam: new URLSearchParams(window.location.search).get('safe') === '1',
+    hasLocalFlag: localStorage.getItem('SAFE_MODE') === '1',
+  });
+} else {
+  console.log('✅ Production mode - Firebase writes enabled');
+}
 
 /* ============================================
    LOGGER - Save Operation Instrumentation
