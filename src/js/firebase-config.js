@@ -414,11 +414,11 @@ function setupRealtimeSync(onDataUpdate) {
       const rawData = snapshot.val();
       console.log('🔄 [Realtime] קיבלנו עדכון מ-Firebase');
 
-      // ✅ COMMIT 7: Normalize data before passing to callback
+      // ✅ COMMIT 8: Normalize and return FULL object {content, updatedAt}
       const normalizedData = {};
       Object.keys(rawData).forEach((blockId) => {
-        const normalized = normalizeBlockData(rawData[blockId]);
-        normalizedData[blockId] = normalized.content; // Backward compat
+        normalizedData[blockId] = normalizeBlockData(rawData[blockId]);
+        // Returns {content: string, updatedAt: number}
       });
 
       if (onDataUpdate && typeof onDataUpdate === 'function') {

@@ -66,10 +66,26 @@ class ContentBlockManager {
       // Only update content blocks
       if (key.startsWith('block_')) {
         const blockId = key;
-        const newContent = firebaseData[blockId];
+        const firebaseBlock = firebaseData[blockId];
         const block = this.blocks.get(blockId);
 
         if (block && block.content) {
+          // ✅ COMMIT 8: Parse Firebase data (supports both string and {content, updatedAt})
+          let newContent, firebaseTimestamp;
+
+          if (typeof firebaseBlock === 'object' && firebaseBlock.content !== undefined) {
+            // NEW format: {content, updatedAt}
+            newContent = firebaseBlock.content;
+            firebaseTimestamp = firebaseBlock.updatedAt || 0;
+          } else if (typeof firebaseBlock === 'string') {
+            // OLD format: plain string (backward compat)
+            newContent = firebaseBlock;
+            firebaseTimestamp = 0;
+          } else {
+            // Invalid data
+            return;
+          }
+
           const currentContent = block.content.innerHTML;
 
           // ✅ ANTI-FLICKER: Don't update if:
@@ -95,16 +111,37 @@ class ContentBlockManager {
             return;
           }
 
+          // ✅ COMMIT 8: Compare timestamps - only update if Firebase is newer
+          const localStorageData = localStorage.getItem(`guide_${blockId}`);
+          let localTimestamp = 0;
+
+          if (localStorageData) {
+            try {
+              const parsed = JSON.parse(localStorageData);
+              localTimestamp = parsed.updatedAt || 0;
+            } catch (e) {
+              // Old format or invalid - assume timestamp 0
+              localTimestamp = 0;
+            }
+          }
+
+          // Only update if Firebase timestamp is newer (or if local has no timestamp)
+          if (firebaseTimestamp > 0 && localTimestamp > 0 && firebaseTimestamp <= localTimestamp) {
+            if (window.APP_CONFIG.enableSaveLogging) {
+              console.log(`⏭️ [Realtime] Skipping ${blockId} - local is newer (local: ${localTimestamp}, firebase: ${firebaseTimestamp})`);
+            }
+            return;
+          }
+
           // ✅ SAFE TO UPDATE
           block.content.innerHTML = newContent;
 
-          // Update localStorage with timestamp - prevent stale data overwrite
+          // Update localStorage with Firebase timestamp
           const localData = {
             content: newContent,
-            updatedAt: Date.now(),
+            updatedAt: firebaseTimestamp || Date.now(),
           };
           localStorage.setItem(`guide_${blockId}`, JSON.stringify(localData));
-          localStorage.setItem(`guide_${blockId}_ts`, Date.now().toString());
 
           updatedBlocks.push(blockId);
 
