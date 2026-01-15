@@ -97,7 +97,15 @@ class ContentBlockManager {
 
           // ✅ SAFE TO UPDATE
           block.content.innerHTML = newContent;
-          localStorage.setItem(`guide_${blockId}`, newContent);
+
+          // Update localStorage with timestamp - prevent stale data overwrite
+          const localData = {
+            content: newContent,
+            updatedAt: Date.now(),
+          };
+          localStorage.setItem(`guide_${blockId}`, JSON.stringify(localData));
+          localStorage.setItem(`guide_${blockId}_ts`, Date.now().toString());
+
           updatedBlocks.push(blockId);
 
           // Brief highlight to show it updated
@@ -776,14 +784,26 @@ class ContentBlockManager {
   }
 
   /**
-   * טעינת בלוקים מ-localStorage
+   * טעינת בלוקים מ-localStorage (fallback only)
    */
   loadBlocksFromLocalStorage() {
     console.log('💾 טוען בלוקים מ-localStorage');
     this.blocks.forEach((block, blockId) => {
-      const savedContent = localStorage.getItem(`guide_${blockId}`);
-      if (savedContent && block.content) {
-        block.content.innerHTML = savedContent;
+      const savedDataStr = localStorage.getItem(`guide_${blockId}`);
+      if (savedDataStr && block.content) {
+        try {
+          // Try new format (with timestamp)
+          const savedData = JSON.parse(savedDataStr);
+          if (savedData.content) {
+            block.content.innerHTML = savedData.content;
+          } else {
+            // Old format (plain string) - still support it
+            block.content.innerHTML = savedDataStr;
+          }
+        } catch {
+          // Not JSON - old format
+          block.content.innerHTML = savedDataStr;
+        }
       }
     });
   }
@@ -801,19 +821,25 @@ class ContentBlockManager {
     if (!block) return false;
 
     const content = block.content.innerHTML;
+    const timestamp = Date.now();
 
     // Update UI: Saving state
     this.updateBlockSaveStatus(blockId, 'saving');
 
-    // שמור מקומית (synchronous)
-    localStorage.setItem(`guide_${blockId}`, content);
+    // שמור מקומית עם timestamp (synchronous)
+    const localData = {
+      content,
+      updatedAt: timestamp,
+    };
+    localStorage.setItem(`guide_${blockId}`, JSON.stringify(localData));
 
     // שמור ב-Firebase (asynchronous)
     if (typeof saveToFirebase === 'function') {
       const success = await saveToFirebase(blockId, content);
 
       if (success) {
-        // ✅ SUCCESS: Update UI
+        // ✅ SUCCESS: Update metadata timestamp
+        localStorage.setItem(`guide_${blockId}_ts`, timestamp.toString());
         this.updateBlockSaveStatus(blockId, 'saved');
         return true;
       } else {
