@@ -25,8 +25,9 @@ class ContentBlockManager {
   /**
    * אתחול המערכת
    */
-  init() {
-    this.loadExistingBlocks();
+  async init() {
+    await this.loadExistingBlocks();
+    await this.loadBlocksFromFirebase();
     this.setupEventListeners();
     console.log('✅ ContentBlockManager initialized');
   }
@@ -546,6 +547,56 @@ class ContentBlockManager {
         showToast('הבלוק נמחק בהצלחה', 'success');
       }
     }
+  }
+
+  /**
+   * טעינת בלוקים מ-Firebase
+   */
+  async loadBlocksFromFirebase() {
+    if (typeof loadAllDataFromFirebase !== 'function') {
+      console.warn('⚠️ Firebase לא זמין, טוען מ-localStorage');
+      this.loadBlocksFromLocalStorage();
+      return;
+    }
+
+    try {
+      const firebaseData = await loadAllDataFromFirebase();
+      if (firebaseData) {
+        console.log('✅ טוען בלוקים מ-Firebase');
+
+        // עבור על כל הבלוקים ב-Firebase
+        Object.keys(firebaseData).forEach((blockId) => {
+          // רק בלוקים שמתחילים ב-block_
+          if (blockId.startsWith('block_')) {
+            const block = this.blocks.get(blockId);
+            if (block && block.content) {
+              block.content.innerHTML = firebaseData[blockId];
+              // גם שמור ב-localStorage כגיבוי
+              localStorage.setItem(`guide_${blockId}`, firebaseData[blockId]);
+            }
+          }
+        });
+      } else {
+        // אם אין נתונים ב-Firebase, טען מקומי
+        this.loadBlocksFromLocalStorage();
+      }
+    } catch (error) {
+      console.error('❌ שגיאה בטעינה מ-Firebase:', error);
+      this.loadBlocksFromLocalStorage();
+    }
+  }
+
+  /**
+   * טעינת בלוקים מ-localStorage
+   */
+  loadBlocksFromLocalStorage() {
+    console.log('💾 טוען בלוקים מ-localStorage');
+    this.blocks.forEach((block, blockId) => {
+      const savedContent = localStorage.getItem(`guide_${blockId}`);
+      if (savedContent && block.content) {
+        block.content.innerHTML = savedContent;
+      }
+    });
   }
 
   /**
