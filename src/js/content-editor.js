@@ -780,11 +780,27 @@ class ContentBlockManager {
         if (['paragraph', 'heading-2', 'heading-3', 'heading-4'].includes(blockType)) {
           // הפוך לניתן לעריכה (אבל לא להראות toolbar עד שלוחצים)
           blockData.content.contentEditable = true;
+
+          // ✅ NEW: הוסף event listener לפתיחת עורך בלחיצה
+          blockData.content.addEventListener('click', (e) => {
+            if (this.editMode) {
+              e.stopPropagation();
+              this.activateRichTextEditor(block, blockData.content);
+            }
+          });
         } else if (blockType === 'styled-item') {
           // פריטים מעוצבים
           const editables = blockData.content.querySelectorAll('.editable');
           editables.forEach((el) => {
             el.contentEditable = true;
+
+            // ✅ NEW: הוסף event listener לפתיחת עורך בלחיצה
+            el.addEventListener('click', (e) => {
+              if (this.editMode) {
+                e.stopPropagation();
+                this.activateStyledItemEditor(block, blockData.content);
+              }
+            });
           });
         }
       }
