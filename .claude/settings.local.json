@@ -75,7 +75,14 @@
       "Bash(src/css/mobile-advanced.css)",
       "Bash(curl -s https://law-office-transition.netlify.app/tabs/notary-calculator.html)",
       "Bash(curl -s https://law-office-transition.netlify.app/)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(npx netlify status)",
+      "Bash(npx netlify deploy:*)",
+      "Bash(grep:*)",
+      "Bash(gh api:*)",
+      "Bash(netlify api:*)"
     ],
     "deny": [],
     "ask": []

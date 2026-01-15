@@ -7,7 +7,7 @@
    ============================================ */
 window.APP_CONFIG = {
   // Set to false to disable all Firebase writes (safe testing mode)
-  enableFirebaseWrites: true,
+  enableFirebaseWrites: false,  // ⚠️ Default: false for safety
 
   // Set to true to make entire app read-only
   readOnly: false,
@@ -227,6 +227,44 @@ if (firebaseInitialized) {
   }
 }
 
+/* ============================================
+   BLOCK DATA NORMALIZATION
+   ============================================ */
+
+/**
+ * ✅ COMMIT 7: Normalize block data from Firebase to unified format
+ *
+ * Firebase schema:
+ * - NEW format: {content: string, updatedAt: timestamp}
+ * - OLD format: string (backward compatible)
+ *
+ * @param {string|Object} val - Raw value from Firebase
+ * @returns {{content: string, updatedAt: number}}
+ */
+function normalizeBlockData(val) {
+  // Case 1: Already normalized object
+  if (val && typeof val === 'object' && val.content !== undefined) {
+    return {
+      content: val.content || '',
+      updatedAt: val.updatedAt || 0,
+    };
+  }
+
+  // Case 2: Legacy string format (backward compatible)
+  if (typeof val === 'string') {
+    return {
+      content: val,
+      updatedAt: 0, // Unknown timestamp for legacy data
+    };
+  }
+
+  // Case 3: Invalid/null data
+  return {
+    content: '',
+    updatedAt: 0,
+  };
+}
+
 // שמירת נתון ל-Firebase
 function saveToFirebase(field, value) {
   const startTime = SaveLogger.logStart(field);
@@ -247,9 +285,15 @@ function saveToFirebase(field, value) {
     return Promise.resolve(false);
   }
 
+  // ✅ COMMIT 7: Save as {content, updatedAt} object with server timestamp
+  const blockData = {
+    content: value,
+    updatedAt: firebase.database.ServerValue.TIMESTAMP,
+  };
+
   return database
     .ref(`guideData/${field}`)
-    .set(value)
+    .set(blockData)
     .then(() => {
       SaveLogger.logSuccess(field, startTime);
       return true;
@@ -271,7 +315,9 @@ function loadFromFirebase(field) {
     .get()
     .then((snapshot) => {
       if (snapshot.exists()) {
-        return snapshot.val();
+        // ✅ COMMIT 7: Parse with normalizeBlockData, return content only for backward compat
+        const normalized = normalizeBlockData(snapshot.val());
+        return normalized.content;
       }
       return null;
     })
@@ -324,7 +370,16 @@ function loadAllDataFromFirebase() {
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log('✅ כל הנתונים נטענו מ-Firebase');
-        return snapshot.val();
+        const rawData = snapshot.val();
+
+        // ✅ COMMIT 7: Normalize all block data, return content-only for backward compat
+        const normalizedData = {};
+        Object.keys(rawData).forEach((blockId) => {
+          const normalized = normalizeBlockData(rawData[blockId]);
+          normalizedData[blockId] = normalized.content; // Backward compat: return content only
+        });
+
+        return normalizedData;
       }
       return null;
     })
@@ -356,11 +411,18 @@ function setupRealtimeSync(onDataUpdate) {
   // Listen to value changes
   dataRef.on('value', (snapshot) => {
     if (snapshot.exists()) {
-      const data = snapshot.val();
+      const rawData = snapshot.val();
       console.log('🔄 [Realtime] קיבלנו עדכון מ-Firebase');
 
+      // ✅ COMMIT 7: Normalize data before passing to callback
+      const normalizedData = {};
+      Object.keys(rawData).forEach((blockId) => {
+        const normalized = normalizeBlockData(rawData[blockId]);
+        normalizedData[blockId] = normalized.content; // Backward compat
+      });
+
       if (onDataUpdate && typeof onDataUpdate === 'function') {
-        onDataUpdate(data);
+        onDataUpdate(normalizedData);
       }
     }
   });
@@ -600,6 +662,7 @@ window.isBlockLocked = isBlockLocked;
 window.validatePassword = validatePassword;
 window.updatePassword = updatePassword;
 window.initializePassword = initializePassword;
+window.normalizeBlockData = normalizeBlockData;  // ✅ COMMIT 7: Export normalizer
 window.saveToFirebase = saveToFirebase;
 window.loadFromFirebase = loadFromFirebase;
 window.deleteFromFirebase = deleteFromFirebase;
