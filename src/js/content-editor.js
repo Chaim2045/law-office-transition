@@ -87,12 +87,9 @@ class ContentBlockManager {
       tabId: tabId,
     });
 
-    // שמור גם את ה-metadata של בלוק קיים ל-Firebase (פעם אחת בלבד)
-    // רק אם זה לא נשמר כבר
-    const metaKey = `guide_meta_${blockId}`;
-    if (!localStorage.getItem(metaKey)) {
-      this.saveBlockStructure(blockId, blockType, tabId);
-    }
+    // ❌ לא שומרים metadata לבלוקים קיימים!
+    // בלוקים קיימים מה-HTML לא צריכים metadata ב-Firebase
+    // רק בלוקים שנוצרו על ידי המשתמש (עם +) צריכים metadata
 
     return wrapper;
   }
