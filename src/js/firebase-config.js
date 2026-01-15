@@ -266,7 +266,7 @@ function normalizeBlockData(val) {
 }
 
 // שמירת נתון ל-Firebase
-function saveToFirebase(field, value) {
+async function saveToFirebase(field, value) {
   const startTime = SaveLogger.logStart(field);
 
   // ✅ SAFETY CHECK: Respect write flags
@@ -283,6 +283,39 @@ function saveToFirebase(field, value) {
   if (!firebaseInitialized || !database) {
     console.warn('⚠️ Firebase לא מאותחל. נתונים יישמרו רק מקומית.');
     return Promise.resolve(false);
+  }
+
+  // ✅ COMMIT 9: Enforce lock ownership for block writes
+  if (field.startsWith('block_')) {
+    const blockId = field;
+
+    // Check if we own the lock
+    if (!activeLocks.has(blockId)) {
+      // No active lock in memory - check Firebase
+      try {
+        const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
+        const snapshot = await lockRef.get();
+
+        if (snapshot.exists()) {
+          const lock = snapshot.val();
+
+          // Check if lock is owned by another session
+          if (lock.lockedBy !== SESSION_ID) {
+            const errorMsg = `⛔ Write blocked - block locked by ${lock.lockedBy}`;
+            console.error(errorMsg);
+            SaveLogger.logError(field, new Error(errorMsg), startTime);
+            return false;
+          }
+
+          // Lock is ours but not in activeLocks - this is OK (edge case after refresh)
+        }
+        // else: No lock exists in Firebase - allow write (legacy behavior)
+      } catch (error) {
+        console.error('❌ Error checking lock:', error);
+        // On error, allow write (fail open for availability)
+      }
+    }
+    // else: We have active lock in memory - verified ownership, allow write
   }
 
   // ✅ COMMIT 7: Save as {content, updatedAt} object with server timestamp
