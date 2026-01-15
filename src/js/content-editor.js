@@ -1088,7 +1088,24 @@ class RichTextEditor {
   /**
    * הפעלת העורך על אלמנט
    */
-  activate(element, blockWrapper) {
+  async activate(element, blockWrapper) {
+    const blockId = blockWrapper.getAttribute('data-block-id');
+
+    // ✅ Try to acquire lock first
+    if (typeof window.acquireLock === 'function') {
+      const lockResult = await window.acquireLock(blockId);
+
+      if (!lockResult.success) {
+        // Block is locked by someone else
+        const lockedBy = lockResult.lockedBy || 'משתמש אחר';
+        alert(`⛔ בלוק זה נעול על ידי ${lockedBy}. נסה שוב בעוד מספר שניות.`);
+        return; // Don't activate editor
+      }
+
+      // Store lock for cleanup
+      this.currentLockBlockId = blockId;
+    }
+
     this.activeElement = element;
     this.currentBlockWrapper = blockWrapper;
     element.contentEditable = true;
@@ -1229,6 +1246,12 @@ class RichTextEditor {
   deactivate() {
     // 🔥 FIX: שמור לפני סגירה!
     this.saveCurrentBlock();
+
+    // ✅ Release lock
+    if (this.currentLockBlockId && typeof window.releaseLock === 'function') {
+      window.releaseLock(this.currentLockBlockId);
+      this.currentLockBlockId = null;
+    }
 
     if (this.toolbar) {
       this.toolbar.remove();

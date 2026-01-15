@@ -380,6 +380,222 @@ function setupRealtimeSync(onDataUpdate) {
 // Export for global access
 window.setupRealtimeSync = setupRealtimeSync;
 
+/* ============================================
+   BLOCK LOCKING SYSTEM
+   ============================================ */
+
+// Lock config
+const LOCK_TTL = 60000; // 60 seconds
+const HEARTBEAT_INTERVAL = 20000; // 20 seconds
+const LOCK_PATH = 'locks';
+
+// Generate unique session ID
+const SESSION_ID = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+
+// Active locks and heartbeats
+const activeLocks = new Map(); // blockId -> { token, heartbeatInterval }
+
+/**
+ * Try to acquire lock for a block
+ * @returns {Promise<{success: boolean, lockedBy?: string}>}
+ */
+async function acquireLock(blockId) {
+  if (!firebaseInitialized || !database) {
+    return { success: false, error: 'Firebase not initialized' };
+  }
+
+  const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
+  const now = Date.now();
+  const lockToken = `${SESSION_ID}_${blockId}_${now}`;
+
+  try {
+    // Use transaction for atomic lock acquisition
+    const result = await lockRef.transaction((currentLock) => {
+      // If no lock exists, OR lock expired → acquire
+      if (!currentLock || currentLock.expiresAt < Date.now()) {
+        return {
+          lockedBy: SESSION_ID,
+          lockToken: lockToken,
+          expiresAt: Date.now() + LOCK_TTL,
+          heartbeatAt: Date.now(),
+          acquiredAt: Date.now(),
+        };
+      }
+
+      // Lock exists and not expired → abort transaction
+      return undefined; // Abort (keeps existing value)
+    });
+
+    if (result.committed) {
+      // Success! Start heartbeat
+      startHeartbeat(blockId, lockToken);
+
+      console.log(`🔒 [Lock] נעל בלוק: ${blockId}`);
+      return { success: true, lockToken };
+    } else {
+      // Lock held by someone else
+      const currentLock = result.snapshot.val();
+      console.log(`⛔ [Lock] בלוק נעול על ידי: ${currentLock.lockedBy}`);
+      return { success: false, lockedBy: currentLock.lockedBy };
+    }
+  } catch (error) {
+    console.error('❌ [Lock] שגיאה בנעילה:', error);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
+ * Release lock for a block
+ */
+async function releaseLock(blockId) {
+  if (!firebaseInitialized || !database) {
+    return false;
+  }
+
+  const lockInfo = activeLocks.get(blockId);
+  if (!lockInfo) {
+    return false; // No active lock
+  }
+
+  // Stop heartbeat
+  if (lockInfo.heartbeatInterval) {
+    clearInterval(lockInfo.heartbeatInterval);
+  }
+
+  activeLocks.delete(blockId);
+
+  // Remove lock from Firebase
+  try {
+    const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
+    const snapshot = await lockRef.get();
+
+    if (snapshot.exists()) {
+      const currentLock = snapshot.val();
+
+      // Only remove if we own it
+      if (currentLock.lockToken === lockInfo.token) {
+        await lockRef.remove();
+        console.log(`🔓 [Lock] שוחרר: ${blockId}`);
+        return true;
+      }
+    }
+  } catch (error) {
+    console.error('❌ [Lock] שגיאה בשחרור:', error);
+  }
+
+  return false;
+}
+
+/**
+ * Start heartbeat to keep lock alive
+ */
+function startHeartbeat(blockId, lockToken) {
+  // Clear existing heartbeat if any
+  const existing = activeLocks.get(blockId);
+  if (existing && existing.heartbeatInterval) {
+    clearInterval(existing.heartbeatInterval);
+  }
+
+  // Start new heartbeat
+  const heartbeatInterval = setInterval(async () => {
+    if (!firebaseInitialized || !database) {
+      clearInterval(heartbeatInterval);
+      return;
+    }
+
+    try {
+      const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
+      const snapshot = await lockRef.get();
+
+      if (snapshot.exists()) {
+        const currentLock = snapshot.val();
+
+        // Only update if we still own it
+        if (currentLock.lockToken === lockToken) {
+          await lockRef.update({
+            expiresAt: Date.now() + LOCK_TTL,
+            heartbeatAt: Date.now(),
+          });
+
+          console.log(`💓 [Lock] Heartbeat: ${blockId}`);
+        } else {
+          // We lost the lock somehow
+          console.warn(`⚠️ [Lock] אבדנו את הנעילה: ${blockId}`);
+          clearInterval(heartbeatInterval);
+          activeLocks.delete(blockId);
+        }
+      } else {
+        // Lock disappeared
+        clearInterval(heartbeatInterval);
+        activeLocks.delete(blockId);
+      }
+    } catch (error) {
+      console.error('❌ [Lock] שגיאה ב-heartbeat:', error);
+    }
+  }, HEARTBEAT_INTERVAL);
+
+  // Store lock info
+  activeLocks.set(blockId, {
+    token: lockToken,
+    heartbeatInterval,
+  });
+}
+
+/**
+ * Check if block is locked by someone else
+ */
+async function isBlockLocked(blockId) {
+  if (!firebaseInitialized || !database) {
+    return { locked: false };
+  }
+
+  try {
+    const lockRef = database.ref(`${LOCK_PATH}/${blockId}`);
+    const snapshot = await lockRef.get();
+
+    if (snapshot.exists()) {
+      const lock = snapshot.val();
+      const now = Date.now();
+
+      // Check if expired
+      if (lock.expiresAt < now) {
+        // Expired - clean it up
+        await lockRef.remove();
+        return { locked: false };
+      }
+
+      // Check if we own it
+      if (lock.lockedBy === SESSION_ID) {
+        return { locked: false, ownedByUs: true };
+      }
+
+      // Locked by someone else
+      return {
+        locked: true,
+        lockedBy: lock.lockedBy,
+        expiresAt: lock.expiresAt,
+      };
+    }
+
+    return { locked: false };
+  } catch (error) {
+    console.error('❌ [Lock] שגיאה בבדיקת נעילה:', error);
+    return { locked: false, error: error.message };
+  }
+}
+
+// Release all locks on page unload
+window.addEventListener('beforeunload', () => {
+  activeLocks.forEach((_lockInfo, blockId) => {
+    releaseLock(blockId);
+  });
+});
+
+// Export lock functions
+window.acquireLock = acquireLock;
+window.releaseLock = releaseLock;
+window.isBlockLocked = isBlockLocked;
+
 // Export functions to window for global access
 window.validatePassword = validatePassword;
 window.updatePassword = updatePassword;
