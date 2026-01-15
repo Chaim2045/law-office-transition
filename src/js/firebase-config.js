@@ -2,6 +2,55 @@
 // ⚠️ חשוב: עליך להחליף את הערכים האלה בנתוני Firebase שלך מקונסולת Firebase
 // לפרטים נוספים, ראה את הקובץ FIREBASE_SETUP.md
 
+/* ============================================
+   SAFETY FLAGS - Global Configuration
+   ============================================ */
+window.APP_CONFIG = {
+  // Set to false to disable all Firebase writes (safe testing mode)
+  enableFirebaseWrites: true,
+
+  // Set to true to make entire app read-only
+  readOnly: false,
+
+  // Enable detailed logging for debugging
+  enableSaveLogging: true,
+};
+
+/* ============================================
+   LOGGER - Save Operation Instrumentation
+   ============================================ */
+const SaveLogger = {
+  log(operation, details) {
+    if (!window.APP_CONFIG.enableSaveLogging) return;
+
+    const timestamp = new Date().toISOString();
+    const prefix = '🔧 [SaveLogger]';
+    console.log(`${prefix} ${timestamp} - ${operation}`, details);
+  },
+
+  logStart(field) {
+    this.log('SAVE_START', { field, timestamp: Date.now() });
+    return Date.now(); // return start time for latency calculation
+  },
+
+  logSuccess(field, startTime) {
+    const latency = Date.now() - startTime;
+    this.log('SAVE_SUCCESS', { field, latency: `${latency}ms` });
+  },
+
+  logError(field, error, startTime) {
+    const latency = Date.now() - startTime;
+    this.log('SAVE_ERROR', { field, error: error.message, latency: `${latency}ms` });
+  },
+
+  logSkipped(field, reason) {
+    console.warn(`⚠️ [SaveLogger] WRITE SKIPPED BY FLAG - Field: ${field}, Reason: ${reason}`);
+  },
+};
+
+// Make logger globally accessible
+window.SaveLogger = SaveLogger;
+
 const firebaseConfig = {
   apiKey: 'AIzaSyC9R_eupXtdkzEMBwA1Dsc6SC_14_iUNLs',
   authDomain: 'law-office-guide.firebaseapp.com',
@@ -44,6 +93,13 @@ const LOCAL_PASSWORD_KEY = 'local_edit_password';
 function initializePassword() {
   if (!firebaseInitialized || !database) {
     console.warn('⚠️ Firebase לא מאותחל. משתמש בסיסמה מקומית.');
+    localStorage.setItem(LOCAL_PASSWORD_KEY, DEFAULT_PASSWORD);
+    return Promise.resolve(DEFAULT_PASSWORD);
+  }
+
+  // ✅ SAFETY CHECK: Password writes are critical, but respect readOnly flag
+  if (window.APP_CONFIG.readOnly) {
+    console.warn('⚠️ [PASSWORD] Write blocked by readOnly=true');
     localStorage.setItem(LOCAL_PASSWORD_KEY, DEFAULT_PASSWORD);
     return Promise.resolve(DEFAULT_PASSWORD);
   }
@@ -129,6 +185,14 @@ function updatePassword(newPassword) {
     return Promise.resolve(true);
   }
 
+  // ✅ SAFETY CHECK: Password writes respect readOnly flag
+  if (window.APP_CONFIG.readOnly) {
+    console.warn('⚠️ [PASSWORD] Update blocked by readOnly=true');
+    localStorage.setItem(LOCAL_PASSWORD_KEY, newPassword);
+    console.log('✅ הסיסמה המקומית עודכנה (readOnly mode)');
+    return Promise.resolve(true);
+  }
+
   return database
     .ref(PASSWORD_PATH)
     .set(newPassword)
@@ -165,6 +229,19 @@ if (firebaseInitialized) {
 
 // שמירת נתון ל-Firebase
 function saveToFirebase(field, value) {
+  const startTime = SaveLogger.logStart(field);
+
+  // ✅ SAFETY CHECK: Respect write flags
+  if (!window.APP_CONFIG.enableFirebaseWrites) {
+    SaveLogger.logSkipped(field, 'enableFirebaseWrites=false');
+    return Promise.resolve(false);
+  }
+
+  if (window.APP_CONFIG.readOnly) {
+    SaveLogger.logSkipped(field, 'readOnly=true');
+    return Promise.resolve(false);
+  }
+
   if (!firebaseInitialized || !database) {
     console.warn('⚠️ Firebase לא מאותחל. נתונים יישמרו רק מקומית.');
     return Promise.resolve(false);
@@ -174,11 +251,11 @@ function saveToFirebase(field, value) {
     .ref(`guideData/${field}`)
     .set(value)
     .then(() => {
-      console.log(`✅ נתון נשמר ב-Firebase: ${field}`);
+      SaveLogger.logSuccess(field, startTime);
       return true;
     })
     .catch((error) => {
-      console.error('❌ שגיאה בשמירת נתון ב-Firebase:', error);
+      SaveLogger.logError(field, error, startTime);
       return false;
     });
 }
@@ -206,6 +283,17 @@ function loadFromFirebase(field) {
 
 // מחיקת נתון מ-Firebase
 function deleteFromFirebase(field) {
+  // ✅ SAFETY CHECK: Respect write flags
+  if (!window.APP_CONFIG.enableFirebaseWrites) {
+    SaveLogger.logSkipped(field, 'DELETE blocked by enableFirebaseWrites=false');
+    return Promise.resolve(false);
+  }
+
+  if (window.APP_CONFIG.readOnly) {
+    SaveLogger.logSkipped(field, 'DELETE blocked by readOnly=true');
+    return Promise.resolve(false);
+  }
+
   if (!firebaseInitialized || !database) {
     return Promise.resolve(false);
   }
