@@ -66,10 +66,11 @@ class ContentBlockManager {
    */
   wrapInBlock(element, tabId) {
     const blockId = this.generateBlockId(tabId);
+    const blockType = this.detectBlockType(element);
     const wrapper = document.createElement('div');
     wrapper.className = 'content-block';
     wrapper.setAttribute('data-block-id', blockId);
-    wrapper.setAttribute('data-block-type', this.detectBlockType(element));
+    wrapper.setAttribute('data-block-type', blockType);
 
     // עטוף את האלמנט
     element.parentNode.insertBefore(wrapper, element);
@@ -78,11 +79,18 @@ class ContentBlockManager {
     // שמור בזיכרון
     this.blocks.set(blockId, {
       id: blockId,
-      type: this.detectBlockType(element),
+      type: blockType,
       element: wrapper,
       content: element,
       tabId: tabId,
     });
+
+    // שמור גם את ה-metadata של בלוק קיים ל-Firebase (פעם אחת בלבד)
+    // רק אם זה לא נשמר כבר
+    const metaKey = `guide_meta_${blockId}`;
+    if (!localStorage.getItem(metaKey)) {
+      this.saveBlockStructure(blockId, blockType, tabId);
+    }
 
     return wrapper;
   }
