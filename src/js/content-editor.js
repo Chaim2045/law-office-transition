@@ -765,9 +765,34 @@ class ContentBlockManager {
           if (blockId.startsWith('block_') && !blockId.startsWith('block_meta')) {
             const block = this.blocks.get(blockId);
             if (block && block.content) {
-              block.content.innerHTML = firebaseData[blockId];
-              // גם שמור ב-localStorage כגיבוי
-              localStorage.setItem(`guide_${blockId}`, firebaseData[blockId]);
+              // ✅ COMMIT 11: Use normalizeBlockData to handle both string and object formats
+              const rawData = firebaseData[blockId];
+              let contentToSet;
+
+              if (typeof rawData === 'string') {
+                // Old format - use directly
+                contentToSet = rawData;
+              } else if (rawData && typeof rawData === 'object' && rawData.content !== undefined) {
+                // New format {content, updatedAt} - extract content
+                contentToSet = rawData.content;
+              } else if (typeof window.normalizeBlockData === 'function') {
+                // Use normalizer if available
+                const normalized = window.normalizeBlockData(rawData);
+                contentToSet = normalized.content;
+              } else {
+                // Fallback - skip invalid data
+                console.warn(`⚠️ Invalid data format for ${blockId}:`, rawData);
+                return;
+              }
+
+              block.content.innerHTML = contentToSet;
+
+              // גם שמור ב-localStorage כגיבוי עם timestamp
+              const localData = {
+                content: contentToSet,
+                updatedAt: (rawData && rawData.updatedAt) || Date.now(),
+              };
+              localStorage.setItem(`guide_${blockId}`, JSON.stringify(localData));
             }
           }
         });
@@ -804,9 +829,28 @@ class ContentBlockManager {
     const content = this.createContentByType(type, blockId);
     blockWrapper.appendChild(content);
 
-    // טען את התוכן מ-Firebase
+    // ✅ COMMIT 11: טען את התוכן מ-Firebase עם normalization
     if (firebaseData[blockId]) {
-      content.innerHTML = firebaseData[blockId];
+      const rawData = firebaseData[blockId];
+      let contentToSet;
+
+      if (typeof rawData === 'string') {
+        // Old format - use directly
+        contentToSet = rawData;
+      } else if (rawData && typeof rawData === 'object' && rawData.content !== undefined) {
+        // New format {content, updatedAt} - extract content
+        contentToSet = rawData.content;
+      } else if (typeof window.normalizeBlockData === 'function') {
+        // Use normalizer if available
+        const normalized = window.normalizeBlockData(rawData);
+        contentToSet = normalized.content;
+      } else {
+        // Fallback - skip invalid data
+        console.warn(`⚠️ Invalid data format for ${blockId}:`, rawData);
+        contentToSet = '';
+      }
+
+      content.innerHTML = contentToSet;
     }
 
     // הכנס את הבלוק בסוף הcontainer
