@@ -757,6 +757,50 @@ async function isBlockLocked(blockId) {
   }
 }
 
+/**
+ * Clean up expired locks on startup
+ * This prevents stuck locks from previous sessions
+ */
+async function cleanupExpiredLocks() {
+  if (!firebaseInitialized || !database) {
+    return;
+  }
+
+  try {
+    const locksRef = database.ref(LOCK_PATH);
+    const snapshot = await locksRef.get();
+
+    if (snapshot.exists()) {
+      const locks = snapshot.val();
+      const now = Date.now();
+      let cleanedCount = 0;
+
+      // Check each lock
+      for (const blockId in locks) {
+        const lock = locks[blockId];
+
+        // Remove if expired
+        if (lock.expiresAt < now) {
+          await database.ref(`${LOCK_PATH}/${blockId}`).remove();
+          cleanedCount++;
+          console.log(`🧹 [Lock] Cleaned expired lock: ${blockId}`);
+        }
+      }
+
+      if (cleanedCount > 0) {
+        console.log(`✅ [Lock] Cleaned ${cleanedCount} expired locks`);
+      }
+    }
+  } catch (error) {
+    console.error('❌ [Lock] Error cleaning locks:', error);
+  }
+}
+
+// Clean up expired locks when page loads
+if (firebaseInitialized) {
+  cleanupExpiredLocks();
+}
+
 // Release all locks on page unload
 window.addEventListener('beforeunload', () => {
   activeLocks.forEach((_lockInfo, blockId) => {
@@ -768,6 +812,7 @@ window.addEventListener('beforeunload', () => {
 window.acquireLock = acquireLock;
 window.releaseLock = releaseLock;
 window.isBlockLocked = isBlockLocked;
+window.cleanupExpiredLocks = cleanupExpiredLocks;
 
 // Export functions to window for global access
 window.validatePassword = validatePassword;
