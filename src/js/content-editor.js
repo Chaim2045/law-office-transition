@@ -340,8 +340,9 @@ class ContentBlockManager {
     // רענן כפתורי הוספה
     this.addInsertButtons();
 
-    // שמור
+    // שמור תוכן + מבנה ל-Firebase
     this.saveBlock(blockId);
+    this.saveBlockStructure(blockId, type, tabId);
 
     // Toast
     if (typeof showToast === 'function') {
@@ -534,10 +535,14 @@ class ContentBlockManager {
       blockWrapper.remove();
       this.blocks.delete(blockId);
 
-      // מחק מה-storage
+      // מחק מה-storage (גם תוכן וגם metadata)
       localStorage.removeItem(`guide_${blockId}`);
-      if (typeof saveToFirebase === 'function') {
-        saveToFirebase(blockId, null); // null = delete
+      localStorage.removeItem(`guide_meta_${blockId}`);
+
+      // מחק מ-Firebase (גם תוכן וגם metadata)
+      if (typeof deleteFromFirebase === 'function') {
+        deleteFromFirebase(blockId);
+        deleteFromFirebase(`meta_${blockId}`);
       }
 
       // רענן כפתורים
@@ -564,10 +569,29 @@ class ContentBlockManager {
       if (firebaseData) {
         console.log('✅ טוען בלוקים מ-Firebase');
 
-        // עבור על כל הבלוקים ב-Firebase
+        // שלב 1: יצירת בלוקים חדשים שנשמרו ב-Firebase
+        Object.keys(firebaseData).forEach((key) => {
+          // זיהוי מטא-דאטה של בלוקים חדשים
+          if (key.startsWith('meta_')) {
+            try {
+              const blockId = key.replace('meta_', '');
+              const metadata = JSON.parse(firebaseData[key]);
+
+              // בדוק אם הבלוק כבר קיים
+              if (!this.blocks.has(blockId)) {
+                console.log(`📦 יוצר בלוק חדש מ-Firebase: ${blockId}`);
+                this.recreateBlockFromMetadata(metadata, firebaseData);
+              }
+            } catch (e) {
+              console.error('❌ שגיאה בפענוח metadata:', e);
+            }
+          }
+        });
+
+        // שלב 2: עדכון תוכן בלוקים קיימים
         Object.keys(firebaseData).forEach((blockId) => {
-          // רק בלוקים שמתחילים ב-block_
-          if (blockId.startsWith('block_')) {
+          // רק בלוקים שמתחילים ב-block_ ולא meta_
+          if (blockId.startsWith('block_') && !blockId.startsWith('block_meta')) {
             const block = this.blocks.get(blockId);
             if (block && block.content) {
               block.content.innerHTML = firebaseData[blockId];
@@ -584,6 +608,49 @@ class ContentBlockManager {
       console.error('❌ שגיאה בטעינה מ-Firebase:', error);
       this.loadBlocksFromLocalStorage();
     }
+  }
+
+  /**
+   * יצירה מחדש של בלוק מ-metadata
+   */
+  recreateBlockFromMetadata(metadata, firebaseData) {
+    const { id: blockId, type, tabId } = metadata;
+
+    // מצא את הcontainer (tab)
+    const container = document.getElementById(tabId);
+    if (!container) {
+      console.warn(`⚠️ לא נמצא tab: ${tabId}`);
+      return;
+    }
+
+    // יצירת הבלוק
+    const blockWrapper = document.createElement('div');
+    blockWrapper.className = 'content-block';
+    blockWrapper.setAttribute('data-block-id', blockId);
+    blockWrapper.setAttribute('data-block-type', type);
+
+    // יצירת התוכן
+    const content = this.createContentByType(type, blockId);
+    blockWrapper.appendChild(content);
+
+    // טען את התוכן מ-Firebase
+    if (firebaseData[blockId]) {
+      content.innerHTML = firebaseData[blockId];
+    }
+
+    // הכנס את הבלוק בסוף הcontainer
+    container.appendChild(blockWrapper);
+
+    // שמור בזיכרון
+    this.blocks.set(blockId, {
+      id: blockId,
+      type: type,
+      element: blockWrapper,
+      content: content,
+      tabId: tabId,
+    });
+
+    console.log(`✅ בלוק נוצר מחדש: ${blockId}`);
   }
 
   /**
@@ -611,6 +678,25 @@ class ContentBlockManager {
 
     if (typeof saveToFirebase === 'function') {
       saveToFirebase(blockId, content);
+    }
+  }
+
+  /**
+   * שמירת מבנה הבלוק ל-Firebase (מטא-דאטה)
+   */
+  saveBlockStructure(blockId, type, tabId) {
+    const blockMetadata = {
+      id: blockId,
+      type: type,
+      tabId: tabId,
+      createdAt: Date.now(),
+    };
+
+    // שמור במפתח נפרד
+    localStorage.setItem(`guide_meta_${blockId}`, JSON.stringify(blockMetadata));
+
+    if (typeof saveToFirebase === 'function') {
+      saveToFirebase(`meta_${blockId}`, JSON.stringify(blockMetadata));
     }
   }
 
