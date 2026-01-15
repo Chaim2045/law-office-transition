@@ -56,7 +56,9 @@ class ContentBlockManager {
 
     editableElements.forEach((element) => {
       if (!element.closest('.content-block')) {
-        this.wrapInBlock(element, tabId);
+        const wrapper = this.wrapInBlock(element, tabId);
+        // הפוך את האלמנט לניתן לעריכה
+        this.makeElementEditable(element, wrapper);
       }
     });
   }
@@ -107,6 +109,34 @@ class ContentBlockManager {
     if (element.tagName === 'UL') return 'bullet-list';
     if (element.tagName === 'OL') return 'number-list';
     return 'text';
+  }
+
+  /**
+   * הפיכת אלמנט לניתן לעריכה
+   */
+  makeElementEditable(element, blockWrapper) {
+    const blockType = blockWrapper.getAttribute('data-block-type');
+    const blockId = blockWrapper.getAttribute('data-block-id');
+
+    // הוסף data-field אם אין
+    if (!element.getAttribute('data-field')) {
+      element.setAttribute('data-field', blockId);
+    }
+
+    // הוסף class editable
+    if (!element.classList.contains('editable')) {
+      element.classList.add('editable');
+    }
+
+    // הוסף event listener לעריכה בלחיצה
+    element.addEventListener('click', (e) => {
+      if (this.editMode) {
+        e.stopPropagation();
+        if (['paragraph', 'heading-2', 'heading-3', 'heading-4'].includes(blockType)) {
+          this.activateRichTextEditor(blockWrapper, element);
+        }
+      }
+    });
   }
 
   /**
@@ -658,6 +688,13 @@ class ContentBlockManager {
       tabId: tabId,
     });
 
+    // 🔧 FIX: הפעל את העורך גם לבלוקים שנטענו מ-Firebase
+    if (['paragraph', 'heading-2', 'heading-3', 'heading-4'].includes(type)) {
+      this.activateRichTextEditor(blockWrapper, content);
+    } else if (type === 'styled-item') {
+      this.activateStyledItemEditor(blockWrapper, content);
+    }
+
     console.log(`✅ בלוק נוצר מחדש: ${blockId}`);
   }
 
@@ -682,10 +719,14 @@ class ContentBlockManager {
     if (!block) return;
 
     const content = block.content.innerHTML;
+
+    // שמור מקומית
     localStorage.setItem(`guide_${blockId}`, content);
 
+    // שמור ב-Firebase
     if (typeof saveToFirebase === 'function') {
       saveToFirebase(blockId, content);
+      console.log(`💾 שמור: ${blockId.substring(0, 30)}...`);
     }
   }
 
@@ -732,6 +773,24 @@ class ContentBlockManager {
         this.addBlockActions(block);
       }
       block.classList.add('content-block-editable');
+
+      // 🔧 FIX: הפעל contentEditable לבלוקים שנטענו מ-Firebase
+      const blockId = block.getAttribute('data-block-id');
+      const blockType = block.getAttribute('data-block-type');
+      const blockData = this.blocks.get(blockId);
+
+      if (blockData && blockData.content) {
+        if (['paragraph', 'heading-2', 'heading-3', 'heading-4'].includes(blockType)) {
+          // הפוך לניתן לעריכה (אבל לא להראות toolbar עד שלוחצים)
+          blockData.content.contentEditable = true;
+        } else if (blockType === 'styled-item') {
+          // פריטים מעוצבים
+          const editables = blockData.content.querySelectorAll('.editable');
+          editables.forEach((el) => {
+            el.contentEditable = true;
+          });
+        }
+      }
     });
   }
 
@@ -747,9 +806,23 @@ class ContentBlockManager {
     // הסר actions
     document.querySelectorAll('.block-actions').forEach((actions) => actions.remove());
 
-    // הסר סגנונות עריכה
+    // הסר סגנונות עריכה וכבה contentEditable
     document.querySelectorAll('.content-block').forEach((block) => {
       block.classList.remove('content-block-editable', 'content-block-editing');
+
+      // כבה contentEditable לבלוקים שנטענו מ-Firebase
+      const blockId = block.getAttribute('data-block-id');
+      const blockData = this.blocks.get(blockId);
+
+      if (blockData && blockData.content) {
+        blockData.content.contentEditable = false;
+
+        // גם לפריטים מעוצבים
+        const editables = blockData.content.querySelectorAll('.editable');
+        editables.forEach((el) => {
+          el.contentEditable = false;
+        });
+      }
     });
   }
 
@@ -757,14 +830,34 @@ class ContentBlockManager {
    * הגדרת event listeners
    */
   setupEventListeners() {
-    // שמירה אוטומטית
-    document.addEventListener('input', (e) => {
-      if (e.target.classList.contains('editable')) {
-        const blockElement = e.target.closest('.content-block');
+    // שמירה אוטומטית - תופס מספר סוגים של אירועי עריכה
+    const saveHandler = (e) => {
+      const target = e.target;
+      if (target && target.classList && target.classList.contains('editable')) {
+        const blockElement = target.closest('.content-block');
         if (blockElement) {
           const blockId = blockElement.getAttribute('data-block-id');
           this.saveBlock(blockId);
         }
+      }
+    };
+
+    // תפוס כמה סוגי events שונים כדי לוודא שמירה
+    document.addEventListener('input', saveHandler);
+    document.addEventListener('blur', saveHandler, true); // capture phase
+
+    // תפוס גם שינויים מ-execCommand
+    document.addEventListener('DOMSubtreeModified', (e) => {
+      const target = e.target;
+      if (target && target.classList && target.classList.contains('editable')) {
+        clearTimeout(this.saveTimeout);
+        this.saveTimeout = setTimeout(() => {
+          const blockElement = target.closest('.content-block');
+          if (blockElement) {
+            const blockId = blockElement.getAttribute('data-block-id');
+            this.saveBlock(blockId);
+          }
+        }, 300); // debounce של 300ms
       }
     });
   }
@@ -785,11 +878,25 @@ class RichTextEditor {
    */
   activate(element, blockWrapper) {
     this.activeElement = element;
+    this.currentBlockWrapper = blockWrapper;
     element.contentEditable = true;
     element.focus();
 
     // הצג toolbar
     this.showToolbar(element, blockWrapper);
+
+    // 🔥 FIX: הוסף event listeners לשמירה אוטומטית
+    const autoSaveHandler = () => {
+      clearTimeout(this.autoSaveTimeout);
+      this.autoSaveTimeout = setTimeout(() => {
+        this.saveCurrentBlock();
+      }, 500); // שמור אחרי חצי שנייה של חוסר פעילות
+    };
+
+    // שמור על כל שינוי טקסט
+    element.addEventListener('input', autoSaveHandler);
+    element.addEventListener('keyup', autoSaveHandler);
+    element.addEventListener('paste', autoSaveHandler);
 
     // Selection change
     document.addEventListener('selectionchange', () => {
@@ -873,6 +980,24 @@ class RichTextEditor {
     document.execCommand(command, false, null);
     this.activeElement.focus();
     this.updateToolbarState();
+
+    // 🔥 FIX: שמור מיד אחרי שינוי!
+    this.saveCurrentBlock();
+  }
+
+  /**
+   * שמירת הבלוק הנוכחי
+   */
+  saveCurrentBlock() {
+    if (!this.activeElement) return;
+
+    const blockElement = this.activeElement.closest('.content-block');
+    if (blockElement) {
+      const blockId = blockElement.getAttribute('data-block-id');
+      if (blockId && window.ContentBlockManager) {
+        window.ContentBlockManager.saveBlock(blockId);
+      }
+    }
   }
 
   /**
@@ -898,6 +1023,9 @@ class RichTextEditor {
    * כיבוי העורך
    */
   deactivate() {
+    // 🔥 FIX: שמור לפני סגירה!
+    this.saveCurrentBlock();
+
     if (this.toolbar) {
       this.toolbar.remove();
       this.toolbar = null;
