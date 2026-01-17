@@ -469,12 +469,7 @@ class DynamicContentManager {
   }
 }
 
-// יצירת instance גלובלי
-window.DynamicContentManager = new DynamicContentManager();
+// חשוף את המחלקה ל-window (main.js יצור instance)
+window.DynamicContentManager = DynamicContentManager;
 
-// אתחול כשהדף נטען
-document.addEventListener('DOMContentLoaded', () => {
-  window.DynamicContentManager.init();
-});
-
-console.log('📦 Dynamic Content Manager loaded');
+console.log('📦 Dynamic Content Manager class loaded');
