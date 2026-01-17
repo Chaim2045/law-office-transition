@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between mb-8">
   <h2
     class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
-    data-field="heading_general_info"
+    data-field="general_main_title"
+    contenteditable="true"
   >
     <div
       class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
@@ -16,7 +17,8 @@
 <div class="mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
   <h3
     class="text-lg font-semibold text-gray-700 dark:text-gray-300 editable"
-    data-field="heading_office_contact"
+    data-field="general_contact_title"
+    contenteditable="true"
   >
     פרטי המשרד ויצירת קשר
   </h3>
@@ -36,7 +38,7 @@
     </div>
     <div class="linear-item-content">
       <div class="linear-item-label">משרד ראשי</div>
-      <div class="linear-item-value editable" data-field="main_office">
+      <div class="linear-item-value editable" data-field="general_main_office" contenteditable="true">
         מגדלי מידטאון (קומה 39) תל-אביב, דרך מנחם בגין 144
       </div>
     </div>
@@ -66,7 +68,7 @@
     </div>
     <div class="linear-item-content">
       <div class="linear-item-label">סניף</div>
-      <div class="linear-item-value editable" data-field="branch_office">
+      <div class="linear-item-value editable" data-field="general_branch_office" contenteditable="true">
         בניין גב ים/נובא (קומה 4) דוד פייקס 5, רחובות
       </div>
     </div>
@@ -94,7 +96,7 @@
     </div>
     <div class="linear-item-content">
       <div class="linear-item-label">טלפון</div>
-      <div class="linear-item-value editable" data-field="phone">03-6855558</div>
+      <div class="linear-item-value editable" data-field="general_phone" contenteditable="true">03-6855558</div>
     </div>
     <button class="copy-btn" onclick="copyToClipboard('03-6855558')">
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -119,7 +121,7 @@
     </div>
     <div class="linear-item-content">
       <div class="linear-item-label">פקס</div>
-      <div class="linear-item-value editable" data-field="fax">03-6207771</div>
+      <div class="linear-item-value editable" data-field="general_fax" contenteditable="true">03-6207771</div>
     </div>
     <button class="copy-btn" onclick="copyToClipboard('03-6207771')">
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -141,7 +143,7 @@
     </div>
     <div class="linear-item-content">
       <div class="linear-item-label">דוא"ל</div>
-      <div class="linear-item-value editable" data-field="email">
+      <div class="linear-item-value editable" data-field="general_email" contenteditable="true">
         <a href="mailto:office@ghlawoffice.co.il">office@ghlawoffice.co.il</a>
       </div>
     </div>
@@ -160,7 +162,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_specialties"
+    data-field="general_specialties_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -184,7 +187,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">תחומי התמחות</div>
-        <div class="linear-item-value editable" data-field="specialties">
+        <div class="linear-item-value editable" data-field="general_specialties" contenteditable="true">
           מסחרי-אזרחי, חברות ושותפויות, חוזים, מקרקעין, תכנון ובניה, גישור, בוררות, נוטריון, ייצוג
           בבתי משפט
         </div>
@@ -208,7 +211,8 @@
 <div class="mb-6 pb-3 border-b-2 border-gray-200 dark:border-gray-700">
   <h3
     class="text-lg font-semibold text-gray-700 dark:text-gray-300 editable"
-    data-field="heading_staff_roles"
+    data-field="general_staff_title"
+    contenteditable="true"
   >
     בעלי תפקידים במשרד
   </h3>
@@ -218,7 +222,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_tel_aviv"
+    data-field="general_ta_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -242,7 +247,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד, בעל החברה</div>
-        <div class="linear-item-value editable" data-field="ta_staff_1">
+        <div class="linear-item-value editable" data-field="general_ta_staff1" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('054-2400403')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -275,7 +280,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">PA + מנהל שיווק</div>
-        <div class="linear-item-value editable" data-field="ta_staff_2">
+        <div class="linear-item-value editable" data-field="general_ta_staff2" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('054-9539238')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -308,7 +313,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מקצה לקצה + התמחות</div>
-        <div class="linear-item-value editable" data-field="ta_staff_3">חיים פרץ</div>
+        <div class="linear-item-value editable" data-field="general_ta_staff3" contenteditable="true">חיים פרץ</div>
       </div>
       <button class="copy-btn" onclick="copyToClipboard('חיים פרץ')">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -332,7 +337,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="ta_staff_4">
+        <div class="linear-item-value editable" data-field="general_ta_staff4" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('050-9247629')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -365,7 +370,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="ta_staff_5">
+        <div class="linear-item-value editable" data-field="general_ta_staff5" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('050-6470007')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -398,7 +403,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="ta_staff_6">
+        <div class="linear-item-value editable" data-field="general_ta_staff6" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('052-3777295')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -431,7 +436,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="ta_staff_7">
+        <div class="linear-item-value editable" data-field="general_ta_staff7" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('052-5014146')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -464,7 +469,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="ta_staff_8">
+        <div class="linear-item-value editable" data-field="general_ta_staff8" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('054-2345685')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -510,7 +515,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_rehovot"
+    data-field="general_rehovot_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -534,7 +540,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="rehovot_staff_1">
+        <div class="linear-item-value editable" data-field="general_rehovot_staff1" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('052-3922173')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -567,7 +573,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="rehovot_staff_2">
+        <div class="linear-item-value editable" data-field="general_rehovot_staff2" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('050-8807935')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -600,7 +606,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="rehovot_staff_3">
+        <div class="linear-item-value editable" data-field="general_rehovot_staff3" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('052-3433379')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -646,7 +652,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_freelancers_section"
+    data-field="general_freelancers_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -676,7 +683,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מחלקת כספים</div>
-        <div class="linear-item-value editable" data-field="freelancer_1">
+        <div class="linear-item-value editable" data-field="general_freelancer1" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('054-5747896')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -712,7 +719,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עו"ד</div>
-        <div class="linear-item-value editable" data-field="freelancer_2">
+        <div class="linear-item-value editable" data-field="general_freelancer2" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('052-3901223')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -748,7 +755,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">הנה"ח (חיצוני)</div>
-        <div class="linear-item-value editable" data-field="freelancer_3">
+        <div class="linear-item-value editable" data-field="general_freelancer3" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('050-5224232')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path
@@ -784,7 +791,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עובדת של נטליה</div>
-        <div class="linear-item-value editable" data-field="freelancer_4">
+        <div class="linear-item-value editable" data-field="general_freelancer4" contenteditable="true">
           <button class="whatsapp-btn" onclick="openWhatsApp('050-9338712')" title="פתח וואטסאפ">
             <svg fill="currentColor" viewBox="0 0 24 24">
               <path

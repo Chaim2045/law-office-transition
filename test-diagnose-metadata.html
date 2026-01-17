@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בדיקת Metadata ב-Firebase</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      direction: rtl;
+    }
+    .result {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .success {
+      background: #d1fae5;
+      border: 1px solid #059669;
+    }
+    .warning {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+    }
+    .error {
+      background: #fee2e2;
+      border: 1px solid #dc2626;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 אבחון Metadata ב-Firebase</h1>
+  <p>כלי זה בודק אילו בלוקים יש להם metadata ב-Firebase</p>
+
+  <button onclick="runDiagnostics()">🔍 הרץ אבחון</button>
+  <button onclick="generateMissingMetadata()">🔧 צור metadata חסר</button>
+  <button onclick="clearResults()">🗑️ נקה</button>
+
+  <div id="results"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Initialize Firebase directly
+    const firebaseConfig = {
+      apiKey: 'AIzaSyC9R_eupXtdkzEMBwA1Dsc6SC_14_iUNLs',
+      authDomain: 'law-office-guide.firebaseapp.com',
+      databaseURL: 'https://law-office-guide-default-rtdb.europe-west1.firebasedatabase.app',
+      projectId: 'law-office-guide',
+      storageBucket: 'law-office-guide.firebasestorage.app',
+      messagingSenderId: '903121364456',
+      appId: '1:903121364456:web:91d02f021ab618d3a6705d',
+      measurementId: 'G-3NZXL9YB35',
+    };
+
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const database = firebase.database();
+
+    const resultsDiv = document.getElementById('results');
+
+    function addResult(message, type = 'success') {
+      const div = document.createElement('div');
+      div.className = `result ${type}`;
+      div.textContent = message;
+      resultsDiv.appendChild(div);
+    }
+
+    function clearResults() {
+      resultsDiv.innerHTML = '';
+    }
+
+    async function runDiagnostics() {
+      clearResults();
+      addResult('🔍 מתחיל אבחון...', 'success');
+
+      try {
+        // Get all data from Firebase
+        const snapshot = await database.ref('guideData').get();
+
+        if (!snapshot.exists()) {
+          addResult('❌ אין נתונים ב-Firebase', 'error');
+          return;
+        }
+
+        const data = snapshot.val();
+        const blocks = [];
+        const metadata = [];
+
+        // Separate blocks and metadata
+        Object.keys(data).forEach(key => {
+          if (key.startsWith('meta_')) {
+            metadata.push(key);
+          } else if (key.startsWith('block_')) {
+            blocks.push(key);
+          }
+        });
+
+        addResult(`📦 נמצאו ${blocks.length} בלוקים`, 'success');
+        addResult(`📋 נמצאו ${metadata.length} metadata entries`, 'success');
+
+        // Check which blocks have metadata
+        const blocksWithMetadata = [];
+        const blocksWithoutMetadata = [];
+
+        blocks.forEach(blockId => {
+          const metaKey = `meta_${blockId}`;
+          if (data[metaKey]) {
+            blocksWithMetadata.push(blockId);
+          } else {
+            blocksWithoutMetadata.push(blockId);
+          }
+        });
+
+        addResult(`\n✅ בלוקים עם metadata: ${blocksWithMetadata.length}`, 'success');
+        if (blocksWithMetadata.length > 0) {
+          addResult(`   ${blocksWithMetadata.slice(0, 5).join('\n   ')}`, 'success');
+          if (blocksWithMetadata.length > 5) {
+            addResult(`   ... ועוד ${blocksWithMetadata.length - 5}`, 'success');
+          }
+        }
+
+        addResult(`\n⚠️ בלוקים ללא metadata: ${blocksWithoutMetadata.length}`, 'warning');
+        if (blocksWithoutMetadata.length > 0) {
+          addResult(`   ${blocksWithoutMetadata.slice(0, 10).join('\n   ')}`, 'warning');
+          if (blocksWithoutMetadata.length > 10) {
+            addResult(`   ... ועוד ${blocksWithoutMetadata.length - 10}`, 'warning');
+          }
+        }
+
+        // Check for orphaned metadata (metadata without blocks)
+        const orphanedMetadata = [];
+        metadata.forEach(metaKey => {
+          const blockId = metaKey.replace('meta_', '');
+          if (!data[blockId]) {
+            orphanedMetadata.push(metaKey);
+          }
+        });
+
+        if (orphanedMetadata.length > 0) {
+          addResult(`\n🗑️ Metadata יתום (ללא בלוק): ${orphanedMetadata.length}`, 'warning');
+          addResult(`   ${orphanedMetadata.slice(0, 5).join('\n   ')}`, 'warning');
+        }
+
+        addResult('\n✅ אבחון הושלם', 'success');
+
+      } catch (error) {
+        addResult(`❌ שגיאה: ${error.message}`, 'error');
+        console.error(error);
+      }
+    }
+
+    async function generateMissingMetadata() {
+      clearResults();
+      addResult('🔧 מתחיל יצירת metadata חסר...', 'success');
+
+      try {
+        const snapshot = await database.ref('guideData').get();
+
+        if (!snapshot.exists()) {
+          addResult('❌ אין נתונים ב-Firebase', 'error');
+          return;
+        }
+
+        const data = snapshot.val();
+        const missingCount = 0;
+        const updates = {};
+
+        // Find blocks without metadata
+        for (const key of Object.keys(data)) {
+          if (key.startsWith('block_') && !key.startsWith('block_meta')) {
+            const metaKey = `meta_${key}`;
+
+            if (!data[metaKey]) {
+              // Try to infer tab from block ID
+              const blockId = key;
+              let tabId = 'legal-processes'; // default
+
+              if (blockId.includes('checks-deposits')) {
+                tabId = 'checks-deposits';
+              } else if (blockId.includes('accounting')) {
+                tabId = 'accounting-reports';
+              } else if (blockId.includes('legal-processes')) {
+                tabId = 'legal-processes';
+              }
+
+              const metadata = {
+                id: blockId,
+                type: 'text', // default type
+                tabId: tabId,
+                createdAt: Date.now(),
+                autoGenerated: true
+              };
+
+              updates[metaKey] = JSON.stringify(metadata);
+              addResult(`📝 יוצר metadata: ${blockId} → ${tabId}`, 'success');
+            }
+          }
+        }
+
+        if (Object.keys(updates).length === 0) {
+          addResult('✅ כל הבלוקים כבר יש להם metadata', 'success');
+          return;
+        }
+
+        addResult(`\n💾 שומר ${Object.keys(updates).length} metadata entries...`, 'success');
+
+        // Save all updates
+        await database.ref('guideData').update(updates);
+
+        addResult(`✅ נוצרו ${Object.keys(updates).length} metadata entries`, 'success');
+        addResult('\n🔄 הרץ אבחון שוב כדי לאמת...', 'success');
+
+      } catch (error) {
+        addResult(`❌ שגיאה: ${error.message}`, 'error');
+        console.error(error);
+      }
+    }
+  </script>
+</body>
+</html>

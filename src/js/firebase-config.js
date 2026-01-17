@@ -30,8 +30,9 @@ window.APP_CONFIG = {
   // Set to true to make entire app read-only
   readOnly: false,
 
-  // Enable detailed logging for debugging
-  enableSaveLogging: true,
+  // ✅ OPTIMIZATION: Enable logging only in development (safe mode)
+  // Production: false (clean console), Development: true (debug logs)
+  enableSaveLogging: detectSafeMode(),
 };
 
 // Log detected mode
@@ -267,7 +268,7 @@ const HEARTBEAT_INTERVAL = 20000; // 20 seconds
 const LOCK_PATH = 'locks';
 
 // Generate unique session ID
-const SESSION_ID = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+const SESSION_ID = `user_${Date.now()}_${Math.random().toString(36).substring(2, 11)}`;
 
 // Active locks and heartbeats
 const activeLocks = new Map(); // blockId -> { token, heartbeatInterval }

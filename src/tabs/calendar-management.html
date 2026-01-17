@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between mb-8">
   <h2
     class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
-    data-field="heading_calendar_management"
+    data-field="calendar_main_title"
+    contenteditable="true"
   >
     <div
       class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
@@ -16,7 +17,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_line_1708"
+    data-field="calendar_ta_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -40,7 +42,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">שעת התחלה</div>
-        <div class="linear-item-value editable" data-field="ta_meetings_1">החל מהשעה 8:30</div>
+        <div class="linear-item-value editable" data-field="calendar_ta_start_time" contenteditable="true">החל מהשעה 8:30</div>
       </div>
       <button class="copy-btn" onclick="copyToClipboard('החל מהשעה 8:30')">
         <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -64,7 +66,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">הפרש בין פגישות</div>
-        <div class="linear-item-value editable" data-field="ta_meetings_2">
+        <div class="linear-item-value editable" data-field="calendar_ta_meeting_gap" contenteditable="true">
           הפרש בין פגישות - שעה וחצי
         </div>
       </div>
@@ -84,7 +86,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_line_1790"
+    data-field="calendar_rehovot_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -108,7 +111,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">יום עבודה ברחובות</div>
-        <div class="linear-item-value editable" data-field="rehovot_meetings_1">
+        <div class="linear-item-value editable" data-field="calendar_rehovot_workday" contenteditable="true">
           גיא עובד ברחובות בימי שלישי
         </div>
       </div>
@@ -134,7 +137,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">שעת התחלה</div>
-        <div class="linear-item-value editable" data-field="rehovot_meetings_2">
+        <div class="linear-item-value editable" data-field="calendar_rehovot_start_time" contenteditable="true">
           פגישות החל מהשעה 8:30
         </div>
       </div>
@@ -154,7 +157,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_court_appointments"
+    data-field="calendar_court_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -170,7 +174,8 @@
   <div class="mb-6">
     <h5
       class="text-sm font-semibold text-blue-800 dark:text-blue-300 mb-3 flex items-center gap-2 editable"
-      data-field="heading_update_cancel_hearing"
+      data-field="calendar_update_hearing_title"
+      contenteditable="true"
     >
       <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
         <path
@@ -201,14 +206,16 @@
           <p class="text-sm font-bold text-yellow-900 dark:text-yellow-300 mb-2">למה זה חשוב?</p>
           <p
             class="text-sm text-gray-700 dark:text-gray-300 mb-3 editable"
-            data-field="court_update_emphasis"
+            data-field="calendar_update_emphasis"
+            contenteditable="true"
           >
             לעיתים יש שינויים של מועדי דיון ביומן למשל כשדיון נדחה / כשדיון בוטל / כשדיון התייתר
             בעקבות פשרה שצדדים הגיעו אליה ובינתיים הוא כבר נרשם ביומן עוד חודשים לפני כן.
           </p>
           <p
             class="text-sm text-gray-700 dark:text-gray-300 editable"
-            data-field="court_update_warning"
+            data-field="calendar_update_warning"
+            contenteditable="true"
           >
             הותרת הדיון ביומן, ללא שעודכן השינוי, עלולה ליצור בלבול גדול, לתפוס זמן ביומן, שלא ניתן
             בזמן זה לעשות פעולות אחרות כמו פגישות או ביצוע משימות אחרות לעורך הדין.
@@ -219,7 +226,8 @@
 
     <p
       class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 editable"
-      data-field="court_update_intro"
+      data-field="calendar_update_intro"
+      contenteditable="true"
     >
       יש מספר דרכים לברר או לדעת על שינוי במועדי דיון:
     </p>
@@ -247,7 +255,8 @@
             <h6 class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2">בדיקה שגרתית</h6>
             <p
               class="text-sm text-gray-600 dark:text-gray-400 editable"
-              data-field="court_update_method_a"
+              data-field="calendar_update_method"
+              contenteditable="true"
             >
               נכנסים באופן שגרתי <strong>פעם בשבועיים</strong> לכל הדיונים המופיעים בנט המשפט
               ומצליבים עם הדיונים שרשומים ביומן. במצב שבו יש עדכון במועד הדיון, בשעת הדיון, במיקום

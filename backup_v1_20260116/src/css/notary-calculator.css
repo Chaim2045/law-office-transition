@@ -1,0 +1,966 @@
+/**
+ * Notary Calculator - Modern Professional Styles
+ * Design System: Linear/Vercel inspired
+ */
+
+:root {
+  /* Color Palette */
+  --nc-primary: #0066ff;
+  --nc-primary-hover: #0052cc;
+  --nc-primary-light: #e6f0ff;
+
+  --nc-gray-50: #fafafa;
+  --nc-gray-100: #f4f4f5;
+  --nc-gray-200: #e4e4e7;
+  --nc-gray-300: #d4d4d8;
+  --nc-gray-400: #a1a1aa;
+  --nc-gray-500: #71717a;
+  --nc-gray-600: #52525b;
+  --nc-gray-700: #3f3f46;
+  --nc-gray-800: #27272a;
+  --nc-gray-900: #18181b;
+
+  --nc-success: #10b981;
+  --nc-error: #ef4444;
+  --nc-warning: #f59e0b;
+  --nc-info: #3b82f6;
+
+  /* Spacing */
+  --nc-space-1: 0.25rem;
+  --nc-space-2: 0.5rem;
+  --nc-space-3: 0.75rem;
+  --nc-space-4: 1rem;
+  --nc-space-5: 1.25rem;
+  --nc-space-6: 1.5rem;
+  --nc-space-8: 2rem;
+  --nc-space-12: 3rem;
+
+  /* Border Radius */
+  --nc-radius-sm: 0.375rem;
+  --nc-radius-md: 0.5rem;
+  --nc-radius-lg: 0.75rem;
+  --nc-radius-xl: 1rem;
+
+  /* Shadows */
+  --nc-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --nc-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --nc-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --nc-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+  /* Typography */
+  --nc-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ============================================================================
+   LAYOUT & CONTAINER
+   ============================================================================ */
+
+.nc-calc {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: var(--nc-space-8);
+  font-family: var(--nc-font-sans);
+  direction: rtl;
+}
+
+/* ============================================================================
+   HEADER
+   ============================================================================ */
+
+.nc-calc-header {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-4);
+  margin-bottom: var(--nc-space-8);
+  padding-bottom: var(--nc-space-6);
+  border-bottom: 1px solid var(--nc-gray-200);
+}
+
+.nc-header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--nc-primary), var(--nc-primary-hover));
+  border-radius: var(--nc-radius-lg);
+  color: white;
+}
+
+.nc-header-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.nc-header-text h1 {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--nc-gray-900);
+  letter-spacing: -0.02em;
+}
+
+.nc-header-text p {
+  margin: var(--nc-space-1) 0 0 0;
+  font-size: 0.875rem;
+  color: var(--nc-gray-500);
+}
+
+/* ============================================================================
+   CLIENT INFO
+   ============================================================================ */
+
+.nc-client-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nc-space-4);
+  margin-bottom: var(--nc-space-6);
+}
+
+.nc-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--nc-space-2);
+}
+
+.nc-input-group label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--nc-gray-700);
+}
+
+.nc-input-group input {
+  padding: var(--nc-space-3) var(--nc-space-4);
+  border: 1px solid var(--nc-gray-300);
+  border-radius: var(--nc-radius-md);
+  font-size: 0.9375rem;
+  transition: all 0.2s;
+  background: white;
+}
+
+.nc-input-group input:hover {
+  border-color: var(--nc-gray-400);
+}
+
+.nc-input-group input:focus {
+  outline: none;
+  border-color: var(--nc-primary);
+  box-shadow: 0 0 0 3px var(--nc-primary-light);
+}
+
+/* ============================================================================
+   BUTTONS
+   ============================================================================ */
+
+.nc-btn-add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nc-space-2);
+  width: 100%;
+  padding: var(--nc-space-4);
+  background: var(--nc-primary);
+  color: white;
+  border: none;
+  border-radius: var(--nc-radius-md);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  margin-bottom: var(--nc-space-6);
+}
+
+.nc-btn-add:hover {
+  background: var(--nc-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--nc-shadow-md);
+}
+
+.nc-btn-add svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nc-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--nc-space-2);
+  padding: var(--nc-space-3) var(--nc-space-5);
+  border: none;
+  border-radius: var(--nc-radius-md);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.nc-btn-primary {
+  background: var(--nc-primary);
+  color: white;
+}
+
+.nc-btn-primary:hover {
+  background: var(--nc-primary-hover);
+  transform: translateY(-1px);
+}
+
+.nc-btn-secondary {
+  background: var(--nc-gray-100);
+  color: var(--nc-gray-700);
+  border: 1px solid var(--nc-gray-300);
+}
+
+.nc-btn-secondary:hover {
+  background: var(--nc-gray-200);
+  border-color: var(--nc-gray-400);
+}
+
+/* ============================================================================
+   SERVICES AREA
+   ============================================================================ */
+
+.nc-services-area {
+  min-height: 200px;
+  margin-bottom: var(--nc-space-6);
+}
+
+.nc-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--nc-space-12);
+  background: var(--nc-gray-50);
+  border: 2px dashed var(--nc-gray-300);
+  border-radius: var(--nc-radius-lg);
+  color: var(--nc-gray-500);
+  text-align: center;
+}
+
+.nc-empty-state svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--nc-space-4);
+  opacity: 0.5;
+}
+
+.nc-empty-state p {
+  margin: 0 0 var(--nc-space-1) 0;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--nc-gray-700);
+}
+
+.nc-empty-state span {
+  font-size: 0.875rem;
+}
+
+.nc-service-card {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-4);
+  padding: var(--nc-space-4);
+  margin-bottom: var(--nc-space-3);
+  background: white;
+  border: 1px solid var(--nc-gray-200);
+  border-radius: var(--nc-radius-lg);
+  transition: all 0.2s;
+}
+
+.nc-service-card:hover {
+  border-color: var(--nc-gray-300);
+  box-shadow: var(--nc-shadow-sm);
+}
+
+.nc-service-icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: var(--nc-primary-light);
+  border-radius: var(--nc-radius-md);
+  color: var(--nc-primary);
+}
+
+.nc-service-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nc-service-content {
+  flex: 1;
+}
+
+.nc-service-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--nc-gray-900);
+  margin-bottom: var(--nc-space-1);
+}
+
+.nc-service-price {
+  font-size: 0.8125rem;
+  color: var(--nc-gray-500);
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-2);
+}
+
+.nc-service-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-3);
+}
+
+.nc-service-total {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+  min-width: 80px;
+  text-align: left;
+}
+
+.nc-qty-input,
+.nc-word-count-input {
+  width: 80px;
+  padding: var(--nc-space-2) var(--nc-space-3);
+  border: 1px solid var(--nc-gray-300);
+  border-radius: var(--nc-radius-sm);
+  font-size: 0.9375rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.nc-qty-input:focus,
+.nc-word-count-input:focus {
+  outline: none;
+  border-color: var(--nc-primary);
+  box-shadow: 0 0 0 3px var(--nc-primary-light);
+}
+
+.nc-word-count-input {
+  width: 100px;
+}
+
+.nc-btn-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: var(--nc-radius-sm);
+  color: var(--nc-gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-btn-remove:hover {
+  background: var(--nc-gray-100);
+  color: var(--nc-error);
+}
+
+.nc-btn-remove svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ============================================================================
+   ADDONS SECTION
+   ============================================================================ */
+
+.nc-addons-section {
+  padding: var(--nc-space-6);
+  background: var(--nc-gray-50);
+  border-radius: var(--nc-radius-lg);
+  margin-bottom: var(--nc-space-6);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nc-addons-section.nc-show {
+  max-height: 500px;
+  opacity: 1;
+}
+
+.nc-addons-section h3 {
+  margin: 0 0 var(--nc-space-4) 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+}
+
+.nc-addons-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--nc-space-3);
+  margin-bottom: var(--nc-space-4);
+}
+
+.nc-addon-item {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-3);
+  padding: var(--nc-space-4);
+  background: white;
+  border: 1px solid var(--nc-gray-200);
+  border-radius: var(--nc-radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-addon-item:hover {
+  border-color: var(--nc-primary);
+  background: var(--nc-primary-light);
+}
+
+.nc-addon-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+  accent-color: var(--nc-primary);
+}
+
+.nc-addon-label {
+  flex: 1;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--nc-gray-900);
+}
+
+.nc-addon-value {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--nc-primary);
+}
+
+.nc-travel-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--nc-space-4);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nc-travel-details.nc-show {
+  max-height: 200px;
+  opacity: 1;
+  margin-top: var(--nc-space-4);
+}
+
+/* ============================================================================
+   SUMMARY
+   ============================================================================ */
+
+.nc-summary {
+  padding: var(--nc-space-6);
+  background: white;
+  border: 1px solid var(--nc-gray-200);
+  border-radius: var(--nc-radius-lg);
+  margin-bottom: var(--nc-space-6);
+}
+
+.nc-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--nc-space-3) 0;
+}
+
+.nc-summary-row:not(:last-child) {
+  border-bottom: 1px solid var(--nc-gray-100);
+}
+
+.nc-summary-row span {
+  font-size: 0.9375rem;
+  color: var(--nc-gray-600);
+}
+
+.nc-summary-row strong {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+}
+
+.nc-summary-total {
+  padding-top: var(--nc-space-4);
+  margin-top: var(--nc-space-2);
+  border-top: 2px solid var(--nc-gray-200) !important;
+  border-bottom: none !important;
+}
+
+.nc-summary-total span {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+}
+
+.nc-summary-total strong {
+  font-size: 1.5rem;
+  color: var(--nc-primary);
+}
+
+/* ============================================================================
+   ACTIONS
+   ============================================================================ */
+
+.nc-actions {
+  display: flex;
+  gap: var(--nc-space-3);
+  justify-content: flex-end;
+}
+
+/* ============================================================================
+   MODAL
+   ============================================================================ */
+
+.nc-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+
+.nc-modal.nc-show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.nc-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+.nc-modal-content {
+  position: relative;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  background: white;
+  border-radius: var(--nc-radius-xl);
+  box-shadow: var(--nc-shadow-xl);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.95);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nc-modal.nc-show .nc-modal-content {
+  transform: scale(1);
+}
+
+.nc-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nc-space-6);
+  border-bottom: 1px solid var(--nc-gray-200);
+}
+
+.nc-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+}
+
+.nc-modal-close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: none;
+  border-radius: var(--nc-radius-sm);
+  color: var(--nc-gray-400);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-modal-close:hover {
+  background: var(--nc-gray-100);
+  color: var(--nc-gray-700);
+}
+
+.nc-modal-close svg {
+  width: 20px;
+  height: 20px;
+}
+
+.nc-modal-search {
+  position: relative;
+  padding: var(--nc-space-4) var(--nc-space-6);
+  border-bottom: 1px solid var(--nc-gray-200);
+}
+
+.nc-modal-search svg {
+  position: absolute;
+  right: var(--nc-space-8);
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  color: var(--nc-gray-400);
+  pointer-events: none;
+}
+
+.nc-modal-search input {
+  width: 100%;
+  padding: var(--nc-space-3) var(--nc-space-4) var(--nc-space-3) var(--nc-space-12);
+  border: 1px solid var(--nc-gray-300);
+  border-radius: var(--nc-radius-md);
+  font-size: 0.9375rem;
+  transition: all 0.2s;
+}
+
+.nc-modal-search input:focus {
+  outline: none;
+  border-color: var(--nc-primary);
+  box-shadow: 0 0 0 3px var(--nc-primary-light);
+}
+
+.nc-modal-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--nc-space-4);
+}
+
+.nc-service-category {
+  padding: var(--nc-space-3) var(--nc-space-4);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--nc-gray-500);
+  margin-top: var(--nc-space-4);
+}
+
+.nc-service-category:first-child {
+  margin-top: 0;
+}
+
+.nc-service-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--nc-space-4);
+  margin-bottom: var(--nc-space-2);
+  background: white;
+  border: 1px solid var(--nc-gray-200);
+  border-radius: var(--nc-radius-md);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-service-item:hover {
+  background: var(--nc-primary-light);
+  border-color: var(--nc-primary);
+  transform: translateX(-2px);
+}
+
+.nc-service-item-title {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--nc-gray-900);
+}
+
+.nc-service-item-price {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--nc-primary);
+}
+
+/* ============================================================================
+   TOAST NOTIFICATIONS
+   ============================================================================ */
+
+.nc-toast-container {
+  position: fixed;
+  bottom: var(--nc-space-6);
+  left: var(--nc-space-6);
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: var(--nc-space-3);
+}
+
+.nc-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-3);
+  padding: var(--nc-space-4) var(--nc-space-5);
+  background: white;
+  border-radius: var(--nc-radius-md);
+  box-shadow: var(--nc-shadow-lg);
+  min-width: 300px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nc-toast.nc-toast-show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nc-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.nc-toast-success .nc-toast-icon {
+  background: var(--nc-success);
+  color: white;
+}
+
+.nc-toast-error .nc-toast-icon {
+  background: var(--nc-error);
+  color: white;
+}
+
+.nc-toast-info .nc-toast-icon {
+  background: var(--nc-info);
+  color: white;
+}
+
+.nc-toast-warning .nc-toast-icon {
+  background: var(--nc-warning);
+  color: white;
+}
+
+.nc-toast-message {
+  font-size: 0.9375rem;
+  color: var(--nc-gray-900);
+}
+
+/* ============================================================================
+   RESPONSIVE
+   ============================================================================ */
+
+@media (max-width: 640px) {
+  .nc-calc {
+    padding: var(--nc-space-4);
+  }
+
+  .nc-client-info {
+    grid-template-columns: 1fr;
+  }
+
+  .nc-actions {
+    flex-direction: column;
+  }
+
+  .nc-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .nc-service-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nc-service-controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nc-travel-details {
+    grid-template-columns: 1fr;
+  }
+
+  .nc-toast-container {
+    left: var(--nc-space-4);
+    right: var(--nc-space-4);
+  }
+
+  .nc-toast {
+    min-width: 0;
+  }
+}
+
+/* ============================================================================
+   PRINT STYLES
+   ============================================================================ */
+
+@media print {
+  .nc-btn-add,
+  .nc-actions,
+  .nc-modal,
+  .nc-toast-container,
+  .nc-btn-remove {
+    display: none !important;
+  }
+
+  .nc-calc {
+    padding: 0;
+  }
+
+  .nc-summary {
+    break-inside: avoid;
+  }
+
+  .nc-confirm-overlay,
+  .nc-confirm-dialog {
+    display: none !important;
+  }
+}
+
+/* ============================================================================
+   CONFIRM DIALOG
+   ============================================================================ */
+
+.nc-confirm-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  padding: var(--nc-space-4);
+}
+
+.nc-confirm-overlay.nc-show {
+  opacity: 1;
+}
+
+.nc-confirm-dialog {
+  background: white;
+  border-radius: var(--nc-radius-lg);
+  box-shadow: var(--nc-shadow-xl);
+  max-width: 420px;
+  width: 100%;
+  transform: scale(0.95) translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.nc-confirm-overlay.nc-show .nc-confirm-dialog {
+  transform: scale(1) translateY(0);
+}
+
+.nc-confirm-header {
+  display: flex;
+  align-items: center;
+  gap: var(--nc-space-3);
+  padding: var(--nc-space-6);
+  border-bottom: 1px solid var(--nc-gray-200);
+}
+
+.nc-confirm-header svg {
+  width: 24px;
+  height: 24px;
+  color: var(--nc-warning);
+  flex-shrink: 0;
+}
+
+.nc-confirm-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--nc-gray-900);
+}
+
+.nc-confirm-message {
+  padding: var(--nc-space-6);
+  color: var(--nc-gray-700);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.nc-confirm-actions {
+  display: flex;
+  gap: var(--nc-space-3);
+  padding: var(--nc-space-6);
+  border-top: 1px solid var(--nc-gray-200);
+  justify-content: flex-end;
+}
+
+.nc-confirm-btn {
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--nc-radius-md);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nc-confirm-cancel {
+  background: var(--nc-gray-100);
+  color: var(--nc-gray-700);
+}
+
+.nc-confirm-cancel:hover {
+  background: var(--nc-gray-200);
+  color: var(--nc-gray-900);
+}
+
+.nc-confirm-ok {
+  background: var(--nc-primary);
+  color: white;
+}
+
+.nc-confirm-ok:hover {
+  background: var(--nc-primary-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--nc-shadow-md);
+}
+
+.nc-confirm-ok:active {
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .nc-confirm-dialog {
+    max-width: 100%;
+  }
+
+  .nc-confirm-actions {
+    flex-direction: column-reverse;
+  }
+
+  .nc-confirm-btn {
+    width: 100%;
+  }
+}

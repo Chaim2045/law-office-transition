@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between mb-8">
   <h2
     class="text-4xl font-bold text-blue-900 dark:text-blue-400 bg-clip-text text-transparent flex items-center editable"
-    data-field="heading_daily_management"
+    data-field="daily_main_title"
+    contenteditable="true"
   >
     <div
       class="w-12 h-12 bg-blue-900 rounded-xl flex items-center justify-center text-white font-bold text-lg ml-4"
@@ -16,7 +17,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-900">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_morning_checks"
+    data-field="daily_morning_checks_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -38,7 +40,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">1. ביקורת חדרים והכנת המשרד</div>
-        <div class="linear-item-value editable" data-field="daily_room_check">
+        <div class="linear-item-value editable" data-field="daily_room_check" contenteditable="true">
           לעבור על כל החדרים לוודא שחדר הישיבות והמשרדים מסודרים - הדלקת אורות + מזגן בכל החדרים
           (כולל החדר של גיא)
         </div>
@@ -68,7 +70,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">2. בדיקת נקיון מקיפה</div>
-        <div class="linear-item-value editable" data-field="daily_cleaning_check">
+        <div class="linear-item-value editable" data-field="daily_cleaning_check" contenteditable="true">
           דלתות זכוכית בכל החדרים, אבק, כיור נקי, דלתות עץ נקיות, שולחן חדר ישיבות נקי וכיסאות סביב
           השולחן. במידה והנקיון לא תקין - לפנות לאנשי קשר ולטלפון של נקיון המשרד טלפונית ובכתב
         </div>
@@ -98,7 +100,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">3. השקיית עציצים</div>
-        <div class="linear-item-value editable" data-field="daily_plants_watering">
+        <div class="linear-item-value editable" data-field="daily_plants_watering" contenteditable="true">
           פעמיים בשבוע (ימים ב' וה'). גיא רגיש לעציצים שהם מתייבשים - גם הוא מתייבש. צמיחת עציצים
           שקולה לצמיחת המשרד
         </div>
@@ -123,7 +125,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">4. נקיון מקרר שבועי</div>
-        <div class="linear-item-value editable" data-field="weekly_fridge_cleaning">
+        <div class="linear-item-value editable" data-field="daily_fridge_cleaning" contenteditable="true">
           פעם בשבוע ביום ה' - לנקות את המקרר
         </div>
       </div>
@@ -143,7 +145,8 @@
 <div class="mb-6 p-4 bg-indigo-50/30 dark:bg-indigo-950/10 rounded-lg border-r-4 border-indigo-600">
   <h4
     class="text-md font-semibold text-indigo-900 dark:text-indigo-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_task_management"
+    data-field="daily_task_mgmt_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -165,7 +168,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">פתיחת דשבורד משימות</div>
-        <div class="linear-item-value editable" data-field="computer_dashboard">
+        <div class="linear-item-value editable" data-field="daily_dashboard_check" contenteditable="true">
           לבדוק משימות שטרם בוצעו מימים קודמים ומשימות חדשות
         </div>
       </div>
@@ -191,7 +194,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">פתיחת תיבת דואר נכנס במייל</div>
-        <div class="linear-item-value editable" data-field="computer_email_inbox">
+        <div class="linear-item-value editable" data-field="daily_email_inbox" contenteditable="true">
           לפתוח את תיבת הדואר הנכנס במייל בכתובת
           <a href="mailto:Office@ghlawoffice.co.il">Office@ghlawoffice.co.il</a>
           ולעבור על כל המיילים החדשים שהתקבלו
@@ -219,7 +222,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מתן מענה ראשוני למי ששלח מיילים</div>
-        <div class="linear-item-value editable" data-field="computer_email_response">
+        <div class="linear-item-value editable" data-field="daily_email_response" contenteditable="true">
           2 מצבים:<br /><br />
           <strong>1. מישהו מהצוות במשרד:</strong> עונים לו: "קיבלתי. יטופל, להבא אשמח אם המשימה
           תועבר דרך לינק המשימות" או "קיבלתי, חסרים פרטים המשימה, בבקשה להשלים..." או "לא ברור
@@ -253,7 +256,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">ביצוע לפי עדיפויות</div>
-        <div class="linear-item-value editable" data-field="computer_priorities">
+        <div class="linear-item-value editable" data-field="daily_task_priorities" contenteditable="true">
           לאחר ריכוז כלל המשימות בדשבורד יש לבצע לפי סדרי עדיפויות - דחוף-חשוב, רגיל
         </div>
       </div>
@@ -279,7 +282,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">טיפול במשימות חסרות מידע</div>
-        <div class="linear-item-value editable" data-field="computer_incomplete_tasks">
+        <div class="linear-item-value editable" data-field="daily_incomplete_tasks" contenteditable="true">
           במידה ומתקבלת משימה שאין בה את כל הפרטים, מידע או מסמכים - יש לפנות חזרה לנותן המשימה
           בדשבורד בכפתור "החזר משימה" ולהבהיר מה חסר. במידה ומדובר במשימה דחופה - בנוסף לפנות
           טלפונית
@@ -304,7 +307,8 @@
 <div class="mb-6 p-4 bg-blue-50/30 dark:bg-blue-950/10 rounded-lg border-r-4 border-blue-600">
   <h4
     class="text-md font-semibold text-blue-900 dark:text-blue-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_communication_principles"
+    data-field="daily_communication_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -328,7 +332,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">עקרון סגירת מעגל תקשורת</div>
-        <div class="linear-item-value editable" data-field="communication_close_loop">
+        <div class="linear-item-value editable" data-field="daily_comm_close_loop" contenteditable="true">
           כל תקשורת חייבת להיסגר באותו ערוץ שנפתחה בו: מייל ← תשובה במייל, וואטסאפ ← תשובה בוואטסאפ,
           טלפון ← חזרה בטלפון
         </div>
@@ -355,7 +359,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">אישור קבלת תקשורת</div>
-        <div class="linear-item-value editable" data-field="communication_confirm">
+        <div class="linear-item-value editable" data-field="daily_comm_confirm" contenteditable="true">
           לכל פנייה (מייל, וואטסאפ, טלפון) יש לענות "קיבלתי" או "הבנתי" כדי שהפונה ידע שהתקשורת
           התקבלה. אי אישור קבלה עלול ליצור מתחים ודאגות
         </div>
@@ -376,7 +380,8 @@
 <div class="mb-6 p-4 bg-green-50/30 dark:bg-green-950/10 rounded-lg border-r-4 border-green-600">
   <h4
     class="text-md font-semibold text-green-900 dark:text-green-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_regular_phones"
+    data-field="daily_phones_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -398,7 +403,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">נוסח מענה</div>
-        <div class="linear-item-value editable" data-field="phone_standard_greeting">
+        <div class="linear-item-value editable" data-field="daily_phone_greeting" contenteditable="true">
           "משרד עו"ד שלום, מדברת [שמך], איך אני יכולה לעזור?"
         </div>
       </div>
@@ -428,7 +433,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">לקיחת פרטים</div>
-        <div class="linear-item-value editable" data-field="phone_take_details">
+        <div class="linear-item-value editable" data-field="daily_phone_take_details" contenteditable="true">
           לקחת שם מלא ומספר טלפון. להסביר: "כל הפניות עוברות דרכי, כדי שפנייתך תטופל אני צריכה פרטים
           מלאים"
         </div>
@@ -453,7 +458,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">רישום בדשבורד</div>
-        <div class="linear-item-value editable" data-field="phone_dashboard_regular">
+        <div class="linear-item-value editable" data-field="daily_phone_dashboard" contenteditable="true">
           לרשום את ההודעה בדשבורד בכפתור "שיחות נכנסות"
         </div>
       </div>
@@ -479,7 +484,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">העברה לעורך הדין או איש צוות המטפל</div>
-        <div class="linear-item-value editable" data-field="phone_transfer">
+        <div class="linear-item-value editable" data-field="daily_phone_transfer" contenteditable="true">
           להעביר לעורך הדין או איש צוות המטפל הרלוונטי
         </div>
       </div>
@@ -508,7 +513,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מה קורה שתוך כדי שיחה טלפונית מתקבלת עוד שיחה?</div>
-        <div class="linear-item-value editable" data-field="phone_call_waiting">
+        <div class="linear-item-value editable" data-field="daily_phone_call_waiting" contenteditable="true">
           במצב שבו מתקבלת שיחה טלפונית נוספת תוך כדי שיחה, אומרים לאדם שכבר נמצא בקו הטלפון: "אני
           לוקחת הודעה טלפונית, תחכה בבקשה על הקו, אל תנתק". לא מחכים לתשובה פשוט ועוברים תוך שלוחצים
           על כפתור הטלפון "המתן" ואז עוברים לשיחה הבאה. אומרים: "משרד עורכי דין שלום מדברת... אני
@@ -535,7 +540,8 @@
 <div class="mb-6 p-4 bg-purple-50/30 dark:bg-purple-950/10 rounded-lg border-r-4 border-purple-600">
   <h4
     class="text-md font-semibold text-purple-900 dark:text-purple-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_outgoing_calls"
+    data-field="daily_outgoing_calls_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -557,7 +563,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">יזום שיחות מהדשבורד</div>
-        <div class="linear-item-value editable" data-field="outgoing_calls_dashboard">
+        <div class="linear-item-value editable" data-field="daily_outgoing_calls" contenteditable="true">
           במידה והתבקשת במסגרת דשבורד המשימות, בכפתור "שיחות יוצאות" להוציא או ליזום שיחת טלפון, יש
           לפעול לביצוע השיחה ולהעברת/חיבור השיחה לגורם המבקש או ליידע ולעדכן בכפתור שיחות יוצאות, אם
           לא הושג. לבצע מעקב עד לביצוע מלא של יזום השיחה היוצאת.
@@ -582,7 +588,8 @@
 <div class="mb-6 p-4 bg-green-50/30 dark:bg-green-950/10 rounded-lg border-r-4 border-green-600">
   <h4
     class="text-md font-semibold text-green-900 dark:text-green-400 mb-4 flex items-center gap-2 editable"
-    data-field="heading_leads"
+    data-field="daily_leads_title"
+    contenteditable="true"
   >
     <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
       <path
@@ -606,7 +613,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">איך מזהים ליד?</div>
-        <div class="linear-item-value editable" data-field="lead_identify">
+        <div class="linear-item-value editable" data-field="daily_lead_identify" contenteditable="true">
           רגע לפני המענה לטלפון, תוכלי לזהות על צג השיחה המזוהה את מספר הטלפון. ברגע המענה תשמעי
           הקלטה קולית: "אתם מקבלים שיחה מאתר דין או אחר זאפ משפטי". זה הרגע שאת מבינה שמדובר בלקוח
           פוטנציאלי. מתן מענה ללידה כזה הוא העדיפות העליונה על כל פעולה אחרת.
@@ -638,7 +645,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">לקיחת פרטים מהליד</div>
-        <div class="linear-item-value editable" data-field="phone_leads_answer">
+        <div class="linear-item-value editable" data-field="daily_lead_take_details" contenteditable="true">
           לקחת שם מלא וטלפון (להסביר שזה למקרה ניתוק). להקשיב בעיון לפנייה ולרשום פרטים
         </div>
       </div>
@@ -662,7 +669,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">רישום בדשבורד (כפתור "לידים" בלבד!)</div>
-        <div class="linear-item-value editable" data-field="lead_dashboard">
+        <div class="linear-item-value editable" data-field="daily_lead_dashboard" contenteditable="true">
           לרשום בדשבורד בכפתור "לידים" בלבד - לא בכפתור "שיחות נכנסות"!
         </div>
       </div>
@@ -689,7 +696,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">העברה מיידית לקבוצת וואטסאפ</div>
-        <div class="linear-item-value editable" data-field="phone_whatsapp_protocol">
+        <div class="linear-item-value editable" data-field="daily_lead_whatsapp" contenteditable="true">
           להעביר מיד הודעה דרך וואטסאפ (נייד המשרד/ווב) לקבוצה "הרשקוביץ פניית לידים" עם התבנית הבאה
           (לחץ על כפתור ההעתקה): 🔥 ליד חדש - להתקשר עכשיו 🔥 שם: _______ טלפון: _______ נושא:
           _______ מקור פנייה: _______ פעולה: להתקשר עכשיו אחראי: _______ תאריך: _______
@@ -720,7 +727,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מעקב ווידוא טיפול</div>
-        <div class="linear-item-value editable" data-field="phone_lead_followup">
+        <div class="linear-item-value editable" data-field="daily_lead_followup" contenteditable="true">
           לוודא שאחד מאנשי המכירות כתב בקבוצה "אני מטפל". במידה ולא התקבל מענה - לעשות כרוכית ולתייג
           את כולם עד קבלת מענה מצוות המכירות
         </div>
@@ -750,7 +757,7 @@
       </div>
       <div class="linear-item-content">
         <div class="linear-item-label">מה קורה שתוך כדי שיחה טלפונית מתקבלת עוד שיחה?</div>
-        <div class="linear-item-value editable" data-field="lead_call_waiting">
+        <div class="linear-item-value editable" data-field="daily_lead_call_waiting" contenteditable="true">
           במצב שבו מתקבלת שיחה טלפונית נוספת תוך כדי שיחה, אומרים לאדם שכבר נמצא בקו הטלפון: "אני
           לוקחת הודעה טלפונית, תחכה בבקשה על הקו, אל תנתק". לא מחכים לתשובה פשוט ועוברים תוך שלוחצים
           על כפתור הטלפון "המתן" ואז עוברים לשיחה הבאה. אומרים: "משרד עורכי דין שלום מדברת... אני

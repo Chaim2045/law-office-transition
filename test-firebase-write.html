@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בדיקת כתיבה ל-Firebase</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      direction: rtl;
+    }
+    .result {
+      margin: 10px 0;
+      padding: 10px;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-family: monospace;
+    }
+    .success {
+      background: #d1fae5;
+      border: 1px solid #059669;
+    }
+    .warning {
+      background: #fef3c7;
+      border: 1px solid #f59e0b;
+    }
+    .error {
+      background: #fee2e2;
+      border: 1px solid #dc2626;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3b82f6;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+      margin: 10px 5px;
+    }
+    button:hover {
+      background: #2563eb;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔧 בדיקת כתיבה ל-Firebase</h1>
+  <p>כלי זה בודק אם אפשר לכתוב ל-Firebase ומדוע זה לא עובד</p>
+
+  <button onclick="testWritePermission()">📝 בדוק הרשאות כתיבה</button>
+  <button onclick="testRead()">📖 בדוק קריאה מ-Firebase</button>
+  <button onclick="checkAppConfig()">⚙️ בדוק APP_CONFIG</button>
+  <button onclick="clearResults()">🗑️ נקה</button>
+
+  <div id="results"></div>
+
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+
+  <script>
+    // Initialize Firebase directly
+    const firebaseConfig = {
+      apiKey: 'AIzaSyC9R_eupXtdkzEMBwA1Dsc6SC_14_iUNLs',
+      authDomain: 'law-office-guide.firebaseapp.com',
+      databaseURL: 'https://law-office-guide-default-rtdb.europe-west1.firebasedatabase.app',
+      projectId: 'law-office-guide',
+      storageBucket: 'law-office-guide.firebasestorage.app',
+      messagingSenderId: '903121364456',
+      appId: '1:903121364456:web:91d02f021ab618d3a6705d',
+      measurementId: 'G-3NZXL9YB35',
+    };
+
+    // Initialize Firebase
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+    const database = firebase.database();
+
+    const resultsDiv = document.getElementById('results');
+
+    function addResult(message, type = 'success') {
+      const div = document.createElement('div');
+      div.className = `result ${type}`;
+      div.textContent = message;
+      resultsDiv.appendChild(div);
+    }
+
+    function clearResults() {
+      resultsDiv.innerHTML = '';
+    }
+
+    async function testRead() {
+      clearResults();
+      addResult('📖 בודק קריאה מ-Firebase...', 'success');
+
+      try {
+        const snapshot = await database.ref('guideData').get();
+
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          const keys = Object.keys(data);
+          addResult(`✅ נמצאו ${keys.length} מפתחות ב-guideData`, 'success');
+          addResult(`Keys: ${keys.slice(0, 10).join(', ')}`, 'success');
+          if (keys.length > 10) {
+            addResult(`... ועוד ${keys.length - 10}`, 'success');
+          }
+        } else {
+          addResult('⚠️ guideData ריק או לא קיים', 'warning');
+          addResult('זה אומר ששום דבר לא נשמר עדיין', 'warning');
+        }
+
+        // Check entire database root
+        const rootSnapshot = await database.ref('/').get();
+        if (rootSnapshot.exists()) {
+          const rootData = rootSnapshot.val();
+          const rootKeys = Object.keys(rootData);
+          addResult(`\n📦 נמצאו בroot: ${rootKeys.join(', ')}`, 'success');
+        } else {
+          addResult('\n❌ המסד נתונים ריק לגמרי!', 'error');
+        }
+
+      } catch (error) {
+        addResult(`❌ שגיאה בקריאה: ${error.message}`, 'error');
+        console.error(error);
+      }
+    }
+
+    async function testWritePermission() {
+      clearResults();
+      addResult('📝 בודק הרשאות כתיבה...', 'success');
+
+      try {
+        // Try to write a test value
+        const testRef = database.ref('guideData/test_write_' + Date.now());
+        addResult('מנסה לכתוב ערך טסט...', 'success');
+
+        await testRef.set({
+          content: 'בדיקה',
+          timestamp: Date.now(),
+          test: true
+        });
+
+        addResult('✅ כתיבה הצליחה!', 'success');
+
+        // Try to read it back
+        const snapshot = await testRef.get();
+        if (snapshot.exists()) {
+          addResult('✅ קריאה חזרה הצליחה!', 'success');
+          addResult(`Data: ${JSON.stringify(snapshot.val())}`, 'success');
+        }
+
+        // Clean up
+        await testRef.remove();
+        addResult('✅ ניקוי הושלם', 'success');
+
+        addResult('\n🎉 Firebase עובד תקין!', 'success');
+        addResult('הבעיה היא שהאפליקציה לא כותבת בפועל', 'warning');
+
+      } catch (error) {
+        addResult(`❌ כתיבה נכשלה: ${error.message}`, 'error');
+        addResult(`Error code: ${error.code}`, 'error');
+
+        if (error.code === 'PERMISSION_DENIED') {
+          addResult('\n🔒 זוהי בעיית הרשאות!', 'error');
+          addResult('צריך לעדכן את Firebase Rules:', 'error');
+          addResult(`
+{
+  "rules": {
+    ".read": true,
+    ".write": true
+  }
+}`, 'error');
+          addResult('\nלך ל-Firebase Console → Realtime Database → Rules', 'error');
+        }
+
+        console.error(error);
+      }
+    }
+
+    function checkAppConfig() {
+      clearResults();
+      addResult('⚙️ בודק APP_CONFIG...', 'success');
+
+      // Check if we're on the main site
+      addResult(`URL: ${window.location.href}`, 'success');
+      addResult(`Hostname: ${window.location.hostname}`, 'success');
+
+      const isLocalhost = ['localhost', '127.0.0.1', '[::1]'].includes(window.location.hostname);
+      addResult(`Is localhost: ${isLocalhost}`, isLocalhost ? 'warning' : 'success');
+
+      if (isLocalhost) {
+        addResult('\n⚠️ אתה ב-localhost!', 'warning');
+        addResult('APP_CONFIG.enableFirebaseWrites כנראה false', 'warning');
+        addResult('זה מונע כתיבה ל-Firebase', 'warning');
+        addResult('\n💡 פתרון:', 'success');
+        addResult('1. בקונסול של האתר הראשי, הרץ:', 'success');
+        addResult('   window.APP_CONFIG.enableFirebaseWrites = true;', 'success');
+        addResult('2. או הוסף ?safe=0 ל-URL', 'success');
+        addResult('3. או פתח את האתר דרך Netlify', 'success');
+      } else {
+        addResult('\n✅ לא ב-localhost', 'success');
+        addResult('APP_CONFIG.enableFirebaseWrites אמור להיות true', 'success');
+      }
+    }
+  </script>
+</body>
+</html>

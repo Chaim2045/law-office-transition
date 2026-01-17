@@ -1,0 +1,343 @@
+/* ===== Enhanced Linear Styles - Category Colors & Animations ===== */
+/* Premium styling for category-based items with smooth animations */
+
+/* === Enhanced Linear Items with Category Colors === */
+.linear-item {
+  position: relative;
+  border-radius: 8px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 0.4s ease-out backwards;
+}
+
+/* Stagger animation for sequential items */
+.linear-item:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.linear-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.linear-item:nth-child(3) {
+  animation-delay: 0.15s;
+}
+.linear-item:nth-child(4) {
+  animation-delay: 0.2s;
+}
+.linear-item:nth-child(5) {
+  animation-delay: 0.25s;
+}
+.linear-item:nth-child(6) {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.linear-item:hover {
+  transform: translateX(-4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Enhanced icon animations - subtle */
+.linear-item-icon {
+  transition: all 0.2s ease;
+}
+
+.linear-item:hover .linear-item-icon {
+  transform: scale(1.05);
+}
+
+/* === Category-Specific Hover Effects with Left Border === */
+.linear-item[data-category='ta_staff']:hover {
+  border-left: 4px solid var(--ta-color);
+  background: linear-gradient(90deg, var(--ta-bg) 0%, transparent 100%);
+  padding-left: calc(1rem - 4px);
+}
+
+.linear-item[data-category='ta_staff'] .linear-item-icon {
+  color: var(--ta-color);
+}
+
+.linear-item[data-category='rehovot_staff']:hover {
+  border-left: 4px solid var(--rehovot-color);
+  background: linear-gradient(90deg, var(--rehovot-bg) 0%, transparent 100%);
+  padding-left: calc(1rem - 4px);
+}
+
+.linear-item[data-category='rehovot_staff'] .linear-item-icon {
+  color: var(--rehovot-color);
+}
+
+.linear-item[data-category='freelancer']:hover {
+  border-left: 4px solid var(--freelancer-color);
+  background: linear-gradient(90deg, var(--freelancer-bg) 0%, transparent 100%);
+  padding-left: calc(1rem - 4px);
+}
+
+.linear-item[data-category='freelancer'] .linear-item-icon {
+  color: var(--freelancer-color);
+}
+
+.linear-item[data-category='tenant']:hover {
+  border-left: 4px solid var(--tenant-color);
+  background: linear-gradient(90deg, var(--tenant-bg) 0%, transparent 100%);
+  padding-left: calc(1rem - 4px);
+}
+
+.linear-item[data-category='tenant'] .linear-item-icon {
+  color: var(--tenant-color);
+}
+
+/* === Enhanced Category Labels === */
+.linear-item-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.875rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.linear-item-label::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.linear-item-label:hover::before {
+  opacity: 1;
+}
+
+/* Category-specific label styles */
+.linear-item-label[data-category='ta_staff'] {
+  background: var(--ta-bg);
+  color: var(--ta-color);
+  border: 1px solid var(--ta-color);
+  border-opacity: 0.2;
+}
+
+.linear-item-label[data-category='ta_staff']:hover {
+  background: var(--ta-color);
+  color: white;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px var(--ta-bg);
+}
+
+.linear-item-label[data-category='rehovot_staff'] {
+  background: var(--rehovot-bg);
+  color: var(--rehovot-color);
+  border: 1px solid var(--rehovot-color);
+  border-opacity: 0.2;
+}
+
+.linear-item-label[data-category='rehovot_staff']:hover {
+  background: var(--rehovot-color);
+  color: white;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px var(--rehovot-bg);
+}
+
+.linear-item-label[data-category='freelancer'] {
+  background: var(--freelancer-bg);
+  color: var(--freelancer-color);
+  border: 1px solid var(--freelancer-color);
+  border-opacity: 0.2;
+}
+
+.linear-item-label[data-category='freelancer']:hover {
+  background: var(--freelancer-color);
+  color: white;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px var(--freelancer-bg);
+}
+
+.linear-item-label[data-category='tenant'] {
+  background: var(--tenant-bg);
+  color: var(--tenant-color);
+  border: 1px solid var(--tenant-color);
+  border-opacity: 0.2;
+}
+
+.linear-item-label[data-category='tenant']:hover {
+  background: var(--tenant-color);
+  color: white;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px var(--tenant-bg);
+}
+
+/* === Enhanced Category Section Headers === */
+.category-header {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  transition: width 0.3s ease;
+}
+
+.category-header:hover::before {
+  width: 100%;
+  opacity: 0.1;
+}
+
+/* Tel Aviv Header */
+.category-header[data-category='ta_staff'] {
+  background: var(--ta-bg);
+  color: var(--ta-color);
+  border: 1px solid var(--ta-color);
+  border-opacity: 0.2;
+}
+
+.category-header[data-category='ta_staff']::before {
+  background: var(--ta-color);
+}
+
+.category-header[data-category='ta_staff']:hover {
+  background: var(--ta-color-light);
+  transform: translateX(2px);
+}
+
+/* Rehovot Header */
+.category-header[data-category='rehovot_staff'] {
+  background: var(--rehovot-bg);
+  color: var(--rehovot-color);
+  border: 1px solid var(--rehovot-color);
+  border-opacity: 0.2;
+}
+
+.category-header[data-category='rehovot_staff']::before {
+  background: var(--rehovot-color);
+}
+
+.category-header[data-category='rehovot_staff']:hover {
+  background: var(--rehovot-color-light);
+  transform: translateX(2px);
+}
+
+/* Freelancer Header */
+.category-header[data-category='freelancer'] {
+  background: var(--freelancer-bg);
+  color: var(--freelancer-color);
+  border: 1px solid var(--freelancer-color);
+  border-opacity: 0.2;
+}
+
+.category-header[data-category='freelancer']::before {
+  background: var(--freelancer-color);
+}
+
+.category-header[data-category='freelancer']:hover {
+  background: var(--freelancer-color-light);
+  transform: translateX(2px);
+}
+
+/* Tenant Header */
+.category-header[data-category='tenant'] {
+  background: var(--tenant-bg);
+  color: var(--tenant-color);
+  border: 1px solid var(--tenant-color);
+  border-opacity: 0.2;
+}
+
+.category-header[data-category='tenant']::before {
+  background: var(--tenant-color);
+}
+
+.category-header[data-category='tenant']:hover {
+  background: var(--tenant-color-light);
+  transform: translateX(2px);
+}
+
+/* === Pulse Animation for Icons === */
+@keyframes iconPulse {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+}
+
+.linear-item-icon {
+  animation: iconPulse 3s ease-in-out infinite;
+}
+
+/* Pause animation on hover */
+.linear-item:hover .linear-item-icon {
+  animation: none;
+}
+
+/* === Category Badge/Counter === */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.5rem;
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  border-radius: 9999px;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  margin-right: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.category-badge[data-category='ta_staff'] {
+  background: var(--ta-color);
+  color: white;
+}
+
+.category-badge[data-category='rehovot_staff'] {
+  background: var(--rehovot-color);
+  color: white;
+}
+
+.category-badge[data-category='freelancer'] {
+  background: var(--freelancer-color);
+  color: white;
+}
+
+.category-badge[data-category='tenant'] {
+  background: var(--tenant-color);
+  color: white;
+}
+
+/* Removed excessive hover effect */
+
+/* === Smooth Transitions === */
+* {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}

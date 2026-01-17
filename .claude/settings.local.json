@@ -82,7 +82,8 @@
       "Bash(npx netlify deploy:*)",
       "Bash(grep:*)",
       "Bash(gh api:*)",
-      "Bash(netlify api:*)"
+      "Bash(netlify api:*)",
+      "Bash(test:*)"
     ],
     "deny": [],
     "ask": []

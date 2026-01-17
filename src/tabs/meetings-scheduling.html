@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between mb-8">
   <h2
     class="text-4xl font-bold bg-gradient-to-r from-blue-900 to-slate-700 bg-clip-text text-transparent flex items-center editable"
-    data-field="heading_meetings_scheduling"
+    data-field="meetings_main_title"
+    contenteditable="true"
   >
     <div
       class="w-9 h-9 bg-gradient-to-br from-blue-900 to-blue-950 rounded-lg flex items-center justify-center ml-3"
@@ -24,7 +25,8 @@
   <div class="mb-6 p-4 bg-slate-50/30 dark:bg-slate-950/10 rounded-lg border-r-4 border-blue-900">
     <h4
       class="text-md font-semibold text-blue-950 dark:text-blue-300 mb-4 flex items-center gap-2 editable"
-      data-field="heading_client_work_meeting"
+      data-field="meetings_work_title"
+      contenteditable="true"
     >
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path
@@ -52,16 +54,19 @@
         <p class="text-sm font-bold text-slate-900 dark:text-slate-300">מתי מקיימים פגישת עבודה?</p>
       </div>
       <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-        <p class="editable" data-field="work_meeting_emphasis_1">
+        <p class="editable" data-field="meetings_work_when1"
+        contenteditable="true">
           פגישת עבודה עם לקוח מתקיימת, בדרך כלל כשעורך הדין המטפל בתיק, מבקש להיפגש עם הלקוח לפגישת
           עבודה.
         </p>
-        <p class="editable" data-field="work_meeting_emphasis_2">
+        <p class="editable" data-field="meetings_work_when2"
+        contenteditable="true">
           קיימים גם מצבים שבהם הלקוח מבקש לקיים פגישת עבודה עם עורך הדין. במצב דברים זה יש לפנות
           לעורך הדין ולוודא, שהוא סיכם עם הלקוח, על פגישת עבודה איתו. לא מספיק שהלקוח יבקש להיפגש עם
           עורך הדין לפגישת עבודה, אלא על מנהלת המשרד לאשר את זה מול עורך הדין המטפל.
         </p>
-        <p class="editable" data-field="work_meeting_emphasis_3">
+        <p class="editable" data-field="meetings_work_when3"
+        contenteditable="true">
           במידה ועורך הדין המטפל, לא ביקש או סיכם על פגישת עבודה עם הלקוח, הוא יעביר הנחיות מתאימות
           למנהלת המשרד, שתחזור ללקוח ותטפל מולו.
         </p>
@@ -70,7 +75,8 @@
 
     <p
       class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-4 editable"
-      data-field="work_meeting_intro"
+      data-field="meetings_work_intro"
+      contenteditable="true"
     >
       במידה ועורך הדין אכן ביקש פגישת עבודה עם הלקוח, בין אם הפגישה הגיע ביוזמתו של הלקוח ובין
       ביוזמת עורך הדין, יש לפעול לפי ההנחיות הבאות:
@@ -108,7 +114,8 @@
             </div>
             <p
               class="text-sm text-gray-600 dark:text-gray-400 editable"
-              data-field="work_meeting_step_a"
+              data-field="meetings_work_step1"
+              contenteditable="true"
             >
               לוודא עם עורך הדין כמה זמן פגישה נחוצה לו. לחפש ביומן עורך הדין שישתתף בפגישה, זמן
               מתאים לקיום הפגישה. להתקשר ללקוח, ואם מדובר ביותר מלקוח אחד אז להתקשר ליתר הלקוחות,
@@ -155,7 +162,8 @@
 
             <div
               class="bg-gray-50 dark:bg-gray-800 rounded-lg p-4 mb-3 border-r-4 border-gray-400 editable"
-              data-field="work_meeting_format"
+              data-field="meetings_work_format"
+              contenteditable="true"
             >
               <div class="space-y-3 text-sm">
                 <div>
@@ -250,10 +258,12 @@
                 אם הפגישה בסניף רחובות:
               </p>
               <div class="space-y-1.5 text-sm text-gray-700 dark:text-gray-300">
-                <p class="editable" data-field="rehovot_contact_info">
+                <p class="editable" data-field="meetings_rehovot_info"
+                contenteditable="true">
                   <strong>איש קשר:</strong> מיטל (מנהלת המשרד בסניף רחובות) או אחד מעורכי הדין בסניף
                 </p>
-                <p class="editable" data-field="rehovot_contact_phone">
+                <p class="editable" data-field="meetings_rehovot_phone"
+                contenteditable="true">
                   <strong>טלפון מיטל:</strong> [נא להשלים]
                 </p>
               </div>
@@ -295,7 +305,8 @@
             </div>
             <div
               class="text-sm text-gray-600 dark:text-gray-400 space-y-2 editable"
-              data-field="work_meeting_invitation"
+              data-field="meetings_work_invitation"
+              contenteditable="true"
             >
               <p>לאחר וידוא שמועד הפגישה ומיקום הפגישה פנוי ונוח לכל הצדדים המעורבים:</p>
               <ul class="space-y-1.5 mr-4">
@@ -352,7 +363,8 @@
               class="bg-slate-50 dark:bg-slate-900/20 border-r-4 border-slate-600 rounded-lg p-3 mt-3"
             >
               <ul class="space-y-2.5 text-sm text-gray-700 dark:text-gray-300">
-                <li class="flex items-start gap-2 editable" data-field="work_meeting_reminder_1">
+                <li class="flex items-start gap-2 editable" data-field="meetings_work_reminder1"
+                contenteditable="true">
                   <svg
                     class="w-4 h-4 text-slate-700 dark:text-slate-400 flex-shrink-0 mt-0.5"
                     fill="currentColor"
@@ -366,7 +378,8 @@
                     ><strong>התקשר ללקוח</strong> ותזכר אותו על הפגישה, וחזור על פרטי הפגישה</span
                   >
                 </li>
-                <li class="flex items-start gap-2 editable" data-field="work_meeting_reminder_2">
+                <li class="flex items-start gap-2 editable" data-field="meetings_work_reminder2"
+                contenteditable="true">
                   <svg
                     class="w-4 h-4 text-slate-700 dark:text-slate-400 flex-shrink-0 mt-0.5"
                     fill="currentColor"
@@ -425,7 +438,8 @@
               </p>
               <ol
                 class="space-y-2 text-sm text-gray-700 dark:text-gray-300 editable"
-                data-field="work_meeting_change"
+                data-field="meetings_work_change"
+                contenteditable="true"
               >
                 <li class="flex items-start gap-2">
                   <span class="text-red-600 dark:text-red-400 font-bold flex-shrink-0">1.</span>
@@ -453,7 +467,8 @@
   >
     <h4
       class="text-lg font-bold text-slate-900 dark:text-slate-300 mb-4 flex items-center gap-3 editable"
-      data-field="heading_first_consultation"
+      data-field="meetings_consult_title"
+      contenteditable="true"
     >
       <div class="w-10 h-10 bg-blue-900 rounded-lg flex items-center justify-center">
         <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -494,7 +509,8 @@
           <p class="text-sm font-semibold text-gray-900 dark:text-gray-100 mb-2">תנאי התחלה</p>
           <p
             class="text-sm text-gray-700 dark:text-gray-300 mb-2 editable"
-            data-field="first_consultation_emphasis_1"
+            data-field="meetings_consult_when1"
+            contenteditable="true"
           >
             לאחר שאיש צוות מקצועי / איש מכירות שוחח עם לקוח מתעניין טלפונית, וסיכם איתו על הגעה
             לפגישת ייעוץ פעם ראשונה, ולאחר שהלקוח שילם עבור פגישת הייעוץ, איש הצוות / איש המכירות,
@@ -503,7 +519,8 @@
           </p>
           <p
             class="text-sm text-gray-700 dark:text-gray-300 editable"
-            data-field="first_consultation_emphasis_2"
+            data-field="meetings_consult_when2"
+            contenteditable="true"
           >
             במצב בו איש המכירות / איש צוות מקצועי, ביקש ממנהלת המשרד לתאם את הפגישה, לאחר שגבה
             מהלקוח תשלום עבור הפגישה, יעביר איש המכירות / איש הצוות המקצועי למנהלת המשרד, את פרטי
@@ -568,7 +585,8 @@
               <div class="space-y-2">
                 <div
                   class="flex items-start gap-2 editable"
-                  data-field="first_consultation_calendar_1"
+                  data-field="meetings_consult_calendar1"
+                  contenteditable="true"
                 >
                   <span class="text-blue-900 mt-1">•</span>
                   <p class="text-sm text-gray-700 dark:text-gray-300">
@@ -578,7 +596,8 @@
                 </div>
                 <div
                   class="flex items-start gap-2 editable"
-                  data-field="first_consultation_calendar_2"
+                  data-field="meetings_consult_calendar2"
+                  contenteditable="true"
                 >
                   <span class="text-blue-900 mt-1">•</span>
                   <p class="text-sm text-gray-700 dark:text-gray-300">
@@ -588,7 +607,8 @@
                 </div>
                 <div
                   class="flex items-start gap-2 editable"
-                  data-field="first_consultation_calendar_3"
+                  data-field="meetings_consult_calendar3"
+                  contenteditable="true"
                 >
                   <span class="text-blue-900 mt-1">•</span>
                   <p class="text-sm text-gray-700 dark:text-gray-300">
@@ -598,7 +618,8 @@
                 </div>
                 <div
                   class="flex items-start gap-2 editable"
-                  data-field="first_consultation_calendar_4"
+                  data-field="meetings_consult_calendar4"
+                  contenteditable="true"
                 >
                   <span class="text-blue-900 mt-1">•</span>
                   <p class="text-sm text-gray-700 dark:text-gray-300">
@@ -647,7 +668,8 @@
               </div>
               <p
                 class="text-sm text-gray-700 dark:text-gray-300 editable"
-                data-field="first_consultation_invitation"
+                data-field="meetings_consult_invitation"
+                contenteditable="true"
               >
                 לאחר רישום כל פרטי הפגישה בשורת הפגישה ביומן, יש לשלוח זימון של הפגישה לכתובת המייל
                 של הלקוח, לכתובת עורך הדין שיהיה נוכח בפגישה וכן לכתובת המייל של המשרד על מנת שתהיה
@@ -693,7 +715,8 @@
               </div>
               <p
                 class="text-sm text-gray-700 dark:text-gray-300 editable"
-                data-field="first_consultation_confirmation"
+                data-field="meetings_consult_confirm"
+                contenteditable="true"
               >
                 יש להתקשר טלפונית ללקוח החדש, ולוודא שהוא קיבל את הזימון במייל, ולבקש ממנו שיאשר את
                 הזימון.
@@ -738,7 +761,8 @@
               </div>
               <p
                 class="text-sm text-gray-700 dark:text-gray-300 mb-3 editable"
-                data-field="first_consultation_reminder_timing"
+                data-field="meetings_consult_reminder_when"
+                contenteditable="true"
               >
                 24 שעות לפני מועד הפגישה, יש להתקשר ללקוח החדש, ולוודא איתו שיש לו את כל פרטי ההגעה
                 לפגישה.
@@ -763,14 +787,16 @@
                 <div class="space-y-2 mr-7">
                   <p
                     class="text-sm text-red-900 dark:text-red-200 editable"
-                    data-field="first_consultation_reminder_emphasis_1"
+                    data-field="meetings_consult_reminder1"
+                    contenteditable="true"
                   >
                     מנהלת המשרד <strong>לא</strong> מתקשרת ללקוח חדש 24 שעות לפני מועד הפגישה, כדי
                     לתזכר אותו או לומר לו שהיא התקשרה כדי לתזכר אותו על הפגישה.
                   </p>
                   <p
                     class="text-sm text-red-900 dark:text-red-200 font-semibold editable"
-                    data-field="first_consultation_reminder_emphasis_2"
+                    data-field="meetings_consult_reminder2"
+                    contenteditable="true"
                   >
                     ✓ המטרה היא לומר ללקוח, שהתקשרנו כדי לוודא שיש לו את כל פרטי ההגעה - וזה גם
                     האופן שבו מנהלת המשרד תתנסח מול הלקוח החדש.
@@ -817,7 +843,8 @@
               </div>
               <p
                 class="text-sm text-gray-700 dark:text-gray-300 editable"
-                data-field="first_consultation_cancellation"
+                data-field="meetings_consult_cancel"
+                contenteditable="true"
               >
                 יש לעדכן מיד את עורך הדין שאמור היה להיות נוכח בפגישה, ולקבל ממנו הנחיות להמשך טיפול
                 מול הלקוח.
@@ -833,7 +860,8 @@
   <div class="mb-6 p-4 bg-slate-50/30 dark:bg-slate-950/10 rounded-lg border-r-4 border-blue-900">
     <h4
       class="text-md font-semibold text-blue-950 dark:text-blue-300 mb-4 flex items-center gap-2 editable"
-      data-field="heading_meeting_types"
+      data-field="meetings_types_title"
+      contenteditable="true"
     >
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path
@@ -859,7 +887,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="managers_meeting_title"
+              data-field="meetings_managers_title"
+              contenteditable="true"
             >
               פגישת צוות מנהלים סניף תל אביב + סניף רחובות
             </h6>
@@ -870,7 +899,8 @@
                     d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
                   ></path>
                 </svg>
-                <p class="editable" data-field="managers_meeting_participants">
+                <p class="editable" data-field="meetings_managers_who"
+                contenteditable="true">
                   <strong>משתתפים:</strong> עו"ד גיא הרשקוביץ ועו"ד רועי הרשקוביץ
                 </p>
               </div>
@@ -882,7 +912,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="managers_meeting_duration">
+                <p class="editable" data-field="meetings_managers_duration"
+                contenteditable="true">
                   <strong>משך:</strong> 60 דקות
                 </p>
               </div>
@@ -894,7 +925,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="managers_meeting_frequency">
+                <p class="editable" data-field="meetings_managers_freq"
+                contenteditable="true">
                   <strong>תדירות:</strong> פעם בשבוע
                 </p>
               </div>
@@ -906,7 +938,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="managers_meeting_location">
+                <p class="editable" data-field="meetings_managers_location"
+                contenteditable="true">
                   <strong>מיקום:</strong> פעמיים בחודש בסניף רחובות, פעמיים בחודש בסניף תל אביב
                 </p>
               </div>
@@ -915,7 +948,8 @@
               >
                 <p
                   class="text-sm font-semibold text-gray-800 dark:text-gray-300 editable"
-                  data-field="managers_meeting_note"
+                  data-field="meetings_managers_note"
+                  contenteditable="true"
                 >
                   📌 יש לקבוע יום קבוע בשבוע לפגישה זו
                 </p>
@@ -940,7 +974,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="feedback_meeting_title"
+              data-field="meetings_feedback_title"
+              contenteditable="true"
             >
               פגישת משוב מקצועי עם עובד/ת
             </h6>
@@ -953,7 +988,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="feedback_meeting_duration">
+                <p class="editable" data-field="meetings_feedback_duration"
+                contenteditable="true">
                   <strong>משך:</strong> 45 דקות
                 </p>
               </div>
@@ -966,7 +1002,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="feedback_meeting_scheduling">
+                <p class="editable" data-field="meetings_feedback_when"
+                contenteditable="true">
                   <strong>קביעה:</strong> לפי הנחייה ספציפית שתינתן
                 </p>
               </div>
@@ -990,7 +1027,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="interview_title"
+              data-field="meetings_interview_title"
+              contenteditable="true"
             >
               ראיון עבודה
             </h6>
@@ -1003,7 +1041,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="interview_duration">
+                <p class="editable" data-field="meetings_interview_duration"
+                contenteditable="true">
                   <strong>משך:</strong> חצי שעה לכל ראיון
                 </p>
               </div>
@@ -1015,7 +1054,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="interview_count">
+                <p class="editable" data-field="meetings_interview_count"
+                contenteditable="true">
                   <strong>כמות:</strong> לפחות 3 ראיונות ברצף, לא יותר מ-5 ראיונות
                 </p>
               </div>
@@ -1023,7 +1063,8 @@
                 <p class="text-sm font-bold text-red-900 dark:text-red-300 mb-1">⛔ אסור!</p>
                 <p
                   class="text-sm text-red-900 dark:text-red-300 editable"
-                  data-field="interview_forbidden"
+                  data-field="meetings_interview_forbidden"
+                  contenteditable="true"
                 >
                   <strong>אין</strong> לקבוע ראיונות בתפזורת, בשעות שאינן רצופות או בימים שונים
                 </p>
@@ -1048,7 +1089,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_meeting_title"
+              data-field="meetings_team_title"
+              contenteditable="true"
             >
               ישיבת צוות משרד
             </h6>
@@ -1061,7 +1103,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_meeting_frequency">
+                <p class="editable" data-field="meetings_team_freq"
+                contenteditable="true">
                   <strong>תדירות:</strong> כל שבוע
                 </p>
               </div>
@@ -1073,7 +1116,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_meeting_time">
+                <p class="editable" data-field="meetings_team_time"
+                contenteditable="true">
                   <strong>שעה:</strong> 9:30 בבוקר
                 </p>
               </div>
@@ -1085,7 +1129,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_meeting_location">
+                <p class="editable" data-field="meetings_team_location"
+                contenteditable="true">
                   <strong>מיקום:</strong> סניף תל אביב
                 </p>
               </div>
@@ -1098,7 +1143,8 @@
                     d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_meeting_format">
+                <p class="editable" data-field="meetings_team_format"
+                contenteditable="true">
                   <strong>פורמט:</strong> 3 פעמים בחודש בזום, פעם אחת בחודש פרונטלי בתל אביב
                 </p>
               </div>
@@ -1122,7 +1168,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="training_title"
+              data-field="meetings_training_title"
+              contenteditable="true"
             >
               הדרכה מקצועית
             </h6>
@@ -1135,7 +1182,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="training_frequency">
+                <p class="editable" data-field="meetings_training_freq"
+                contenteditable="true">
                   <strong>תדירות:</strong> פעם בשבוע
                 </p>
               </div>
@@ -1147,7 +1195,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="training_timing">
+                <p class="editable" data-field="meetings_training_time"
+                contenteditable="true">
                   <strong>זמן:</strong> חצי שעה לפני תחילת ישיבת צוות
                 </p>
               </div>
@@ -1156,7 +1205,8 @@
               >
                 <p
                   class="text-sm font-semibold text-slate-900 dark:text-slate-300 editable"
-                  data-field="training_coordination"
+                  data-field="meetings_training_coord"
+                  contenteditable="true"
                 >
                   💡 על מנהלת המשרד לקבל מגיא או רועי, <strong>עד יומיים לפני</strong> מועד ההדרכה:
                 </p>
@@ -1194,7 +1244,8 @@
           >
             א
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_1">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note1"
+          contenteditable="true">
             יש לרשום בשורת היומן במועד ובשעה שנקבעה, את <strong>סוג הפגישה/הישיבה/ההדרכה</strong>
           </p>
         </div>
@@ -1204,7 +1255,8 @@
           >
             ב
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_2">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note2"
+          contenteditable="true">
             יש לרשום את <strong>שמות המלאים</strong> של הנוכחים בפגישה
           </p>
         </div>
@@ -1214,7 +1266,8 @@
           >
             ג
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_3">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note3"
+          contenteditable="true">
             יש לציין את <strong>מיקום הפגישה המדויק</strong>
           </p>
         </div>
@@ -1224,7 +1277,8 @@
           >
             ד
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_4">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note4"
+          contenteditable="true">
             כאשר מדובר בנוכחים שאינם מצוות המשרד (לדוגמא: מועמד לתפקיד במשרד), יש לציין
             <strong>מספר טלפון</strong> בשורת הפגישה
           </p>
@@ -1235,7 +1289,8 @@
           >
             ה
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_5">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note5"
+          contenteditable="true">
             יש לשלוח <strong>זימון במייל</strong> לנוכחים הצפויים בפגישה
           </p>
         </div>
@@ -1245,7 +1300,8 @@
           >
             ו
           </div>
-          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="calendar_note_6">
+          <p class="text-sm text-gray-800 dark:text-gray-200 editable" data-field="meetings_calendar_note6"
+          contenteditable="true">
             יש לוודא <strong>טלפונית</strong> לאחר שליחת המייל, שהנמענים קיבלו את הזימון ומאשרים
             אותו <strong>גם במייל וגם טלפונית</strong>
           </p>
@@ -1258,7 +1314,8 @@
   <div class="mb-6 p-4 bg-slate-50/30 dark:bg-slate-950/10 rounded-lg border-r-4 border-slate-600">
     <h4
       class="text-md font-semibold text-slate-900 dark:text-slate-400 mb-4 flex items-center gap-2 editable"
-      data-field="heading_team_meeting_management"
+      data-field="meetings_team_mgmt_title"
+      contenteditable="true"
     >
       <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
         <path
@@ -1270,7 +1327,8 @@
 
     <p
       class="text-sm text-gray-700 dark:text-gray-300 mb-6 editable"
-      data-field="team_management_intro"
+      data-field="meetings_team_mgmt_intro"
+      contenteditable="true"
     >
       ישיבת צוות היא כלי מרכזי בניהול המשרד. הנה הנהלים והשלבים לארגון ישיבה יעילה ומקצועית:
     </p>
@@ -1291,13 +1349,15 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_a_title"
+              data-field="meetings_team_stepa_title"
+              contenteditable="true"
             >
               קביעה מראש וזימון
             </h6>
             <p
               class="text-sm text-gray-700 dark:text-gray-300 editable"
-              data-field="team_step_a_content"
+              data-field="meetings_team_stepa_content"
+              contenteditable="true"
             >
               קובעים מראש ישיבות צוות ביומן המשרד ושולחים זימון לכל הנוכחים בישיבת הצוות
             </p>
@@ -1320,13 +1380,15 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_b_title"
+              data-field="meetings_team_stepb_title"
+              contenteditable="true"
             >
               אימות והשתתפות
             </h6>
             <p
               class="text-sm text-gray-700 dark:text-gray-300 editable"
-              data-field="team_step_b_content"
+              data-field="meetings_team_stepb_content"
+              contenteditable="true"
             >
               מוודאים שכל הנוכחים בישיבת הצוות אישרו את הזימון במייל, מתקשרים איתם גם טלפונית - כולל
               צוות תל אביב וצוות רחובות
@@ -1350,7 +1412,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_c_title"
+              data-field="meetings_team_stepc_title"
+              contenteditable="true"
             >
               מועדים ופורמט (החל מ-4.12)
             </h6>
@@ -1363,7 +1426,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_step_c_time">
+                <p class="editable" data-field="meetings_team_stepc_time"
+                contenteditable="true">
                   <strong>שעה:</strong> 9:30 בבוקר, בכל יום חמישי בשבוע
                 </p>
               </div>
@@ -1376,7 +1440,8 @@
                     d="M15 7v2a4 4 0 01-4 4H9.828l-1.766 1.767c.28.149.599.233.938.233h2l3 3v-3h2a2 2 0 002-2V9a2 2 0 00-2-2h-1z"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_step_c_format">
+                <p class="editable" data-field="meetings_team_stepc_format"
+                contenteditable="true">
                   <strong>פורמט:</strong> צוות רחובות - 3 פעמים בחודש בזום, פעם אחת בחודש פרונטלי
                   בתל אביב
                 </p>
@@ -1401,13 +1466,15 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_d_title"
+              data-field="meetings_team_stepd_title"
+              contenteditable="true"
             >
               המשך עבודה לאחר ישיבה
             </h6>
             <p
               class="text-sm text-gray-700 dark:text-gray-300 editable"
-              data-field="team_step_d_content"
+              data-field="meetings_team_stepd_content"
+              contenteditable="true"
             >
               מיד לאחר ישיבת הצוות, ממשיכים לעבודה. במועד הישיבה הפרונטלית, צוות רחובות חוזר לעבוד
               במשרד שברחובות
@@ -1431,17 +1498,20 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_e_title"
+              data-field="meetings_team_stepe_title"
+              contenteditable="true"
             >
               בדיקה טכנית מוקדמת (15 דקות לפני)
             </h6>
             <div class="space-y-2 text-sm text-gray-700 dark:text-gray-300">
-              <p class="editable" data-field="team_step_e_intro">
+              <p class="editable" data-field="meetings_team_stepe_intro"
+              contenteditable="true">
                 <strong>על מנהלת המשרד לוודא:</strong>
               </p>
               <ul
                 class="list-disc list-inside space-y-1 editable"
-                data-field="team_step_e_checklist"
+                data-field="meetings_team_stepe_checklist"
+                contenteditable="true"
               >
                 <li>מסך הטלוויזיה מחובר ללפטופ</li>
                 <li>הזום/גוגל מיט או תוכנה אחרת מחוברים ועובדים</li>
@@ -1468,48 +1538,55 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_f_title"
+              data-field="meetings_team_stepf_title"
+              contenteditable="true"
             >
               הקלטה, תמלול וחלוקת סיכום
             </h6>
             <div class="space-y-3 text-sm text-gray-700 dark:text-gray-300">
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">1.</span>
-                <p class="editable" data-field="team_step_f_record">
+                <p class="editable" data-field="meetings_team_stepf_record"
+                contenteditable="true">
                   <strong>מנהלת המשרד מקליטה</strong> את הישיבה
                 </p>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">2.</span>
-                <p class="editable" data-field="team_step_f_transcribe">
+                <p class="editable" data-field="meetings_team_stepf_transcribe"
+                contenteditable="true">
                   <strong>בסיום הישיבה:</strong> מעבירה את ההקלטה לתמלול וסיכום באמצעות תוכנת בינה
                   מלאכותית
                 </p>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">3.</span>
-                <p class="editable" data-field="team_step_f_access">
+                <p class="editable" data-field="meetings_team_stepf_access"
+                contenteditable="true">
                   <strong>גישה עצמאית:</strong> על מנהלת המשרד לפנות לחיים ולבקש ממנו גישה עצמאית
                   לתוכנת הבינה המלאכותית + הדרכה, ללא תלות בחיים או בגורם אחר במשרד
                 </p>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">4.</span>
-                <p class="editable" data-field="team_step_f_review">
+                <p class="editable" data-field="meetings_team_stepf_review"
+                contenteditable="true">
                   <strong>עריכת התמלול:</strong> מיד לאחר קבלת התמלול, מנהלת המשרד עוברת עליו,
                   מוודאת שאין טעויות, מחדדת ומדייקת
                 </p>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">5.</span>
-                <p class="editable" data-field="team_step_f_send">
+                <p class="editable" data-field="meetings_team_stepf_send"
+                contenteditable="true">
                   <strong>שליחה:</strong> שולחת את התמלול לכל מי שנכח בישיבה + גם למי שלא נכח (על
                   מנת שיקרא)
                 </p>
               </div>
               <div class="flex items-start gap-2">
                 <span class="text-blue-900 font-bold">6.</span>
-                <p class="editable" data-field="team_step_f_confirm">
+                <p class="editable" data-field="meetings_team_stepf_confirm"
+                contenteditable="true">
                   <strong>אימות קבלה:</strong> כל אחד מצוות המשרד (בין שנכח ובין שלא) עליו לאשר
                   למנהלת המשרד במייל חוזר שהוא קיבל, קרא והבין את הסיכום
                 </p>
@@ -1519,7 +1596,8 @@
                 <p class="text-sm font-bold text-red-900 dark:text-red-300 mb-1">⚠️ דגש קריטי!</p>
                 <p
                   class="text-sm text-red-900 dark:text-red-300 editable"
-                  data-field="team_step_f_critical"
+                  data-field="meetings_team_stepf_critical"
+                  contenteditable="true"
                 >
                   כמעט בכל ישיבת צוות יש חזרה על הנחיות ודגשים, עדכונים חשובים ועוד. לכן קיימת
                   <strong>חשיבות עליונה</strong> שתמלול הישיבה יעשה ויערך
@@ -1547,7 +1625,8 @@
           <div class="flex-1">
             <h6
               class="text-base font-bold text-gray-900 dark:text-gray-100 mb-2 editable"
-              data-field="team_step_g_title"
+              data-field="meetings_team_stepg_title"
+              contenteditable="true"
             >
               כיבוד לישיבת צוות
             </h6>
@@ -1563,7 +1642,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_step_g_budget">
+                <p class="editable" data-field="meetings_team_stepg_budget"
+                contenteditable="true">
                   <strong>תקציב:</strong> עד 150 ₪ (ללא קשר לתקציב חודשי לכיבוד)
                 </p>
               </div>
@@ -1575,7 +1655,8 @@
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <p class="editable" data-field="team_step_g_items">
+                <p class="editable" data-field="meetings_team_stepg_items"
+                contenteditable="true">
                   <strong>אפשרויות:</strong> אוכל קל - לחמים, ממרחים, ירקות, חטיפים וכד'
                 </p>
               </div>
@@ -1584,7 +1665,8 @@
               >
                 <p
                   class="text-sm font-semibold text-gray-800 dark:text-gray-300 editable"
-                  data-field="team_step_g_special"
+                  data-field="meetings_team_stepg_special"
+                  contenteditable="true"
                 >
                   🎉 <strong>באירועים מיוחדים</strong> (ערבי חג, ברכת כוסית, עובד חדש, ימי הולדת
                   ושמחות) - בתיאום מול גיא

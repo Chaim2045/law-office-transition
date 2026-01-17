@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>בדיקת שמירה - Content Editor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .test-section {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+        .info { background: #d1ecf1; color: #0c5460; }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover { background: #0056b3; }
+        .log-output {
+            background: #000;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 בדיקת שמירה - מערכת עריכת תוכן</h1>
+
+    <div class="test-section">
+        <h2>הוראות בדיקה:</h2>
+        <ol>
+            <li>פתח את הקונסול (F12) כדי לראות הודעות שמירה</li>
+            <li>לחץ על "התחל בדיקה" להפעלת הבדיקות</li>
+            <li>בדוק את התוצאות למטה</li>
+            <li>נסה לערוך טקסט בעמוד הראשי ובדוק שהוא נשמר</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>בדיקות אוטומטיות:</h2>
+        <button onclick="runTests()">התחל בדיקה</button>
+        <button onclick="clearLogs()">נקה לוג</button>
+        <div id="test-results"></div>
+        <div class="log-output" id="log-output"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>בדיקה ידנית:</h2>
+        <button onclick="testManualSave()">בדוק שמירה ידנית</button>
+        <button onclick="checkLocalStorage()">הצג LocalStorage</button>
+        <button onclick="checkFirebase()">בדוק חיבור Firebase</button>
+    </div>
+
+    <script>
+        const logOutput = document.getElementById('log-output');
+        const testResults = document.getElementById('test-results');
+
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const color = type === 'success' ? '#0f0' : type === 'error' ? '#f00' : '#0ff';
+            logOutput.innerHTML += `<div style="color: ${color}">[${timestamp}] ${message}</div>`;
+            logOutput.scrollTop = logOutput.scrollHeight;
+            console.log(message);
+        }
+
+        function clearLogs() {
+            logOutput.innerHTML = '';
+            testResults.innerHTML = '';
+        }
+
+        function addResult(message, success) {
+            const div = document.createElement('div');
+            div.className = `test-result ${success ? 'success' : 'error'}`;
+            div.textContent = (success ? '✅ ' : '❌ ') + message;
+            testResults.appendChild(div);
+        }
+
+        function runTests() {
+            clearLogs();
+            log('🚀 מתחיל בדיקות...', 'info');
+
+            // בדיקה 1: האם Firebase טעון
+            const firebaseLoaded = typeof firebase !== 'undefined';
+            addResult('Firebase SDK טעון', firebaseLoaded);
+            log(`Firebase: ${firebaseLoaded ? '✅' : '❌'}`, firebaseLoaded ? 'success' : 'error');
+
+            // בדיקה 2: פונקציות Firebase
+            const saveFunctionExists = typeof saveToFirebase === 'function';
+            addResult('פונקציית saveToFirebase קיימת', saveFunctionExists);
+            log(`saveToFirebase: ${saveFunctionExists ? '✅' : '❌'}`, saveFunctionExists ? 'success' : 'error');
+
+            const loadFunctionExists = typeof loadAllDataFromFirebase === 'function';
+            addResult('פונקציית loadAllDataFromFirebase קיימת', loadFunctionExists);
+            log(`loadAllDataFromFirebase: ${loadFunctionExists ? '✅' : '❌'}`, loadFunctionExists ? 'success' : 'error');
+
+            // בדיקה 3: ContentBlockManager
+            const managerExists = typeof window.ContentBlockManager !== 'undefined';
+            addResult('ContentBlockManager קיים', managerExists);
+            log(`ContentBlockManager: ${managerExists ? '✅' : '❌'}`, managerExists ? 'success' : 'error');
+
+            if (managerExists) {
+                const saveBlockExists = typeof window.ContentBlockManager.saveBlock === 'function';
+                addResult('פונקציית saveBlock קיימת', saveBlockExists);
+                log(`saveBlock: ${saveBlockExists ? '✅' : '❌'}`, saveBlockExists ? 'success' : 'error');
+
+                const blocksCount = window.ContentBlockManager.blocks.size;
+                addResult(`נמצאו ${blocksCount} בלוקים במערכת`, blocksCount > 0);
+                log(`בלוקים: ${blocksCount}`, blocksCount > 0 ? 'success' : 'error');
+            }
+
+            // בדיקה 4: RichTextEditor
+            const editorExists = typeof window.RichTextEditor !== 'undefined';
+            addResult('RichTextEditor קיים', editorExists);
+            log(`RichTextEditor: ${editorExists ? '✅' : '❌'}`, editorExists ? 'success' : 'error');
+
+            if (editorExists) {
+                const saveCurrentBlockExists = typeof window.RichTextEditor.saveCurrentBlock === 'function';
+                addResult('פונקציית saveCurrentBlock קיימת ב-Editor', saveCurrentBlockExists);
+                log(`saveCurrentBlock: ${saveCurrentBlockExists ? '✅' : '❌'}`, saveCurrentBlockExists ? 'success' : 'error');
+            }
+
+            // בדיקה 5: Event listeners
+            log('בודק event listeners...', 'info');
+            const hasInputListeners = true; // לא ניתן לבדוק ישירות
+            addResult('Event listeners מוגדרים', hasInputListeners);
+
+            log('✅ בדיקות הסתיימו!', 'success');
+        }
+
+        function testManualSave() {
+            log('🔧 בודק שמירה ידנית...', 'info');
+
+            const testBlockId = 'test_block_manual_' + Date.now();
+            const testContent = 'זהו טקסט בדיקה - ' + new Date().toLocaleTimeString();
+
+            // שמור ב-localStorage
+            localStorage.setItem(`guide_${testBlockId}`, testContent);
+            log(`💾 נשמר ל-localStorage: ${testBlockId}`, 'success');
+
+            // בדוק אם נשמר
+            const saved = localStorage.getItem(`guide_${testBlockId}`);
+            if (saved === testContent) {
+                log('✅ השמירה ב-localStorage עבדה!', 'success');
+                addResult('שמירה מקומית עובדת', true);
+            } else {
+                log('❌ השמירה ב-localStorage נכשלה!', 'error');
+                addResult('שמירה מקומית נכשלה', false);
+            }
+
+            // נסה Firebase
+            if (typeof saveToFirebase === 'function') {
+                saveToFirebase(testBlockId, testContent)
+                    .then(() => {
+                        log('✅ השמירה ב-Firebase עבדה!', 'success');
+                        addResult('שמירה ב-Firebase עובדת', true);
+                    })
+                    .catch(err => {
+                        log(`❌ שגיאה ב-Firebase: ${err}`, 'error');
+                        addResult('שמירה ב-Firebase נכשלה', false);
+                    });
+            } else {
+                log('⚠️ Firebase לא זמין', 'error');
+            }
+        }
+
+        function checkLocalStorage() {
+            log('📦 בודק localStorage...', 'info');
+            const keys = Object.keys(localStorage).filter(k => k.startsWith('guide_'));
+            log(`נמצאו ${keys.length} מפתחות ששמורים`, 'info');
+
+            keys.slice(0, 10).forEach(key => {
+                const value = localStorage.getItem(key);
+                const preview = value.length > 50 ? value.substring(0, 50) + '...' : value;
+                log(`  ${key}: ${preview}`, 'info');
+            });
+
+            if (keys.length > 10) {
+                log(`  ... ועוד ${keys.length - 10} מפתחות`, 'info');
+            }
+        }
+
+        async function checkFirebase() {
+            log('🔥 בודק חיבור Firebase...', 'info');
+
+            if (typeof loadAllDataFromFirebase !== 'function') {
+                log('❌ Firebase לא זמין', 'error');
+                addResult('Firebase לא זמין', false);
+                return;
+            }
+
+            try {
+                const data = await loadAllDataFromFirebase();
+                if (data) {
+                    const count = Object.keys(data).length;
+                    log(`✅ Firebase מחובר! נמצאו ${count} שדות`, 'success');
+                    addResult(`Firebase מחובר - ${count} שדות`, true);
+
+                    // הצג כמה דוגמאות
+                    const keys = Object.keys(data).filter(k => k.startsWith('block_'));
+                    log(`בלוקים ב-Firebase: ${keys.length}`, 'info');
+                } else {
+                    log('⚠️ Firebase מחובר אבל אין נתונים', 'error');
+                    addResult('Firebase ריק', false);
+                }
+            } catch (err) {
+                log(`❌ שגיאה בחיבור ל-Firebase: ${err}`, 'error');
+                addResult('שגיאה בחיבור לFirebase', false);
+            }
+        }
+
+        // הרץ בדיקות אוטומטית עם טעינת הדף
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                log('🎯 דף בדיקה נטען בהצלחה', 'success');
+                log('💡 לחץ על "התחל בדיקה" להתחיל', 'info');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

@@ -1,7 +1,8 @@
 <div class="flex items-center justify-between mb-8">
   <h2
     class="text-2xl font-semibold text-slate-800 dark:text-gray-100 flex items-center editable"
-    data-field="heading_checks_deposits"
+    data-field="checks_main_title"
+    contenteditable="true"
   >
     נוהל הפקדת צ'קים ומזומן
   </h2>
@@ -10,10 +11,10 @@
 <div class="space-y-5">
   <!-- מטרת הנוהל -->
   <div class="mb-5 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-2 editable" data-field="heading_procedure_goal">
+    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-2 editable" data-field="checks_procedure_goal_title" contenteditable="true">
       מטרת הנוהל
     </h4>
-    <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="procedure_warning">
+    <p class="text-sm text-gray-700 dark:text-gray-300 editable" data-field="checks_procedure_warning" contenteditable="true">
       להבטיח שכל צ'ק או סכום מזומן שמתקבל במשרד מטופל לפי כללי העבודה המחייבים – חותמות, חתימות, סריקה, הפקדה ודיווח במייל.
       <strong class="text-slate-800 dark:text-gray-100">אין חריגות, אין קיצורי דרך.</strong>
     </p>
@@ -107,7 +108,7 @@
 
   <!-- חלק א' – טיפול בצ'קים -->
   <div class="mb-5 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-4 editable" data-field="heading_checks_handling">
+    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-4 editable" data-field="checks_handling_title" contenteditable="true">
       חלק א' – טיפול בצ'קים (7 שלבים)
     </h4>
 
@@ -140,7 +141,7 @@
         </div>
         <div class="step-content px-3 pb-3">
           <div class="relative">
-            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="check_front_stamp">
+            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="checks_front_stamp" contenteditable="true">
               גיא הרשקוביץ חברת עורכי דין ח.פ 515577161 – למוטב בלבד
             </p>
             <button class="copy-btn absolute top-0 left-0" onclick="copyToClipboard('גיא הרשקוביץ חברת עורכי דין ח.פ 515577161 – למוטב בלבד')">
@@ -164,7 +165,7 @@
         </div>
         <div class="step-content px-3 pb-3">
           <div class="relative">
-            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="check_back_stamp_1">
+            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="checks_back_stamp1" contenteditable="true">
               גיא הרשקוביץ חברת עורכי דין ח.פ 515577161
             </p>
             <button class="copy-btn absolute top-0 left-0" onclick="copyToClipboard('גיא הרשקוביץ חברת עורכי דין ח.פ 515577161')">
@@ -188,7 +189,7 @@
         </div>
         <div class="step-content px-3 pb-3">
           <div class="relative">
-            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="check_back_stamp_2">
+            <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="checks_back_stamp2" contenteditable="true">
               בנק מזרחי טפחות – סניף 421 – חשבון 333177
             </p>
             <button class="copy-btn absolute top-0 left-0" onclick="copyToClipboard('בנק מזרחי טפחות – סניף 421 – חשבון 333177')">
@@ -211,7 +212,7 @@
           </svg>
         </div>
         <div class="step-content px-3 pb-3">
-          <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="guy_signature">
+          <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="checks_guy_signature" contenteditable="true">
             לאחר החותמות - להעביר את כל הצ'קים לגיא לחתימה ידנית בגב
           </p>
         </div>
@@ -227,7 +228,7 @@
           </svg>
         </div>
         <div class="step-content px-3 pb-3">
-          <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="scanning">
+          <p class="text-xs text-gray-600 dark:text-gray-400 editable" data-field="checks_scanning" contenteditable="true">
             לסרוק כל צ'ק בנפרד ב-CamScanner ולשמור כ-PDF נפרד (לא במצלמה רגילה)
           </p>
         </div>
@@ -264,7 +265,7 @@
 
   <!-- חלק ב' – טיפול במזומן -->
   <div class="mb-5 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700">
-    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-4 editable" data-field="heading_cash_handling">
+    <h4 class="text-sm font-semibold text-slate-800 dark:text-gray-100 mb-4 editable" data-field="checks_cash_handling_title" contenteditable="true">
       חלק ב' – טיפול במזומן (5 שלבים)
     </h4>
     <div class="space-y-2">
