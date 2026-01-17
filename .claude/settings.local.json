@@ -84,7 +84,8 @@
       "Bash(gh api:*)",
       "Bash(netlify api:*)",
       "Bash(test:*)",
-      "Bash(netlify --version:*)"
+      "Bash(netlify --version:*)",
+      "Bash(move transform-labels.js transform-labels.cjs)"
     ],
     "deny": [],
     "ask": []
