@@ -421,9 +421,12 @@ class DynamicContentManager {
         phone
       });
 
-      // הוסף ל-DOM (לפני כפתור ההוספה)
-      const addBtn = sectionElement.querySelector('.add-item-btn');
-      sectionElement.insertBefore(newItem, addBtn);
+      // הוסף data-item-id (למחיקה עתידית)
+      const itemId = `${labelFieldId}_${fieldId}`;
+      newItem.setAttribute('data-item-id', itemId);
+
+      // הוסף ל-DOM (בסוף הגריד)
+      sectionElement.appendChild(newItem);
 
       // שמור ב-Firebase
       const savePromises = [
@@ -442,16 +445,18 @@ class DynamicContentManager {
       // צרף autosave לשדות החדשים
       this.attachAutosaveToNewItem(newItem);
 
-      // הוסף כפתור מחיקה
-      const deleteBtn = document.createElement('button');
-      deleteBtn.className = 'delete-item-btn';
-      deleteBtn.innerHTML = '❌';
-      deleteBtn.title = 'מחק פריט זה';
-      deleteBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.deleteItem(newItem, -1);
-      });
-      newItem.appendChild(deleteBtn);
+      // הוסף כפתור מחיקה (יוסף רק במצב עריכה)
+      if (this.editModeActive) {
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'dynamic-delete-btn';
+        deleteBtn.innerHTML = '❌';
+        deleteBtn.title = 'מחק פריט זה';
+        deleteBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          this.deleteItem(newItem, -1);
+        });
+        newItem.appendChild(deleteBtn);
+      }
 
       // סגור modal
       document.querySelector('.add-item-modal-overlay')?.remove();
