@@ -27,10 +27,13 @@ class DynamicContentManager {
       return;
     }
 
-    // האזן לאירוע tabLoaded כדי להריץ assignItemIds + loadDeletedItems
+    // האזן לאירוע tabLoaded כדי להריץ assignItemIds + loadDeletedItems + loadDynamicItems
     document.addEventListener('tabLoaded', async (event) => {
       if (event.detail.tabId === 'general-info') {
-        console.log('📝 Tab general-info loaded - assigning IDs and loading deleted items...');
+        console.log('📝 Tab general-info loaded - assigning IDs, loading dynamic items, and deleted items...');
+
+        // טען פריטים דינמיים שנוספו (לפני assignItemIds!)
+        await this.loadDynamicItems();
 
         // הוסף data-item-id לכל הפריטים הקיימים
         this.assignItemIds();
@@ -71,6 +74,63 @@ class DynamicContentManager {
     });
 
     console.log(`✅ Assigned IDs to ${items.length} items`);
+  }
+
+  /**
+   * טעינת פריטים דינמיים שנוספו
+   */
+  async loadDynamicItems() {
+    try {
+      const snapshot = await firebase.database()
+        .ref('dynamicItems')
+        .once('value');
+
+      const dynamicItems = snapshot.val() || {};
+
+      // מצא את הגריד של צוות תל-אביב (זה האזור הראשון שבו מוסיפים פריטים)
+      const generalInfoTab = document.getElementById('general-info');
+      if (!generalInfoTab) {
+        console.log('⚠️ general-info tab not found');
+        return;
+      }
+
+      // מצא את הגריד הראשון (ta-staff)
+      const taStaffGrid = generalInfoTab.querySelector('[data-section-id="ta-staff"]');
+      if (!taStaffGrid) {
+        console.log('⚠️ ta-staff section not found');
+        return;
+      }
+
+      // צור כל פריט דינמי
+      const itemIds = Object.keys(dynamicItems);
+      itemIds.forEach(itemId => {
+        const itemData = dynamicItems[itemId];
+
+        // צור את הפריט
+        const newItem = this.createLinearItem({
+          labelFieldId: itemData.labelFieldId,
+          fieldId: itemData.fieldId,
+          label: itemData.label,
+          value: itemData.value,
+          phone: itemData.phone
+        });
+
+        // הוסף data-item-id
+        newItem.setAttribute('data-item-id', itemId);
+
+        // הוסף ל-DOM
+        taStaffGrid.appendChild(newItem);
+
+        // צרף autosave
+        this.attachAutosaveToNewItem(newItem);
+
+        console.log(`✅ Loaded dynamic item: ${itemId}`);
+      });
+
+      console.log(`✅ Loaded ${itemIds.length} dynamic items`);
+    } catch (error) {
+      console.error('❌ Error loading dynamic items:', error);
+    }
   }
 
   /**
@@ -275,7 +335,16 @@ class DynamicContentManager {
         }
       });
 
-      // 2. סמן את הפריט כמחוק
+      // 2. מחק מ-dynamicItems אם זה פריט דינמי
+      if (itemId.includes('general_dynamic_')) {
+        const deleteDynamicPromise = firebase.database()
+          .ref(`dynamicItems/${itemId}`)
+          .remove();
+        deletePromises.push(deleteDynamicPromise);
+        console.log(`  🗑️ Deleting from dynamicItems: ${itemId}`);
+      }
+
+      // 3. סמן את הפריט כמחוק
       const markDeletedPromise = firebase.database()
         .ref(`deletedItems/${itemId}`)
         .set({
@@ -430,6 +499,7 @@ class DynamicContentManager {
 
       // שמור ב-Firebase
       const savePromises = [
+        // שמור את התוכן של השדות
         firebase.database().ref(`guideData/${labelFieldId}`).set({
           content: label,
           updatedAt: timestamp
@@ -437,6 +507,16 @@ class DynamicContentManager {
         firebase.database().ref(`guideData/${fieldId}`).set({
           content: value,
           updatedAt: timestamp
+        }),
+        // שמור metadata של הפריט הדינמי (כדי לטעון אותו אחרי רענון!)
+        firebase.database().ref(`dynamicItems/${itemId}`).set({
+          labelFieldId,
+          fieldId,
+          label,
+          value,
+          phone: phone || '',
+          timestamp,
+          createdBy: 'user'
         })
       ];
 
