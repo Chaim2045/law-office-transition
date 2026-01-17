@@ -70,6 +70,13 @@ function initializeApp() {
 
   // Load Google Sheets config
   loadGoogleSheetsConfig();
+
+  // Initialize Dynamic Content Manager
+  if (window.DynamicContentManager) {
+    window.dynamicContentManager = new window.DynamicContentManager();
+    window.dynamicContentManager.init();
+    console.log('✅ Dynamic Content Manager initialized');
+  }
 }
 
 function initializeItemCounters() {
@@ -241,6 +248,11 @@ function toggleEditMode() {
       window.ContentBlockManager.enableEditMode();
     }
 
+    // Enable Dynamic Content Manager (delete/add items)
+    if (window.dynamicContentManager) {
+      window.dynamicContentManager.toggleDynamicEditMode(true);
+    }
+
     showToast('מצב עריכה הופעל - כעת ניתן להוסיף תוכן חדש בכל מקום', 'info');
   } else {
     elements.editToggle.innerHTML =
@@ -273,6 +285,11 @@ function toggleEditMode() {
     // Disable Content Block Manager
     if (window.ContentBlockManager) {
       window.ContentBlockManager.disableEditMode();
+    }
+
+    // Disable Dynamic Content Manager
+    if (window.dynamicContentManager) {
+      window.dynamicContentManager.toggleDynamicEditMode(false);
     }
 
     showToast('שינויים נשמרו', 'success');

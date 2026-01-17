@@ -1,0 +1,476 @@
+/* ========================================
+   Dynamic Content Management - CSS Styles
+   Created: 2026-01-17
+   Purpose: Styling for add/delete buttons and modal
+   ======================================== */
+
+/* ============================================
+   1. DELETE BUTTONS (❌)
+   ============================================ */
+
+.dynamic-delete-btn {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  width: 24px;
+  height: 24px;
+  background: #ef4444;
+  color: white;
+  border: 2px solid white;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  z-index: 10;
+  padding: 0;
+}
+
+.dynamic-delete-btn:hover {
+  background: #dc2626;
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.dynamic-delete-btn:active {
+  transform: scale(0.95);
+}
+
+/* Show delete button on hover when in edit mode */
+.linear-item:hover .dynamic-delete-btn {
+  display: flex;
+}
+
+/* Make sure parent has position relative */
+.linear-item {
+  position: relative;
+}
+
+/* ============================================
+   2. ADD BUTTONS (➕)
+   ============================================ */
+
+.dynamic-add-section {
+  margin-top: 16px;
+  padding: 12px;
+  border: 2px dashed #93c5fd;
+  border-radius: 8px;
+  background: linear-gradient(to bottom, #eff6ff, #dbeafe);
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.dynamic-add-section:hover {
+  border-color: #60a5fa;
+  background: linear-gradient(to bottom, #dbeafe, #bfdbfe);
+}
+
+.dynamic-add-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: white;
+  color: #2563eb;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
+}
+
+.dynamic-add-btn:hover {
+  background: #2563eb;
+  color: white;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.dynamic-add-btn:active {
+  transform: translateY(0);
+}
+
+.dynamic-add-btn::before {
+  content: '➕';
+  font-size: 18px;
+}
+
+/* Show add buttons in edit mode */
+body.edit-mode .dynamic-add-section {
+  display: block;
+}
+
+/* ============================================
+   3. MODAL OVERLAY & CONTAINER
+   ============================================ */
+
+.dynamic-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.dynamic-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideUp 0.3s ease;
+  direction: rtl;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   4. MODAL HEADER
+   ============================================ */
+
+.dynamic-modal-header {
+  padding: 20px 24px;
+  border-bottom: 2px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(to bottom, #f9fafb, white);
+}
+
+.dynamic-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dynamic-modal-title::before {
+  content: '➕';
+  font-size: 24px;
+}
+
+.dynamic-modal-close {
+  width: 32px;
+  height: 32px;
+  background: #f3f4f6;
+  border: none;
+  border-radius: 6px;
+  font-size: 20px;
+  color: #6b7280;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.dynamic-modal-close:hover {
+  background: #e5e7eb;
+  color: #1f2937;
+}
+
+/* ============================================
+   5. MODAL BODY & FORM
+   ============================================ */
+
+.dynamic-modal-body {
+  padding: 24px;
+}
+
+.dynamic-form-group {
+  margin-bottom: 20px;
+}
+
+.dynamic-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.dynamic-form-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.dynamic-form-label .required {
+  color: #ef4444;
+  margin-right: 2px;
+}
+
+.dynamic-form-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #1f2937;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+.dynamic-form-input:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.dynamic-form-input::placeholder {
+  color: #9ca3af;
+}
+
+.dynamic-form-hint {
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dynamic-form-hint::before {
+  content: 'ℹ️';
+  font-size: 14px;
+}
+
+/* ============================================
+   6. MODAL FOOTER & BUTTONS
+   ============================================ */
+
+.dynamic-modal-footer {
+  padding: 16px 24px;
+  border-top: 2px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.dynamic-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dynamic-btn-primary {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+}
+
+.dynamic-btn-primary:hover {
+  background: #2563eb;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.dynamic-btn-primary:active {
+  transform: translateY(0);
+}
+
+.dynamic-btn-primary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.dynamic-btn-secondary {
+  background: white;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+}
+
+.dynamic-btn-secondary:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+/* ============================================
+   7. NOTIFICATION TOAST
+   ============================================ */
+
+.dynamic-notification {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  background: white;
+  color: #1f2937;
+  padding: 16px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 10000;
+  animation: slideInRight 0.3s ease;
+  max-width: 400px;
+  border-left: 4px solid #10b981;
+  direction: rtl;
+}
+
+.dynamic-notification.error {
+  border-left-color: #ef4444;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.dynamic-notification-icon {
+  font-size: 24px;
+  flex-shrink: 0;
+}
+
+.dynamic-notification-message {
+  font-size: 15px;
+  font-weight: 500;
+  flex: 1;
+}
+
+/* ============================================
+   8. DELETION ANIMATION
+   ============================================ */
+
+.dynamic-deleting {
+  animation: fadeOut 0.3s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+/* ============================================
+   9. RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 640px) {
+  .dynamic-modal {
+    max-width: 100%;
+    border-radius: 12px 12px 0 0;
+    max-height: 85vh;
+  }
+
+  .dynamic-modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .dynamic-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+
+  .dynamic-modal-footer {
+    flex-direction: column-reverse;
+  }
+
+  .dynamic-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   10. ACCESSIBILITY
+   ============================================ */
+
+/* Focus visible for keyboard navigation */
+.dynamic-delete-btn:focus-visible,
+.dynamic-add-btn:focus-visible,
+.dynamic-btn:focus-visible,
+.dynamic-modal-close:focus-visible {
+  outline: 3px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .dynamic-modal-overlay,
+  .dynamic-modal,
+  .dynamic-notification,
+  .dynamic-deleting,
+  .dynamic-delete-btn,
+  .dynamic-add-btn,
+  .dynamic-btn {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .dynamic-delete-btn {
+    border-width: 3px;
+  }
+
+  .dynamic-add-section {
+    border-width: 3px;
+  }
+
+  .dynamic-form-input:focus {
+    border-width: 3px;
+  }
+}
