@@ -27,8 +27,63 @@ class DynamicContentManager {
       return;
     }
 
+    // הוסף data-item-id לכל הפריטים הקיימים
+    this.assignItemIds();
+
+    // טען רשימת פריטים מחוקים והסתר אותם
+    this.loadDeletedItems();
+
     this.initialized = true;
     console.log('✅ Dynamic Content Manager: Ready');
+  }
+
+  /**
+   * הוסף data-item-id לכל הפריטים הקיימים (אם אין להם)
+   */
+  assignItemIds() {
+    const generalInfoTab = document.getElementById('general-info');
+    if (!generalInfoTab) return;
+
+    const items = generalInfoTab.querySelectorAll('.linear-item');
+    items.forEach(item => {
+      // אם כבר יש מזהה, דלג
+      if (item.getAttribute('data-item-id')) return;
+
+      // השתמש ב-data-field הראשון כמזהה
+      const firstField = item.querySelector('[data-field]');
+      if (firstField) {
+        const itemId = firstField.getAttribute('data-field');
+        item.setAttribute('data-item-id', itemId);
+      }
+    });
+
+    console.log(`✅ Assigned IDs to ${items.length} items`);
+  }
+
+  /**
+   * טעינת פריטים מחוקים והסתרתם
+   */
+  async loadDeletedItems() {
+    try {
+      const snapshot = await firebase.database()
+        .ref('deletedItems')
+        .once('value');
+
+      const deletedItems = snapshot.val() || {};
+
+      // הסתר כל פריט שנמחק
+      Object.keys(deletedItems).forEach(itemId => {
+        const item = document.querySelector(`[data-item-id="${itemId}"]`);
+        if (item) {
+          item.remove();
+          console.log(`🗑️ Hiding deleted item: ${itemId}`);
+        }
+      });
+
+      console.log(`✅ Loaded ${Object.keys(deletedItems).length} deleted items`);
+    } catch (error) {
+      console.error('❌ Error loading deleted items:', error);
+    }
   }
 
   /**
@@ -168,6 +223,15 @@ class DynamicContentManager {
     try {
       console.log(`🗑️ Deleting item ${itemIndex}...`);
 
+      // צור מזהה ייחודי לפריט (או השתמש בקיים)
+      let itemId = itemElement.getAttribute('data-item-id');
+      if (!itemId) {
+        // אם אין מזהה, צור אחד מהשדה הראשון
+        const firstField = itemElement.querySelector('[data-field]');
+        itemId = firstField ? firstField.getAttribute('data-field') : `item_${Date.now()}`;
+        itemElement.setAttribute('data-item-id', itemId);
+      }
+
       // מצא את השדות עם data-field בפריט
       const fields = itemElement.querySelectorAll('[data-field]');
 
@@ -178,6 +242,8 @@ class DynamicContentManager {
 
       // מחק מ-Firebase (אם יש data-field)
       const deletePromises = [];
+
+      // 1. מחק את כל השדות
       fields.forEach(field => {
         const fieldName = field.getAttribute('data-field');
         if (fieldName) {
@@ -185,9 +251,19 @@ class DynamicContentManager {
             .ref(`guideData/${fieldName}`)
             .remove();
           deletePromises.push(deletePromise);
-          console.log(`  🗑️ Deleting from Firebase: ${fieldName}`);
+          console.log(`  🗑️ Deleting field from Firebase: ${fieldName}`);
         }
       });
+
+      // 2. סמן את הפריט כמחוק
+      const markDeletedPromise = firebase.database()
+        .ref(`deletedItems/${itemId}`)
+        .set({
+          timestamp: Date.now(),
+          deletedBy: 'user'
+        });
+      deletePromises.push(markDeletedPromise);
+      console.log(`  🗑️ Marking item as deleted: ${itemId}`);
 
       // המתן לכל המחיקות
       await Promise.all(deletePromises);
