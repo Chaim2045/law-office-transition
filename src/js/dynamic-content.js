@@ -27,11 +27,20 @@ class DynamicContentManager {
       return;
     }
 
-    // הוסף data-item-id לכל הפריטים הקיימים
-    this.assignItemIds();
+    // האזן לאירוע tabLoaded כדי להריץ assignItemIds + loadDeletedItems
+    document.addEventListener('tabLoaded', async (event) => {
+      if (event.detail.tabId === 'general-info') {
+        console.log('📝 Tab general-info loaded - assigning IDs and loading deleted items...');
 
-    // טען רשימת פריטים מחוקים והסתר אותם (ממתין לסיום!)
-    await this.loadDeletedItems();
+        // הוסף data-item-id לכל הפריטים הקיימים
+        this.assignItemIds();
+
+        // טען רשימת פריטים מחוקים והסתר אותם
+        await this.loadDeletedItems();
+
+        console.log('✅ Dynamic Content ready for general-info');
+      }
+    });
 
     this.initialized = true;
     console.log('✅ Dynamic Content Manager: Ready');
