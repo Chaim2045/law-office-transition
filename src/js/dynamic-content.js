@@ -16,7 +16,7 @@ class DynamicContentManager {
   /**
    * אתחול המערכת
    */
-  init() {
+  async init() {
     if (this.initialized) return;
 
     console.log('🚀 Dynamic Content Manager: Initializing...');
@@ -30,8 +30,8 @@ class DynamicContentManager {
     // הוסף data-item-id לכל הפריטים הקיימים
     this.assignItemIds();
 
-    // טען רשימת פריטים מחוקים והסתר אותם
-    this.loadDeletedItems();
+    // טען רשימת פריטים מחוקים והסתר אותם (ממתין לסיום!)
+    await this.loadDeletedItems();
 
     this.initialized = true;
     console.log('✅ Dynamic Content Manager: Ready');
@@ -49,11 +49,15 @@ class DynamicContentManager {
       // אם כבר יש מזהה, דלג
       if (item.getAttribute('data-item-id')) return;
 
-      // השתמש ב-data-field הראשון כמזהה
-      const firstField = item.querySelector('[data-field]');
-      if (firstField) {
-        const itemId = firstField.getAttribute('data-field');
-        item.setAttribute('data-item-id', itemId);
+      // צור מזהה ייחודי מכל השדות בפריט (לא רק הראשון!)
+      const fields = item.querySelectorAll('[data-field]');
+      const fieldIds = Array.from(fields)
+        .map(f => f.getAttribute('data-field'))
+        .filter(Boolean)
+        .join('_');
+
+      if (fieldIds) {
+        item.setAttribute('data-item-id', fieldIds);
       }
     });
 
@@ -223,12 +227,19 @@ class DynamicContentManager {
     try {
       console.log(`🗑️ Deleting item ${itemIndex}...`);
 
-      // צור מזהה ייחודי לפריט (או השתמש בקיים)
+      // קבל את המזהה הייחודי של הפריט (צריך להיות כבר מוגדר מ-assignItemIds)
       let itemId = itemElement.getAttribute('data-item-id');
       if (!itemId) {
-        // אם אין מזהה, צור אחד מהשדה הראשון
-        const firstField = itemElement.querySelector('[data-field]');
-        itemId = firstField ? firstField.getAttribute('data-field') : `item_${Date.now()}`;
+        // אם אין מזהה, צור אחד מכל השדות (כמו assignItemIds)
+        const fields = itemElement.querySelectorAll('[data-field]');
+        itemId = Array.from(fields)
+          .map(f => f.getAttribute('data-field'))
+          .filter(Boolean)
+          .join('_');
+
+        if (!itemId) {
+          itemId = `item_${Date.now()}`;
+        }
         itemElement.setAttribute('data-item-id', itemId);
       }
 
