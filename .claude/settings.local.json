@@ -83,7 +83,8 @@
       "Bash(grep:*)",
       "Bash(gh api:*)",
       "Bash(netlify api:*)",
-      "Bash(test:*)"
+      "Bash(test:*)",
+      "Bash(netlify --version:*)"
     ],
     "deny": [],
     "ask": []

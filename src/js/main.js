@@ -224,18 +224,11 @@ function toggleEditMode() {
       'hover:to-red-800'
     );
 
+    // ✅ v2.1: Don't change contentEditable (always true for autosave)
+    // Just add visual class 'edit-mode-active'
     editables.forEach((element) => {
-      element.contentEditable = true;
-      element.classList.add(
-        'border-2',
-        'border-dashed',
-        'border-blue-300',
-        'rounded-lg',
-        'px-3',
-        'py-2',
-        'bg-blue-50',
-        'dark:bg-blue-900/20'
-      );
+      // element.contentEditable = true; // ❌ Already true in HTML
+      element.classList.add('edit-mode-active'); // ✅ Visual indicator only
       element.addEventListener('input', handleEdit);
     });
 
@@ -265,18 +258,11 @@ function toggleEditMode() {
       'hover:to-green-800'
     );
 
+    // ✅ v2.1: Don't change contentEditable (keep true for autosave)
+    // Just remove visual class 'edit-mode-active'
     editables.forEach((element) => {
-      element.contentEditable = false;
-      element.classList.remove(
-        'border-2',
-        'border-dashed',
-        'border-blue-300',
-        'rounded-lg',
-        'px-3',
-        'py-2',
-        'bg-blue-50',
-        'dark:bg-blue-900/20'
-      );
+      // element.contentEditable = false; // ❌ Don't disable - autosave needs it
+      element.classList.remove('edit-mode-active'); // ✅ Remove visual indicator
       element.removeEventListener('input', handleEdit);
     });
 
