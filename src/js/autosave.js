@@ -46,6 +46,20 @@ class AutosaveManager {
     // Setup event listeners
     this.setupEventListeners();
 
+    // האזן לטעינת טאבים חדשים - כדי לגלות שדות editable חדשים
+    document.addEventListener('tabLoaded', (event) => {
+      this.log(`📝 Tab ${event.detail.tabId} loaded - discovering new fields...`);
+      const beforeCount = this.editableFields.size;
+      this.discoverEditableFields();
+      const afterCount = this.editableFields.size;
+      const newFields = afterCount - beforeCount;
+      if (newFields > 0) {
+        this.log(`✅ Discovered ${newFields} new editable fields in ${event.detail.tabId}`);
+        // טען תוכן לשדות החדשים
+        this.loadAllFields();
+      }
+    });
+
     this.initialized = true;
     this.log('✅ AutosaveManager initialized', {
       totalFields: this.editableFields.size
