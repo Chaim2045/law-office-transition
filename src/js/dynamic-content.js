@@ -120,6 +120,12 @@ class DynamicContentManager {
         const itemData = dynamicItems[itemId];
         console.log(`  🔨 Creating item: ${itemId}`, itemData);
 
+        // ✅ בדיקת תקינות: דלג על פריטים פגומים
+        if (!itemData.labelFieldId || !itemData.fieldId) {
+          console.warn(`⚠️ Skipping malformed item: ${itemId} (missing labelFieldId or fieldId)`);
+          return;
+        }
+
         // צור את הפריט
         const newItem = this.createLinearItem({
           labelFieldId: itemData.labelFieldId,
