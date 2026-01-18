@@ -119,9 +119,16 @@ class DynamicContentManager {
       itemIds.forEach(itemId => {
         const itemData = dynamicItems[itemId];
         console.log(`  🔨 Creating item: ${itemId}`, itemData);
+        console.log(`  📋 itemData details:`, {
+          labelFieldId: itemData?.labelFieldId,
+          fieldId: itemData?.fieldId,
+          label: itemData?.label,
+          value: itemData?.value,
+          phone: itemData?.phone
+        });
 
         // ✅ בדיקת תקינות: דלג על פריטים פגומים
-        if (!itemData.labelFieldId || !itemData.fieldId) {
+        if (!itemData || !itemData.labelFieldId || !itemData.fieldId) {
           console.warn(`⚠️ Skipping malformed item: ${itemId} (missing labelFieldId or fieldId)`);
 
           // 🧹 ניקוי אוטומטי: מחק פריטים פגומים מ-Firebase
