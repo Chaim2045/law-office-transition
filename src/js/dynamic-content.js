@@ -89,11 +89,13 @@ class DynamicContentManager {
 
       const dynamicItems = snapshot.val() || {};
       console.log('📦 dynamicItems from Firebase:', dynamicItems);
+      console.log('📦 dynamicItems type:', typeof dynamicItems);
+      console.log('📦 dynamicItems keys:', Object.keys(dynamicItems));
 
       // בדוק אם יש פריטים דינמיים בכלל
       const itemIds = Object.keys(dynamicItems);
       if (itemIds.length === 0) {
-        console.log('ℹ️ No dynamic items to load');
+        console.log('ℹ️ No dynamic items to load (empty object)');
         return;
       }
 
@@ -510,6 +512,11 @@ class DynamicContentManager {
       sectionElement.appendChild(newItem);
 
       // שמור ב-Firebase
+      console.log(`💾 Saving to Firebase:
+  - guideData/${labelFieldId}
+  - guideData/${fieldId}
+  - dynamicItems/${itemId}`);
+
       const savePromises = [
         // שמור את התוכן של השדות
         firebase.database().ref(`guideData/${labelFieldId}`).set({
@@ -533,6 +540,7 @@ class DynamicContentManager {
       ];
 
       await Promise.all(savePromises);
+      console.log(`✅ All Firebase saves completed for item ${itemId}`);
 
       // צרף autosave לשדות החדשים
       this.attachAutosaveToNewItem(newItem);
