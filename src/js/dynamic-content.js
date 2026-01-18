@@ -123,6 +123,12 @@ class DynamicContentManager {
         // ✅ בדיקת תקינות: דלג על פריטים פגומים
         if (!itemData.labelFieldId || !itemData.fieldId) {
           console.warn(`⚠️ Skipping malformed item: ${itemId} (missing labelFieldId or fieldId)`);
+
+          // 🧹 ניקוי אוטומטי: מחק פריטים פגומים מ-Firebase
+          firebase.database().ref(`dynamicItems/${itemId}`).remove()
+            .then(() => console.log(`🗑️ Auto-deleted malformed item: ${itemId}`))
+            .catch(err => console.error(`❌ Failed to delete ${itemId}:`, err));
+
           return;
         }
 
