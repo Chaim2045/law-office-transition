@@ -81,11 +81,21 @@ class DynamicContentManager {
    */
   async loadDynamicItems() {
     try {
+      console.log('🔄 loadDynamicItems: Starting...');
+
       const snapshot = await firebase.database()
         .ref('dynamicItems')
         .once('value');
 
       const dynamicItems = snapshot.val() || {};
+      console.log('📦 dynamicItems from Firebase:', dynamicItems);
+
+      // בדוק אם יש פריטים דינמיים בכלל
+      const itemIds = Object.keys(dynamicItems);
+      if (itemIds.length === 0) {
+        console.log('ℹ️ No dynamic items to load');
+        return;
+      }
 
       // מצא את הגריד של צוות תל-אביב (זה האזור הראשון שבו מוסיפים פריטים)
       const generalInfoTab = document.getElementById('general-info');
@@ -101,10 +111,12 @@ class DynamicContentManager {
         return;
       }
 
+      console.log(`📍 Found taStaffGrid, loading ${itemIds.length} items...`);
+
       // צור כל פריט דינמי
-      const itemIds = Object.keys(dynamicItems);
       itemIds.forEach(itemId => {
         const itemData = dynamicItems[itemId];
+        console.log(`  🔨 Creating item: ${itemId}`, itemData);
 
         // צור את הפריט
         const newItem = this.createLinearItem({
@@ -124,10 +136,10 @@ class DynamicContentManager {
         // צרף autosave
         this.attachAutosaveToNewItem(newItem);
 
-        console.log(`✅ Loaded dynamic item: ${itemId}`);
+        console.log(`  ✅ Loaded dynamic item: ${itemId}`);
       });
 
-      console.log(`✅ Loaded ${itemIds.length} dynamic items`);
+      console.log(`✅ Loaded ${itemIds.length} dynamic items successfully`);
     } catch (error) {
       console.error('❌ Error loading dynamic items:', error);
     }
